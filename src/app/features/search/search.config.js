@@ -20,14 +20,6 @@ const searchFilter = {
     isSingleSelect: false,
     isGrouped: true,
   },
-  [SearchFilters.academic]: {
-    title: 'Academic',
-    fieldId: Fields.academicId,
-    contentTypeId: [ContentTypes.person],
-    items: [],
-    isSingleSelect: false,
-    isGrouped: true,
-  },
 };
 
 export default {
@@ -83,49 +75,23 @@ export default {
         },
       },
     },
-    latestArticles: {
-      title: 'Latest Articles',
-      projectId: 'researchfortheworld',
-      queryParams: {
-        contentTypeIds: ['article'],
-        fields: [...BaseFields, ...ArticleFields],
-        orderBy: ['-sys.version.published'],
-        pageSize: 4,
-        customWhere: [
-          {
-            not: {
-              field: 'featured',
-              equalTo: true,
-            },
-          },
-        ],
-      },
-    },
-    featuredArticles: {
-      title: 'Featured Articles',
-      projectId: 'researchfortheworld',
-      queryParams: {
-        contentTypeIds: ['article'],
-        fields: [...BaseFields, ...ArticleFields],
-        orderBy: ['-sys.version.published'],
-        pageSize: 6,
-        customWhere: [
-          {
-            field: 'featured',
-            equalTo: true,
-          },
-        ],
-      },
-    },
-    categories: {
-      title: 'All categories',
-      projectId: 'researchfortheworld',
-      queryParams: {
-        contentTypeIds: ['category'],
-        fields: [...BaseFields],
-        orderBy: ['-sys.version.published'],
-        pageSize: -1,
-      },
-    },
+    // latestArticles: {
+    //   title: 'Latest Articles',
+    //   projectId: 'projectId',
+    //   queryParams: {
+    //     contentTypeIds: ['article'],
+    //     fields: [...BaseFields, ...ArticleFields],
+    //     orderBy: ['-sys.version.published'],
+    //     pageSize: 4,
+    //     customWhere: [
+    //       {
+    //         not: {
+    //           field: 'featured',
+    //           equalTo: true,
+    //         },
+    //       },
+    //     ],
+    //   },
+    // },
   },
 };
