@@ -6,10 +6,27 @@ import { default as mapJson } from '~/core/util/json-mapper';
 import { removeEmptyAttributes } from '~/core/util/helpers';
 import { selectCurrentPath } from '~/core/redux/selectors';
 
-const { getSelectedFilters, getSearchTerm, getSearchContext } = selectors;
+const {
+  getSelectedFilters,
+  getSearchTerm,
+  getSearchContext,
+  getCurrentFacet,
+} = selectors;
 
 const searchUriTemplate = {
-  path: ({ state }) => selectCurrentPath(state),
+  path: ({ state, facet }) => {
+    const context = getSearchContext(state);
+    const currentPath = selectCurrentPath(state) || '/search';
+    if (context !== 'listings') {
+      const currentFacet = facet || getCurrentFacet(state);
+      const newPath = currentFacet
+        ? `${currentPath}/${currentFacet}`
+        : currentPath;
+      return newPath;
+    } else {
+      return currentPath;
+    }
+  },
   search: ({ state, facet, orderBy, pageIndex, term }) => {
     const searchContext = getSearchContext(state);
     // Lose stateFilters and currentSearch if a new

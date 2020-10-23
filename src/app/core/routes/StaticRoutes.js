@@ -11,8 +11,9 @@ export default [
     component: Home,
   },
   {
-    path: '/search',
+    path: '/search/:facet?',
     exact: false,
+    fetchNode: false,
     component: Loadable({
       loader: () => import('~/pages/Search/search.page'),
       loading: Loading,
