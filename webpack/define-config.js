@@ -94,6 +94,7 @@ const production = {
   REVERSE_PROXY_PATHS,
   STATIC_PATH,
   VERSION: packagejson.version,
+  WSFED_LOGIN: false,
 };
 
 module.exports = {
