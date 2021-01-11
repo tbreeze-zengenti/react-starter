@@ -10,6 +10,7 @@ const {
   ACCESS_TOKEN,
   PROJECT,
   CONTENSIS_VERSION,
+  STATIC_PATH = 'static',
 } = process.env;
 
 const PROJECTS = env => [
@@ -63,7 +64,6 @@ const DELIVERY_API_CONFIG = {
   livePublishingRootUrl: url.previewWeb,
 };
 
-
 // Uncomment this if you need forms
 // const FORM_API_CONFIG = {
 //   rootUrl: 'https://cms-else.cloud.contensis.com/',
@@ -84,7 +84,6 @@ const development = {
   SERVERS,
   VERSION: packagejson.version,
   CONTENSIS_VERSION,
-  // FORM_API_CONFIG,
 };
 
 const production = {
@@ -93,9 +92,8 @@ const production = {
   ALLOWED_GROUPS,
   PROXY_DELIVERY_API: true,
   REVERSE_PROXY_PATHS,
+  STATIC_PATH,
   VERSION: packagejson.version,
-  // FORM_API_CONFIG,
-  //CONTENSIS_VERSION: process.env.CONTENSIS_VERSION, We can't have this here as this causes the variable to be "baked-in" to the build and negates the point of having it in the env file
 };
 
 module.exports = {

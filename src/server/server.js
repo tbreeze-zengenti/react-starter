@@ -8,6 +8,8 @@ import withEvents from '~/core/redux/withEvents';
 
 import ServerFeatures from './features/configure';
 
+import BundleInfo from '../../webpack/bundle-info';
+
 ZengentiAppServer.start(
   ReactApp,
   {
@@ -16,22 +18,23 @@ ZengentiAppServer.start(
     withSagas,
     withEvents,
     // The HTML templates we will render the app into
+    differentialBundles: true,
+    disableSsrRedux: DISABLE_SSR_REDUX /* global DISABLE_SSR_REDUX */,
+    dynamicPaths: [],
+    reverseProxyPaths: Object.values(
+      REVERSE_PROXY_PATHS /* global REVERSE_PROXY_PATHS */
+    ),
+    // Some information about the project and the build to pass to the start config
+    packagejson: require('-/package.json'),
+    startupScriptFilename: 'startup.js',
+    staticFolderPath: BundleInfo.DEFINE_CONFIG.production.STATIC_PATH,
+    stats: 'dist/target/react-loadable.json',
     templates: {
       html: 'dist/index.html',
       static: 'dist/index_static.html',
       fragment: 'dist/index_fragment.html',
     },
-    differentialBundles: true,
-    dynamicPaths: [],
-    reverseProxyPaths: Object.values(
-      REVERSE_PROXY_PATHS /* global REVERSE_PROXY_PATHS */
-    ),
     allowedGroups: ALLOWED_GROUPS /* global ALLOWED_GROUPS */,
-    disableSsrRedux: DISABLE_SSR_REDUX /* global DISABLE_SSR_REDUX */,
-    // Some information about the project and the build to pass to the start config
-    packagejson: require('-/package.json'),
-    stats: 'dist/target/react-loadable.json',
-    versionData: 'dist/static/version.json',
   },
   // Configure any server-side features such as sitemap or REST api's
   ServerFeatures

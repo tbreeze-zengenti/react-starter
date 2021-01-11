@@ -8,11 +8,12 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const WebpackModules = require('webpack-modules');
 const WebpackModuleNomodulePlugin = require('webpack-module-nomodule-plugin');
-const Visualizer = require('webpack-visualizer-plugin');
+
 const webpackNodeExternals = require('webpack-node-externals');
 
 const BASE_CONFIG = require('./webpack.config.base');
-const { WEBPACK_DEFINE_CONFIG } = require('./bundle-info');
+const { DEFINE_CONFIG, WEBPACK_DEFINE_CONFIG } = require('./bundle-info');
+const staticFolderPath = DEFINE_CONFIG.production.STATIC_PATH;
 
 const minify = {
   removeComments: true,
@@ -38,14 +39,11 @@ const CLIENT_MODERN_CONFIG = {
   },
   output: {
     path: path.resolve(__dirname, `../dist`),
-    filename: `static/modern/js/[name].[chunkhash].mjs`,
-    chunkFilename: `static/modern/js/[name].[chunkhash].mjs`,
+    filename: `${staticFolderPath}/modern/js/[name].[chunkhash].mjs`,
+    chunkFilename: `${staticFolderPath}/modern/js/[name].[chunkhash].mjs`,
   },
   plugins: [
     new WebpackModules(),
-    new Visualizer({
-      filename: `./modern/client-stats.html`,
-    }),
     new HtmlWebPackPlugin({
       template: path.resolve(__dirname, '../public/index.ejs'),
       filename: path.resolve(__dirname, `../dist/index.html`),
@@ -81,8 +79,8 @@ const CLIENT_LEGACY_CONFIG = {
   },
   output: {
     path: path.resolve(__dirname, `../dist`),
-    filename: `static/legacy/js/[name].[chunkhash].js`,
-    chunkFilename: `static/legacy/js/[name].[chunkhash].js`,
+    filename: `${staticFolderPath}/legacy/js/[name].[chunkhash].js`,
+    chunkFilename: `${staticFolderPath}/legacy/js/[name].[chunkhash].js`,
   },
   module: {
     rules: [
@@ -105,9 +103,6 @@ const CLIENT_LEGACY_CONFIG = {
   },
   plugins: [
     new WebpackModules(),
-    new Visualizer({
-      filename: `./legacy/client-stats.html`,
-    }),
     new HtmlWebPackPlugin({
       template: path.resolve(__dirname, '../public/index.ejs'),
       filename: path.resolve(__dirname, `../dist/index.html`),
@@ -157,7 +152,7 @@ const CLIENT_PROD_CONFIG = {
       {
         ignore: ['index.html', 'index.ejs'],
         from: path.resolve(__dirname, '../public'),
-        to: path.resolve(__dirname, '../dist/static'),
+        to: path.resolve(__dirname, `../dist/${staticFolderPath}`),
       },
     ]),
     new ImageminPlugin({
@@ -208,9 +203,6 @@ const SERVER_PROD_CONFIG = {
     }),
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1,
-    }),
-    new Visualizer({
-      filename: './server/server-stats.html',
     }),
   ],
 };
