@@ -13,7 +13,6 @@ COPY config /usr/src/app/config
 COPY public /usr/src/app/public
 
 COPY src /usr/src/app/src
-RUN mkdir -p /usr/src/app/src/dist/static
 COPY webpack /usr/src/app/webpack
 COPY babel.config.js .
 COPY .env* ./

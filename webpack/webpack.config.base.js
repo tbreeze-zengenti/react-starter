@@ -10,6 +10,7 @@ module.exports = {
   output: {
     publicPath: ASSET_PATH,
   },
+  externals: ['oidc-client'],
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
     alias: {

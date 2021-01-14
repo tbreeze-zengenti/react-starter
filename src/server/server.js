@@ -8,8 +8,6 @@ import withEvents from '~/core/redux/withEvents';
 
 import ServerFeatures from './features/configure';
 
-import BundleInfo from '../../webpack/bundle-info';
-
 ZengentiAppServer.start(
   ReactApp,
   {
@@ -27,7 +25,7 @@ ZengentiAppServer.start(
     // Some information about the project and the build to pass to the start config
     packagejson: require('-/package.json'),
     startupScriptFilename: 'startup.js',
-    staticFolderPath: BundleInfo.DEFINE_CONFIG.production.STATIC_PATH,
+    staticFolderPath: STATIC_PATH /* global STATIC_PATH */,
     stats: 'dist/target/react-loadable.json',
     templates: {
       html: 'dist/index.html',
