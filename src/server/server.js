@@ -26,13 +26,13 @@ ZengentiAppServer.start(
     packagejson: require('-/package.json'),
     startupScriptFilename: 'startup.js',
     staticFolderPath: STATIC_PATH /* global STATIC_PATH */,
+    staticRoutePath: STATIC_PATH,
     stats: 'dist/target/react-loadable.json',
     templates: {
       html: 'dist/index.html',
       static: 'dist/index_static.html',
       fragment: 'dist/index_fragment.html',
     },
-    allowedGroups: ALLOWED_GROUPS /* global ALLOWED_GROUPS */,
   },
   // Configure any server-side features such as sitemap or REST api's
   ServerFeatures
