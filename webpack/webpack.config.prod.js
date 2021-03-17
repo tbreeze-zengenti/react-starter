@@ -92,7 +92,6 @@ const CLIENT_LEGACY_CONFIG = {
           path.resolve('node_modules/contensis-delivery-api'),
           path.resolve('node_modules/fromentries'),
           path.resolve('node_modules/@zengenti/contensis-react-base'),
-          path.resolve('node_modules/zengenti-isomorphic-base'),
         ],
         use: {
           loader: 'babel-loader',
@@ -188,7 +187,6 @@ const SERVER_PROD_CONFIG = {
           path.resolve('node_modules/contensis-delivery-api'),
           path.resolve('node_modules/fromentries'),
           path.resolve('node_modules/@zengenti/contensis-react-base'),
-          path.resolve('node_modules/zengenti-isomorphic-base'),
         ],
         use: {
           loader: 'babel-loader',

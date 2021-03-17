@@ -9,7 +9,6 @@ const {
   INTERNAL_VIP,
   ACCESS_TOKEN,
   PROJECT,
-  CONTENSIS_VERSION,
   STATIC_PATH = 'static',
 } = process.env;
 
@@ -50,6 +49,7 @@ const url = urls(ALIAS, PROJECT);
 
 const SERVERS = {
   alias: ALIAS,
+  api: url.api,
   internalVip: INTERNAL_VIP,
   cms: url.cms,
   web: url.liveWeb,
@@ -64,14 +64,6 @@ const DELIVERY_API_CONFIG = {
   livePublishingRootUrl: url.previewWeb,
 };
 
-// Uncomment this if you need forms
-// const FORM_API_CONFIG = {
-//   rootUrl: 'https://cms-else.cloud.contensis.com/',
-//   securityToken: '',
-//   getFormUrl: '/REST/Contensis/content/GetFormSettings',
-//   uploadFileUrl: '/REST/UI/FormsModule/UploadFile',
-// };
-
 const development = {
   __isBrowser__: true,
   DELIVERY_API_CONFIG,
@@ -83,7 +75,7 @@ const development = {
   REVERSE_PROXY_PATHS,
   SERVERS,
   VERSION: packagejson.version,
-  CONTENSIS_VERSION,
+  WSFED_LOGIN: false,
 };
 
 const production = {
