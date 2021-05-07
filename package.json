@@ -101,19 +101,12 @@
   },
   "dependencies": {
     "@storybook/addon-a11y": "^6.1.9",
-    "@zengenti/contensis-react-base": "2.1.1",
-    "custom-env": "^1.0.2",
-    "dateformat": "^3.0.3",
+    "@zengenti/contensis-react-base": "^2.2.2",
     "file-loader": "^4.0.0",
-    "loglevel": "^1.6.3",
-    "minify-css-string": "1.0.0",
     "patch-package": "^6.2.0",
-    "react": "16.11.0",
-    "react-dom": "16.11.0",
     "sitemap": "^6.1.0",
     "storybook-react-router": "^1.0.8",
     "styled-normalize": "^8.0.7",
-    "url-loader": "^2.0.0",
     "zengenti-forms-package": "^1.0.11"
   }
 }
