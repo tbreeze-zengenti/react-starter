@@ -109,6 +109,6 @@
     "sitemap": "^6.1.0",
     "storybook-react-router": "^1.0.8",
     "styled-normalize": "^8.0.7",
-    "zengenti-forms-package": "^1.0.11"
+    "zengenti-forms-package": "^1.1.0-beta.0"
   }
 }
