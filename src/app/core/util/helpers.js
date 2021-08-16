@@ -140,10 +140,10 @@ export default class ProjectHelper {
       gt: '>',
     };
     return encodedString
-      .replace(translate_re, function(match, entity) {
+      .replace(translate_re, function (match, entity) {
         return translate[entity];
       })
-      .replace(/&#(\d+);/gi, function(match, numStr) {
+      .replace(/&#(\d+);/gi, function (match, numStr) {
         var num = parseInt(numStr, 10);
         return String.fromCharCode(num);
       });
@@ -258,7 +258,7 @@ export function dynamicSort(property) {
     sortOrder = -1;
     property = property.substr(1);
   }
-  return function(a, b) {
+  return function (a, b) {
     /* next line works with strings and numbers,
      * and you may want to customize it to your needs
      */

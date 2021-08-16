@@ -3,13 +3,8 @@ import { fromJS } from 'immutable';
 
 import { default as mapJson } from '~/core/util/json-mapper';
 
-const {
-  getCurrent,
-  getListing,
-  getResults,
-  getTotalCount,
-  getPaging,
-} = selectors.selectListing;
+const { getCurrent, getListing, getResults, getTotalCount, getPaging } =
+  selectors.selectListing;
 
 const listingTitle = state => getListing(state).get('title');
 const totalCount = state => getTotalCount(state);
@@ -21,9 +16,8 @@ const searchSummaryTemplate = {
   noResultsText: state =>
     totalCount(state) === 0 ? `No results were found` : '',
   resultsText: state => {
-    const { pageIndex, pageSize, totalCount, pagesLoaded } = getPaging(
-      state
-    ).toJS();
+    const { pageIndex, pageSize, totalCount, pagesLoaded } =
+      getPaging(state).toJS();
     if (!pagesLoaded) return null;
     const start = (pagesLoaded[0] || pageIndex) * pageSize + 1;
     let end = start + (pagesLoaded.length * pageSize || pageSize) - 1;

@@ -52,7 +52,7 @@ export const GetDeliveryApiStatusFromHostname = currentHostname => {
 };
 
 export const fixImageUri = object => {
-  Object.keys(object).some(function(k) {
+  Object.keys(object).some(function (k) {
     if (k === 'asset') {
       //Should always have an ID, but lets check...
       if (object[k].sys && object[k].sys.id) {
@@ -61,10 +61,9 @@ export const fixImageUri = object => {
           ? `&${object[k].transformations}`
           : '';
 
-        object[k].sys.uri = `/api/image/${
-          object[k].sys.id
-        }?invalidationKey=${object[k].sys &&
-          object[k].sys.version.versionNo}${userTransforms}`;
+        object[k].sys.uri = `/api/image/${object[k].sys.id}?invalidationKey=${
+          object[k].sys && object[k].sys.version.versionNo
+        }${userTransforms}`;
       }
       return false;
     }
@@ -77,7 +76,7 @@ export const fixImageUri = object => {
 
 export const GetResponseGuids = object => {
   let Ids = [];
-  Object.keys(object).some(function(k) {
+  Object.keys(object).some(function (k) {
     if (k === 'sys') {
       //Should always have an ID, but lets check...
       if (object[k].id && object[k].language) {

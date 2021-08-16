@@ -6,12 +6,8 @@ import { default as mapJson } from '~/core/util/json-mapper';
 import { removeEmptyAttributes } from '~/core/util/helpers';
 import { selectCurrentPath } from '~/core/redux/selectors';
 
-const {
-  getSelectedFilters,
-  getSearchTerm,
-  getSearchContext,
-  getCurrentFacet,
-} = selectors;
+const { getSelectedFilters, getSearchTerm, getSearchContext, getCurrentFacet } =
+  selectors;
 
 const searchUriTemplate = {
   path: ({ state, facet }) => {
