@@ -26,7 +26,6 @@
   },
   // Always show the ESlint status bar item.
   "eslint.alwaysShowStatus": false,
-  "prettier-eslint.eslintIntegration": true,
   "files.exclude": {
     // exclude .js and .js.map files, when in a TypeScript project
     "**/*.js.map": true,
@@ -37,6 +36,7 @@
       "when": "$(basename).tsx"
     }
   },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnPaste": true,
   "editor.cursorBlinking": "smooth",
   "workbench.editor.highlightModifiedTabs": true,
@@ -56,5 +56,5 @@
   //   "statusBarItem.hoverBackground": "#e9654c",
   //   "statusBar.foreground": "#e7e7e7"
   // },
-  "prettier.printWidth": 80,
+  "prettier.printWidth": 80
 }

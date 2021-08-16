@@ -11,8 +11,6 @@ module.exports = {
     'plugin:jsx-a11y/recommended',
     'plugin:prettier/recommended',
     'prettier',
-    'prettier/react',
-    'prettier/flowtype',
   ],
   env: {
     browser: true,
@@ -36,6 +34,7 @@ module.exports = {
     },
   },
   rules: {
+    'arrow-parens': 0,
     'react/require-default-props': 0,
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
@@ -58,6 +57,7 @@ module.exports = {
     'prettier/prettier': [
       'error',
       {
+        arrowParens: 'avoid',
         trailingComma: 'es5',
         singleQuote: true,
         printWidth: 80,
