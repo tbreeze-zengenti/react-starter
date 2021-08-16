@@ -3,6 +3,7 @@
 # Getting started
 
 - Define your CMS environment in the `.env` file
+- Set the project name and repo uri inside `package.json`
 - Develop your features inside the `/src/app/features/` folder, create a new folder for each feature
 - Tell the application to load any feature `reducers` and `sagas` when it starts
 - Create pages in the `/src/app/pages/` folder to set your page layouts and load your components
