@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 const ASSET_PATH = '/';
 
@@ -10,13 +11,11 @@ module.exports = {
   output: {
     publicPath: ASSET_PATH,
   },
-  externals: ['oidc-client'],
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
     alias: {
       '~': path.resolve(__dirname, '../src/app'),
       '-': path.resolve(__dirname, '../'),
-      react: path.resolve('node_modules/react'),
       'react-dom': '@hot-loader/react-dom',
     },
   },
@@ -33,7 +32,6 @@ module.exports = {
               emitWarning: true,
             },
           },
-          { loader: 'eslint-loader' },
         ],
       },
       {
@@ -65,5 +63,8 @@ module.exports = {
       },
     ],
   },
-  plugins: [new webpack.DefinePlugin(WEBPACK_DEFINE_CONFIG.base)],
+  plugins: [
+    new ESLintPlugin(),
+    new webpack.DefinePlugin(WEBPACK_DEFINE_CONFIG.base),
+  ],
 };
