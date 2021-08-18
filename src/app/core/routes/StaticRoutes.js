@@ -1,14 +1,16 @@
 // import React from 'react';
 import Loadable from 'react-loadable';
 import { Loading } from './Loading';
-import Home from '~/pages/Home/home.page';
 
 export default [
   {
     path: '/',
     exact: true,
     fetchNode: true,
-    component: Home,
+    component: Loadable({
+      loader: () => import('~/pages/Home/home.page'),
+      loading: Loading,
+    }),
   },
   {
     path: '/search/:facet?',

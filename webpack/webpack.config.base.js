@@ -1,6 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-const ESLintPlugin = require('eslint-webpack-plugin');
 
 const ASSET_PATH = '/';
 
@@ -12,10 +11,11 @@ module.exports = {
     publicPath: ASSET_PATH,
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.json'],
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
     alias: {
       '~': path.resolve(__dirname, '../src/app'),
       '-': path.resolve(__dirname, '../'),
+      react: path.resolve('node_modules/react'),
       'react-dom': '@hot-loader/react-dom',
     },
   },
@@ -23,7 +23,7 @@ module.exports = {
     rules: [
       {
         enforce: 'pre',
-        test: /\.jsx?$/,
+        test: /\.(t|j)sx?$/,
         exclude: /node_modules/,
         use: [
           {
@@ -35,7 +35,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.m?jsx?$/,
+        test: /\.(t|j)sx?$/,
         include: [
           path.resolve('src'),
           // These dependencies have es6 syntax which ie11 doesn't like.
@@ -63,8 +63,5 @@ module.exports = {
       },
     ],
   },
-  plugins: [
-    new ESLintPlugin(),
-    new webpack.DefinePlugin(WEBPACK_DEFINE_CONFIG.base),
-  ],
+  plugins: [new webpack.DefinePlugin(WEBPACK_DEFINE_CONFIG.base)],
 };

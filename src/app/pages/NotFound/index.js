@@ -1,4 +1,5 @@
 import React from 'react';
+
 const NotFound = () => (
   <>
     <header>
@@ -6,4 +7,5 @@ const NotFound = () => (
     </header>
   </>
 );
+
 export default NotFound;
