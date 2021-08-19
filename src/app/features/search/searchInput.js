@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import VisuallyHidden from '~/features/visuallyHidden/VisuallyHidden';
-
 const SearchInput = ({
   searchTerm,
   placeholderText,
@@ -31,9 +29,7 @@ const SearchInput = ({
 
   return (
     <form className={className}>
-      <VisuallyHidden>
-        <label htmlFor="searchInput">Keyword search</label>
-      </VisuallyHidden>
+      <label htmlFor="searchInput">Keyword search</label>
       <input
         type="text"
         placeholder={placeholderText ? placeholderText : 'Search'}
