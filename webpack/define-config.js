@@ -74,6 +74,7 @@ const development = {
   PUBLIC_URI: PUBLIC_URL,
   REVERSE_PROXY_PATHS,
   SERVERS,
+  STATIC_PATH,
   VERSION: packagejson.version,
   WSFED_LOGIN: false,
 };
