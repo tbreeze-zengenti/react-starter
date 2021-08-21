@@ -177,7 +177,12 @@ const SERVER_PROD_CONFIG = {
     filename: '[name].js',
     path: path.resolve(__dirname, '../dist'),
   },
-  externals: [webpackNodeExternals()],
+  externals: [
+    webpackNodeExternals(),
+    webpackNodeExternals({
+      modulesDir: path.resolve(__dirname, '../../../node_modules'),
+    }),
+  ],
   module: {
     rules: [
       {

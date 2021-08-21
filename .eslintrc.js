@@ -1,6 +1,7 @@
 const path = require('path');
 
 module.exports = {
+  root: true,
   plugins: ['prettier', 'react', 'react-hooks', 'flowtype'],
   extends: [
     'eslint:recommended',
