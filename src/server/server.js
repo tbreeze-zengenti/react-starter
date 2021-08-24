@@ -28,6 +28,7 @@ ZengentiAppServer.start(
     staticFolderPath: STATIC_PATH /* global STATIC_PATH */,
     staticRoutePath: STATIC_PATH,
     stats: 'dist/target/react-loadable.json',
+    // The HTML templates we will render the app into
     templates: {
       html: 'dist/index.html',
       static: 'dist/index_static.html',
