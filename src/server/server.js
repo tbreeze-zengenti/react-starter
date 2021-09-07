@@ -7,6 +7,7 @@ import withSagas from '~/core/redux/sagas';
 import withEvents from '~/core/redux/withEvents';
 
 import ServerFeatures from './features/configure';
+import packagejson from '-/package.json';
 
 ZengentiAppServer.start(
   ReactApp,
@@ -15,7 +16,6 @@ ZengentiAppServer.start(
     withReducers,
     withSagas,
     withEvents,
-    // The HTML templates we will render the app into
     differentialBundles: true,
     disableSsrRedux: DISABLE_SSR_REDUX /* global DISABLE_SSR_REDUX */,
     dynamicPaths: [],
@@ -23,8 +23,8 @@ ZengentiAppServer.start(
       REVERSE_PROXY_PATHS /* global REVERSE_PROXY_PATHS */
     ),
     // Some information about the project and the build to pass to the start config
-    packagejson: require('-/package.json'),
-    startupScriptFilename: 'startup.js',
+    packagejson,
+    scripts: { startup: `startup-${packagejson.version}.js` },
     staticFolderPath: STATIC_PATH /* global STATIC_PATH */,
     staticRoutePath: STATIC_PATH,
     stats: 'dist/target/react-loadable.json',
