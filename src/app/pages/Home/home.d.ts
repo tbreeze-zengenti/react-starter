@@ -1,7 +1,7 @@
-export interface MappedProps {
+export interface UnmappedProps {
   title: string;
 }
 
 export interface Props {
-  entry: MappedProps;
+  entry: UnmappedProps;
 }

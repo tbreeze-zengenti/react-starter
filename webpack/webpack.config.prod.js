@@ -35,7 +35,7 @@ const CLIENT_MODERN_CONFIG = {
   entry: {
     app: [
       path.resolve(__dirname, '../src/client/polyfills.modern.js'),
-      path.resolve(__dirname, '../src/client/client-entrypoint.js'),
+      path.resolve(__dirname, '../src/client/client-entrypoint.ts'),
     ],
   },
   output: {
@@ -50,18 +50,21 @@ const CLIENT_MODERN_CONFIG = {
       filename: path.resolve(__dirname, `../dist/index.html`),
       inject: true,
       minify,
+      chunksSortMode: 'none',
     }),
     new HtmlWebPackPlugin({
       template: path.resolve(__dirname, '../public/index_fragment.ejs'),
       filename: path.resolve(__dirname, `../dist/index_fragment.html`),
       inject: true,
       minify,
+      chunksSortMode: 'none',
     }),
     new HtmlWebPackPlugin({
       template: path.resolve(__dirname, '../public/index_static.ejs'),
       filename: path.resolve(__dirname, `../dist/index_static.html`),
       inject: false,
       minify,
+      chunksSortMode: 'none',
     }),
     new WebpackModuleNomodulePlugin('modern', 'minimal'),
     new ReactLoadablePlugin({
@@ -75,7 +78,7 @@ const CLIENT_LEGACY_CONFIG = {
   entry: {
     app: [
       path.resolve(__dirname, '../src/client/polyfills.legacy.js'),
-      path.resolve(__dirname, '../src/client/client-entrypoint.js'),
+      path.resolve(__dirname, '../src/client/client-entrypoint.ts'),
     ],
   },
   output: {
@@ -108,18 +111,21 @@ const CLIENT_LEGACY_CONFIG = {
       filename: path.resolve(__dirname, `../dist/index.html`),
       inject: true,
       minify,
+      chunksSortMode: 'none',
     }),
     new HtmlWebPackPlugin({
       template: path.resolve(__dirname, '../public/index_fragment.ejs'),
       filename: path.resolve(__dirname, `../dist/index_fragment.html`),
       inject: true,
       minify,
+      chunksSortMode: 'none',
     }),
     new HtmlWebPackPlugin({
       template: path.resolve(__dirname, '../public/index_static.ejs'),
       filename: path.resolve(__dirname, `../dist/index_static.html`),
       inject: false,
       minify,
+      chunksSortMode: 'none',
     }),
     new WebpackModuleNomodulePlugin('legacy', 'minimal'),
     new ReactLoadablePlugin({
@@ -170,7 +176,7 @@ const SERVER_PROD_CONFIG = {
   mode: 'production',
   stats: 'errors-only',
   entry: {
-    server: path.resolve(__dirname, '../src/server/server.js'),
+    server: path.resolve(__dirname, '../src/server/server.ts'),
     test: path.resolve(__dirname, '../src/server/test.js'),
   },
   output: {

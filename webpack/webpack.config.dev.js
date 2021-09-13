@@ -20,7 +20,7 @@ const CLIENT_DEV_CONFIG = {
   target: 'web',
   stats: 'errors-only',
   mode: 'development',
-  entry: path.resolve(__dirname, '../src/client/client-entrypoint.js'),
+  entry: path.resolve(__dirname, '../src/client/client-entrypoint.ts'),
   devtool: 'source-map',
   module: {
     rules: [
@@ -70,6 +70,7 @@ const CLIENT_DEV_CONFIG = {
     new HtmlWebPackPlugin({
       template: path.resolve(__dirname, '../public/index.html'),
       filename: './index.html',
+      chunksSortMode: 'none',
     }),
     new webpack.HotModuleReplacementPlugin(),
     new BrowserSyncPlugin(

@@ -1,10 +1,11 @@
 import React from 'react';
 
-//styles
+// Styled components
 import HomeStyled from './home.styled';
 
 // Models
-import { Props } from './Home.d';
+import { Props } from './home.d';
+import Link from '~/features/link';
 
 const Home = ({ entry }: Props) => {
   const { title } = entry || {};
@@ -13,6 +14,7 @@ const Home = ({ entry }: Props) => {
     <HomeStyled>
       <h1>Welcome</h1>
       {title && <p>The homepage entry title is {title}!</p>}
+      <Link path="/search">Navigate to search</Link>
     </HomeStyled>
   );
 };
