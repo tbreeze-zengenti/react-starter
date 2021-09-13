@@ -18,6 +18,17 @@ export default [
       loader: () => import('~/pages/Search/search.page'),
       loading: Loading,
     }),
+    injectRedux: async () => {
+      const { reducer, sagas } = await import(
+        /* webpackChunkName: "search-package" */
+        '@zengenti/contensis-react-base/search'
+      );
+      const { config } = await import(
+        /* webpackChunkName: "search-config" */
+        '~/features/search'
+      );
+      return { key: 'search', reducer: reducer(config), saga: sagas };
+    },
   },
   // ********************************
   // ˅˅ Do not delete these routes ˅˅

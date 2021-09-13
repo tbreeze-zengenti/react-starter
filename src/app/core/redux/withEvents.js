@@ -1,11 +1,8 @@
 import { put, call } from 'redux-saga/effects';
-import { setRouteFilters } from '@zengenti/contensis-react-base/search';
 import { queryParams, routeParams } from '../util/navigation';
 // import { GET_SITE_CONFIG } from '~/core/redux/siteConfig/types';
 import { ROUTE_HAS_LOADED, ROUTE_WILL_LOAD } from './types';
 import { ContentTypes, ListingPages } from '../schema';
-
-import transformations from '~/features/search/transformations';
 
 export default {
   onRouteLoad: function* onRouteLoad({
@@ -49,27 +46,26 @@ export default {
         break;
     }
 
-    // eslint-disable-next-line no-console
-    if (path.startsWith('/search')) {
+    if (
+      path.startsWith('/search') ||
+      (triggerListing && Object.keys(ListingPages).includes(contentTypeId))
+    ) {
+      const { setRouteFilters } = yield import(
+        /* webpackChunkName: "search-package" */
+        '@zengenti/contensis-react-base/search'
+      );
+      const transformations = yield import(
+        /* webpackChunkName: "search-mappers" */
+        '~/features/search/transformations'
+      );
+
       yield call(setRouteFilters, {
+        listingType: triggerListing ? ListingPages[contentTypeId] : undefined,
         mappers: transformations,
         params,
       });
     }
 
     yield put({ type: ROUTE_HAS_LOADED, path, entry });
-
-    // const siteConfig = yield select(hasSiteConfig);
-
-    // if (!siteConfig) {
-    //   yield put({ type: GET_SITE_CONFIG });
-    // }
-    yield triggerListing &&
-      Object.keys(ListingPages).includes(contentTypeId) &&
-      setRouteFilters({
-        listingType: ListingPages[contentTypeId],
-        mappers: transformations,
-        params,
-      });
   },
 };
