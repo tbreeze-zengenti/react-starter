@@ -1,17 +1,27 @@
 const path = require('path');
 
 module.exports = {
-  plugins: ['prettier', 'react', 'react-hooks', 'flowtype'],
+  root: true,
+  parser: 'babel-eslint',
+  parserOptions: {
+    ecmaVersion: 6,
+    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+      experimentalObjectRestSpread: true,
+      modules: true,
+    },
+  },
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
-    'plugin:flowtype/recommended',
     'plugin:import/errors',
     'plugin:import/warnings',
     'plugin:jsx-a11y/recommended',
     'plugin:prettier/recommended',
     'prettier',
   ],
+  plugins: ['prettier', 'react', 'react-hooks'],
   env: {
     browser: true,
     node: true,
@@ -19,25 +29,22 @@ module.exports = {
     mocha: true,
     es6: true,
   },
-  globals: {
-    __isBrowser__: true,
-  },
-
-  parser: 'babel-eslint',
-  parserOptions: {
-    ecmaVersion: 6,
-    sourceType: 'module',
-    ecmaFeatures: {
-      jsx: true,
-      modules: true,
-      experimentalObjectRestSpread: true,
+  globals: {},
+  settings: {
+    react: {
+      version: '^16.0.0',
+    },
+    'import/resolver': {
+      // Will look for webpack.config.js to resolve path
+      webpack: {
+        config: path.resolve(__dirname, './webpack/webpack.config.base.js'),
+      },
     },
   },
   rules: {
     'arrow-parens': 0,
     'react/require-default-props': 0,
-    'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'warn',
+    'react/prop-types': 0,
     'no-debugger': 0,
     'no-alert': 0,
     'no-console': [
@@ -63,22 +70,9 @@ module.exports = {
         endOfLine: 'auto',
       },
     ],
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
   },
-  settings: {
-    flowtype: {
-      onlyFilesWithFlowAnnotation: true,
-    },
-    react: {
-      version: '^16.0.0',
-      flowVersion: '^0.81.0',
-    },
-    'import/resolver': {
-      webpack: {
-        config: path.resolve(__dirname, './webpack/webpack.config.base.js'),
-      },
-    },
-  },
-
   overrides: [
     {
       files: ['*.ts', '*.tsx'],
@@ -89,11 +83,6 @@ module.exports = {
         tsconfigRootDir: path.resolve(__dirname),
       },
       plugins: ['@typescript-eslint', 'import'],
-
-      // If need to support jsx
-      //     parserOptions: {
-      //       ecmaFeatures: { jsx: true }
-      //     },
       extends: [
         'eslint:recommended',
         'plugin:import/typescript',
@@ -209,9 +198,6 @@ module.exports = {
         eqeqeq: ['error', 'smart'],
         'guard-for-in': 'error',
         'id-match': 'error',
-        // 'jsdoc/check-alignment': 'error',
-        // 'jsdoc/check-indentation': 'error',
-        // 'jsdoc/newline-after-description': 'error',
         'max-classes-per-file': ['error', 1],
         'new-parens': 'error',
         'no-bitwise': 'error',

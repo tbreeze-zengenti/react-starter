@@ -10,7 +10,7 @@ module.exports = {
   webpackFinal: config => {
     config.module.rules.push({
       resolve: {
-        extensions: ['.js', '.jsx', '.json', '.md'],
+        extensions: ['.ts', '.tsx', '.js', '.jsx', '.json', '.md'],
         alias: {
           '~': path.resolve(__dirname, '../src/app'),
           app: path.resolve(__dirname, '../src/app'),
