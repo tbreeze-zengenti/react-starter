@@ -93,9 +93,12 @@ const CLIENT_LEGACY_CONFIG = {
         include: [
           path.resolve('src'),
           // These dependencies have es6 syntax which ie11 doesn't like.
-          path.resolve('node_modules/contensis-delivery-api'),
-          path.resolve('node_modules/fromentries'),
           path.resolve('node_modules/@zengenti/contensis-react-base'),
+          path.resolve('node_modules/contensis-delivery-api'),
+          path.resolve('node_modules/contensis-management-api'),
+          path.resolve('node_modules/fromentries'),
+          path.resolve('node_modules/jsonpath-mapper'),
+          path.resolve('node_modules/zengenti-forms-package'),
         ],
         use: {
           loader: 'babel-loader',
@@ -183,7 +186,12 @@ const SERVER_PROD_CONFIG = {
     filename: '[name].js',
     path: path.resolve(__dirname, '../dist'),
   },
-  externals: [webpackNodeExternals()],
+  externals: [
+    webpackNodeExternals(),
+    webpackNodeExternals({
+      modulesDir: path.resolve(__dirname, '../../../node_modules'),
+    }),
+  ],
   module: {
     rules: [
       {
