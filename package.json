@@ -13,8 +13,8 @@
     "build": "rimraf ./dist && cross-env NODE_ENV=production parallel-webpack --config webpack/webpack.config.prod.js && npm run build:startup",
     "build:startup": "buildstartup",
     "server": "node --max-http-header-size=800000 dist/start.js",
-    "dev:server": "cross-env NODE_ENV=test NODE_OPTIONS=--max-http-header-size=80000 babel-node --inspect=9229 src/server/debug.js",
-    "debug:server": "nodemon --exec cross-env NODE_ENV=test NODE_OPTIONS=--max-http-header-size=80000 babel-node --inspect=9229 src/server/debug.js",
+    "dev:server": "cross-env NODE_ENV=test NODE_OPTIONS=--max-http-header-size=80000 babel-node -x .ts,.tsx,.js,.jsx --inspect=9229 src/server/debug.js",
+    "debug:server": "nodemon --exec cross-env NODE_ENV=test NODE_OPTIONS=--max-http-header-size=80000 babel-node -x .ts,.tsx,.js,.jsx --inspect=9229 src/server/debug.js",
     "build:server": "npm run build && npm run server",
     "build:dev:server": "npm run build && npm run dev:server",
     "postinstall": "patch-package",
@@ -48,6 +48,7 @@
     "@babel/preset-react": "^7.14.5",
     "@babel/preset-typescript": "^7.15.0",
     "@babel/runtime": "^7.15.4",
+    "@storybook/addon-a11y": "^6.3.8",
     "@storybook/addon-actions": "^6.3.8",
     "@storybook/addon-essentials": "^6.3.8",
     "@storybook/addon-links": "^6.3.8",
@@ -97,6 +98,7 @@
     "nodemon": "^1.19.1",
     "parallel-webpack": "^2.4.0",
     "prettier": "^2.4.0",
+    "storybook-react-router": "^1.0.8",
     "stylelint": "^11.0.0",
     "stylelint-config-recommended": "^3.0.0",
     "stylelint-config-styled-components": "^0.1.1",
@@ -114,12 +116,10 @@
     "zengenti-buildstartup-package": "0.0.14"
   },
   "dependencies": {
-    "@storybook/addon-a11y": "^6.1.9",
-    "@zengenti/contensis-react-base": "^2.4.0",
+    "@zengenti/contensis-react-base": "^2.4.1-beta.27",
     "file-loader": "^4.0.0",
     "patch-package": "^6.2.0",
     "sitemap": "^6.1.0",
-    "storybook-react-router": "^1.0.8",
     "styled-normalize": "^8.0.7"
   }
 }
