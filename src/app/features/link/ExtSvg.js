@@ -25,7 +25,7 @@ const ExtSvg = styled(({ className }) => {
     position: relative;
     top: 2px;
     margin-left: 4px;
-    stroke: ${swatch.link.initial};
+    stroke: ${swatch?.link?.initial};
     stroke-width: 2px;
   `};
 `;

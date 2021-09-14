@@ -65,8 +65,8 @@ export default {
     relatedContent: {
       title: 'Related content',
       queryParams: {
-        contentTypeIds: ['article'],
-        fields: [...BaseFields, ...ArticleFields],
+        contentTypeIds: ['pot'],
+        fields: [...BaseFields],
         linkDepth: 0,
         orderBy,
         pageSize: 3,

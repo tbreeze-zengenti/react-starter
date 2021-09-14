@@ -28,6 +28,7 @@ const articleCardMapping = {
 };
 
 export const mappers = {
+  default: baseMapping,
   [ContentTypes.article]: articleCardMapping,
   [ContentTypes.blog]: baseMapping,
 };
