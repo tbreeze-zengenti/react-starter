@@ -1,15 +1,17 @@
 import React from 'react';
 import Link from '~/features/link';
+
 interface IProps {
   title: string;
+  description: string;
   image: string;
   link: string;
 }
-const ResultCard = ({ title, image, link }: IProps) => {
+const ResultCard = ({ title, description, image, link }: IProps) => {
   return (
     <div
       style={{
-        maxWidth: '500px',
+        maxWidth: '1024px',
         display: 'grid',
         gridTemplateColumns: '60px 7fr',
       }}
@@ -18,7 +20,10 @@ const ResultCard = ({ title, image, link }: IProps) => {
         {image && <img src={image} alt={title} style={{ width: '50px' }} />}
       </div>
       <div>
-        <Link path={link} text={title}></Link>
+        <p>
+          <Link path={link}>{title}</Link>
+        </p>
+        {description && <p>{description}</p>}
       </div>
     </div>
   );

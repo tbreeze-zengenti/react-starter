@@ -2,7 +2,7 @@ import React from 'react';
 import mapEntriesToResults from '../transformations';
 import { SearchProps, withSearch } from '@zengenti/contensis-react-base/search';
 import uniqueID from '~/core/util/unique';
-import Link from '~/features/link';
+import ResultCard from '../components/ResultCard';
 
 type ResultCard = {
   title: string;
@@ -14,14 +14,9 @@ type ResultCard = {
 const SearchContainer = ({ results }: SearchProps<ResultCard>) => {
   return (
     <div>
-      <h1>Search1</h1>
+      <h1>Search</h1>
       {results.map(result => (
-        <div key={uniqueID()}>
-          <p>
-            <Link path={result.link}>{result.title}</Link>
-          </p>
-          <p>{result.description}</p>
-        </div>
+        <ResultCard key={uniqueID()} {...result} />
       ))}
     </div>
   );

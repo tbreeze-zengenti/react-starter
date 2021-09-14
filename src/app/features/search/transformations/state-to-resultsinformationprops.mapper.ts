@@ -1,23 +1,34 @@
 import { selectors } from '@zengenti/contensis-react-base/search';
-import { fromJS, Map } from 'immutable';
 
 import { default as mapJson } from '~/core/util/json-mapper';
 
 const { getCurrent, getListing, getResults, getTotalCount, getPaging } =
   selectors.selectListing;
 
-const listingTitle = (state: any) => getListing(state).get('title');
+const listingTitle = (state: any) => {
+  const listing = getListing(state);
+  return (
+    listing?.title ||
+    ('get' in listing &&
+      typeof listing.get === 'function' &&
+      listing.get('title'))
+  );
+};
 const totalCount = (state: any) => getTotalCount(state);
 
 const searchSummaryTemplate = {
   currentListing: (state: any) => getCurrent(state),
-  currentPageCount: (state: any) => getResults(state).size,
+  currentPageCount: (state: any) =>
+    getResults(state).size || getResults(state).length,
   listingTitle,
   noResultsText: (state: any) =>
     totalCount(state) === 0 ? `No results were found` : '',
   resultsText: (state: any) => {
+    const paging = getPaging(state);
     const { pageIndex, pageSize, totalCount, pagesLoaded } =
-      getPaging(state).toJS();
+      'toJS' in paging && typeof paging.toJS === 'function'
+        ? paging.toJS()
+        : paging;
     if (!pagesLoaded) return null;
     const start = (pagesLoaded[0] || pageIndex) * pageSize + 1;
     let end = start + (pagesLoaded.length * pageSize || pageSize) - 1;
@@ -28,6 +39,6 @@ const searchSummaryTemplate = {
 };
 
 const mapStateToResultsInformation = (state: any) =>
-  (fromJS(mapJson(state, searchSummaryTemplate)) as Map<string, any>).toJS();
+  mapJson(state, searchSummaryTemplate);
 
 export default mapStateToResultsInformation;
