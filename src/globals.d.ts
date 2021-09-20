@@ -26,3 +26,5 @@ declare const SERVERS: {
 declare const STATIC_PATH: string;
 declare const VERSION: string;
 declare const WSFED_LOGIN: false;
+
+declare module 'app-root-path';
