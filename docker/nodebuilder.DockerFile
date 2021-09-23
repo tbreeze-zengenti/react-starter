@@ -5,10 +5,8 @@ RUN apt-get install libglu1 -y
 WORKDIR /usr/src/app
 COPY package.json .
 COPY package-lock.json .
-COPY patches /usr/src/app/patches
 RUN npm install -g mocha
 RUN npm install --loglevel error
-RUN npm run postinstall
 COPY config /usr/src/app/config
 COPY public /usr/src/app/public
 

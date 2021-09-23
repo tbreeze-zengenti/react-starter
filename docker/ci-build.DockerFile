@@ -6,7 +6,6 @@ FROM mhart/alpine-node:14
 WORKDIR /usr/src/app
 COPY package.json .
 COPY package-lock.json .
-COPY --from=basebuilder /usr/src/app/patches /usr/src/app/patches
 RUN npm install --production --loglevel error
 COPY --from=basebuilder /usr/src/app/dist /usr/src/app/dist
 
