@@ -1,27 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import { useMinilist } from '@zengenti/contensis-react-base/search';
+import {
+  useMinilist,
+  UseMinilistProps,
+} from '@zengenti/contensis-react-base/search';
 import uniqueID from '~/core/util/unique';
 import SearchContainer from '~/features/search';
 import mapEntriesToResults from '~/features/search/transformations/entry-to-cardprops.mapper';
+import omdbapiToCardpropsMapper from '~/features/search/transformations/omdbapi-to-cardprops.mapper';
 import ResultCard from '~/features/search/components/ResultCard';
 
+const minilistInitState = {
+  id: '',
+  mapper: (e: any = []) => e,
+} as UseMinilistProps;
+
 const SearchPage = () => {
-  // const { results: movies, title: minlistTitle } = useMinilist({
-  //   id: 'movies',
-  //   config: {
-  //     title: 'Custom Api',
-  //     customApi: {
-  //       uri: 'http://www.omdbapi.com/?apikey=b194ff96&s=dawn+of+the+dead',
-  //     },
-  //   },
-  //   mapper: omdbapiToCardpropsMapper,
-  // });
+  const [relatedContentMinilist, setRelatedContentConfig] =
+    useState(minilistInitState);
 
-  const [relatedContentMinilist, setRelatedContentConfig] = useState({
-    id: '',
-    mapper: (e: any = []) => e,
-  });
-
+  const [movieMinilist, setMovieConfig] = useState(minilistInitState);
+  const { results: movies, title: minlistTitle } = useMinilist(movieMinilist);
   useEffect(() => {
     // Using a setTimeout to allow the async search bundles to
     // fully register before triggering a minilist in a static route
@@ -29,6 +27,17 @@ const SearchPage = () => {
       setRelatedContentConfig({
         id: 'relatedContent',
         mapper: mapEntriesToResults,
+      });
+
+      setMovieConfig({
+        id: 'movies',
+        config: {
+          title: 'Custom Api',
+          customApi: {
+            uri: 'http://www.omdbapi.com/?apikey=b194ff96&s=dawn+of+the+dead',
+          },
+        },
+        mapper: omdbapiToCardpropsMapper,
       });
     }, 500);
   }, []);
@@ -46,12 +55,12 @@ const SearchPage = () => {
           <ResultCard key={uniqueID()} {...content} />
         ))}
       </div>
-      {/* <h2>{minlistTitle}</h2>
+      <h2>{minlistTitle}</h2>
       <div>
         {movies.map(movie => (
           <ResultCard key={uniqueID()} {...movie} />
         ))}
-      </div> */}
+      </div>
     </div>
   );
 };
