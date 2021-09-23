@@ -32,7 +32,7 @@ module.exports = {
   globals: {},
   settings: {
     react: {
-      version: '^16.0.0',
+      version: '^17.0.0',
     },
     'import/resolver': {
       // Will look for webpack.config.js to resolve path

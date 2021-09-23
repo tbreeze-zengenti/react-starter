@@ -25,7 +25,12 @@
     "source.fixAll.eslint": true
   },
   // Always show the ESlint status bar item.
-  "eslint.alwaysShowStatus": false,
+  "eslint.alwaysShowStatus": true,
+  "eslint.format.enable": true,
+  "eslint.lintTask.enable": true,
+  "eslint.options": {
+    "parser": "@babel/eslint-parser"
+  },
   "files.exclude": {
     // exclude .js and .js.map files, when in a TypeScript project
     "**/*.js.map": true,
