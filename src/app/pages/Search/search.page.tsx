@@ -20,6 +20,7 @@ const SearchPage = () => {
 
   const [movieMinilist, setMovieConfig] = useState(minilistInitState);
   const { results: movies, title: minlistTitle } = useMinilist(movieMinilist);
+
   useEffect(() => {
     // Using a setTimeout to allow the async search bundles to
     // fully register before triggering a minilist in a static route
