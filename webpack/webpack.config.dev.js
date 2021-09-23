@@ -1,5 +1,5 @@
 const webpack = require('webpack');
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
@@ -88,27 +88,29 @@ const CLIENT_DEV_CONFIG = {
         messages: ['Application is now running at http://localhost:3000'],
       },
     }),
-    new CopyWebpackPlugin([
-      {
-        ignore: ['index.html', 'index.ejs'],
-        from: path.resolve(__dirname, '../public'),
-        to: path.resolve(__dirname, `../dist/${staticFolderPath}`),
-      },
-    ]),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          globOptions: { ignore: ['index.html', 'index.ejs'] },
+          from: path.resolve(__dirname, '../public'),
+          to: path.resolve(__dirname, `../dist/${staticFolderPath}`),
+        },
+      ],
+    }),
   ],
   devServer: {
     host: '0.0.0.0',
     port: 3010,
     hot: true,
     historyApiFallback: true,
-    contentBase: path.join(__dirname, 'src'),
-    watchContentBase: true,
-    quiet: false,
-    watchOptions: {
-      ignored: ['node_modules'],
-      // aggregateTimeout: 300,
-      // poll: 1000,
-    },
+    // contentBase: path.join(__dirname, 'src'),
+    // watchContentBase: true,
+    // quiet: false,
+    // watchOptions: {
+    //   ignored: ['node_modules'],
+    //   // aggregateTimeout: 300,
+    //   // poll: 1000,
+    // },
     proxy: DEVSERVER_PROXIES,
   },
 };

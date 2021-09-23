@@ -152,15 +152,7 @@ module.exports = {
           },
         ],
         '@typescript-eslint/consistent-type-assertions': 'error',
-        '@typescript-eslint/dot-notation': 'error',
         '@typescript-eslint/explicit-module-boundary-types': 'off',
-        '@typescript-eslint/naming-convention': [
-          'warn',
-          {
-            selector: 'function',
-            format: ['PascalCase', 'camelCase'],
-          },
-        ],
         '@typescript-eslint/no-empty-function': 'error',
         '@typescript-eslint/no-empty-interface': 'error',
         '@typescript-eslint/no-explicit-any': 'off',

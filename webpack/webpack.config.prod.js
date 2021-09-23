@@ -1,5 +1,5 @@
 const webpack = require('webpack');
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const LoadablePlugin = require('@loadable/webpack-plugin');
@@ -157,13 +157,17 @@ const CLIENT_PROD_CONFIG = {
   plugins: [
     new webpack.DefinePlugin(WEBPACK_DEFINE_CONFIG.prod),
     // Do these plugins only once per build so we'll do it here instead of base
-    new CopyWebpackPlugin([
-      {
-        ignore: ['index.html', 'index.ejs'],
-        from: path.resolve(__dirname, '../public'),
-        to: path.resolve(__dirname, `../dist/${staticFolderPath}`),
-      },
-    ]),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          globOptions: {
+            ignore: ['index.html', 'index.ejs'],
+          },
+          from: path.resolve(__dirname, '../public'),
+          to: path.resolve(__dirname, `../dist/${staticFolderPath}`),
+        },
+      ],
+    }),
     new ImageminPlugin({
       test: /\.(jpe?g|png|gif|svg)$/i,
       optipng: {
