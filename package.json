@@ -116,7 +116,7 @@
     "zengenti-buildstartup-package": "0.0.14"
   },
   "dependencies": {
-    "@zengenti/contensis-react-base": "^2.5.1-beta.3",
+    "@zengenti/contensis-react-base": "^3.0.0-beta.1",
     "app-root-path": "^3.0.0",
     "file-loader": "^4.0.0",
     "patch-package": "^6.2.0",

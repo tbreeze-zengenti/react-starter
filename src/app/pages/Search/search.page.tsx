@@ -1,44 +1,41 @@
-import React from 'react';
-import { Reducer } from 'redux';
-import { useInjectSaga, useInjectReducer } from 'redux-injectors';
-import { all } from 'redux-saga/effects';
-import {
-  reducer,
-  sagas,
-  useMinilist,
-} from '@zengenti/contensis-react-base/search';
+import React, { useEffect, useState } from 'react';
+import { useMinilist } from '@zengenti/contensis-react-base/search';
 import uniqueID from '~/core/util/unique';
-import SearchContainer, { config } from '~/features/search';
+import SearchContainer from '~/features/search';
 import mapEntriesToResults from '~/features/search/transformations/entry-to-cardprops.mapper';
-import omdbapiToCardpropsMapper from '~/features/search/transformations/omdbapi-to-cardprops.mapper';
 import ResultCard from '~/features/search/components/ResultCard';
 
-function* rootSaga() {
-  yield all(sagas);
-}
-
 const SearchPage = () => {
-  useInjectReducer({
-    key: 'search',
-    reducer: reducer(config) as Reducer<any, any>,
-  });
-  useInjectSaga({ key: 'search', saga: rootSaga });
+  // const { results: movies, title: minlistTitle } = useMinilist({
+  //   id: 'movies',
+  //   config: {
+  //     title: 'Custom Api',
+  //     customApi: {
+  //       uri: 'http://www.omdbapi.com/?apikey=b194ff96&s=dawn+of+the+dead',
+  //     },
+  //   },
+  //   mapper: omdbapiToCardpropsMapper,
+  // });
 
-  const { results: movies, title: minlistTitle } = useMinilist({
-    id: 'movies',
-    config: {
-      title: 'Custom Api',
-      customApi: {
-        uri: 'http://www.omdbapi.com/?apikey=b194ff96&s=dawn+of+the+dead',
-      },
-    },
-    mapper: omdbapiToCardpropsMapper,
+  const [relatedContentMinilist, setRelatedContentConfig] = useState({
+    id: '',
+    mapper: (e: any = []) => e,
   });
 
-  const { results: related, title: relatedTitle } = useMinilist({
-    id: 'relatedContent',
-    mapper: mapEntriesToResults,
-  });
+  useEffect(() => {
+    // Using a setTimeout to allow the async search bundles to
+    // fully register before triggering a minilist in a static route
+    setTimeout(() => {
+      setRelatedContentConfig({
+        id: 'relatedContent',
+        mapper: mapEntriesToResults,
+      });
+    }, 500);
+  }, []);
+
+  const { results: related, title: relatedTitle } = useMinilist(
+    relatedContentMinilist
+  );
 
   return (
     <div>
@@ -49,12 +46,12 @@ const SearchPage = () => {
           <ResultCard key={uniqueID()} {...content} />
         ))}
       </div>
-      <h2>{minlistTitle}</h2>
+      {/* <h2>{minlistTitle}</h2>
       <div>
         {movies.map(movie => (
           <ResultCard key={uniqueID()} {...movie} />
         ))}
-      </div>
+      </div> */}
     </div>
   );
 };
