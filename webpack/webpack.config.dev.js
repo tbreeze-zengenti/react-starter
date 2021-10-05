@@ -80,6 +80,7 @@ const CLIENT_DEV_CONFIG = {
         port: 3000,
         proxy: 'http://localhost:3010',
         open: 'local',
+        ui: false,
       },
       { reload: false }
     ),
