@@ -46,6 +46,30 @@ export default {
       },
       filters: searchFilter,
     },
+    news: {
+      title: 'News',
+      queryParams: {
+        contentTypeIds: [ContentTypes.article],
+        fields: [...BaseFields, ...ArticleFields],
+        linkDepth: 0,
+        orderBy,
+        pageSize: 9,
+        weightedSearchFields: [...WeightedFields.base],
+      },
+      filters: searchFilter,
+    },
+    blog: {
+      title: 'Blogs',
+      queryParams: {
+        contentTypeIds: [ContentTypes.blog],
+        fields: [...BaseFields, ...ArticleFields],
+        linkDepth: 0,
+        orderBy,
+        pageSize: 9,
+        weightedSearchFields: [...WeightedFields.base],
+      },
+      filters: searchFilter,
+    },
   } as { [key in keyof typeof SearchFacets]: SearchFacet },
   listings: {
     categoryArticles: {

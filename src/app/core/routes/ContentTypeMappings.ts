@@ -1,14 +1,18 @@
 import { ContentTypeMapping } from '@zengenti/contensis-react-base';
 
 import { ContentTypes } from '../schema';
-import { HomePage } from '~/dynamic/pages';
+import { entryMapper } from '../util/json-mapper';
+
+import { Home } from '~/dynamic/pages';
+import homeMapper from '~/pages/Home/home.mapper';
 
 const { homePage } = ContentTypes;
 
 const contentTypeMappings: ContentTypeMapping[] = [
   {
     contentTypeID: homePage,
-    component: HomePage,
+    component: Home,
+    entryMapper: entryMapper(homeMapper),
   },
 ];
 

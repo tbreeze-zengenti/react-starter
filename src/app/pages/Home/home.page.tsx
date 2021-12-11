@@ -4,12 +4,11 @@ import React from 'react';
 import HomeStyled from './home.styled';
 
 // Models
-import { Props } from './home.d';
+import { HomeProps, MappedHomeEntry } from './home.d';
 import Link from '~/features/link';
 
-const Home = ({ entry }: Props) => {
-  const { title } = entry || {};
-
+const Home = ({ mappedEntry }: HomeProps) => {
+  const { title } = mappedEntry || ({} as MappedHomeEntry);
   return (
     <HomeStyled>
       <h1>Welcome</h1>

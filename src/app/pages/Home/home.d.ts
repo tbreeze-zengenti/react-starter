@@ -1,7 +1,7 @@
-export interface UnmappedProps {
+import { RouteComponentProps } from '@zengenti/contensis-react-base';
+
+export interface MappedHomeEntry {
   title: string;
 }
 
-export interface Props {
-  entry: UnmappedProps;
-}
+export type HomeProps = RouteComponentProps<MappedHomeEntry>;

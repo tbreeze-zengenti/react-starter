@@ -1,34 +1,17 @@
 import { StaticRoute } from '@zengenti/contensis-react-base';
-import { CorePages, HomePage, SearchPage } from '~/dynamic/pages';
-
-const injectSearch = async () => {
-  const { reducer: SearchReducer, sagas: SearchSagas } = await import(
-    /* webpackChunkName: "search-package" */
-    '@zengenti/contensis-react-base/search'
-  );
-  const { config } = await import(
-    /* webpackChunkName: "search-config" */
-    '~/features/search'
-  );
-
-  return {
-    key: 'search',
-    reducer: SearchReducer(config),
-    saga: SearchSagas,
-  };
-};
+import { CorePages, Home, Search } from '~/dynamic/pages';
+import { injectSearch } from '../redux/dynamic';
 
 const staticRoutes: StaticRoute[] = [
   {
     path: '/',
     exact: true,
     fetchNode: true,
-    component: HomePage,
+    component: Home,
   },
   {
     path: '/search/:facet?',
-    exact: false,
-    component: SearchPage,
+    component: Search,
     // Dynamically load search package and search config into redux
     injectRedux: injectSearch,
   },
