@@ -1,4 +1,3 @@
-// import loadable from './loadable';
 import loadable from '@loadable/component';
 
 // Component exports

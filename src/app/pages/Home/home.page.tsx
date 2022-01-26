@@ -5,7 +5,7 @@ import HomeStyled from './home.styled';
 
 // Models
 import { HomeProps, MappedHomeEntry } from './home.d';
-import Link from '~/features/link';
+import Link from '~/components/link';
 
 const Home = ({ mappedEntry }: HomeProps) => {
   const { title } = mappedEntry || ({} as MappedHomeEntry);

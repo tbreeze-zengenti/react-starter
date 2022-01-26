@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from '~/features/link';
+import Link from '~/components/link';
 
 interface IProps {
   title: string;
