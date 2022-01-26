@@ -25,7 +25,9 @@ Feature branches are optional, you can use a feature branch if you are doing one
 
 ## 📁Folder/File Structure
 
-Components should be built inside the `features/` directory.
+Components should be built inside the `components/` directory.
+
+Components that leverage Redux should be built inside the `features/` directory.
 
 Each Component should have it's own folder following the **PascalCase** naming convention, eg. `CourseCard`.
 
@@ -41,11 +43,11 @@ Example: `feat: header component`
 
 ### Naming Conventions
 
-Classes & Styles should follow the [BEM](http://getbem.com/introduction/) (Block, Element, Modifier) naming convention. 
+Classes & Styles should follow the [BEM](http://getbem.com/introduction/) (Block, Element, Modifier) naming convention.
 
 CSS-Tricks has a [good crash course on BEM](https://css-tricks.com/bem-101/).
 
-Example: 
+Example:
 
 - Block: `.course-card`
 - Element: `.course-card__content`
@@ -57,9 +59,9 @@ We use `rem` to define our units. The project has a rem-reset so that `1rem = 10
 
 Media Queries are defined in pixels however.
 
-### Layout 
+### Layout
 
-We have a `.wrapper` class in our Global Styles to help structure page layouts. There are modifiers of this class for different layouts. 
+We have a `.wrapper` class in our Global Styles to help structure page layouts. There are modifiers of this class for different layouts.
 
 ### Browser Support
 
