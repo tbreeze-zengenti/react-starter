@@ -12,6 +12,11 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
+  /* Resets the z-index stacking order */
+  #root {
+    isolation: isolate;
+  }
+
   /* Remove default margin */
   body,
   h1,
