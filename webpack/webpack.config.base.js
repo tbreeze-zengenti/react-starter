@@ -23,19 +23,6 @@ module.exports = {
   module: {
     rules: [
       {
-        enforce: 'pre',
-        test: /\.(t|j)sx?$/,
-        exclude: /node_modules/,
-        use: [
-          {
-            loader: 'stylelint-custom-processor-loader',
-            options: {
-              emitWarning: true,
-            },
-          },
-        ],
-      },
-      {
         test: /\.(t|j)sx?$/,
         include: [
           path.resolve('src'),
