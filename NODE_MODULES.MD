@@ -5,8 +5,8 @@
 | Severity | Package       | Dependancy of                      |
 | -------- | ------------- | ---------------------------------- |
 | high     | glob-parent   | webpack@4.46.0                     |
-| high     | trim          | @storybook/addon-essentials@6.1.21 |
-| moderate | postcss       | @storybook/addon-essentials@6.1.21 |
+| high     | trim          | @storybook/addon-essentials@6.4.18 |
+| moderate | postcss       | @storybook/addon-essentials@6.4.18 |
 | moderate | semver-regex  | image-webpack-loader@8.1.0         |
 | high     | trim-newlines | imagemin-webpack-plugin@2.4.2      |
 | moderate | nth-check     | imagemin-webpack-plugin@2.4.2      |
