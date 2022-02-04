@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 const ASSET_PATH = '/';
 
@@ -10,9 +11,8 @@ module.exports = {
   output: {
     publicPath: ASSET_PATH,
   },
-  externals: ['oidc-client'],
   resolve: {
-    extensions: ['.js', '.jsx', '.json'],
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
     alias: {
       '~': path.resolve(__dirname, '../src/app'),
       '-': path.resolve(__dirname, '../'),
@@ -23,21 +23,7 @@ module.exports = {
   module: {
     rules: [
       {
-        enforce: 'pre',
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        use: [
-          {
-            loader: 'stylelint-custom-processor-loader',
-            options: {
-              emitWarning: true,
-            },
-          },
-          { loader: 'eslint-loader' },
-        ],
-      },
-      {
-        test: /\.m?jsx?$/,
+        test: /\.(t|j)sx?$/,
         include: [
           path.resolve('src'),
           // These dependencies have es6 syntax which ie11 doesn't like.
@@ -65,5 +51,8 @@ module.exports = {
       },
     ],
   },
-  plugins: [new webpack.DefinePlugin(WEBPACK_DEFINE_CONFIG.base)],
+  plugins: [
+    new ESLintPlugin(),
+    new webpack.DefinePlugin(WEBPACK_DEFINE_CONFIG.base),
+  ],
 };

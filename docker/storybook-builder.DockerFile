@@ -1,5 +1,5 @@
 # Very useful article on docker multi stage builds: https://snorre.io/building-docker-images-with-gitlab-ci/
-FROM node:12 as builder
+FROM node:14 as builder
 # The following prevents errors when cwebp is installing.
 RUN apt-get update
 RUN apt-get install libglu1 -y
@@ -20,6 +20,5 @@ COPY .eslintignore .
 COPY .nvmrc .
 COPY .prettierignore .
 COPY .prettierrc .
-COPY .stylelintrc .
 
 RUN npm run storybook-static

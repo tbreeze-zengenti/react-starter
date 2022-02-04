@@ -12,6 +12,7 @@ const presets = {
       },
     ],
     '@babel/preset-react',
+    ['@babel/preset-typescript', { allExtensions: true, isTSX: true }],
   ],
   modern: [
     [
@@ -24,6 +25,7 @@ const presets = {
       },
     ],
     ['@babel/preset-react', { loose: true }],
+    ['@babel/preset-typescript', { allExtensions: true, isTSX: true }],
   ],
 };
 
@@ -48,8 +50,9 @@ const plugins = {
       },
     ],
     'react-hot-loader/babel',
-    'react-loadable/babel',
+    '@loadable/babel-plugin',
     '@babel/plugin-syntax-dynamic-import',
+    '@babel/plugin-proposal-optional-chaining',
   ],
   legacy: [
     [
@@ -92,4 +95,6 @@ module.exports = {
       sourceType: 'unambiguous',
     },
   },
+  presets: [...presets.base, ...presets.modern],
+  plugins: [...plugins.base, ...plugins.modern],
 };

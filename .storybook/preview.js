@@ -1,9 +1,9 @@
 import React from 'react';
 import { addDecorator } from '@storybook/react';
 import { ThemeProvider } from 'styled-components';
-import StoryRouter from 'storybook-react-router';
 import GlobalStyle from '../src/app/theme/globalStyles';
 import { defaultTheme } from '../src/app/theme';
+import { MemoryRouter } from 'react-router-dom';
 
 const ThemeDecorator = storyFn => (
   <>
@@ -18,7 +18,9 @@ const ThemeDecorator = storyFn => (
 );
 
 addDecorator(ThemeDecorator);
-addDecorator(StoryRouter());
+ addDecorator(story => (
+   <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
+ ));
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
