@@ -125,7 +125,7 @@ const CLIENT_LEGACY_CONFIG = {
     new HtmlWebPackPlugin({
       template: path.resolve(__dirname, '../public/index_static.ejs'),
       filename: path.resolve(__dirname, `../dist/index_static.html`),
-      inject: true,
+      inject: false,
       minify,
       chunksSortMode: 'none',
     }),
@@ -140,7 +140,12 @@ const CLIENT_LEGACY_CONFIG = {
 const CLIENT_PROD_CONFIG = {
   target: 'web',
   mode: 'production',
-  stats: 'errors-only',
+  stats: {
+    preset: 'errors-only',
+  },
+  resolve: {
+    mainFields: ['browser', 'module', 'main'],
+  },
   optimization: {
     splitChunks: {
       name: false,
@@ -181,7 +186,9 @@ const SERVER_PROD_CONFIG = {
   name: 'webpack-server-prod-config',
   target: 'node',
   mode: 'production',
-  stats: 'errors-only',
+  stats: {
+    preset: 'errors-only',
+  },
   entry: {
     server: path.resolve(__dirname, '../src/server/server.ts'),
     test: path.resolve(__dirname, '../src/server/test.js'),

@@ -17,7 +17,9 @@ const staticFolderPath = DEFINE_CONFIG.production.STATIC_PATH;
 const CLIENT_DEV_CONFIG = {
   name: 'webpack-dev-config',
   target: 'web',
-  stats: 'errors-only',
+  stats: {
+    preset: 'errors-only',
+  },
   mode: 'development',
   entry: path.resolve(__dirname, '../src/client/client-entrypoint.ts'),
   devtool: 'source-map',
