@@ -6,6 +6,7 @@ module.exports = {
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@storybook/addon-a11y',
+    '@zengenti/contensis-entry-picker-storybook-addon',
   ],
   webpackFinal: config => {
     config.module.rules.push({

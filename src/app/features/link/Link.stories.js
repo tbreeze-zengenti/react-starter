@@ -1,13 +1,18 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 
+// Component
 import Link from './Link';
 
-const link = {
+export default {
+  title: 'Features/Global/Link',
+  component: Link,
+};
+
+export const Template = args => {
+  return <Link {...args} />;
+};
+
+Template.args = {
   text: 'Live example link',
   path: '/site-link',
 };
-
-storiesOf('Features. Global', module).add('Link', () => {
-  return <Link text={link.text} path={link.path} />;
-});
