@@ -10,7 +10,7 @@ import Link from '~/components/link';
 const Home = ({ mappedEntry }: HomeProps) => {
   const { title } = mappedEntry || ({} as MappedHomeEntry);
   return (
-    <HomeStyled>
+    <HomeStyled className="flow">
       <h1>Welcome</h1>
       {title && <p>The homepage entry title is {title}!</p>}
       <Link path="/search">Navigate to search</Link>
