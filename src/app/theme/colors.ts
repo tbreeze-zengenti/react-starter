@@ -1,10 +1,12 @@
 const colors = {
-  white: '#FFFFFF',
+  white: 'white',
+  contensis: '#37bfa7',
+  zengenti: '#e75f44',
   primary: {
-    primaryWhite: '#FFFFFF',
+    white: 'white',
   },
   secondary: {
-    secondaryWhite: '#FFFFFF',
+    white: 'white',
   },
 };
 
