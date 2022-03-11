@@ -1,15 +1,26 @@
 import { createGlobalStyle } from 'styled-components';
-import { normalize } from 'styled-normalize';
+
+import colors from './colors';
+import { mq, spacing } from './layout';
 
 const GlobalStyle = createGlobalStyle`
-  /* Normalize/reset css */
-  /* Comment out if you do not wish to load it */
-  ${normalize}
-
   *,
   *::before,
   *::after {
     box-sizing: border-box;
+  }
+
+  /* CSS Variables */
+  :root {
+    --flow: ${spacing[0.5]};
+    --colorWhite: #ffffff;
+    --primaryWhite: ${colors.primary.white}
+  }
+
+  @media ${mq.min[480]} {
+    :root {
+      --flow: ${spacing[1]};
+    }
   }
 
   /* Resets the z-index stacking order */
@@ -91,6 +102,24 @@ const GlobalStyle = createGlobalStyle`
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
     }
+  }
+
+  /* https://www.a11yproject.com/posts/how-to-hide-content/ */
+  .visually-hidden,
+  .sr-only {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+
+  /* https://piccalil.li/quick-tip/flow-utility/ */
+  /* If --flow doesn't exist it'll default to 1em */
+  .flow > * + * {
+    margin-top: var(--flow, 1em);
   }
 `;
 
