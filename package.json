@@ -113,8 +113,10 @@
   },
   "dependencies": {
     "@zengenti/contensis-react-base": "^3.0.0-beta.25",
+    "@zengenti/toolbox": "file:../ps-components",
     "app-root-path": "^3.0.0",
     "file-loader": "^6.2.0",
-    "sitemap": "^6.1.0"
+    "sitemap": "^6.1.0",
+    "zengenti-ps-components": "^1.4.2"
   }
 }
