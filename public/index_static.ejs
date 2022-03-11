@@ -1,34 +1,28 @@
 <!DOCTYPE html>
-<html itemscope itemtype="http://schema.org/" lang="en" dir="ltr">
+<html lang="en" dir="ltr">
 
 <head>
-	<!-- General metadata *Common to all pages.-->
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no" />
-	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <!-- General metadata *Common to all pages.-->
+  <meta charset="utf-8" />
+  <!-- Title provided by page component over a Helmet HOC. -->
+  {{TITLE}}
+  {{SEO_CRITICAL_METADATA}}
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-	<head>
-		<!-- General metadata *Common to all pages.-->
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no" />
-		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <!--[if IE 11 ]>
+    <meta name="msapplication-config" content="static/browserconfig.xml" />
+  <![endif]-->
 
-		<!--[if IE 11]>
-      <meta name="msapplication-config" content="static/browserconfig.xml" />
-    <![endif]-->
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico" sizes="any"><!-- 32×32 -->
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png"><!-- 180×180 -->
+  <link rel="manifest" href="/manifest.webmanifest">
 
-		<!-- Standard favicon -->
-		<link rel="icon" type="image/x-icon" href="/static/img/icons/favicon.ico" />
-		<link rel="icon" type="image/png" href="/static/img/icons/favicon.png" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.4.0/leaflet.css" />
-    <link rel="manifest" href="/static/manifest.webmanifest" />
-    <!-- Title provided by page component over a Helmet HOC. -->
-    
-		{{TITLE}}
-		{{SEO_CRITICAL_METADATA}}
-		{{CRITICAL_CSS}}
+  {{CRITICAL_CSS}}
 
-	</head>
+</head>
 
 <body>
 	<div id="root">{{APP}}</div>
