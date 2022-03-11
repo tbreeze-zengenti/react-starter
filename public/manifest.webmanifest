@@ -4,16 +4,8 @@
   "theme_color": "#E75f44",
   "background_color": "#E75f44",
   "display": "minimal-ui",
-  "orientation": "portrait",
-  "Scope": "/",
-  "start_url": "/",
   "icons": [
-    {
-      "icons": [
-        { "src": "/icon-192.png", "type": "image/png", "sizes": "192x192" },
-        { "src": "/icon-512.png", "type": "image/png", "sizes": "512x512" }
-      ]
-    }
-  ],
-  "splash_pages": null
+    { "src": "/icon-192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "/icon-512.png", "type": "image/png", "sizes": "512x512" }
+  ]
 }
