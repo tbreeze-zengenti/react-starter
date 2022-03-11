@@ -1,8 +1,9 @@
 import React from 'react';
 import mapEntriesToResults from '../transformations';
 import { SearchProps, withSearch } from '@zengenti/contensis-react-base/search';
-import uniqueID from '~/core/util/unique';
+
 import ResultCard from '../components/ResultCard';
+import { uniqueID } from '-/../ps-components/src/utilities/uniqueID';
 
 type ResultCard = {
   title: string;

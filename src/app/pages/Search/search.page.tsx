@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
+
 import {
   useMinilist,
   UseMinilistProps,
 } from '@zengenti/contensis-react-base/search';
-import uniqueID from '~/core/util/unique';
+
 import SearchContainer from '~/features/search';
 import mapEntriesToResults from '~/features/search/transformations/entry-to-cardprops.mapper';
 import omdbapiToCardpropsMapper from '~/features/search/transformations/omdbapi-to-cardprops.mapper';
 import ResultCard from '~/features/search/components/ResultCard';
+
+import { uniqueID } from '-/../ps-components/src/utilities/uniqueID';
 
 const minilistInitState = {
   id: '',
