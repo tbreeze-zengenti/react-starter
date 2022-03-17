@@ -19,7 +19,6 @@ COPY .eslintrc.js .
 COPY .nvmrc .
 COPY .prettierignore .
 COPY .prettierrc .
-COPY .stylelintrc .
 COPY tsconfig.json .
 COPY jsconfig.json .
 RUN npm run build

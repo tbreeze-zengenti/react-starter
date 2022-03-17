@@ -20,6 +20,5 @@ COPY .eslintignore .
 COPY .nvmrc .
 COPY .prettierignore .
 COPY .prettierrc .
-COPY .stylelintrc .
 
 RUN npm run storybook-static

@@ -3,7 +3,6 @@ const { merge } = require('webpack-merge');
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
-const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const BASE_CONFIG = require('./webpack.config.base');
@@ -18,25 +17,14 @@ const staticFolderPath = DEFINE_CONFIG.production.STATIC_PATH;
 const CLIENT_DEV_CONFIG = {
   name: 'webpack-dev-config',
   target: 'web',
-  stats: 'errors-only',
+  stats: {
+    preset: 'errors-only',
+  },
   mode: 'development',
   entry: path.resolve(__dirname, '../src/client/client-entrypoint.ts'),
   devtool: 'source-map',
   module: {
     rules: [
-      {
-        enforce: 'pre',
-        test: /\.(t|j)sx?$/,
-        exclude: /node_modules/,
-        use: [
-          {
-            loader: 'stylelint-custom-processor-loader',
-            options: {
-              emitWarning: true,
-            },
-          },
-        ],
-      },
       {
         test: /\.(t|j)sx?$/,
         exclude: /node_modules/,
@@ -84,11 +72,6 @@ const CLIENT_DEV_CONFIG = {
       },
       { reload: false }
     ),
-    new FriendlyErrorsWebpackPlugin({
-      compilationSuccessInfo: {
-        messages: ['Application is now running at http://localhost:3000'],
-      },
-    }),
     new CopyWebpackPlugin({
       patterns: [
         {
