@@ -1,6 +1,5 @@
 import { selectors } from '@zengenti/contensis-react-base/search';
-
-import { default as mapJson } from '~/core/util/json-mapper';
+import { mapJson } from '@zengenti/contensis-react-base/util';
 
 const { getCurrent, getListing, getResults, getTotalCount, getPaging } =
   selectors.selectListing;
