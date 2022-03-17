@@ -3,18 +3,20 @@ import { useSelector } from 'react-redux';
 import { hot } from 'react-hot-loader';
 
 import { ThemeProvider } from 'styled-components';
-import { RouteLoader } from '@zengenti/contensis-react-base/routing';
-import { Loading } from '~/core/routes/Loading';
+import { RouteLoader, selectors } from '@zengenti/contensis-react-base/routing';
+
+import { Loading } from '~/routes/Loading';
 import NotFound from '~/pages/NotFound';
-import { selectRouteLoading } from './core/redux/selectors';
 
 import GlobalStyle from '~/theme/globalStyles';
 import { defaultTheme } from './theme';
 import { AppRootProps } from '@zengenti/contensis-react-base';
+import { CSSTransition } from 'react-transition-group';
 
 const AppRoot = (props: AppRootProps) => {
-  const stateLoading = useSelector(selectRouteLoading);
+  const stateLoading = useSelector(selectors.selectRouteLoading);
   const [isLoading, setIsLoading] = useState(stateLoading);
+
   useEffect(() => {
     setIsLoading(stateLoading);
   }, [stateLoading]);
@@ -32,8 +34,26 @@ const AppRoot = (props: AppRootProps) => {
     6. Submit your request.
   */
 
+  console.log('isLoading:', isLoading);
+
   return (
     <>
+      {process.env.NODE_ENV === 'development' && (
+        <CSSTransition
+          in={isLoading === false}
+          timeout={1000}
+          classNames="my-node"
+        >
+          <div id="app-root">
+            <ThemeProvider theme={defaultTheme}>
+              <GlobalStyle />
+              {isLoading && <Loading />}
+              <RouteLoader {...props} notFoundComponent={NotFound} />
+            </ThemeProvider>
+          </div>
+        </CSSTransition>
+      )}
+
       <div id="app-root">
         <ThemeProvider theme={defaultTheme}>
           <GlobalStyle />
