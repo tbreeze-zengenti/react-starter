@@ -112,10 +112,11 @@
     "zengenti-buildstartup-package": "0.0.16"
   },
   "dependencies": {
-    "@zengenti/contensis-react-base": "^3.0.0-beta.25",
-    "@zengenti/toolbox": "file:../ps-components",
+    "@types/react-transition-group": "^4.4.4",
+    "@zengenti/contensis-react-base": "^3.0.0-beta.53",
     "app-root-path": "^3.0.0",
     "file-loader": "^6.2.0",
+    "react-transition-group": "^4.4.2",
     "sitemap": "^6.1.0",
     "zengenti-ps-components": "^1.4.2"
   }
