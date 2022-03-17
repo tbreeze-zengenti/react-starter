@@ -2,8 +2,9 @@ import { call } from 'redux-saga/effects';
 import { RouteLoadOptions, WithEvents } from '@zengenti/contensis-react-base';
 import { SearchTransformations } from '@zengenti/contensis-react-base/search';
 
-import { queryParams, routeParams } from '../util/navigation';
-import { ContentTypes, ListingPages } from '../schema';
+import { routeParams, queryParams } from './routeHelpers';
+
+import { ContentTypes, ListingPages } from '~/schema';
 
 export default {
   onRouteLoad: function* onRouteLoad() {

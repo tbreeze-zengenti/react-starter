@@ -1,4 +1,5 @@
 import { StaticRoute } from '@zengenti/contensis-react-base';
+
 import { CorePages, Home, Search } from '~/dynamic/pages';
 import { injectSearch } from '../redux/dynamic';
 

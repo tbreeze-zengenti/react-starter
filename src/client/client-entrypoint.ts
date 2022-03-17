@@ -2,10 +2,10 @@
 import ClientApp from '@zengenti/contensis-react-base/client';
 import ReactApp from '~/App';
 
-import routes from '~/core/routes';
-import withReducers from '~/core/redux/reducers';
-import withSagas from '~/core/redux/sagas';
-import withEvents from '~/core/redux/withEvents';
+import routes from '~/routes';
+import withReducers from '~/redux/reducers';
+import withSagas from '~/redux/sagas';
+import withEvents from '~/routes/withEvents';
 
 import { AppConfig } from '@zengenti/contensis-react-base';
 

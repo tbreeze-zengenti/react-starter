@@ -2,10 +2,10 @@ import React from 'react';
 
 const divStyles = {
   display: 'flex',
-  height: '100vh',
   alignItems: 'center',
   justifyContent: 'center',
   flexDirection: 'column',
+  height: '100vh',
 } as React.CSSProperties;
 
 const svgStyles = {

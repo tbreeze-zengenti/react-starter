@@ -3,7 +3,7 @@ export const DataFormats = {
   webpage: 'webpage',
 };
 
-const sys = {
+export const sys = {
   contentTypeId: 'sys.contentTypeId',
   dataFormat: 'sys.dataFormat',
   filename: 'sys.properties.filename',
@@ -37,82 +37,41 @@ export const BaseFields = [
   Fields.sys.published,
 ];
 
-export const ArticleFields = [Fields.image, Fields.categoryId];
-
-export const Projects = {
-  website: 'website',
-};
-
 export const VersionStatus = {
   published: 'published',
   latest: 'latest',
 };
 
 export const ContentTypes = {
-  article: 'article',
-  blog: 'blogPost',
-  category: 'category',
-  contentPage: 'contentPage',
-  homePage: 'homepage',
-  landingPage: 'landingPage',
+  homePage: 'homePage',
   listingPage: 'listingPage',
-  person: 'person',
 };
 
-export const WebpageFormats = {};
-
-export const FilterExpressionTypes = {
-  contentType: 'contentType',
-  field: 'field',
-};
-
-export const CardTypes = {
-  Event: 'Event',
-  News: 'News',
-  Profile: 'Profile',
-  Webpage: 'Webpage',
+export const ComposerComponents = {
+  markup: 'markup',
 };
 
 export const Listings = {
-  categoryArticles: 'categoryArticles',
-  // events: 'events',
-  // news: 'news',
+  all: 'all',
 };
 
 export const Minilists = {
-  latestArticles: 'latestArticles',
-  relatedContent: 'relatedContent',
+  all: 'all',
 };
 
 export const ListingPages = {
-  [ContentTypes.category]: Listings.categoryArticles,
+  [ContentTypes.listingPage]: Listings.all,
 };
 
 export const SearchFacets = {
   all: 'all',
-  // news: 'news',
-  // pages: 'pages',
 };
 
 export const SearchFilters = {
-  // Insert filters here
   category: 'category',
 };
 
 export const FreeTextWeights = {
   title: 100,
   description: 50,
-  keywords: 50,
-  content: 10,
-};
-
-export const RoutingFields = [
-  Fields.sys.contentTypeId,
-  Fields.sys.slug,
-  Fields.sys.uri,
-  Fields.entryTitle,
-];
-
-export const ComposerComponents = {
-  // Insert composer components
 };
