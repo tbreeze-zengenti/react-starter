@@ -1,23 +1,10 @@
 import React from 'react';
 import Link from '~/components/link';
+import { ResultCardProps } from './ResultCard.d';
 
-interface ResultCardProps {
-  description: string;
-  image: string;
-  key?: string;
-  link: string;
-  title: string;
-}
-const ResultCard = ({
-  description,
-  image,
-  key,
-  link,
-  title,
-}: ResultCardProps) => {
+const ResultCard = ({ description, image, link, title }: ResultCardProps) => {
   return (
     <div
-      key={key}
       style={{
         maxWidth: '1024px',
         display: 'grid',

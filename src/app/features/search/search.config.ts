@@ -13,7 +13,7 @@ export default {
     all: {
       title: 'All results',
       queryParams: {
-        contentTypeIds: [ContentTypes.listingPage],
+        contentTypeIds: [],
         fields: [...BaseFields],
         linkDepth: 0,
         pageSize: 9,
@@ -28,7 +28,7 @@ export default {
     all: {
       title: 'Listing',
       queryParams: {
-        contentTypeIds: [[ContentTypes.homePage], 'article'],
+        contentTypeIds: [ContentTypes.homePage, 'article'],
         fields: [...BaseFields],
         pageSize: 9,
       },
@@ -38,7 +38,7 @@ export default {
     all: {
       title: 'Minilist',
       queryParams: {
-        contentTypeIds: [[ContentTypes.homePage], 'article'],
+        contentTypeIds: [ContentTypes.homePage, 'article'],
         fields: [...BaseFields],
         pageSize: 3,
       },
