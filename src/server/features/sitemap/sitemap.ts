@@ -1,7 +1,6 @@
 import { Op, Query } from 'contensis-delivery-api';
-import { cachedSearch } from '~/core/util/ContensisDeliveryApi';
-import { dynamicSort } from '~/core/util/helpers';
 import { streamToPromise, SitemapStream } from 'sitemap';
+import cachedSearch from '@zengenti/contensis-react-base/search';
 
 /* global PUBLIC_URI */
 const publicUri = PUBLIC_URI;
@@ -62,7 +61,7 @@ const getEntries = async (
   project: string
 ) => {
   try {
-    return await cachedSearch.search(
+    return await cachedSearch.doSearch(
       query(pageIndex, pageSize),
       6,
       project || contensisConfig.projectId
@@ -80,6 +79,22 @@ const mapEntryToSitemapUrl = (entry: any) => {
   // Return url and lastmod date
   return { url: encodeURI(url), lastmod: entry.sys.version.published };
 };
+
+function dynamicSort(property: string) {
+  let sortOrder = 1;
+  if (property[0] === '-') {
+    sortOrder = -1;
+    property = property.substr(1);
+  }
+  return function (a: any, b: any) {
+    /* next line works with strings and numbers,
+     * and you may want to customize it to your needs
+     */
+    const result =
+      a[property] < b[property] ? -1 : a[property] > b[property] ? 1 : 0;
+    return result * sortOrder;
+  };
+}
 
 const generateSitemap = async (project: string) =>
   // eslint-disable-next-line
