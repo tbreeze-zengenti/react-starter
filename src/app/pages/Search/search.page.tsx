@@ -5,12 +5,14 @@ import {
   UseMinilistProps,
 } from '@zengenti/contensis-react-base/search';
 
-import SearchContainer from '~/features/search';
 import mapEntriesToResults from '~/features/search/transformations/entry-to-cardprops.mapper';
 import omdbapiToCardpropsMapper from '~/features/search/transformations/omdbapi-to-cardprops.mapper';
 import ResultCard from '~/features/search/components/ResultCard';
 
-import { uniqueID } from '-/../ps-components/src/utilities/uniqueID';
+// import { uniqueID } from '-/../ps-components/src/utilities/uniqueID';
+function uniqueID() {
+  return '_' + Math.random().toString(36).substr(2, 9) + '_';
+}
 
 const minilistInitState = {
   id: '',
@@ -52,7 +54,6 @@ const SearchPage = () => {
 
   return (
     <div>
-      <SearchContainer />
       <h2>{relatedTitle}</h2>
       <div>
         {related.map(content => (
