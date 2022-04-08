@@ -48,7 +48,8 @@ export const ContentTypes = {
 };
 
 export const ComposerComponents = {
-  markup: 'markup',
+  // Insert composer components
+  markup: 'textArea',
 };
 
 export const Listings = {

@@ -6,11 +6,9 @@ import { Home } from '~/dynamic/pages';
 
 import homeMapper from '~/pages/Home/home.mapper';
 
-const { homePage } = ContentTypes;
-
 const contentTypeMappings: ContentTypeMapping[] = [
   {
-    contentTypeID: homePage,
+    contentTypeID: ContentTypes.homePage,
     component: Home,
     entryMapper: entryMapper(homeMapper),
   },
