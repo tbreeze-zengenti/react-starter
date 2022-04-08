@@ -1,30 +1,34 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+
+export interface SearchInputProps {
+  searchTerm: string;
+  placeholderText: string;
+  submitEvent: (e: any, a: any) => void;
+  className: string;
+}
 
 const SearchInput = ({
   searchTerm,
   placeholderText,
   submitEvent,
   className,
-}) => {
+}: SearchInputProps) => {
   const [stateValue, setStateValue] = useState(searchTerm);
   useEffect(() => setStateValue(searchTerm), [searchTerm]);
 
-  const handleChange = event => {
+  const handleChange = (event: any) => {
     setStateValue(event.target.value);
   };
 
-  const handleKeyPress = event => {
+  const handleKeyPress = (event: any) => {
     if (event.key == 'Enter') {
       handleSubmit(event);
     }
   };
 
-  const handleSubmit = event => {
+  const handleSubmit = (event: any) => {
     if (event) event.preventDefault();
     submitEvent && submitEvent(stateValue, 0);
-
-    if (!submitEvent) alert(stateValue, 0);
   };
 
   return (

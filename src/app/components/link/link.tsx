@@ -10,10 +10,10 @@ const Link = ({
   onClick,
   openInNewWindow,
   title,
-  uri,
+  path,
 }: LinkProps) => {
   className += ' link';
-  if (!uri) {
+  if (!path) {
     return (
       <span className={className} style={{ opacity: '.65' }}>
         {children}
@@ -22,7 +22,7 @@ const Link = ({
   }
 
   const newWindow = openInNewWindow ? '_blank' : '_self';
-  uri = encodeURI(uri);
+  path = encodeURI(path);
 
   const _handleClick = (e: any) => {
     if (onClick) {
@@ -30,14 +30,14 @@ const Link = ({
     }
   };
 
-  if (newWindow !== '_blank' && uri && uri.startsWith('/')) {
+  if (newWindow !== '_blank' && path && path.startsWith('/')) {
     return (
       <PageLink
         className={className}
         download={download}
         onClick={e => _handleClick(e)}
         title={title}
-        to={uri}
+        to={path}
       >
         {children}
       </PageLink>
@@ -47,7 +47,7 @@ const Link = ({
       <a
         className={className}
         download={download}
-        href={uri}
+        href={path}
         onClick={e => _handleClick(e)}
         target={newWindow}
         title={title}

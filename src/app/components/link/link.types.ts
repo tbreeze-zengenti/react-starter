@@ -6,5 +6,5 @@ export interface LinkProps {
   onClick?: (ev: any) => void;
   openInNewWindow?: boolean;
   title?: string;
-  uri?: string;
+  path?: string;
 }

@@ -8,8 +8,9 @@ import {
 
 import mappers from '~/features/search/transformations';
 import omdbapiToCardpropsMapper from '~/features/search/transformations/omdbapi-to-cardprops.mapper';
-import ResultCard from '~/features/search/components/ResultCard';
-import { ResultCardProps } from '~/features/search/components/ResultCard.d';
+
+import ResultCard from '~/features/search/components/resultCard';
+import { ResultCardProps } from '~/features/search/components/resultCard.types';
 
 // import { uniqueID } from '-/../ps-components/src/utilities/uniqueID';
 function uniqueID() {
