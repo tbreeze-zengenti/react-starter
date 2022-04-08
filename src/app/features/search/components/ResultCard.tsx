@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from '~/components/link';
+import Link from '~/components/link/link';
 import { ResultCardProps } from './ResultCard.d';
 
 const ResultCard = ({ description, image, link, title }: ResultCardProps) => {
@@ -16,7 +16,7 @@ const ResultCard = ({ description, image, link, title }: ResultCardProps) => {
       </div>
       <div>
         <p>
-          <Link path={link}>{title}</Link>
+          <Link uri={link}>{title}</Link>
         </p>
         {description && <p>{description}</p>}
       </div>
