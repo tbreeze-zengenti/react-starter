@@ -34,11 +34,11 @@ const AppRoot = (props: AppRootProps) => {
     6. Submit your request.
   */
 
-  console.log('isLoading:', isLoading);
+  console.log('Loading:', isLoading);
 
   return (
     <>
-      {process.env.NODE_ENV === 'development' && (
+      {/* {process.env.NODE_ENV === 'production' && (
         <CSSTransition
           in={isLoading === false}
           timeout={1000}
@@ -52,7 +52,7 @@ const AppRoot = (props: AppRootProps) => {
             </ThemeProvider>
           </div>
         </CSSTransition>
-      )}
+      )} */}
 
       <div id="app-root">
         <ThemeProvider theme={defaultTheme}>
