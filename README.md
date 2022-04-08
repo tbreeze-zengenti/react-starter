@@ -22,7 +22,7 @@ Commonly know as React Starter, this is our starter project for most client buil
 - Define routes in your application, there are 'Static routes' and 'Content type mappings' which tell the application what pages are to be loaded and when certain routes / content type entries are loaded
 - Import components using the import aliases e.g. `~/pages/MyPage` avoid importing components like `/src/app/pages/MyPage` or `../../../pages/MyPage`
 
-### Key scripts :vertical_traffic_light: :page_with_curl:
+## Key scripts :vertical_traffic_light: :page_with_curl:
 
 - `npm install` - install dependencies so we can use the application
 - `npm start` - start the application in development mode
@@ -42,7 +42,7 @@ When you are ready to release your code it is best to change your version number
 
 ## Domains
 
-### Live domains
+## Live domains
 
 | URL                                                                                        | Content Version | Branch  | Target        |
 | ------------------------------------------------------------------------------------------ | --------------- | ------- | ------------- |
@@ -53,7 +53,7 @@ When you are ready to release your code it is best to change your version number
 | [staging.preview.{alias}.contensis.cloud](http://staging.preview.{alias}.contensis.cloud/) | Draft           | Master  | Latest commit |
 | [dev.preview.{alias}.contensis.cloud](http://dev.preview.{alias}.contensis.cloud/)         | Draft           | Develop | Latest commit |
 
-### Dev domains
+## Dev domains
 
 | URL                                                                                                | Content Version | Branch  | Target        |
 | -------------------------------------------------------------------------------------------------- | --------------- | ------- | ------------- |
@@ -64,7 +64,7 @@ When you are ready to release your code it is best to change your version number
 | [staging.preview.{alias}-dev.contensis.cloud](http://staging.preview.{alias}-dev.contensis.cloud/) | Draft           | Master  | Latest commit |
 | [dev.preview.{alias}-dev.contensis.cloud](http://dev.preview.{alias}-dev.contensis.cloud/)         | Draft           | Develop | Latest commit |
 
-### Storybook
+## Storybook
 
 | URL                                                                                          | Content Version | Branch | Target        |
 | -------------------------------------------------------------------------------------------- | --------------- | ------ | ------------- |
