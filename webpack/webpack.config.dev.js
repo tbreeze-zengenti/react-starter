@@ -59,6 +59,7 @@ const CLIENT_DEV_CONFIG = {
       template: path.resolve(__dirname, '../public/index.html'),
       filename: './index.html',
       chunksSortMode: 'none',
+      favicon: path.resolve(__dirname, '../public/icon/icon-dev.svg'),
     }),
     new webpack.HotModuleReplacementPlugin(),
     new BrowserSyncPlugin(
