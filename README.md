@@ -1,14 +1,8 @@
 ![Zengenti React Start](/readme-logo.png)
 
-<br />
-
 # Zengenti React Starter
 
 Commonly know as React Starter, this is our starter project for most client builds. It is driven by the latest version of Contensis React Base (currently v3.0) & utilises other internal packages such as Zengenti React Toolkit, & Zengenti Forms Package.
-
-<br />
-<br />
-<br />
 
 # Old
 
