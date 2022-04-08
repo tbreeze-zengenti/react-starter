@@ -1,9 +1,5 @@
 import React from 'react';
-
-/** @todo replace with React Toolkit dependency */
-function uniqueID() {
-  return '_' + Math.random().toString(36).substr(2, 9) + '_';
-}
+import { v4 as id } from 'uuid';
 
 // Import your Components from /dynamic/composer in this import
 import { Markup } from '~/dynamic/composer';
@@ -23,7 +19,7 @@ const Composer = ({ items }: ComposerProps) => {
         // _type should also exist/match your schema ComposerComponents
         // _type is a reference to the CMS field
         if (props._type === 'textArea') {
-          return <Markup key={uniqueID()} {...props} />;
+          return <Markup key={id()} {...props} />;
         } else {
           console.error(
             'Composer Component ',

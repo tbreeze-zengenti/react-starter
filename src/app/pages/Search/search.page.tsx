@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { v4 as id } from 'uuid';
 
 import {
   useFacets,
@@ -12,10 +13,6 @@ import omdbapiToCardpropsMapper from '~/features/search/transformations/omdbapi-
 import ResultCard from '~/features/search/components/resultCard';
 import { ResultCardProps } from '~/features/search/components/resultCard.types';
 
-// import { uniqueID } from '-/../ps-components/src/utilities/uniqueID';
-function uniqueID() {
-  return '_' + Math.random().toString(36).substr(2, 9) + '_';
-}
 
 const minilistInitState = {
   id: '',
@@ -68,19 +65,19 @@ const SearchPage = () => {
       <h1>Search</h1>
       <div>
         {results.map(content => (
-          <ResultCard key={uniqueID()} {...content} />
+          <ResultCard key={id()} {...content} />
         ))}
       </div>
       <h2>{relatedTitle}</h2>
       <div>
         {related.map(content => (
-          <ResultCard key={uniqueID()} {...content} />
+          <ResultCard key={id()} {...content} />
         ))}
       </div>
       <h2>{minlistTitle}</h2>
       <div>
         {movies.map(movie => (
-          <ResultCard key={uniqueID()} {...movie} />
+          <ResultCard key={id()} {...movie} />
         ))}
       </div>
     </div>

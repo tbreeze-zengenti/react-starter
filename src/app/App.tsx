@@ -11,7 +11,6 @@ import NotFound from '~/pages/NotFound';
 import GlobalStyle from '~/theme/globalStyles';
 import { defaultTheme } from './theme';
 import { AppRootProps } from '@zengenti/contensis-react-base';
-import { CSSTransition } from 'react-transition-group';
 
 const AppRoot = (props: AppRootProps) => {
   const stateLoading = useSelector(selectors.selectRouteLoading);
@@ -34,26 +33,8 @@ const AppRoot = (props: AppRootProps) => {
     6. Submit your request.
   */
 
-  console.log('Loading:', isLoading);
-
   return (
     <>
-      {/* {process.env.NODE_ENV === 'production' && (
-        <CSSTransition
-          in={isLoading === false}
-          timeout={1000}
-          classNames="my-node"
-        >
-          <div id="app-root">
-            <ThemeProvider theme={defaultTheme}>
-              <GlobalStyle />
-              {isLoading && <Loading />}
-              <RouteLoader {...props} notFoundComponent={NotFound} />
-            </ThemeProvider>
-          </div>
-        </CSSTransition>
-      )} */}
-
       <div id="app-root">
         <ThemeProvider theme={defaultTheme}>
           <GlobalStyle />
