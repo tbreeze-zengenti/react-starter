@@ -48,11 +48,4 @@ const SearchInput = ({
   );
 };
 
-SearchInput.propTypes = {
-  searchTerm: PropTypes.string,
-  placeholderText: PropTypes.string,
-  submitEvent: PropTypes.func,
-  className: PropTypes.string,
-};
-
 export default SearchInput;
