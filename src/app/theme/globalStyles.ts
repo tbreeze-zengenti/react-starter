@@ -121,22 +121,6 @@ const GlobalStyle = createGlobalStyle`
   .flow > * + * {
     margin-top: var(--flow, 1em);
   }
-
-
-  .my-node-enter {
-    opacity: 0;
-  }
-  .my-node-enter-active {
-    opacity: 1;
-    transition: opacity 1000ms;
-  }
-  .my-node-exit {
-    opacity: 1;
-  }
-  .my-node-exit-active {
-    opacity: 0;
-    transition: opacity 1000ms;
-  }
 `;
 
 export default GlobalStyle;
