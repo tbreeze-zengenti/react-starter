@@ -1,11 +1,11 @@
 import React from 'react';
 
-interface Props {
+interface MainLayoutProps {
   className?: string;
   children: React.ReactElement;
 }
 
-const MainLayout = ({ className, children }: Props) => {
+const MainLayout = ({ className, children }: MainLayoutProps) => {
   return (
     <>
       <main id="main" className={className}>
