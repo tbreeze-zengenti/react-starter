@@ -11,6 +11,7 @@ import NotFound from '~/pages/NotFound';
 import GlobalStyle from '~/theme/globalStyles';
 import { defaultTheme } from './theme';
 import { AppRootProps } from '@zengenti/contensis-react-base';
+import SkipToMainContent from './components/skipToMainContent/skipToMainContent';
 
 const AppRoot = (props: AppRootProps) => {
   const stateLoading = useSelector(selectors.selectRouteLoading);
@@ -35,6 +36,7 @@ const AppRoot = (props: AppRootProps) => {
 
   return (
     <>
+      <SkipToMainContent />
       <div id="app-root">
         <ThemeProvider theme={defaultTheme}>
           <GlobalStyle />
