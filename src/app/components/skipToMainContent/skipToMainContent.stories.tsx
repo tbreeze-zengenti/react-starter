@@ -1,6 +1,7 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
+import { SkipToMainContentProps } from './skipToMainContent.types';
 import SkipToMainContent from './skipToMainContent';
 
 export default {
@@ -8,8 +9,12 @@ export default {
   component: SkipToMainContent,
 } as Meta;
 
-const Template: Story = args => <SkipToMainContent {...args} />;
+const Template: Story<SkipToMainContentProps> = args => (
+  <SkipToMainContent {...args} />
+);
 
 export const Default = Template.bind({});
 
-Default.args = {};
+Default.args = {
+  skipPath: '#main',
+};
