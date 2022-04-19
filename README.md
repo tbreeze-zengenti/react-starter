@@ -4,6 +4,12 @@ Commonly know as React Starter, this is our starter project for most client buil
 
 ---
 
+# Running on Node 14+
+
+Ensure `npm set config legacy-peer-deps true` is set before attempting to install on versions of Node greater than 14.
+
+This may be required on other versions of Node.
+
 # Project guidelines
 
 Below is an example of project guidelines, please modify to suit your project...
@@ -87,7 +93,6 @@ Upon completing a JIRA task you should assign it to another developer for review
 ## 📚 Storybook
 
 This project uses storybook v6, create stories inside the component folder as `componentName.stories.js`
-
 
 # Old Read Me
 
