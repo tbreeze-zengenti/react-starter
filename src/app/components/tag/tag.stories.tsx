@@ -8,7 +8,7 @@ import { useGetEntryByEntryId } from '@zengenti/contensis-entry-picker-storybook
 import Tag from './tag';
 
 export default {
-  title: 'Features/Global/Tag',
+  title: 'Global/Components/Tag',
   component: Tag,
 } as ComponentMeta<typeof Tag>;
 
