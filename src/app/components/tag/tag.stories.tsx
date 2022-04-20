@@ -4,8 +4,8 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 // Utils
 import { useGetEntryByEntryId } from '@zengenti/contensis-entry-picker-storybook-addon';
 
-// Component 
-import Tag from '../components/Tag'
+// Component
+import Tag from './tag';
 
 export default {
   title: 'Features/Global/Tag',
@@ -17,7 +17,7 @@ export const Template: ComponentStory<typeof Tag> = (
   { globals: { entryId } }
 ) => {
   const entry = useGetEntryByEntryId(entryId);
-  return <Tag {...{  ...args,  ...entry }} />;
+  return <Tag {...{ ...args, ...entry }} />;
 };
 
 Template.args = {
