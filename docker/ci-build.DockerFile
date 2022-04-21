@@ -1,7 +1,7 @@
 
 ARG builder_image
 FROM ${builder_image} as basebuilder
-FROM mhart/alpine-node:14
+FROM mhart/alpine-node:16
 
 WORKDIR /usr/src/app
 COPY package.json .

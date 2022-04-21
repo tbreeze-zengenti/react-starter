@@ -1,10 +1,11 @@
-FROM node:14 as builder
+FROM node:16 as builder
 # The following prevents errors when cwebp is installing.
 RUN apt-get update
 RUN apt-get install libglu1 -y
 WORKDIR /usr/src/app
 COPY package.json .
 COPY package-lock.json .
+RUN npm install -g npm
 RUN npm install -g mocha
 RUN npm install --loglevel error
 COPY config /usr/src/app/config
