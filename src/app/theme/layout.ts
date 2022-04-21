@@ -5,11 +5,11 @@
 // }
 export const breakpoints = {
   px: {
-    mobile: '480px',
-    tablet: '768px',
-    laptop: '992px',
-    desktop: '1024px',
-    largeDesktop: '1440px',
+    mobile: 480,
+    tablet: 768,
+    laptop: 992,
+    desktop: 1024,
+    largeDesktop: 1440,
   },
 };
 
@@ -19,25 +19,24 @@ export const breakpoints = {
 // }
 export const mq = {
   min: {
-    mobile: `only screen and (min-width: ${breakpoints.px.mobile})`,
-    tablet: `only screen and (min-width: ${breakpoints.px.tablet})`,
-    laptop: `only screen and (min-width: ${breakpoints.px.laptop})`,
-    desktop: `only screen and (min-width: ${breakpoints.px.desktop})`,
-    largeDesktop: `only screen and (min-width: ${breakpoints.px.largeDesktop})`,
+    mobile: `only screen and (min-width: ${breakpoints.px.mobile}px)`,
+    tablet: `only screen and (min-width: ${breakpoints.px.tablet}px)`,
+    laptop: `only screen and (min-width: ${breakpoints.px.laptop}px)`,
+    desktop: `only screen and (min-width: ${breakpoints.px.desktop}px)`,
+    largeDesktop: `only screen and (min-width: ${breakpoints.px.largeDesktop}px)`,
   },
   max: {
-    mobile: `only screen and (max-width: ${breakpoints.px.mobile})`,
-    tablet: `only screen and (max-width: ${breakpoints.px.tablet})`,
-    laptop: `only screen and (max-width: ${breakpoints.px.laptop})`,
-    desktop: `only screen and (max-width: ${breakpoints.px.desktop})`,
-    largeDesktop: `only screen and (max-width: ${breakpoints.px.largeDesktop})`,
+    mobile: `only screen and (max-width: ${breakpoints.px.mobile}px)`,
+    tablet: `only screen and (max-width: ${breakpoints.px.tablet}px)`,
+    laptop: `only screen and (max-width: ${breakpoints.px.laptop}px)`,
+    desktop: `only screen and (max-width: ${breakpoints.px.desktop}px)`,
+    largeDesktop: `only screen and (max-width: ${breakpoints.px.largeDesktop}px)`,
   },
 };
 
 // To use spacers follow this pattern
 // Replace # with a value
 // ${theme.spacing.#}
-
 export const spacing = {
   xxxs: '0.8rem',
   xxs: '1.6rem',

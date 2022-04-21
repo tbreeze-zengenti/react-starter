@@ -15,11 +15,11 @@ declare module 'styled-components' {
     };
     breakpoints: {
       px: {
-        mobile: string;
-        tablet: string;
-        laptop: string;
-        desktop: string;
-        largeDesktop: string;
+        mobile: number;
+        tablet: number;
+        laptop: number;
+        desktop: number;
+        largeDesktop: number;
       };
     };
     mq: {
