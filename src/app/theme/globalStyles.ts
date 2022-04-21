@@ -1,9 +1,13 @@
 import { createGlobalStyle } from 'styled-components';
+import { normalize } from 'styled-normalize';
 
 import colors from './colors';
 import { mq, spacing } from './layout';
 
 const GlobalStyle = createGlobalStyle`
+  /* Normalize/reset css */
+  ${normalize}
+
   *,
   *::before,
   *::after {
@@ -12,14 +16,14 @@ const GlobalStyle = createGlobalStyle`
 
   /* CSS Variables */
   :root {
-    --flow: ${spacing[0.5]};
+    --flow: ${spacing.xs};
     --colorWhite: #ffffff;
     --primaryWhite: ${colors.primary.white}
   }
 
-  @media ${mq.min[480]} {
+  @media ${mq.min.mobile} {
     :root {
-      --flow: ${spacing[1]};
+      --flow: ${spacing.s};
     }
   }
 
