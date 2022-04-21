@@ -1,5 +1,5 @@
 # Very useful article on docker multi stage builds: https://snorre.io/building-docker-images-with-gitlab-ci/
-FROM node:14 as builder
+FROM node:16 as builder
 # The following prevents errors when cwebp is installing.
 RUN apt-get update
 RUN apt-get install libglu1 -y
@@ -8,6 +8,7 @@ WORKDIR /usr/src/app
 # When we auto increment the version, we should remove that as part of the copy to ensure the cache is maintained. i.e strip the version number before copying the file.
 COPY package.json .
 COPY package-lock.json .
+RUN npm install -g npm
 RUN npm install
 COPY .storybook /usr/src/app/.storybook
 COPY config /usr/src/app/config
