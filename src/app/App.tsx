@@ -36,10 +36,10 @@ const AppRoot = (props: AppRootProps) => {
 
   return (
     <>
-      <SkipToMainContent />
       <div id="app-root">
         <ThemeProvider theme={defaultTheme}>
           <GlobalStyle />
+          <SkipToMainContent />
           {isLoading && <Loading />}
           <RouteLoader {...props} notFoundComponent={NotFound} />
         </ThemeProvider>
