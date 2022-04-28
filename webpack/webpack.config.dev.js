@@ -27,12 +27,20 @@ const CLIENT_DEV_CONFIG = {
     rules: [
       {
         test: /\.(t|j)sx?$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: { envName: 'modern' },
+        loader: 'esbuild-loader',
+        options: {
+          loader: 'tsx',
+          target: 'es2015',
         },
       },
+      // {
+      //   test: /\.(t|j)sx?$/,
+      //   exclude: /node_modules/,
+      //   use: {
+      //     loader: 'babel-loader',
+      //     options: { envName: 'modern' },
+      //   },
+      // },
       {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
