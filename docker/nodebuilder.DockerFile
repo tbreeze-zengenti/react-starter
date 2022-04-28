@@ -7,7 +7,7 @@ COPY package.json .
 COPY package-lock.json .
 RUN npm install -g npm
 RUN npm install -g mocha
-RUN npm install --loglevel error
+RUN npm install --legacy-peer-deps --loglevel error
 COPY config /usr/src/app/config
 COPY public /usr/src/app/public
 

@@ -9,7 +9,7 @@ WORKDIR /usr/src/app
 COPY package.json .
 COPY package-lock.json .
 RUN npm install -g npm
-RUN npm install
+RUN npm install --legacy-peer-deps --loglevel error
 COPY .storybook /usr/src/app/.storybook
 COPY config /usr/src/app/config
 COPY public /usr/src/app/public
