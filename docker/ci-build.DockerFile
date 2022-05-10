@@ -1,7 +1,7 @@
 
 ARG builder_image
 FROM ${builder_image} as basebuilder
-FROM mhart/alpine-node:14
+FROM mhart/alpine-node:16
 
 WORKDIR /usr/src/app
 COPY package.json .
@@ -19,14 +19,8 @@ ENTRYPOINT node --max-http-header-size=800000 dist/server/launcher.js --alias=$a
 # (or using configuration from the default .env if never started)
 #ENTRYPOINT node dist/server/start.js
 
-# Start the server using just a cms alias targeting the specific start script
-#ENTRYPOINT node dist/server/start.$alias.js
-
 # Start the server using a project id and cms alias targeting the specific start script
 #ENTRYPOINT node --max-http-header-size=800000 dist/server/start.$projectId.$alias.js
-
-# Start the server configured for a given cms alias where the projectId is 'website' using env variable
-#ENTRYPOINT npm --start=$alias run-script server
 
 # Start the server configured for a given cms alias targeted to a specific project using env variable
 #ENTRYPOINT npm --start=$projectId.$alias run-script server

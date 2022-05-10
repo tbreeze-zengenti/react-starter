@@ -3,18 +3,20 @@ import { useSelector } from 'react-redux';
 import { hot } from 'react-hot-loader';
 
 import { ThemeProvider } from 'styled-components';
-import { RouteLoader } from '@zengenti/contensis-react-base/routing';
-import { Loading } from '~/core/routes/Loading';
+import { RouteLoader, selectors } from '@zengenti/contensis-react-base/routing';
+
+import { Loading } from '~/routes/Loading';
 import NotFound from '~/pages/NotFound';
-import { selectRouteLoading } from './core/redux/selectors';
 
 import GlobalStyle from '~/theme/globalStyles';
 import { defaultTheme } from './theme';
 import { AppRootProps } from '@zengenti/contensis-react-base';
+import SkipToMainContent from './components/skipToMainContent/skipToMainContent';
 
 const AppRoot = (props: AppRootProps) => {
-  const stateLoading = useSelector(selectRouteLoading);
+  const stateLoading = useSelector(selectors.selectRouteLoading);
   const [isLoading, setIsLoading] = useState(stateLoading);
+
   useEffect(() => {
     setIsLoading(stateLoading);
   }, [stateLoading]);
@@ -37,6 +39,7 @@ const AppRoot = (props: AppRootProps) => {
       <div id="app-root">
         <ThemeProvider theme={defaultTheme}>
           <GlobalStyle />
+          <SkipToMainContent />
           {isLoading && <Loading />}
           <RouteLoader {...props} notFoundComponent={NotFound} />
         </ThemeProvider>

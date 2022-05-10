@@ -1,13 +1,4 @@
-// import loadable from './loadable';
 import loadable from '@loadable/component';
-
-// Component exports
-// export const Composer = loadable(
-//   () =>
-//     import(
-//       /* webpackChunkName: "composer-wrapper" */ '~/components/composer/ComposerWrapper'
-//     )
-// );
 
 export const CoreComponents = {
   ZenInfo: loadable(
@@ -18,3 +9,8 @@ export const CoreComponents = {
     { resolveComponent: (module: any) => module.VersionInfo }
   ),
 };
+
+export const Composer = loadable(
+  () =>
+    import(/* webpackChunkName: "composer" */ '~/features/composer/composer')
+);

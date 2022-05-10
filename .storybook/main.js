@@ -15,10 +15,14 @@ module.exports = {
         alias: {
           '~': path.resolve(__dirname, '../src/app'),
           app: path.resolve(__dirname, '../src/app'),
-          'react-dom': '@hot-loader/react-dom',
-        },
-      },
+          'react-dom': '@hot-loader/react-dom'
+        }
+      }
     });
-    return { ...config };
+    return { ...config
+    };
   },
+  core: {
+    builder: "webpack5"
+  }
 };

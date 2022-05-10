@@ -20,6 +20,7 @@ module.exports = {
     'plugin:jsx-a11y/recommended',
     'plugin:prettier/recommended',
     'prettier',
+    'plugin:storybook/recommended',
   ],
   plugins: ['prettier', 'react', 'react-hooks'],
   env: {
@@ -97,6 +98,7 @@ module.exports = {
           typescript: {},
         },
       },
+
       /**
        * Typescript Rules
        * https://github.com/bradzacher/eslint-plugin-typescript
@@ -112,7 +114,6 @@ module.exports = {
         '@typescript-eslint/member-ordering': 'error',
         // Require consistent spacing around type annotations
         '@typescript-eslint/type-annotation-spacing': 'error',
-
         '@typescript-eslint/adjacent-overload-signatures': 'error',
         '@typescript-eslint/array-type': [
           'error',

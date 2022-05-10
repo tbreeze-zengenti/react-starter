@@ -1,20 +1,24 @@
 import React from 'react';
 
+import MainLayout from '~/layouts/main.layout';
+
 // Styled components
 import HomeStyled from './home.styled';
 
 // Models
 import { HomeProps, MappedHomeEntry } from './home.d';
-import Link from '~/features/link';
+import Link from '~/components/link/link';
 
 const Home = ({ mappedEntry }: HomeProps) => {
   const { title } = mappedEntry || ({} as MappedHomeEntry);
   return (
-    <HomeStyled>
-      <h1>Welcome</h1>
-      {title && <p>The homepage entry title is {title}!</p>}
-      <Link path="/search">Navigate to search</Link>
-    </HomeStyled>
+    <MainLayout>
+      <HomeStyled className="flow">
+        <h1>Welcome</h1>
+        {title && <p>The homepage entry title is {title}!</p>}
+        <Link path="/search">Navigate to search</Link>
+      </HomeStyled>
+    </MainLayout>
   );
 };
 

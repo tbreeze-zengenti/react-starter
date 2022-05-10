@@ -1,3 +1,3 @@
-import VersionInfo from './components/VersionInfo';
+import VersionInfo from './components/versionInfo';
 
 export default VersionInfo;
