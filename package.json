@@ -100,7 +100,6 @@
     "mocha": "^9.2.2",
     "nodemon": "^2.0.15",
     "prettier": "^2.6.2",
-    "react-router-hash-link": "^2.4.3",
     "stylelint": "^13.13.1",
     "stylelint-config-recommended": "^5.0.0",
     "stylelint-config-styled-components": "^0.1.1",
@@ -121,6 +120,7 @@
     "app-root-path": "^3.0.0",
     "sitemap": "^7.1.1",
     "styled-normalize": "^8.0.7",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "react-router-hash-link": "^2.4.3"
   }
 }
