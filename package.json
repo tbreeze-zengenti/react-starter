@@ -102,11 +102,7 @@
     "nodemon": "^2.0.15",
     "parallel-webpack": "^2.6.0",
     "prettier": "^2.6.2",
-<<<<<<< HEAD
-=======
     "react-is": "^18.1.0",
-    "react-router-hash-link": "^2.4.3",
->>>>>>> c22429e39b4e2daf0e404037d0918f8d19fc9e7c
     "stylelint": "^13.13.1",
     "stylelint-config-recommended": "^5.0.0",
     "stylelint-config-styled-components": "^0.1.1",
