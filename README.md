@@ -9,6 +9,8 @@ Commonly know as React Starter, this is our starter project for most client buil
 - Run `npm i` to install the project
 - Finally run `npm run start` to see your project in the browser
 
+For full compatibility please ensure you are running Node 16 & an suitably modern version of NPM (7+) before installing.
+
 ## 📜 Key scripts
 
 - `npm install` - install dependencies so we can use the application
