@@ -11,6 +11,8 @@ Commonly know as React Starter, this is our starter project for most client buil
 
 For full compatibility please ensure you are running Node 16 & an suitably modern version of NPM (7+) before installing.
 
+If you encounter any installation issues you should remove your `/node_modules` folder & run `npm install --legacy-peer-deps`.
+
 ## 📜 Key scripts
 
 - `npm install` - install dependencies so we can use the application
