@@ -1,11 +1,11 @@
 ![Zengenti React Start](/readme.png)
 
-Commonly know as React Starter, this is our starter project for most client builds. It is driven by the latest version of Contensis React Base (currently v3.0) & utilises other internal packages such as Zengenti React Toolkit, & Zengenti Forms Package.
+Commonly know as React Starter, this is our starter project for most client builds. It is driven by the latest version of Contensis React Base (currently v3.0) & utilises other internal packages such as React Toolkit & Forms Package.
 
 ## 🔌 Getting started
 
 - Define your CMS environment in the `.env` file
-- Set the project name and repo uri inside `package.json`
+- Set the project name and repository URL inside `package.json`
 - Run `npm i` to install the project
 - Finally run `npm run start` to see your project in the browser
 
@@ -18,23 +18,35 @@ Commonly know as React Starter, this is our starter project for most client buil
 - `npm run server` - start the application server same as we would as if it were deployed in production
 - `npm run build:server` - build the application and start the server-side application from source code (allowing us to connect a debugger and stop on code that is executed server-side)
 
+## 🌎 Environments
+
+This project requires an `.env` file to be defined in the root. This file contains the core information required to connect to the project's CMS environment. The default `.env` supplied connects the project to our Leif Demo CMS to drive example pages inside the app.
+
+By default the `npm start` & `npm run build` scripts will utilise the `.env` file in the root directory. You may create more env files for different CMS environments by applying a suffix `.{suffix}` to the file name. For example a development env might look like: `.env.development`
+
+To activate an alternative env upon start/build you need to reference the `.{suffix}` in this script: `npm --env={suffix} run-script start`.
+
 ## 📁Folder Structure
 
 - `/components` should contain the majority of your components.
-- `/features` should contain components with extensive functionality (eg. Composer, Search) that may require several supporting components or functions (eg. Redux).
+- `/features` should contain components that have extended functionality (Redux usage for example) or require several supporting components/files to operate. A Composer & Search are provided as examples of this.
 - `/layouts` should contain your various page wrappers. By default a MainLayout is provided.
 - `/pages` should contain all of your page components.
 - `/redux` should contain high-level Redux logic.
 - `/routes` contains all of the Routing logic for the app.
 - `/theme` contains your app's Styled Components theming.
 
-## 🚀 Git Commits
+## 🎨 Styled Components
 
-We follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) structure for commit messages.
+This project has a simple TypeScript implementation of Styled Components. The values within `styled.d.ts` must be maintained as you expand your theme to keep TypeScript happy.
 
-Example: `feat: header component`
+The `theme/colors.ts` file provides a basic example of working with multiple color palettes.
 
-## Units (rems / pixels)
+The `theme/layout.ts` file has a handful of pre-defined breakpoints that are utilised to generated `min` & `max` media queries. A basic spacing object is provided based upon an 8px grid.
+
+Finally the `theme/globalStyles` includes both `normalize` & a custom reset (you may disable `normalize` by commenting it out), a basic CSS Variables setup should you wish to use them, various helper classes (for example `.sr-only` for accomodating screen readers).
+
+## 📏 Units (rems / pixels)
 
 We use `rem` to define our units. The project has a rem-reset so that `1rem = 10px`.
 
@@ -44,11 +56,28 @@ Media Queries are defined in pixels however.
 
 This project uses storybook v6, create stories inside the component folder as `componentName.stories.tsx`
 
-## Releasing to live
+## 👌 Entry Picker Addon
 
-When you are ready to release your code it is best to change your version number and tag the release with the version number so it is easy to keep track of each release rather than date generated tags. The suggested workflow for releasing is as follows:
+The [Contensis Entry Picker Addon](https://github.com/contensis/contensis-entry-picker-storybook-addon) is installed for Storybook. The `Tag` component is provided as working example.
 
-- Run `npm version major || minor || patch` see: [https://docs.npmjs.com/cli/version](https://docs.npmjs.com/cli/version)
-- This will generate a new empty commit, push this and wait for the build to pass.
-- Once the build has passed in gitlab, run `git tag release-{version-no}`
-- Then run `git push origin release-{version-no}`
+## 🦘 SkipToMainContent
+
+Provided is a basic `skipToMainContent` for accessibility purposes. It's loaded into `App.tsx` & has a customisable `path` prop.
+
+By default this will skip to the `#main` tag defined in `layouts/main.layout.tsx`
+
+## ⭐ Favicons
+
+Favicons are stored in `public/icon` & exported to `dist/static/icon` upon build. For every project you should update the favicons & associated `manifest.json` file. You can make a copy of this [Figma file](https://www.figma.com/file/ZsDUIx4DjTOdoZdOtwxJAL/Favicon-Generator?node-id=0%3A1) to generate the appropriate favicons & simply export them to the `public/icon` directory. The imports in the `mainifest.json` file will still need to be updated manually.
+
+To accompany the favicons we set a [`theme-color`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta/name/theme-color) based upon the user's light/dark mode preference. This must be updated in: `public/index.html`, 'public/index.ejs`, `public/index_static.ejs`.
+
+## 🚀 Git Commits
+
+We follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) structure for commit messages.
+
+Example: `feat: header component`
+
+## 📢 Releasing to live
+
+When you are ready to release your code you can follow the steps provided in the [Releasing docs](https://www.notion.so/Releasing-161a0d0b10c249c39c48e8ee396991af) on Notion.
