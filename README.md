@@ -84,4 +84,4 @@ Example: `feat: header component`
 
 ## 📢 Releasing to live
 
-When you are ready to release your code you can follow the steps provided in the [Releasing docs](https://www.notion.so/Releasing-161a0d0b10c249c39c48e8ee396991af) on Notion.
+When you are ready to release your code you can follow the steps provided in the [Releasing docs](https://chain-jewel-d93.notion.site/Releasing-161a0d0b10c249c39c48e8ee396991af) on Notion.
