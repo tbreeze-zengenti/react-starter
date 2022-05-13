@@ -13,7 +13,6 @@ import omdbapiToCardpropsMapper from '~/features/search/transformations/omdbapi-
 import ResultCard from '~/features/search/components/resultCard';
 import { ResultCardProps } from '~/features/search/components/resultCard.types';
 
-
 const minilistInitState = {
   id: '',
   mapper: (e: any = []) => e,
@@ -39,10 +38,15 @@ const SearchPage = () => {
         config: {
           title: 'Custom Api',
           customApi: {
-            uri: 'http://www.omdbapi.com/?apikey=b194ff96&s=dawn+of+the+dead',
+            uri: 'http://www.omdbapi.com/?apikey=b194ff96',
           },
         },
-        mapper: omdbapiToCardpropsMapper,
+        mappers: {
+          customApi: () => ({
+            s: 'dawn of the dead',
+          }),
+          results: omdbapiToCardpropsMapper,
+        },
       });
     }, 500);
   }, []);
