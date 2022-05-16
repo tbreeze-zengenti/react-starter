@@ -1,5 +1,4 @@
-import { StaticRoute } from '@zengenti/contensis-react-base';
-import { MatchedRoute } from 'react-router-config';
+import { StaticRoute, MatchedRoute } from '@zengenti/contensis-react-base';
 import queryString from 'query-string';
 
 export function queryParams(search = '') {
@@ -7,8 +6,8 @@ export function queryParams(search = '') {
     typeof window != 'undefined' ? window.location.search : search
   );
 }
-export const routeParams = (staticRoute: MatchedRoute<any, StaticRoute>) =>
-  staticRoute && staticRoute.match ? staticRoute.match.params : {};
+export const routeParams = (staticRoute: MatchedRoute<string, StaticRoute>) =>
+  staticRoute && staticRoute.params ? staticRoute.params : {};
 
 export const buildUrl = (route: string, params: { [key: string]: string }) => {
   const qs = queryString.stringify(params);
