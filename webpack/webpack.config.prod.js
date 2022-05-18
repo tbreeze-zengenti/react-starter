@@ -33,7 +33,7 @@ const CLIENT_MODERN_CONFIG = {
   name: `webpack-client-prod-config [modern]`,
   entry: {
     app: [
-      path.resolve(__dirname, '../src/client/polyfills.modern.js'),
+      path.resolve(__dirname, '../src/client/polyfills.modern.ts'),
       path.resolve(__dirname, '../src/client/client-entrypoint.ts'),
     ],
   },
@@ -97,7 +97,7 @@ const CLIENT_LEGACY_CONFIG = {
   target: ['browserslist:IE >= 11', 'browserslist:> 1%'],
   entry: {
     app: [
-      path.resolve(__dirname, '../src/client/polyfills.legacy.js'),
+      path.resolve(__dirname, '../src/client/polyfills.legacy.ts'),
       path.resolve(__dirname, '../src/client/client-entrypoint.ts'),
     ],
   },
@@ -199,7 +199,7 @@ const SERVER_PROD_CONFIG = {
   },
   entry: {
     server: path.resolve(__dirname, '../src/server/server.ts'),
-    test: path.resolve(__dirname, '../src/server/test.js'),
+    test: path.resolve(__dirname, '../src/server/test.ts'),
   },
   output: {
     filename: '[name].js',

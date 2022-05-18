@@ -2,6 +2,8 @@ import { enableES5 } from 'immer';
 
 enableES5();
 
+declare const __magic__: any;
+
 /* eslint-disable no-undef */
 // The polyfill starts here.
 (function () {
@@ -13,13 +15,13 @@ enableES5();
     configurable: true,
   });
   __magic__.globalThis = __magic__;
-  delete Object.prototype.__magic__;
+  delete (Object.prototype as any).__magic__;
 })();
 // The polyfill ends here.
 
 export default function loadPolyfills() {
   const fillFetch = () =>
-    new Promise(resolve => {
+    new Promise<void>(resolve => {
       if ('fetch' in window) return resolve();
 
       require.ensure(
@@ -34,7 +36,7 @@ export default function loadPolyfills() {
     });
 
   const fillCoreJs = () =>
-    new Promise(resolve => {
+    new Promise<void>(resolve => {
       if (
         'startsWith' in String.prototype &&
         'endsWith' in String.prototype &&
