@@ -5,7 +5,6 @@
 /docs
 npm-debug.log*
 *.log
-yarn-error.log
 __snapshots__
 .cache
 /old
