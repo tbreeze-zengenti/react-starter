@@ -1,4 +1,9 @@
-image: gitlab.zengenti.com:4567/ops/zengenti-dind:latest
+default:
+  image: gitlab.zengenti.com:4567/ops/zengenti-dind:latest
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN gitlab.zengenti.com:4567
 
 stages:
   - latest-build
@@ -14,12 +19,6 @@ variables:
   STORYBOOK_IMAGE: '$CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG/storybook'
   MASTER_APP: '$CI_REGISTRY_IMAGE/master/app'
   DEVELOP_APP: '$CI_REGISTRY_IMAGE/develop/app'
-
-services:
-  - docker:dind
-
-before_script:
-  - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN gitlab.zengenti.com:4567
 
 build-latest-code:
   stage: latest-build
