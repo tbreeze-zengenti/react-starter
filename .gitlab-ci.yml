@@ -2,8 +2,6 @@ default:
   image: gitlab.zengenti.com:4567/ops/zengenti-dind:latest
   services:
     - docker:dind
-  before_script:
-    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN gitlab.zengenti.com:4567
 
 stages:
   - latest-build
