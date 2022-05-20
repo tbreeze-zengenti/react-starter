@@ -29,19 +29,51 @@ default:
   services:
     - docker:dind
 
+# Anchor for writing a version.json file
+.write-version-info: &write-version-info
+  - 'echo
+    ''{
+    "commitRef":"$CI_COMMIT_SHA",
+    "pipelineIID":"$CI_PIPELINE_IID",
+    "pipelineUrl":"$CI_PIPELINE_URL",
+    "buildNo":"$CI_PIPELINE_ID",
+    "branchName":"$CI_COMMIT_REF_NAME",
+    "registryImage":"$CI_REGISTRY_IMAGE"
+    }'' > version.json'
+
+# Anchor for building a Dockerfile and tagging it as latest
+.docker-build-latest: &docker-build-latest
+  - docker pull $BUILDER_IMAGE:latest || true
+  - docker build --force-rm --cache-from $BUILDER_IMAGE:latest -t $BUILDER_IMAGE:latest -f docker/{BUILDER_DOCKERFILE}.DockerFile .
+  - docker pull $BUILD_IMAGE:latest || true
+  - docker build --force-rm --cache-from $BUILD_IMAGE:latest -t $BUILD_IMAGE:latest --build-arg builder_image=$BUILDER_IMAGE:latest -f docker/${DOCKERFILE}.DockerFile .
+  - docker push $BUILD_IMAGE:latest
+
+# Anchor for re-tagging an image as release
+.docker-release-tag: &docker-release-tag
+  - docker pull "$BUILD_APP:latest"
+  - docker tag "$BUILD_APP:latest" "$BUILD_APP:release"
+  - docker push "$BUILD_APP:release"
+
+# Anchor for re-tagging an image with the git tag
+.docker-commit-tag: &docker-commit-tag
+  - docker tag "$BUILD_APP:latest" "$BUILD_APP:$CI_COMMIT_TAG"
+  - docker push "$BUILD_APP:$CI_COMMIT_TAG"
+
+
 # Builds the App Image
 build-latest-code:
   stage: latest-build
   except:
     - tags
+  variables:
+    BUILD_IMAGE: "$APP_IMAGE"
+    BUILDER_IMAGE: "$APP_BUILDER_IMAGE"
+    DOCKERFILE: "ci-build"
+    BUILDER_DOCKERFILE: "nodebuilder"
   script:
-    - docker pull $APP_BUILDER_IMAGE:latest || true
-    - echo "{\"commitRef\":\"$CI_COMMIT_SHA\",\"pipelineIID\":\"$CI_PIPELINE_IID\",\"pipelineUrl\":\"$CI_PIPELINE_URL\",\"buildNo\":\"$CI_PIPELINE_ID\",\"branchName\":\"$CI_COMMIT_REF_NAME\",\"registryImage\":\"$CI_REGISTRY_IMAGE\"}" > version.json
-    - docker build --force-rm --cache-from $APP_BUILDER_IMAGE:latest -t $APP_BUILDER_IMAGE:latest -f docker/nodebuilder.DockerFile .
-    - docker push $APP_BUILDER_IMAGE:latest
-    - docker pull $APP_IMAGE:latest || true
-    - docker build --force-rm --cache-from $APP_IMAGE:latest -t $APP_IMAGE:latest --build-arg builder_image=$APP_BUILDER_IMAGE:latest -f docker/ci-build.DockerFile .
-    - docker push $APP_IMAGE:latest
+    - *write-version-info
+    - *docker-build-latest
   environment:
     name: latest
     url: http://dev.preview.$CI_PROJECT_NAME.contensis.cloud
@@ -51,12 +83,13 @@ build-storybook:
   stage: latest-build
   except:
     - tags
+  variables:
+    BUILD_IMAGE: "$STORYBOOK_IMAGE"
+    BUILDER_IMAGE: "$STORYBOOK_BUILDER_IMAGE"
+    DOCKERFILE: "storybook-http"
+    BUILDER_DOCKERFILE: "storybook-builder"
   script:
-    - docker pull $STORYBOOK_BUILDER_IMAGE:latest || true
-    - docker build --compress --force-rm --cache-from $STORYBOOK_BUILDER_IMAGE:latest -t $STORYBOOK_BUILDER_IMAGE:latest -f docker/storybook-builder.DockerFile .
-    - docker push $STORYBOOK_BUILDER_IMAGE:latest
-    - docker build --compress --force-rm -t $STORYBOOK_IMAGE:latest --build-arg builder_image=$STORYBOOK_BUILDER_IMAGE:latest -f  docker/storybook-http.DockerFile .
-    - docker push $STORYBOOK_IMAGE:latest
+    - *docker-build-latest
   environment:
     name: storybook
     url: http://storybook.latest.$CI_PROJECT_NAME.contensis.cloud
@@ -71,12 +104,12 @@ build-live-code-for-production:
       - $CI_COMMIT_TAG =~ /^release-.*$/
   except:
     - branches
+  variables:
+    BUILD_APP: "$MASTER_APP"
   script:
-    - docker pull "$MASTER_APP:latest"
-    - docker tag "$MASTER_APP:latest" "$MASTER_APP:release"
-    - docker push "$MASTER_APP:release"
-    - docker tag "$MASTER_APP:latest" "$MASTER_APP:$CI_COMMIT_TAG"
-    - docker push "$MASTER_APP:$CI_COMMIT_TAG"
+    - *docker-release-tag
+    - *docker-commit-tag
+
 
   environment:
     name: live
@@ -90,10 +123,10 @@ build-live-code-for-development:
       - tags
     variables:
       - $CI_COMMIT_TAG =~ /^devrelease-.*$/
+  variables:
+    BUILD_APP: "$DEVELOP_APP"
   script:
-    - docker pull "$DEVELOP_APP:latest"
-    - docker tag "$DEVELOP_APP:latest" "$DEVELOP_APP:release"
-    - docker push "$DEVELOP_APP:release"
+    - *docker-release-tag
   environment:
     name: live
     url: http://preview.$CI_PROJECT_NAME.contensis.cloud
