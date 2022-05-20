@@ -1,3 +1,8 @@
+# The stages available in the pipeline.
+stages:
+  - latest-build
+  - release
+
 # The default options for any defined job.
 default:
   image: gitlab.zengenti.com:4567/ops/zengenti-dind:latest
@@ -6,12 +11,6 @@ default:
   # If you job uses docker:dind *and* and additional service, be sure to include docker:dind as a service on your job.
   services:
     - docker:dind
-
-stages:
-  - latest-build
-  - storybook-latest-build
-  - live-build
-  - development-release-build
 
 variables:
   DOCKER_DRIVER: overlay2
@@ -39,7 +38,7 @@ build-latest-code:
     url: http://dev.preview.$CI_PROJECT_NAME.contensis.cloud
 
 build-storybook:
-  stage: storybook-latest-build
+  stage: latest-build
   except:
     - tags
   script:
@@ -53,7 +52,7 @@ build-storybook:
     url: http://storybook.latest.$CI_PROJECT_NAME.contensis.cloud
 
 build-live-code-for-production:
-  stage: live-build
+  stage: release
   only:
     refs:
       - tags
@@ -73,7 +72,7 @@ build-live-code-for-production:
     url: http://preview.$CI_PROJECT_NAME.contensis.cloud
 
 build-live-code-for-development:
-  stage: development-release-build
+  stage: release
   only:
     refs:
       - tags
