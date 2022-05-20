@@ -44,7 +44,7 @@ default:
 # Anchor for building a Dockerfile and tagging it as latest
 .docker-build-latest: &docker-build-latest
   - docker pull $BUILDER_IMAGE:latest || true
-  - docker build --force-rm --cache-from $BUILDER_IMAGE:latest -t $BUILDER_IMAGE:latest -f docker/{BUILDER_DOCKERFILE}.DockerFile .
+  - docker build --force-rm --cache-from $BUILDER_IMAGE:latest -t $BUILDER_IMAGE:latest -f docker/${BUILDER_DOCKERFILE}.DockerFile .
   - docker pull $BUILD_IMAGE:latest || true
   - docker build --force-rm --cache-from $BUILD_IMAGE:latest -t $BUILD_IMAGE:latest --build-arg builder_image=$BUILDER_IMAGE:latest -f docker/${DOCKERFILE}.DockerFile .
   - docker push $BUILD_IMAGE:latest
