@@ -29,6 +29,7 @@ default:
   services:
     - docker:dind
 
+# Builds the App Image
 build-latest-code:
   stage: latest-build
   except:
@@ -45,6 +46,7 @@ build-latest-code:
     name: latest
     url: http://dev.preview.$CI_PROJECT_NAME.contensis.cloud
 
+# Builds the Storybook Image
 build-storybook:
   stage: latest-build
   except:
@@ -59,6 +61,7 @@ build-storybook:
     name: storybook
     url: http://storybook.latest.$CI_PROJECT_NAME.contensis.cloud
 
+# Releases the master app image to production
 build-live-code-for-production:
   stage: release
   only:
@@ -79,6 +82,7 @@ build-live-code-for-production:
     name: live
     url: http://preview.$CI_PROJECT_NAME.contensis.cloud
 
+# Releases the develop app image to development
 build-live-code-for-development:
   stage: release
   only:
