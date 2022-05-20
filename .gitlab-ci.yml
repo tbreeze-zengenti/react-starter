@@ -1,5 +1,9 @@
+# The default options for any defined job.
 default:
   image: gitlab.zengenti.com:4567/ops/zengenti-dind:latest
+  # If your job doesn't need any services, you can add "services: []" to your job.
+  # If your job uses a different service, that will override the default docker:dind service.
+  # If you job uses docker:dind *and* and additional service, be sure to include docker:dind as a service on your job.
   services:
     - docker:dind
 
