@@ -3,6 +3,23 @@ stages:
   - latest-build
   - release
 
+# Global Variables
+variables:
+  # Ensures overlay2 fs is used.
+  DOCKER_DRIVER: overlay2
+  # The image to use for the app builder.
+  APP_BUILDER_IMAGE: "$CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG/app-builder"
+  # The image to use for the app.
+  APP_IMAGE: "$CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG/app"
+  # The image to use for the storybook builder.
+  STORYBOOK_BUILDER_IMAGE: "$CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG/storybook-builder"
+  # The image to use for the storybook.
+  STORYBOOK_IMAGE: "$CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG/storybook"
+  # The image for the master app.
+  MASTER_APP: "$CI_REGISTRY_IMAGE/master/app"
+  # The image for the develop app.
+  DEVELOP_APP: "$CI_REGISTRY_IMAGE/develop/app"
+
 # The default options for any defined job.
 default:
   image: gitlab.zengenti.com:4567/ops/zengenti-dind:latest
@@ -11,15 +28,6 @@ default:
   # If you job uses docker:dind *and* and additional service, be sure to include docker:dind as a service on your job.
   services:
     - docker:dind
-
-variables:
-  DOCKER_DRIVER: overlay2
-  APP_BUILDER_IMAGE: '$CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG/app-builder'
-  APP_IMAGE: '$CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG/app'
-  STORYBOOK_BUILDER_IMAGE: '$CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG/storybook-builder'
-  STORYBOOK_IMAGE: '$CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG/storybook'
-  MASTER_APP: '$CI_REGISTRY_IMAGE/master/app'
-  DEVELOP_APP: '$CI_REGISTRY_IMAGE/develop/app'
 
 build-latest-code:
   stage: latest-build
