@@ -60,7 +60,6 @@ default:
   - docker tag "$BUILD_APP:latest" "$BUILD_APP:$CI_COMMIT_TAG"
   - docker push "$BUILD_APP:$CI_COMMIT_TAG"
 
-
 # Builds the App Image
 build-latest-code:
   stage: latest-build
