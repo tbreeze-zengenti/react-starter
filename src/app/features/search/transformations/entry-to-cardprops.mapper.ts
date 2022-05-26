@@ -1,5 +1,6 @@
 import { ContentTypes } from '~/schema';
 import { mapEntries } from '@zengenti/contensis-react-base/util';
+import type { Entry } from 'contensis-delivery-api/lib/models';
 
 const baseMapping = {
   title: 'entryTitle',
@@ -17,7 +18,7 @@ const articleCardMapping = {
       id: 'sys.id',
     },
   },
-  date: (entry: any) => entry.publishedDate || entry.sys.version.published,
+  date: (entry: Entry) => entry.publishedDate || entry.sys.version?.published,
 };
 
 export const mappers = {
@@ -25,6 +26,6 @@ export const mappers = {
   [ContentTypes.listingPage]: articleCardMapping,
 };
 
-const mapEntriesToResults = (entries: any[]) => mapEntries(entries, mappers);
+const mapEntriesToResults = (entries: Entry[]) => mapEntries(entries, mappers);
 
 export default mapEntriesToResults;
