@@ -1,9 +1,11 @@
+import type { MouseEvent, ReactNode } from 'react';
+
 export interface LinkProps {
   className?: string;
-  children: any;
-  download?: any;
+  children?: ReactNode;
+  download?: string;
   href?: string; // Add ability to retrofit to <a href
-  onClick?: (ev: any) => void;
+  onClick?: (ev: MouseEvent<HTMLAnchorElement>) => void;
   openInNewWindow?: boolean;
   title?: string;
   path?: string;
