@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 export interface SearchInputProps {
   searchTerm: string;
   placeholderText: string;
-  submitEvent: (e: any, a: any) => void;
+  submitEvent: (stateValue: string, a: number) => void;
   className: string;
 }
 
@@ -16,17 +16,21 @@ const SearchInput = ({
   const [stateValue, setStateValue] = useState(searchTerm);
   useEffect(() => setStateValue(searchTerm), [searchTerm]);
 
-  const handleChange = (event: any) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setStateValue(event.target.value);
   };
 
-  const handleKeyPress = (event: any) => {
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key == 'Enter') {
       handleSubmit(event);
     }
   };
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = (
+    event:
+      | React.MouseEvent<HTMLButtonElement>
+      | React.KeyboardEvent<HTMLInputElement>
+  ) => {
     if (event) event.preventDefault();
     submitEvent && submitEvent(stateValue, 0);
   };
