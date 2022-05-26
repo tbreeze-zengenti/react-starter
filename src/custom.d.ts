@@ -1,43 +1,61 @@
+import type { ForkEffect } from '@redux-saga/core/effects';
+import type { Reducer } from 'redux';
+
 declare module '*.svg' {
-  const content: any;
+  // Default type is string, change this if you use a custom svg loader.
+  const content: string;
   export default content;
 }
 
 declare module '*.png' {
-  const content: any;
+  // Default type is string, change this if you use a custom png loader.
+  const content: string;
   export default content;
 }
 
 declare module '*.jpg' {
-  const content: any;
+  // Default type is string, change this if you use a custom jpeg loader.
+  const content: string;
   export default content;
 }
 
 declare module 'zengenti-forms-package' {
+  interface TextComponentProps {
+    defaultValue?: string;
+    id: string;
+    instructions?: string;
+    key?: string;
+    label: string;
+    onChange?: (event: InputEvent) => void;
+    onBlur?: (event: InputEvent) => void;
+    placeholder?: string;
+    required?: boolean;
+    showField?: boolean;
+    type: 'text' | 'email' | 'tel' | 'url' | 'date' | 'hidden' | 'number';
+    validation: {
+      message?: string;
+      rules?: {
+        onBlur?: (event: InputEvent) => void;
+        onChange?: (event: InputEvent) => void;
+      };
+    };
+    autocomplete?: string;
+    width?: string;
+    forceShowOnBlurErrors?: boolean;
+  }
+
   const Form: React.FunctionComponent<{
     formId?: string;
-    form?: any;
-    formSettings?: any;
-    showCaptcha?: boolean;
-    isHuman?: boolean;
-    currentPageIndex?: number;
-    currentPageReadyToProceed?: boolean;
     hideRef?: boolean;
     showSteps?: boolean;
-    hiddenFormData?: Record<string, unknown>;
-    localisedPhrases?: Record<string, unknown>;
-    submitForm?(...args: unknown[]): unknown;
-    setFormId?(...args: unknown[]): unknown;
-    updateFormData?(...args: unknown[]): unknown;
-    validateInput?(...args: unknown[]): unknown;
-    captchaResponse?(...args: unknown[]): unknown;
-    updateCheckbox?(...args: unknown[]): unknown;
-    goToNextPage?(...args: unknown[]): unknown;
-    goToPreviousPage?(...args: unknown[]): unknown;
-    setShowValidationSummary?(...args: unknown[]): unknown;
-    transformTextfieldProps?(...args: unknown[]): unknown;
+    hiddenFormData?: Record<string, string>;
+    localisedPhrases?: Record<string, string>;
+    transformTextfieldProps?(props: {
+      previousItem?: Record<string, any>;
+      item?: Record<string, any>;
+    }): (props: TextComponentProps) => TextComponentProps;
   }>;
-  const reducer: any;
-  const sagas: any;
+  const reducer: Reducer;
+  const sagas: ForkEffect[];
   export { Form, reducer, sagas };
 }
