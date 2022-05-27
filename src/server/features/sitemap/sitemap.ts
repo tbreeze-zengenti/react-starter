@@ -1,6 +1,6 @@
 import { Op, Query } from 'contensis-delivery-api';
 import { streamToPromise, SitemapStream } from 'sitemap';
-import cachedSearch from '@zengenti/contensis-react-base/search';
+import { cachedSearch } from '~/routes/contensisDeliveryAPI';
 
 /* global PUBLIC_URI */
 const publicUri = PUBLIC_URI;
@@ -61,7 +61,7 @@ const getEntries = async (
   project: string
 ) => {
   try {
-    return await cachedSearch.doSearch(
+    return await cachedSearch.search(
       query(pageIndex, pageSize),
       6,
       project || contensisConfig.projectId
