@@ -1,23 +1,24 @@
+import { AppState } from '@zengenti/contensis-react-base/models/search/models/SearchState';
 import { selectors } from '@zengenti/contensis-react-base/search';
 import { mapJson } from '@zengenti/contensis-react-base/util';
 
 const { getCurrent, getListing, getResults, getTotalCount, getPaging } =
   selectors.selectListing;
 
-const listingTitle = (state: any) => {
+const listingTitle = (state: AppState) => {
   const listing = getListing(state);
   return listing?.title;
 };
 
-const totalCount = (state: any) => getTotalCount(state);
+const totalCount = (state: AppState) => getTotalCount(state);
 
 const searchSummaryTemplate = {
-  currentListing: (state: any) => getCurrent(state),
-  currentPageCount: (state: any) => getResults(state).length,
+  currentListing: (state: AppState) => getCurrent(state),
+  currentPageCount: (state: AppState) => getResults(state).length,
   listingTitle,
-  noResultsText: (state: any) =>
+  noResultsText: (state: AppState) =>
     totalCount(state) === 0 ? `No results were found` : '',
-  resultsText: (state: any) => {
+  resultsText: (state: AppState) => {
     const paging = getPaging(state);
     const { pageIndex, pageSize, totalCount, pagesLoaded } = paging;
     if (!pagesLoaded) return null;
@@ -29,7 +30,7 @@ const searchSummaryTemplate = {
   },
 };
 
-const mapStateToResultsInformation = (state: any) =>
+const mapStateToResultsInformation = (state: AppState) =>
   mapJson(state, searchSummaryTemplate);
 
 export default mapStateToResultsInformation;
