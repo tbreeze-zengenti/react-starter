@@ -1,6 +1,7 @@
 import { Op, Query } from 'contensis-delivery-api';
 import { streamToPromise, SitemapStream } from 'sitemap';
 import { cachedSearch } from '~/routes/contensisDeliveryAPI';
+import type { Entry } from 'contensis-delivery-api/lib/models';
 
 /* global PUBLIC_URI */
 const publicUri = PUBLIC_URI;
@@ -66,18 +67,18 @@ const getEntries = async (
       6,
       project || contensisConfig.projectId
     );
-  } catch (error: any) {
-    throw new Error(error);
+  } catch (error: unknown) {
+    throw new Error(error as string);
   }
 };
 
-const mapEntryToSitemapUrl = (entry: any) => {
+const mapEntryToSitemapUrl = (entry: Entry) => {
   const { uri } = entry.sys;
   // v12
   const url = uri;
 
   // Return url and lastmod date
-  return { url: encodeURI(url), lastmod: entry.sys.version.published };
+  return { url: encodeURI(url), lastmod: entry.sys.version?.published };
 };
 
 function dynamicSort(property: string) {
