@@ -36,6 +36,9 @@ module.exports = {
       version: '^17.0.0',
     },
     'import/resolver': {
+      node: {
+        moduleDirectory: ['node_modules'],
+      },
       // Will look for webpack.config.js to resolve path
       webpack: {
         config: path.resolve(__dirname, './webpack/webpack.config.base.js'),
