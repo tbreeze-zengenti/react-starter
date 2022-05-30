@@ -6,7 +6,7 @@ export const CoreComponents = {
       import(
         /* webpackChunkName: "zeninfo.component" */ '@zengenti/contensis-react-base/util'
       ),
-    { resolveComponent: (module: any) => module.VersionInfo }
+    { resolveComponent: (module) => module.VersionInfo }
   ),
 };
 
