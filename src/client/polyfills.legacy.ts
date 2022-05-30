@@ -2,7 +2,7 @@ import { enableES5 } from 'immer';
 
 enableES5();
 
-declare const __magic__: any;
+declare const __magic__: Record<string, unknown>;
 
 /* eslint-disable no-undef */
 // The polyfill starts here.
