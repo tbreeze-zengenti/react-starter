@@ -56,7 +56,7 @@ export default {
         (yield import(
           /* webpackChunkName: "search-mappers" */
           '~/features/search/transformations'
-        )) as any
+        )) as typeof import('~/features/search/transformations')
       ).default as SearchTransformations;
 
       yield call(setRouteFilters, {
