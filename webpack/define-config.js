@@ -1,7 +1,7 @@
 const packagejson = require('../package.json');
 const { urls } = require('@zengenti/contensis-react-base/util');
 
-require('custom-env').env(process.env.env || process.env.npm_config_env);
+require('custom-env').env(process.env.env || process.env.npm_config_env || '');
 
 const {
   PUBLIC_URL,
