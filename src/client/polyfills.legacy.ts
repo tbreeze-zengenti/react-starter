@@ -15,7 +15,7 @@ declare const __magic__: Record<string, unknown>;
     configurable: true,
   });
   __magic__.globalThis = __magic__;
-  delete (Object.prototype as any).__magic__;
+  delete (Object.prototype as Record<string, unknown>).__magic__;
 })();
 // The polyfill ends here.
 
