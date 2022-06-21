@@ -119,7 +119,7 @@
     "zengenti-buildstartup-package": "0.0.16"
   },
   "dependencies": {
-    "@zengenti/contensis-react-base": "^3.0.0-beta.64",
+    "@zengenti/contensis-react-base": "^3.0.0-beta.67",
     "@zengenti/react-toolkit": "^1.0.0-beta.2",
     "app-root-path": "^3.0.0",
     "query-string": "^5.1.1",
