@@ -50,11 +50,16 @@ The `theme/layout.ts` file has a handful of pre-defined breakpoints that are uti
 
 Finally the `theme/globalStyles` includes both `normalize` & a custom reset (you may disable `normalize` by commenting it out), a basic CSS Variables setup should you wish to use them, various helper classes (for example `.sr-only` for accomodating screen readers).
 
-## 📏 Units (rems / pixels)
+## 📏 Units
 
-We use `rem` to define our units. The project has a rem-reset so that `1rem = 10px`.
+We use `rem` to define our the majority of our units - do this end the project has a rem-reset so that `1rem = 10px`.
 
-Media Queries are defined in pixels however.
+It's recommended to use rems for the majority of your units but do not rely on them in every use case. Pixels & em's have their place. For example:
+
+- Pixels are great for setting fixed-sizes that the user cannot change such as borders.
+- Ems are perfect for typography rhythm as they compliment the font-size being set in rems.
+
+Media Queries are defined in pixels but the Theme object is scoped to allow other units.
 
 ## 📚 Storybook
 
