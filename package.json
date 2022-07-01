@@ -1,6 +1,6 @@
 {
   "name": "react-starter",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repository": "https://gitlab.zengenti.com/starter-projects/react-starter",
   "license": "None",
   "description": "",
@@ -116,10 +116,10 @@
     "webpack-merge": "^5.8.0",
     "webpack-modules": "^1.0.0",
     "webpack-node-externals": "^3.0.0",
-    "zengenti-buildstartup-package": "0.0.16"
+    "zengenti-buildstartup-package": "^0.0.17"
   },
   "dependencies": {
-    "@zengenti/contensis-react-base": "^3.0.0-beta.67",
+    "@zengenti/contensis-react-base": "^3.0.0-beta.70",
     "@zengenti/react-toolkit": "^1.0.0-beta.2",
     "app-root-path": "^3.0.0",
     "query-string": "^5.1.1",
