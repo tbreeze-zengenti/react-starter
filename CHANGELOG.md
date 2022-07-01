@@ -7,7 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Released]
 
-## [0.0.1] - 2022-06-29
+## [0.1.1] - 2022-07-01
+
+### Changed
+
+- @zengenti/contensis-react-base upgraded to `3.0.0-beta.70`
+- zengenti-buildstartup-package upgraded to `0.0.17`
+
+## [0.1.0] - 2022-06-29
 
 ### Added
 
