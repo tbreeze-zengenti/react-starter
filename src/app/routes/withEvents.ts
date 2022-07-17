@@ -1,4 +1,4 @@
-import { call } from 'redux-saga/effects';
+import { call, select } from 'redux-saga/effects';
 import { RouteLoadOptions, WithEvents } from '@zengenti/contensis-react-base';
 import { SearchTransformations } from '@zengenti/contensis-react-base/search';
 
@@ -6,8 +6,14 @@ import { routeParams, queryParams } from './routeHelpers';
 
 import { ContentTypes, ListingPages } from '~/schema';
 
+import { hasSiteConfig } from '~/redux/siteConfig/selectors';
+import { ensureSiteConfigSaga } from '~/redux/siteConfig/sagas';
+
 export default {
   onRouteLoad: function* onRouteLoad() {
+    const siteConfigExists = yield select(hasSiteConfig);
+    if (!siteConfigExists) yield call(ensureSiteConfigSaga);
+
     // Set params for routing saga
     const routeLoadOptions: RouteLoadOptions = {
       customNavigation: {

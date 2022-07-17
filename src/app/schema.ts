@@ -45,7 +45,16 @@ export const VersionStatus = {
 export const ContentTypes = {
   homePage: 'homePage',
   listingPage: 'listingPage',
+  config: 'siteSettings',
 };
+
+export const SiteConfig = [
+  'logo',
+  'facebookLink',
+  'linkedinLink',
+  'twitterLink',
+  'copyrightName',
+];
 
 export const ComposerComponents = {
   // Insert composer components
