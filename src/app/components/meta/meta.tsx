@@ -2,103 +2,101 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import { useSelector } from 'react-redux';
 
-import { routing } from '@zengenti/contensis-react-base/redux';
+import {
+  selectCopyright,
+  selectSiteLogo,
+  selectSocialMedia,
+} from '~/redux/siteConfig/selectors';
 
-export type MetaProps = {
-  author?: string;
-  authorTwitterHandle?: string;
-  canonicalPath: string;
-  description: string;
-  firstName?: string;
-  lastName?: string;
-  locale?: string;
-  ogDescription?: string;
-  ogImage?: string;
-  ogImageAlt?: string;
-  ogType?: 'article' | 'profile' | 'website' | 'video';
-  publishedDateTime?: string;
-  rssFeedPath?: string;
-  schema?: string;
-  title: string;
-  twitterCardType: 'summary' | 'summary_large_image' | 'app' | 'player';
-};
+import { MetaProps } from './meta.types';
 
-export const Meta = ({
-  author,
+import { canonicalPath } from './canonicalPath';
+
+const Meta = ({
   authorTwitterHandle,
-  canonicalPath,
   description,
-  firstName,
-  lastName,
   locale = 'en_GB',
   ogDescription,
   ogImage,
-  ogImageAlt,
+  ogImageAltText,
   ogType = 'website',
-  publishedDateTime,
+  pageTitle,
   rssFeedPath,
   schema,
-  title,
   twitterCardType = 'summary',
 }: MetaProps) => {
-  const projectDomain = PUBLIC_URI.replace(/(http|https):\/\/|www\.|\/$/g, '');
-  const projectUrl = 'https://www.' + projectDomain;
-  console.log(projectUrl);
+  /**
+   *  Selects our SiteTitle & SiteName from SiteConfig state
+   *  Generates a title based on whether a SiteTitle has been set
+   */
+  const siteTitle = useSelector(selectCopyright);
+  const siteName = useSelector(selectCopyright);
+  const title = siteTitle ? `${pageTitle}  | ${siteTitle}` : `${pageTitle}`;
 
-  const currentPath = useSelector(routing.selectors.selectCurrentPath);
-  console.log(currentPath);
+  /**
+   * Selects our Twitter URL from SiteConfig state
+   * Removes the handle id from the URL
+   */
+  const selectWebsiteTwitterHandle = useSelector(selectSocialMedia);
+  const websiteTwitterHandle = selectWebsiteTwitterHandle?.twitter?.match(
+    /^https?:\/\/(?:www\.)?twitter\.com\/(?:#!\/)?@?([^/?#]*)(?:[?#].*)?$/
+  )[1];
 
-  /** Generate a Redux config for these */
-  const siteTitle = 'React Starter';
-  const siteName = 'Zengenti React Starter';
-  const websiteTwitterHandle = '@zengenti';
+  /**
+   * Selects our logo object from SiteConfig state
+   */
+  const selectLogo = useSelector(selectSiteLogo);
+
+  ogImage = selectLogo?.logo;
+  ogImageAltText = selectLogo?.altText;
 
   return (
     <Helmet>
-      <title>{`${title}${siteTitle ? ` | ${siteTitle}` : ''}`}</title>
+      <title>{title}</title>
       <meta name="description" content={description} />
-      {currentPath !== canonicalPath && (
-        <link rel="canonical" href={`${projectUrl}${canonicalPath}`} />
-      )}
 
+      {/**
+       * Open Graph Protocol
+       * @link https://ogp.me/
+       */}
       <meta property="og:site_name" content={siteName} />
-      <meta property="og:url" content={`${projectUrl}${canonicalPath}`} />
-      <meta property="og:title" content={title} />
+      <meta property="og:url" content={canonicalPath} />
+      <meta property="og:title" content={pageTitle} />
       <meta property="og:description" content={ogDescription || description} />
-      <meta property="og:image" content={`${projectUrl}${ogImage}`} />
-      <meta property="og:image:alt" content={ogImageAlt || siteName} />
-      <meta property="og:image:width" content={'1200'} />
-      <meta property="og:image:height" content={'630'} />
+      <meta property="og:image" content={ogImage} />
+      <meta property="og:image:alt" content={ogImageAltText} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
       <meta property="og:type" content={ogType} />
       <meta property="og:locale" content={locale} />
-      {ogType === 'article' && publishedDateTime && (
-        <meta property="article:published_time" content={publishedDateTime} />
-      )}
-      {ogType === 'article' && author && (
-        <meta property="article:author" content={author} />
-      )}
-      {ogType === 'profile' && firstName && lastName && (
-        <>
-          <meta property="profile:first_name" content={firstName} />
-          <meta property="profile:last_name" content={lastName} />
-        </>
-      )}
+
+      {/**
+       * Twitter Cards
+       * @link https://developer.twitter.com/en/docs/twitter-for-websites/cards/guides/getting-started
+       */}
       <meta name="twitter:card" content={twitterCardType} />
-      {websiteTwitterHandle && (
-        <meta name="twitter:site" content={websiteTwitterHandle} />
-      )}
-      {authorTwitterHandle && (
+      <meta name="twitter:site" content={websiteTwitterHandle} />
+      {authorTwitterHandle ? (
         <meta name="twitter:creator" content={authorTwitterHandle} />
-      )}
-      {rssFeedPath && (
+      ) : null}
+      <meta name="twitter:title" content={pageTitle} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content={ogImage} />
+      <meta name="twitter:image:alt" content={ogImageAltText} />
+
+      <link rel="canonical" href={canonicalPath} />
+      {rssFeedPath ? (
         <link
           rel="alternate"
           type="application/rss+xml"
-          title={`RSS Feed for ${title}`}
+          title={`RSS Feed for ${siteTitle}`}
           href={rssFeedPath}
         />
-      )}
-      {schema && <script type="application/ld+json">{schema}</script>}
+      ) : null}
+
+      {schema ? <script type="application/ld+json">{schema}</script> : null}
     </Helmet>
   );
 };
+
+export default Meta;
