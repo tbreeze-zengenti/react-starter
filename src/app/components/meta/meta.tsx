@@ -2,15 +2,17 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import { useSelector } from 'react-redux';
 
+import { routing } from '@zengenti/contensis-react-base/redux';
+
 import {
   selectCopyright,
   selectSiteLogo,
   selectSocialMedia,
 } from '~/redux/siteConfig/selectors';
 
-import { MetaProps } from './meta.types';
+import { getCanonicalUrl } from './getCanonicalUrl';
 
-import { canonicalPath } from './canonicalPath';
+import { MetaProps } from './meta.types';
 
 const Meta = ({
   authorTwitterHandle,
@@ -31,7 +33,8 @@ const Meta = ({
    */
   const siteTitle = useSelector(selectCopyright);
   const siteName = useSelector(selectCopyright);
-  const title = siteTitle ? `${pageTitle}  | ${siteTitle}` : `${pageTitle}`;
+
+  const title = siteTitle ? `${pageTitle} | ${siteTitle}` : `${pageTitle}`;
 
   /**
    * Selects our Twitter URL from SiteConfig state
@@ -49,6 +52,9 @@ const Meta = ({
 
   ogImage = selectLogo?.logo;
   ogImageAltText = selectLogo?.altText;
+
+  const currentPath: string = useSelector(routing.selectors.selectCurrentPath);
+  const canonicalPath: string = `${getCanonicalUrl}${currentPath}`;
 
   return (
     <Helmet>
@@ -94,6 +100,11 @@ const Meta = ({
         />
       ) : null}
 
+      {/**
+       * @todo
+       * Figure out how to build this object as opposed to passing a string
+       * from SiteConfig using the mappers Neil demo'd on Actegy
+       */}
       {schema ? <script type="application/ld+json">{schema}</script> : null}
     </Helmet>
   );

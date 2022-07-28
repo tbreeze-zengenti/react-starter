@@ -1,7 +1,7 @@
 export type MetaProps = {
   author?: string;
   authorTwitterHandle?: string;
-  description: string;
+  description?: string;
   firstName?: string;
   lastName?: string;
   locale?: string;
@@ -13,5 +13,5 @@ export type MetaProps = {
   rssFeedPath?: string;
   schema?: string;
   pageTitle: string;
-  twitterCardType: 'summary' | 'summary_large_image' | 'app' | 'player';
+  twitterCardType?: 'summary' | 'summary_large_image' | 'app' | 'player';
 };
