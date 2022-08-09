@@ -2,9 +2,7 @@ import { call } from 'redux-saga/effects';
 import { RouteLoadOptions, WithEvents } from '@zengenti/contensis-react-base';
 import { SearchTransformations } from '@zengenti/contensis-react-base/search';
 
-import { routeParams, queryParams } from './routeHelpers';
-
-import { ContentTypes, ListingPages } from '~/schema';
+import { ListingPages } from '~/schema';
 
 export default {
   onRouteLoad: function* onRouteLoad() {
@@ -25,29 +23,12 @@ export default {
     location,
     staticRoute,
   }) {
-    const params = {
-      ...routeParams(staticRoute),
-      ...queryParams(location && location.search),
-    };
-
     const contentTypeId = entry?.sys?.contentTypeId;
-    let triggerListing = false;
-    // To give the Content Type pages with Listings
-    // the right parameters to drive them
-    switch (contentTypeId) {
-      case ContentTypes.listingPage:
-        params.category = entry?.sys?.id;
-        triggerListing = true;
-        break;
-      default:
-        break;
-    }
+    const listingType =
+      staticRoute?.route?.listingType || ListingPages[contentTypeId];
 
-    if (
-      path.startsWith('/search') ||
-      (triggerListing && Object.keys(ListingPages).includes(contentTypeId))
-    ) {
-      const { setRouteFilters } = (yield import(
+    if (path.startsWith('/search') || listingType) {
+      const { routeParams, setRouteFilters } = (yield import(
         /* webpackChunkName: "search-package" */
         '@zengenti/contensis-react-base/search'
       )) as typeof import('@zengenti/contensis-react-base/search');
@@ -59,8 +40,10 @@ export default {
         )) as any
       ).default as SearchTransformations;
 
+      const params = routeParams(staticRoute, location);
+
       yield call(setRouteFilters, {
-        listingType: triggerListing ? ListingPages[contentTypeId] : undefined,
+        listingType,
         mappers: transformations,
         params,
       });
