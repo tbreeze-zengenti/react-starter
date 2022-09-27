@@ -1,4 +1,4 @@
-const colors = {
+export const colors = {
   white: 'white',
   contensis: '#37bfa7',
   zengenti: '#e75f44',
@@ -9,5 +9,3 @@ const colors = {
     white: 'white',
   },
 };
-
-export default colors;

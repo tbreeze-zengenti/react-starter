@@ -1,8 +1,9 @@
 import { createGlobalStyle } from 'styled-components';
 import { normalize } from 'styled-normalize';
 
-import colors from './colors';
-import { mq, spacing } from './layout';
+import { colors } from './tokens/colors';
+import { mq, spacing } from './tokens/layout';
+import { typography } from './tokens/typography';
 
 const GlobalStyle = createGlobalStyle`
   /* Normalize/reset css */
@@ -54,7 +55,7 @@ const GlobalStyle = createGlobalStyle`
 
   /* this sets 1rem to 10px */
   html, body {
-    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-family: ${typography.family.body};
     font-size: 62.5%;
   }
 
@@ -66,9 +67,9 @@ const GlobalStyle = createGlobalStyle`
   /* Sets base font to 16px */
   body {
     min-height: 100vh;
-    font-size: 1.6rem;
-    font-weight: normal;
-    line-height: 1.5;
+    font-size: ${typography.size.base};
+    font-weight: ${typography.weight.normal};
+    line-height: ${typography.lineHeight.base};
     text-rendering: optimizeSpeed;
   }
 
