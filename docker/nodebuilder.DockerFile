@@ -21,7 +21,7 @@ COPY .nvmrc .
 COPY .prettierignore .
 COPY .prettierrc .
 COPY tsconfig.json .
-RUN npm run build
+RUN npm run build:ci
 RUN mocha --timeout=5000 dist/server/start.js -tests
 COPY version.json /usr/src/app/dist/static/version.json
 RUN cat /usr/src/app/dist/static/version.json

@@ -4,7 +4,6 @@ const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const LoadablePlugin = require('@loadable/webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const WebpackModules = require('webpack-modules');
 const webpackNodeExternals = require('webpack-node-externals');
 const BundleAnalyzerPlugin =
@@ -88,6 +87,18 @@ const CLIENT_MODERN_CONFIG = {
       writeToDisk: {
         filename: path.resolve(__dirname, `../dist/modern`),
       },
+    }),
+    // Do these plugins only once per build so we'll do it here instead of base
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          globOptions: {
+            ignore: ['index.html', 'index.ejs'],
+          },
+          from: path.resolve(__dirname, '../public'),
+          to: path.resolve(__dirname, `../dist/static`),
+        },
+      ],
     }),
   ],
 };
@@ -250,62 +261,21 @@ const SERVER_PROD_CONFIG = {
   ],
 };
 
-// Essentially a dummy webpack config, we just want
-// the asset plugins to run independent of any other type
-// of bundling we're doing to reduce overall build time
-// on multi-core systems when run with parallel-webpack
-const PROCESS_PUBLIC_ASSETS_CONFIG = {
-  name: 'public-assets-config',
-  mode: 'production',
-  stats: {
-    preset: 'errors-only',
-  },
-  entry: './public',
-  output: {
-    path: path.resolve(__dirname, '../dist'),
-  },
-  plugins: [
-    // Do these plugins only once per build so we'll do it here instead of base
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          globOptions: {
-            ignore: ['index.html', 'index.ejs'],
-          },
-          from: path.resolve(__dirname, '../public'),
-          to: path.resolve(__dirname, `../dist/static`),
-        },
-      ],
-    }),
-    new ImageminPlugin({
-      test: /\.(jpe?g|png|gif|svg)$/i,
-      optipng: {
-        optimizationLevel: 9,
-      },
-    }),
-  ],
+const ANALYZE_CONFIG = {
+  plugins: [new BundleAnalyzerPlugin({ analyzerMode: 'static' })],
 };
 
-const modernClientConfig = merge(
-  BASE_CONFIG,
-  CLIENT_PROD_CONFIG,
-  CLIENT_MODERN_CONFIG
-);
-const legacyClientConfig = merge(
-  BASE_CONFIG,
-  CLIENT_PROD_CONFIG,
-  CLIENT_LEGACY_CONFIG
-);
-const serverConfig = merge(BASE_CONFIG, SERVER_PROD_CONFIG);
-
-if (process.env.ANALYZE)
-  module.exports = merge(modernClientConfig, {
-    plugins: [new BundleAnalyzerPlugin({ analyzerMode: 'static' })],
-  });
-else
+if (process.env.ANALYZE) {
+  module.exports = merge(
+    BASE_CONFIG,
+    CLIENT_PROD_CONFIG,
+    CLIENT_MODERN_CONFIG,
+    ANALYZE_CONFIG
+  );
+} else {
   module.exports = [
-    modernClientConfig,
-    legacyClientConfig,
-    serverConfig,
-    PROCESS_PUBLIC_ASSETS_CONFIG,
+    merge(BASE_CONFIG, CLIENT_PROD_CONFIG, CLIENT_MODERN_CONFIG),
+    merge(BASE_CONFIG, CLIENT_PROD_CONFIG, CLIENT_LEGACY_CONFIG),
+    merge(BASE_CONFIG, SERVER_PROD_CONFIG),
   ];
+}
