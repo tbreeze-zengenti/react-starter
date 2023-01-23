@@ -16,7 +16,7 @@
     "build:startup": "buildstartup",
     "server": "node --max-http-header-size=800000 dist/start.js",
     "dev:server": "cross-env NODE_ENV=test NODE_OPTIONS=--max-http-header-size=80000 babel-node -x .ts,.tsx,.js,.jsx --inspect=9229 src/server/debug.ts",
-    "debug:server": "nodemon --delay 500ms --watch \"src/**\" --ext \"ts,tsx,js,jsx,json\" --signal SIGTERM --exec \"kill-port 3001 && npm run dev:server\"",
+    "debug:server": "nodemon --delay 500ms --watch \"src/**\" --ext \"ts,tsx,js,jsx,json\" --signal SIGTERM --exec \"npx kill-port 3001 && npm run dev:server\"",
     "build:server": "npm run build && npm run server",
     "build:dev:server": "npm run build && npm run dev:server",
     "analyze": "rimraf ./dist && cross-env NODE_ENV=production ANALYZE=TRUE webpack --config webpack/webpack.config.prod.js",
