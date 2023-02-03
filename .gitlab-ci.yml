@@ -6,10 +6,10 @@ include:
 
 stages:
   - latest-build
-  - storybook-latest-build
   - live-build
   - push-block
   - release-block
+  - storybook-latest-build
 
 variables:
   DOCKER_DRIVER: overlay2
