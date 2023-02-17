@@ -47,7 +47,7 @@ export const ContentTypes = {
 export const SiteConfig = [];
 
 export const ComposerComponents = {
-  markup: 'textArea',
+  markup: 'richText',
 };
 
 export const Listings = {
