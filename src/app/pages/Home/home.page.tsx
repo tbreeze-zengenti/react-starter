@@ -7,6 +7,7 @@ import HomeStyled from './home.styled';
 
 // Models
 import { HomeProps, MappedHomeEntry } from './home.d';
+
 import Link from '~/components/link/link';
 import Meta from '~/components/meta/meta';
 

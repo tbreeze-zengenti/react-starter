@@ -1,5 +1,3 @@
-import { SiteConfigState } from './reducers';
-
-export const hasSiteConfig = (state: SiteConfigState) => {
-  return state.config?.isReady;
+export const hasSiteConfig = (state: any) => {
+  return state.siteConfig.isReady;
 };
