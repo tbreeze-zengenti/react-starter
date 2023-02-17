@@ -1,10 +1,8 @@
 import { call, select } from 'redux-saga/effects';
 import { RouteLoadOptions, WithEvents } from '@zengenti/contensis-react-base';
-import { SearchTransformations } from '@zengenti/contensis-react-base/search';
+import { injectSearchAssets, InjectSearchAssets } from '~/redux/dynamic';
 
-import { routeParams, queryParams } from './routeHelpers';
-
-import { ContentTypes, ListingPages } from '~/schema';
+import { ListingPages } from '~/schema';
 
 import { hasSiteConfig } from '~/redux/siteConfig/selectors';
 import { ensureSiteConfigSaga } from '~/redux/siteConfig/sagas';
@@ -31,43 +29,19 @@ export default {
     location,
     staticRoute,
   }) {
-    const params = {
-      ...routeParams(staticRoute),
-      ...queryParams(location && location.search),
-    };
-
     const contentTypeId = entry?.sys?.contentTypeId;
-    let triggerListing = false;
-    // To give the Content Type pages with Listings
-    // the right parameters to drive them
-    switch (contentTypeId) {
-      case ContentTypes.listingPage:
-        params.category = entry?.sys?.id;
-        triggerListing = true;
-        break;
-      default:
-        break;
-    }
+    const listingType =
+      staticRoute?.route?.listingType || ListingPages[contentTypeId];
 
-    if (
-      path.startsWith('/search') ||
-      (triggerListing && Object.keys(ListingPages).includes(contentTypeId))
-    ) {
-      const { setRouteFilters } = (yield import(
-        /* webpackChunkName: "search-package" */
-        '@zengenti/contensis-react-base/search'
-      )) as typeof import('@zengenti/contensis-react-base/search');
+    if (path.startsWith('/search') || listingType) {
+      const { routeParams, setRouteFilters, mappers } =
+        (yield injectSearchAssets()) as InjectSearchAssets;
 
-      const transformations = (
-        (yield import(
-          /* webpackChunkName: "search-mappers" */
-          '~/features/search/transformations'
-        )) as any
-      ).default as SearchTransformations;
+      const params = routeParams(staticRoute, location);
 
       yield call(setRouteFilters, {
-        listingType: triggerListing ? ListingPages[contentTypeId] : undefined,
-        mappers: transformations,
+        listingType,
+        mappers,
         params,
       });
     }
