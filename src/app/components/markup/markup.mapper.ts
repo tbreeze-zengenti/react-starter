@@ -1,3 +1,3 @@
 export const MarkupMapper = {
-  html: '.',
+  text: '.',
 };
