@@ -1,11 +1,12 @@
 import { DefaultTheme } from 'styled-components';
 
-import { colors } from './tokens/colors';
-import { breakpoints, mq, spacing } from './tokens/layout';
+import { colors } from './colors';
+import { breakpoints, mq, spacing, grid } from './layout';
 
 export const defaultTheme: DefaultTheme = {
   colors,
   breakpoints,
   mq,
   spacing,
+  grid,
 };

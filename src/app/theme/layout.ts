@@ -11,34 +11,6 @@ export const spacing = {
   xl: '8rem',
   xxl: '12rem',
   xxxl: '14.4rem',
-  px: {
-    xxxs: '8px',
-    xxs: '16px',
-    xs: '24px',
-    s: '32px',
-    m: '40px',
-    l: '64px',
-    xl: '80px',
-    xxl: '120px',
-    xxxl: '144px',
-  },
-};
-
-export const wrapper = {
-  default: {
-    width: '1140px',
-    gutter: {
-      mobile: spacing.xxs,
-      desktop: spacing.xs,
-    },
-  },
-  fullWidth: {
-    width: '100%',
-    gutter: {
-      mobile: spacing.xxs,
-      desktop: spacing.xs,
-    },
-  },
 };
 
 // bp are used as a reference for media queries
@@ -74,5 +46,15 @@ export const mq = {
     laptop: `only screen and (max-width: ${breakpoints.px.laptop}px)`,
     desktop: `only screen and (max-width: ${breakpoints.px.desktop}px)`,
     largeDesktop: `only screen and (max-width: ${breakpoints.px.largeDesktop}px)`,
+  },
+};
+
+// To help create global wrappers/containers
+// Define grid gutters and edge margins
+export const grid = {
+  default: {
+    width: '140rem',
+    gutter: spacing.xs,
+    margin: spacing.xs,
   },
 };

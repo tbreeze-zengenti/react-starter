@@ -58,5 +58,12 @@ declare module 'styled-components' {
       /** @returns 14.4rem */
       xxxl: string;
     };
+    grid: {
+      default: {
+        width: string;
+        gutter: string;
+        margin: string;
+      };
+    };
   }
 }
