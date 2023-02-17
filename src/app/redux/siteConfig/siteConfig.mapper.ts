@@ -1,1 +1,3 @@
-export const SiteConfigMapper = {};
+export const SiteConfigMapper = {
+  title: 'copyrightName',
+};

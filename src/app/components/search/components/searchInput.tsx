@@ -40,7 +40,7 @@ const SearchInput = ({
         autoComplete="off"
         value={stateValue}
         onChange={handleChange}
-        onKeyPress={handleKeyPress}
+        onKeyDown={handleKeyPress}
         id="searchInput"
       />
       <button onClick={handleSubmit}>Go</button>

@@ -4,7 +4,7 @@ import { mapJson } from '@zengenti/contensis-react-base/util';
 import { SET_SITE_CONFIG, GET_SITE_CONFIG_ERROR } from './types';
 import { SiteConfigMapper } from './siteConfig.mapper';
 
-interface SiteConfigState {
+export interface SiteConfigState {
   config: any;
   isReady: boolean;
   isError: boolean;

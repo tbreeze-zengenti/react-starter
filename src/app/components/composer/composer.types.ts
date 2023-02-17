@@ -1,4 +1,3 @@
-// Import ComponentProps here
 import { MarkupProps } from '~/components/markup/markup.types';
 
 export interface ComposerProps {
