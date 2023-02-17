@@ -7,11 +7,11 @@ import {
   UseMinilistProps,
 } from '@zengenti/contensis-react-base/search';
 
-import mappers from '~/features/search/transformations';
-import omdbapiToCardpropsMapper from '~/features/search/transformations/omdbapi-to-cardprops.mapper';
+import mappers from '~/components/search/transformations';
+import omdbapiToCardpropsMapper from '~/components/search/transformations/omdbapi-to-cardprops.mapper';
 
-import ResultCard from '~/features/search/components/resultCard';
-import { ResultCardProps } from '~/features/search/components/resultCard.types';
+import ResultCard from '~/components/search/components/resultCard';
+import { ResultCardProps } from '~/components/search/components/resultCard.types';
 
 const minilistInitState = {
   id: '',

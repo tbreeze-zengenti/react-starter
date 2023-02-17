@@ -1,6 +1,6 @@
 import { RouteComponentProps } from '@zengenti/contensis-react-base';
 
-import { ComposerProps } from '~/features/composer/composer.types';
+import { ComposerProps } from '~/components/composer/composer.types';
 
 export interface MappedContentPage {
   title: string;
