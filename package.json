@@ -120,7 +120,6 @@
     "zengenti-buildstartup-package": "^0.0.17"
   },
   "dependencies": {
-    "@reduxjs/toolkit": "^1.9.2",
     "@zengenti/contensis-react-base": "^3.0.0-beta.70",
     "@zengenti/react-toolkit": "^1.0.0-beta.2",
     "app-root-path": "^3.0.0",
