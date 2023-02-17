@@ -4,12 +4,6 @@ import { useSelector } from 'react-redux';
 
 import { routing } from '@zengenti/contensis-react-base/redux';
 
-import {
-  selectCopyright,
-  selectSiteLogo,
-  selectSocialMedia,
-} from '~/redux/siteConfig/selectors';
-
 import { getCanonicalUrl } from './getCanonicalUrl';
 
 import { MetaProps } from './meta.types';
@@ -24,34 +18,11 @@ const Meta = ({
   ogType = 'website',
   pageTitle,
   rssFeedPath,
-  schema,
   twitterCardType = 'summary',
+  twitterHandle,
 }: MetaProps) => {
-  /**
-   *  Selects our SiteTitle & SiteName from SiteConfig state
-   *  Generates a title based on whether a SiteTitle has been set
-   */
-  const siteTitle = useSelector(selectCopyright);
-  const siteName = useSelector(selectCopyright);
-
+  const siteTitle = 'React Starter';
   const title = siteTitle ? `${pageTitle} | ${siteTitle}` : `${pageTitle}`;
-
-  /**
-   * Selects our Twitter URL from SiteConfig state
-   * Removes the handle id from the URL
-   */
-  const selectWebsiteTwitterHandle = useSelector(selectSocialMedia);
-  const websiteTwitterHandle = selectWebsiteTwitterHandle?.twitter?.match(
-    /^https?:\/\/(?:www\.)?twitter\.com\/(?:#!\/)?@?([^/?#]*)(?:[?#].*)?$/
-  )[1];
-
-  /**
-   * Selects our logo object from SiteConfig state
-   */
-  const selectLogo = useSelector(selectSiteLogo);
-
-  ogImage = selectLogo?.logo;
-  ogImageAltText = selectLogo?.altText;
 
   const currentPath: string = useSelector(routing.selectors.selectCurrentPath);
   const canonicalPath: string = `${getCanonicalUrl}${currentPath}`;
@@ -61,11 +32,7 @@ const Meta = ({
       <title>{title}</title>
       <meta name="description" content={description} />
 
-      {/**
-       * Open Graph Protocol
-       * @link https://ogp.me/
-       */}
-      <meta property="og:site_name" content={siteName} />
+      <meta property="og:site_name" content={siteTitle} />
       <meta property="og:url" content={canonicalPath} />
       <meta property="og:title" content={pageTitle} />
       <meta property="og:description" content={ogDescription || description} />
@@ -76,12 +43,10 @@ const Meta = ({
       <meta property="og:type" content={ogType} />
       <meta property="og:locale" content={locale} />
 
-      {/**
-       * Twitter Cards
-       * @link https://developer.twitter.com/en/docs/twitter-for-websites/cards/guides/getting-started
-       */}
       <meta name="twitter:card" content={twitterCardType} />
-      <meta name="twitter:site" content={websiteTwitterHandle} />
+      {twitterHandle ? (
+        <meta name="twitter:site" content={twitterHandle} />
+      ) : null}
       {authorTwitterHandle ? (
         <meta name="twitter:creator" content={authorTwitterHandle} />
       ) : null}
@@ -91,6 +56,7 @@ const Meta = ({
       <meta name="twitter:image:alt" content={ogImageAltText} />
 
       <link rel="canonical" href={canonicalPath} />
+
       {rssFeedPath ? (
         <link
           rel="alternate"
@@ -99,13 +65,6 @@ const Meta = ({
           href={rssFeedPath}
         />
       ) : null}
-
-      {/**
-       * @todo
-       * Figure out how to build this object as opposed to passing a string
-       * from SiteConfig using the mappers Neil demo'd on Actegy
-       */}
-      {schema ? <script type="application/ld+json">{schema}</script> : null}
     </Helmet>
   );
 };
