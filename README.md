@@ -1,6 +1,6 @@
 ![Zengenti React Start](/readme.png)
 
-Commonly know as React Starter, this is our starter project for most client builds. It is driven by the latest version of Contensis React Base (currently v3.0) & utilises other internal packages such as [React Toolkit](https://github.com/zengenti/react-toolkit) & [Forms Package](https://gitlab.zengenti.com/zengenti-packages/forms).
+Commonly know as React Starter, this is our starter project for most client builds. It is driven by the latest version of Contensis React Base (currently v3.0.0) & utilises other internal packages such as our [Forms Package](https://gitlab.zengenti.com/zengenti-packages/forms).
 
 ## 🔌 Getting started
 
@@ -33,7 +33,6 @@ To activate an alternative env upon start/build you need to reference the `.{suf
 ## 📁Folder Structure
 
 - `/components` should contain the majority of your components.
-- `/features` should contain components that have extended functionality (Redux usage for example) or require several supporting components/files to operate. A Composer & Search are provided as examples of this.
 - `/layouts` should contain your various page wrappers. By default a MainLayout is provided.
 - `/pages` should contain all of your page components.
 - `/redux` should contain high-level Redux logic.
