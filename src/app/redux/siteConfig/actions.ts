@@ -4,4 +4,4 @@ function action(type: string, payload = {}) {
   return { type, ...payload };
 }
 
-export const loadSiteConfig = () => action(GET_SITE_CONFIG);
+// export const loadSiteConfig = () => action(GET_SITE_CONFIG);

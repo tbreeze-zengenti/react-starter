@@ -1,15 +1,15 @@
 export const hasSiteConfig = (state: any) => {
-  return state.siteConfig.isReady;
+  return state.config.isReady;
 };
 
 export const selectSiteLogo = (state: any) => {
-  return state.siteConfig.config?.siteLogo;
+  return state.config.config?.siteLogo;
 };
 
 export const selectSocialMedia = (state: any) => {
-  return state.siteConfig.config?.socialMedia;
+  return state.config.config?.socialMedia;
 };
 
 export const selectCopyright = (state: any) => {
-  return state.siteConfig.config?.copyright;
+  return state.config.config?.copyright;
 };

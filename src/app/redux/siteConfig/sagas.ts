@@ -13,7 +13,8 @@ import { hasSiteConfig } from './selectors';
 
 import { version } from '@zengenti/contensis-react-base/redux';
 
-import { ContentTypes, SiteConfig } from '~/schema';
+import { ContentTypes, Config } from '~/schema';
+import { getSiteConfigError, setSiteConfig } from './config.slice';
 
 export const SiteConfigSagas = [
   takeEvery(GET_SITE_CONFIG, ensureSiteConfigSaga),
@@ -34,21 +35,21 @@ export function* ensureSiteConfigSaga(): any {
         )
       );
 
-      query.fields = [...SiteConfig];
+      query.fields = [...Config];
       const results: any = yield cachedSearch.search(query, 4);
 
-      const siteConfig =
+      const config =
         results && results.items && results.items.length > 0
           ? results.items[0]
           : null;
 
-      if (siteConfig) {
-        yield put({ type: SET_SITE_CONFIG, siteConfig });
+      if (config) {
+        yield put({ type: setSiteConfig.type, config });
       } else {
-        yield put({ type: GET_SITE_CONFIG_ERROR });
+        yield put({ type: getSiteConfigError.type });
       }
     }
   } catch (ex: any) {
-    yield put({ type: GET_SITE_CONFIG_ERROR, error: ex.toString() });
+    yield put({ type: getSiteConfigError.type, error: ex.toString() });
   }
 }

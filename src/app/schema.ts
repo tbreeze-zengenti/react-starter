@@ -48,7 +48,7 @@ export const ContentTypes = {
   config: 'siteSettings',
 };
 
-export const SiteConfig = [
+export const Config = [
   'logo',
   'facebookLink',
   'linkedinLink',
