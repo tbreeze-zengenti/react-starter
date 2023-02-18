@@ -1,14 +1,11 @@
 import { createGlobalStyle } from 'styled-components';
 import { normalize } from 'styled-normalize';
 
-import { printCSS } from './patterns/print';
-
 import { grid, mq, spacing } from './layout';
 
 const GlobalStyle = createGlobalStyle`
   /* Normalize/reset css */
   ${normalize}
-  ${printCSS}
 
   *,
   *::before,
