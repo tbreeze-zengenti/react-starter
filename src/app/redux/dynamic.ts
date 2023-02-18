@@ -7,7 +7,7 @@ export const injectSearch = async () => {
   );
   const { config } = await import(
     /* webpackChunkName: "search-config" */
-    '~/components/search'
+    '~/search'
   );
 
   return {
@@ -26,7 +26,7 @@ export const injectSearchAssets = async () => {
   const mappers = (
     (await import(
       /* webpackChunkName: "search-mappers" */
-      '~/components/search/transformations'
+      '~/search/transformations'
     )) as any
   ).default as SearchTransformations;
 

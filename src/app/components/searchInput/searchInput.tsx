@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-export interface SearchInputProps {
-  searchTerm: string;
-  placeholderText: string;
-  submitEvent: (e: any, a: any) => void;
-  className: string;
-}
+import { SearchInputProps } from './searchInput.types';
+import SearchInputStyled from './searchInput.styled';
 
 const SearchInput = ({
   searchTerm,
@@ -16,23 +12,23 @@ const SearchInput = ({
   const [stateValue, setStateValue] = useState(searchTerm);
   useEffect(() => setStateValue(searchTerm), [searchTerm]);
 
-  const handleChange = (event: any) => {
-    setStateValue(event.target.value);
+  const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
+    setStateValue(event.currentTarget.value);
   };
 
-  const handleKeyPress = (event: any) => {
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key == 'Enter') {
       handleSubmit(event);
     }
   };
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = (event: React.FormEvent) => {
     if (event) event.preventDefault();
     submitEvent && submitEvent(stateValue, 0);
   };
 
   return (
-    <form className={className}>
+    <SearchInputStyled className={`${className ? className : ''}`}>
       <label htmlFor="searchInput">Keyword search</label>
       <input
         type="text"
@@ -44,7 +40,7 @@ const SearchInput = ({
         id="searchInput"
       />
       <button onClick={handleSubmit}>Go</button>
-    </form>
+    </SearchInputStyled>
   );
 };
 

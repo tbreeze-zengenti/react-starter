@@ -1,6 +1,6 @@
 import { takeEvery, select, put } from 'redux-saga/effects';
 
-import { cachedSearch } from '~/routes/contensisDeliveryAPI';
+import { cachedSearch } from '~/routes/util/contensisDeliveryAPI';
 import { Query, Op } from 'contensis-delivery-api';
 
 import {

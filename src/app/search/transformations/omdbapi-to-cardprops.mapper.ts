@@ -4,4 +4,5 @@ export default (body: any) =>
     description: '',
     image: r.Poster && r.Poster !== 'N/A' ? r.Poster : null,
     link: 'https://www.imdb.com/title/' + r.imdbID,
+    id: r.imdbID,
   }));
