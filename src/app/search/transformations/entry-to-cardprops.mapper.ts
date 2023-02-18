@@ -6,6 +6,7 @@ const baseMapping = {
   image: {
     src: 'entryThumbnail.asset.sys.uri',
     alt: 'entryThumbnail.altText',
+    caption: 'entryThumbnail.caption',
   },
   link: 'sys.uri',
   id: 'sys.id',
