@@ -2,10 +2,8 @@ import React from 'react';
 
 import MainLayout from '~/layouts/main.layout';
 
-// Styled components
 import HomeStyled from './home.styled';
 
-// Models
 import { HomeProps, MappedHomeEntry } from './home.d';
 
 import Link from '~/components/link/link';
