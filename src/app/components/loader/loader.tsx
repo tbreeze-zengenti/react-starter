@@ -3,6 +3,7 @@ import React from 'react';
 import { LoaderProps } from './loader.types';
 import LoaderStyled from './loader.styled';
 
+/** @description For component level loading states, ie. {isLoading ? Loader : Component} */
 const Loader = ({ className }: LoaderProps) => {
   const fill: string = 'black';
 

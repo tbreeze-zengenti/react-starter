@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { v4 as id } from 'uuid';
 
 import {
   useFacets,
@@ -7,11 +6,11 @@ import {
   UseMinilistProps,
 } from '@zengenti/contensis-react-base/search';
 
-import mappers from '~/features/search/transformations';
-import omdbapiToCardpropsMapper from '~/features/search/transformations/omdbapi-to-cardprops.mapper';
+import mappers from '~/search/transformations';
+import omdbapiToCardpropsMapper from '~/search/transformations/omdbapi-to-cardprops.mapper';
 
-import ResultCard from '~/features/search/components/resultCard';
-import { ResultCardProps } from '~/features/search/components/resultCard.types';
+import ResultCard from '~/components/resultCard/resultCard';
+import { ResultCardProps } from '~/components/resultCard/resultCard.types';
 
 const minilistInitState = {
   id: '',
@@ -69,19 +68,19 @@ const SearchPage = () => {
       <h1>Search</h1>
       <div>
         {results.map(content => (
-          <ResultCard key={id()} {...content} />
+          <ResultCard key={content.id} {...content} />
         ))}
       </div>
       <h2>{relatedTitle}</h2>
       <div>
         {related.map(content => (
-          <ResultCard key={id()} {...content} />
+          <ResultCard key={content.id} {...content} />
         ))}
       </div>
       <h2>{minlistTitle}</h2>
       <div>
         {movies.map(movie => (
-          <ResultCard key={id()} {...movie} />
+          <ResultCard key={movie.id} {...movie} />
         ))}
       </div>
     </div>

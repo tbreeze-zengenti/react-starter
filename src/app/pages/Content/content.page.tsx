@@ -7,10 +7,10 @@ const ContentPage = ({ mappedEntry }: PageProps) => {
   const { title, contentComposerProps } =
     mappedEntry || ({} as MappedContentPage);
   return (
-    <ContentPage>
+    <div>
       {title && <h1>{title}</h1>}
       <Composer {...contentComposerProps} />
-    </ContentPage>
+    </div>
   );
 };
 

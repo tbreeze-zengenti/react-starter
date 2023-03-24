@@ -1,8 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 import { normalize } from 'styled-normalize';
 
-import colors from './colors';
-import { mq, spacing } from './layout';
+import { grid, mq, spacing } from './layout';
 
 const GlobalStyle = createGlobalStyle`
   /* Normalize/reset css */
@@ -17,8 +16,6 @@ const GlobalStyle = createGlobalStyle`
   /* CSS Variables */
   :root {
     --flow: ${spacing.xs};
-    --colorWhite: #ffffff;
-    --primaryWhite: ${colors.primary.white}
   }
 
   @media ${mq.min.mobile} {
@@ -124,6 +121,17 @@ const GlobalStyle = createGlobalStyle`
   /* If --flow doesn't exist it'll default to 1em */
   .flow > * + * {
     margin-top: var(--flow, 1em);
+  }
+
+  /* References our Theme variable  for consistency*/
+  .wrapper {
+    position: relative;
+    padding-left: ${grid.default.margin};
+    padding-right:  ${grid.default.margin};
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: ${grid.default.width};
   }
 `;
 

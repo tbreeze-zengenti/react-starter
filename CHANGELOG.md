@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Released]
 
+## [0.1.2] - 2023-02-17
+
+### Change
+
+- Contensis React Base `3.0.0` support 🥳
+- Various updates to Contensis React Base since 3.0.0 release
+- Support for Blocks deployment via an updated `gitlab-ci.yml`
+- Merged `feature/meta-setup` to develop to provide out of the box SiteConfig support
+- Added a `<Meta>` component for handling common site metadata
+- Reviewed & updated types/convetions across the project
+- Removed `/features` folder in favour of `/components`
+- Removed `@zengenti/react-toolkit`
+
 ## [0.1.1] - 2022-07-01
 
 ### Changed

@@ -1,3 +1,18 @@
+// To use spacers follow this pattern
+// Replace # with a value
+// ${theme.spacing.#}
+export const spacing = {
+  xxxs: '0.8rem',
+  xxs: '1.6rem',
+  xs: '2.4rem',
+  s: '3.2rem',
+  m: '4rem',
+  l: '6.4rem',
+  xl: '8rem',
+  xxl: '12rem',
+  xxxl: '14.4rem',
+};
+
 // bp are used as a reference for media queries
 // They can be utilised for between-breakpointss
 // @media (min-width: ${theme.breakpoints.px.mobile}) and (max-width: ${theme.breakpoints.px.tablet}) {
@@ -34,17 +49,12 @@ export const mq = {
   },
 };
 
-// To use spacers follow this pattern
-// Replace # with a value
-// ${theme.spacing.#}
-export const spacing = {
-  xxxs: '0.8rem',
-  xxs: '1.6rem',
-  xs: '2.4rem',
-  s: '3.2rem',
-  m: '4rem',
-  l: '6.4rem',
-  xl: '8rem',
-  xxl: '12rem',
-  xxxl: '14.4rem',
+// To help create global wrappers/containers
+// Define grid gutters and edge margins
+export const grid = {
+  default: {
+    width: '140rem',
+    gutter: spacing.xs,
+    margin: spacing.xs,
+  },
 };

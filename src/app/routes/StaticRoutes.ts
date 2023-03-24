@@ -13,7 +13,6 @@ const staticRoutes: StaticRoute[] = [
   {
     path: '/search/:facet?',
     component: Search,
-    // Dynamically load search package and search config into redux
     injectRedux: injectSearch,
   },
   // ********************************

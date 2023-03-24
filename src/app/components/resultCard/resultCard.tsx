@@ -1,7 +1,8 @@
 import React from 'react';
 
-import Link from '~/components/link/link';
 import { ResultCardProps } from './resultCard.types';
+
+import Link from '~/components/link/link';
 
 const ResultCard = ({ description, image, link, title }: ResultCardProps) => {
   return (
@@ -13,7 +14,9 @@ const ResultCard = ({ description, image, link, title }: ResultCardProps) => {
       }}
     >
       <div>
-        {image && <img src={image} alt={title} style={{ width: '50px' }} />}
+        {image && (
+          <img src={image.src} alt={image.alt} style={{ width: '50px' }} />
+        )}
       </div>
       <div>
         <p>

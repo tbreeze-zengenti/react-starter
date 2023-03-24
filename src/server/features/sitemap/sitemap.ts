@@ -1,6 +1,6 @@
 import { Op, OrderBy, Query } from 'contensis-delivery-api';
 import { streamToPromise, SitemapStream } from 'sitemap';
-import { cachedSearch } from '~/routes/contensisDeliveryAPI';
+import { cachedSearch } from '~/routes/util/contensisDeliveryAPI';
 
 /* global PUBLIC_URI */
 const publicUri = PUBLIC_URI;

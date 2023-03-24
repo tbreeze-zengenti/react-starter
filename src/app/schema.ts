@@ -4,35 +4,31 @@ export const DataFormats = {
 };
 
 export const sys = {
+  availableLanguages: 'sys.availableLanguages',
   contentTypeId: 'sys.contentTypeId',
   dataFormat: 'sys.dataFormat',
-  filename: 'sys.properties.filename',
   id: 'sys.id',
-  includeInSearch: 'sys.metadata.includeInSearch',
+  language: 'sys.language',
+  published: 'sys.version.published',
   slug: 'sys.slug',
   uri: 'sys.uri',
   versionStatus: 'sys.versionStatus',
-  published: 'sys.version.published',
 };
 
 export const Fields = {
-  categoryId: 'category.sys.id',
-  contentTypeId: 'sys.contentTypeId',
   entryTitle: 'entryTitle',
   entryDescription: 'entryDescription',
-  image: 'image',
-  keywords: 'keywords',
-  metaContent: 'metaContent',
-  publishedDate: 'publishedDate',
+  entryThumbnail: 'entryThumbnail',
+  contentTypeId: 'sys.contentTypeId',
   sys,
-  wildcard: '*',
 };
 
 export const BaseFields = [
   Fields.entryTitle,
   Fields.entryDescription,
+  Fields.entryThumbnail,
   Fields.sys.contentTypeId,
-  Fields.sys.slug,
+  Fields.sys.id,
   Fields.sys.uri,
   Fields.sys.published,
 ];
@@ -45,11 +41,13 @@ export const VersionStatus = {
 export const ContentTypes = {
   homePage: 'homePage',
   listingPage: 'listingPage',
+  config: 'siteSettings',
 };
 
+export const SiteConfig = [];
+
 export const ComposerComponents = {
-  // Insert composer components
-  markup: 'textArea',
+  markup: 'richText',
 };
 
 export const Listings = {
@@ -68,9 +66,7 @@ export const SearchFacets = {
   all: 'all',
 };
 
-export const SearchFilters = {
-  category: 'category',
-};
+export const SearchFilters = {};
 
 export const FreeTextWeights = {
   title: 100,

@@ -12,5 +12,5 @@ export const CoreComponents = {
 
 export const Composer = loadable(
   () =>
-    import(/* webpackChunkName: "composer" */ '~/features/composer/composer')
+    import(/* webpackChunkName: "composer" */ '~/components/composer/composer')
 );

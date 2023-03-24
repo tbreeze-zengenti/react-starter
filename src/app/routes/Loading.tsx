@@ -16,6 +16,7 @@ const divStyles = {
   backgroundColor: 'white',
 } as React.CSSProperties;
 
+/** @description For loading states between routes only */
 export const Loading = () => {
   return (
     <div style={divStyles}>
