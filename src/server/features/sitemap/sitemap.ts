@@ -1,4 +1,4 @@
-import { Op, Query } from 'contensis-delivery-api';
+import { Op, OrderBy, Query } from 'contensis-delivery-api';
 import { streamToPromise, SitemapStream } from 'sitemap';
 import { cachedSearch } from '~/routes/contensisDeliveryAPI';
 
@@ -52,6 +52,10 @@ const query = (pageIndex: number, pageSize: number) => {
 
   query.pageSize = pageSize;
   query.pageIndex = pageIndex;
+
+  /* We need an orderBy, otherwise result ordering is volatile and
+   changes from page to page, leading to duplicate (or missing) results */
+  query.orderBy = OrderBy.asc('sys.contentTypeId');
   return query;
 };
 
