@@ -7,9 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Released]
 
+## [0.1.3] - 2023-05-05
+
+### Changed
+
+- Added support for Blocks routing
+- Resolved bug with Sitemap ordering
+- Node base image updated
+- Added new Fields to Schema such as "entryThumbnail"
+- Updated webpack-dev-server
+- Removed "features" folder
+- Search is now a top level folder
+- Various bug fixes
+
 ## [0.1.2] - 2023-02-17
 
-### Change
+### Changed
 
 - Contensis React Base `3.0.0` support 🥳
 - Various updates to Contensis React Base since 3.0.0 release
