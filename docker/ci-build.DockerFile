@@ -10,6 +10,7 @@ COPY .env* ./
 COPY webpack/define-config.js ./webpack/
 RUN npm install --production --loglevel error
 COPY --from=basebuilder /usr/src/app/dist /usr/src/app/dist
+COPY ./manifest.json /manifest.json
 
 # Start the server with launcher.js using docker environment variables. This is the preferred startup method when created via Blocks.
 # If launcher.js cannot find an existing start script, it will generate one to start the server based on the supplied args
