@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet';
 import { useSelector } from 'react-redux';
 
 import { routing } from '@zengenti/contensis-react-base/redux';
+import { AppState } from '@zengenti/contensis-react-base/models/redux/appstate';
 
 import { getCanonicalUrl } from './getCanonicalUrl';
 
@@ -20,18 +21,26 @@ const Meta = ({
   rssFeedPath,
   twitterCardType = 'summary',
   twitterHandle,
+  insytful = true,
 }: MetaProps) => {
   const siteTitle = 'React Starter';
   const title = siteTitle ? `${pageTitle} | ${siteTitle}` : `${pageTitle}`;
 
-  const currentPath: string = useSelector(routing.selectors.selectCurrentPath);
+  const currentPath = useSelector<AppState, string>(
+    routing.selectors.selectCurrentPath
+  );
   const canonicalPath: string = `${getCanonicalUrl}${currentPath}`;
+  const projectId = useSelector<AppState, string>(
+    routing.selectors.selectCurrentProject
+  );
+  const entryId = useSelector<AppState, string>(
+    routing.selectors.selectRouteEntryEntryId
+  );
 
   return (
     <Helmet>
       <title>{title}</title>
       <meta name="description" content={description} />
-
       <meta property="og:site_name" content={siteTitle} />
       <meta property="og:url" content={canonicalPath} />
       <meta property="og:title" content={pageTitle} />
@@ -42,7 +51,6 @@ const Meta = ({
       <meta property="og:image:height" content="630" />
       <meta property="og:type" content={ogType} />
       <meta property="og:locale" content={locale} />
-
       <meta name="twitter:card" content={twitterCardType} />
       {twitterHandle ? (
         <meta name="twitter:site" content={twitterHandle} />
@@ -54,8 +62,14 @@ const Meta = ({
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
       <meta name="twitter:image:alt" content={ogImageAltText} />
-
       <link rel="canonical" href={canonicalPath} />
+
+      {insytful && projectId ? (
+        <meta name="IDL:ProjectId" content={projectId} />
+      ) : null}
+      {insytful && entryId ? (
+        <meta name="IDL:EntryId" content={entryId} />
+      ) : null}
 
       {rssFeedPath ? (
         <link

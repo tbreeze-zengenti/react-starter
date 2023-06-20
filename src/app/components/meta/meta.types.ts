@@ -15,4 +15,5 @@ export type MetaProps = {
   schema?: string;
   twitterCardType?: 'summary' | 'summary_large_image' | 'app' | 'player';
   twitterHandle?: string;
+  insytful?: boolean;
 };
