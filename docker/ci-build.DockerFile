@@ -4,12 +4,14 @@ FROM ${builder_image} as basebuilder
 FROM node:16-alpine
 
 WORKDIR /usr/src/app
-COPY package.json .
-COPY package-lock.json .
+COPY package.json package-lock.json ./
+RUN npm install --production --loglevel error && \
+  # Clears the npm cache to reduce image size
+  npm cache clean --force
+
+COPY --from=basebuilder /usr/src/app/dist /usr/src/app/dist
 COPY .env* ./
 COPY webpack/define-config.js ./webpack/
-RUN npm install --production --loglevel error
-COPY --from=basebuilder /usr/src/app/dist /usr/src/app/dist
 COPY ./manifest.json /manifest.json
 
 # Start the server with launcher.js using docker environment variables. This is the preferred startup method when created via Blocks.
