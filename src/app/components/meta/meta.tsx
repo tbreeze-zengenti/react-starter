@@ -29,7 +29,7 @@ const Meta = ({
   const currentPath = useSelector<AppState, string>(
     routing.selectors.selectCurrentPath
   );
-  const canonicalPath: string = `${getCanonicalUrl}${currentPath}`;
+  const canonicalPath = useSelector<AppState, string>(routing.selectors.selectCanonicalPath)
   const projectId = useSelector<AppState, string>(
     routing.selectors.selectCurrentProject
   );
@@ -42,7 +42,7 @@ const Meta = ({
       <title>{title}</title>
       <meta name="description" content={description} />
       <meta property="og:site_name" content={siteTitle} />
-      <meta property="og:url" content={canonicalPath} />
+      {canonicalPath ? <meta property="og:url" content={canonicalPath} /> : null}
       <meta property="og:title" content={pageTitle} />
       <meta property="og:description" content={ogDescription || description} />
       <meta property="og:image" content={ogImage} />
@@ -62,7 +62,7 @@ const Meta = ({
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
       <meta name="twitter:image:alt" content={ogImageAltText} />
-      <link rel="canonical" href={canonicalPath} />
+      {canonicalPath ? <link rel="canonical" href={canonicalPath} /> : null}
 
       {insytful && projectId ? (
         <meta name="IDL:ProjectId" content={projectId} />
