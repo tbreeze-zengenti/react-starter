@@ -9,7 +9,7 @@ stages:
   - live-build
   - push-block
   - release-block
-  - storybook-latest-build
+  # - storybook-latest-build
 
 variables:
   DOCKER_DRIVER: overlay2
@@ -39,19 +39,19 @@ build-latest-code:
     - docker tag "$APP_IMAGE:latest" "$APP_IMAGE:build-$CI_PIPELINE_IID"
     - docker push "$APP_IMAGE:build-$CI_PIPELINE_IID"
 
-build-storybook:
-  stage: storybook-latest-build
-  except:
-    - tags
-  script:
-    - docker pull $STORYBOOK_BUILDER_IMAGE:latest || true
-    - docker build --compress --force-rm --cache-from $STORYBOOK_BUILDER_IMAGE:latest -t $STORYBOOK_BUILDER_IMAGE:latest -f docker/storybook-builder.DockerFile .
-    - docker push $STORYBOOK_BUILDER_IMAGE:latest
-    - docker build --compress --force-rm -t $STORYBOOK_IMAGE:latest --build-arg builder_image=$STORYBOOK_BUILDER_IMAGE:latest -f  docker/storybook-http.DockerFile .
-    - docker push $STORYBOOK_IMAGE:latest
-  environment:
-    name: storybook
-    url: http://storybook.latest.$CI_PROJECT_NAME.contensis.cloud
+# build-storybook:
+#   stage: storybook-latest-build
+#   except:
+#     - tags
+#   script:
+#     - docker pull $STORYBOOK_BUILDER_IMAGE:latest || true
+#     - docker build --compress --force-rm --cache-from $STORYBOOK_BUILDER_IMAGE:latest -t $STORYBOOK_BUILDER_IMAGE:latest -f docker/storybook-builder.DockerFile .
+#     - docker push $STORYBOOK_BUILDER_IMAGE:latest
+#     - docker build --compress --force-rm -t $STORYBOOK_IMAGE:latest --build-arg builder_image=$STORYBOOK_BUILDER_IMAGE:latest -f  docker/storybook-http.DockerFile .
+#     - docker push $STORYBOOK_IMAGE:latest
+#   environment:
+#     name: storybook
+#     url: http://storybook.latest.$CI_PROJECT_NAME.contensis.cloud
 
 build-live-code-for-production:
   stage: live-build
@@ -81,7 +81,6 @@ push-to-contensis:
     # First create a Project Access Token e.g Tag block version (access: api, read_repository) and copy it
     # Then create a CI/CD Variable called GITLAB_ACCESS_TOKEN and paste the token
     git_token: $GITLAB_ACCESS_TOKEN
-
 
 # Releasing the block (with a `release-*` tag)
 release-contensis-block:
