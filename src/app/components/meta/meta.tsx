@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { routing } from '@zengenti/contensis-react-base/redux';
 import { AppState } from '@zengenti/contensis-react-base/models/redux/appstate';
 
-import { getCanonicalUrl } from './getCanonicalUrl';
+import { canonicalDomain } from './canonicalDomain';
 
 import { MetaProps } from './meta.types';
 
@@ -23,26 +23,26 @@ const Meta = ({
   twitterHandle,
   insytful = true,
 }: MetaProps) => {
-  const siteTitle = 'React Starter';
-  const title = siteTitle ? `${pageTitle} | ${siteTitle}` : `${pageTitle}`;
-
-  const currentPath = useSelector<AppState, string>(
-    routing.selectors.selectCurrentPath
-  );
-  const canonicalPath = useSelector<AppState, string>(routing.selectors.selectCanonicalPath)
   const projectId = useSelector<AppState, string>(
     routing.selectors.selectCurrentProject
   );
   const entryId = useSelector<AppState, string>(
     routing.selectors.selectRouteEntryEntryId
   );
+  const canonicalPath = useSelector<AppState, string>(
+    routing.selectors.selectCanonicalPath
+  );
+
+  const siteTitle = 'React Starter';
+  const title = siteTitle ? `${pageTitle} | ${siteTitle}` : `${pageTitle}`;
+  const canonical = `${canonicalDomain}${canonicalPath}`;
 
   return (
     <Helmet>
       <title>{title}</title>
       <meta name="description" content={description} />
       <meta property="og:site_name" content={siteTitle} />
-      {canonicalPath ? <meta property="og:url" content={canonicalPath} /> : null}
+      {canonicalPath ? <meta property="og:url" content={canonical} /> : null}
       <meta property="og:title" content={pageTitle} />
       <meta property="og:description" content={ogDescription || description} />
       <meta property="og:image" content={ogImage} />
@@ -62,7 +62,7 @@ const Meta = ({
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
       <meta name="twitter:image:alt" content={ogImageAltText} />
-      {canonicalPath ? <link rel="canonical" href={canonicalPath} /> : null}
+      {canonicalPath ? <link rel="canonical" href={canonical} /> : null}
 
       {insytful && projectId ? (
         <meta name="IDL:ProjectId" content={projectId} />
