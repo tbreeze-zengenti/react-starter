@@ -1,20 +1,30 @@
 import React from 'react';
-import { Story, Meta } from '@storybook/react/types-6-0';
-
-import { SkipToMainContentProps } from './skipToMainContent.types';
+import type { Meta, StoryObj } from '@storybook/react';
 import SkipToMainContent from './skipToMainContent';
 
-export default {
-  title: 'Global/Components/SkipToMainContent',
+const meta: Meta<typeof SkipToMainContent> = {
+  title: 'Components / Global /  SkipToMainContent',
   component: SkipToMainContent,
-} as Meta;
+  args: {
+    skipPath: '#main',
+  },
+};
 
-const Template: Story<SkipToMainContentProps> = args => (
-  <SkipToMainContent {...args} />
-);
+export default meta;
+type Story = StoryObj<typeof SkipToMainContent>;
 
-export const Default = Template.bind({});
-
-Default.args = {
-  skipPath: '#main',
+export const SkipToMainContentStory: Story = {
+  render: () => (
+    <div>
+      <SkipToMainContent />
+      <h1>Skip to content story</h1>
+      <p>
+        With mouse click on heading ^ <br /> Now press Tab key.
+      </p>
+      <br />
+      <div id="main" tabIndex={-1}>
+        <p>Focus should move to me</p>
+      </div>
+    </div>
+  ),
 };
