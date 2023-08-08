@@ -9,7 +9,7 @@ stages:
   - live-build
   - push-block
   - release-block
-  # - storybook-latest-build
+  - storybook-latest-build
 
 variables:
   DOCKER_DRIVER: overlay2
