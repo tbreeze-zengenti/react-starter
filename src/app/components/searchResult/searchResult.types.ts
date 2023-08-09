@@ -1,4 +1,4 @@
-export type ResultCardProps = {
+export type SearchResultProps = {
   description: string;
   image: {
     src: string;

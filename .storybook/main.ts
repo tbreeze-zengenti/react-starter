@@ -6,7 +6,7 @@ const config: StorybookConfig = {
   framework: '@storybook/react-webpack5',
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   // Optional
-  addons: ['@storybook/addon-links', '@storybook/addon-essentials', '@storybook/addon-a11y', '@zengenti/contensis-entry-picker-storybook-addon', '@storybook/addon-actions'],
+  addons: ['@storybook/addon-links', '@storybook/addon-essentials', '@storybook/addon-a11y', '@storybook/addon-actions'],
   docs: {
     autodocs: 'tag',
   },
