@@ -71,7 +71,6 @@
     "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^5.20.0",
     "@typescript-eslint/parser": "^5.20.0",
-    "@zengenti/contensis-entry-picker-storybook-addon": "^1.0.3",
     "babel-loader": "^8.2.5",
     "babel-plugin-dynamic-import-node": "^2.3.3",
     "babel-plugin-module-resolver": "^4.1.0",
