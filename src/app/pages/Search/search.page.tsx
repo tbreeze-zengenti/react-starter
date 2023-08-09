@@ -68,8 +68,6 @@ const SearchPage = () => {
   const { results: movies, title: minlistTitle } =
     useMinilist<SearchResultProps>(movieMinilist);
 
-  console.info('results', results);
-
   return (
     <div>
       <h1>Search page</h1>
