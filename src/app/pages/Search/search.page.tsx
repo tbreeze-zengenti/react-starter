@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-
 import {
   useFacets,
   useMinilist,
@@ -9,8 +8,9 @@ import {
 import mappers from '~/search/transformations';
 import omdbapiToCardpropsMapper from '~/search/transformations/omdbapi-to-cardprops.mapper';
 
-import ResultCard from '~/components/resultCard/resultCard';
-import { ResultCardProps } from '~/components/resultCard/resultCard.types';
+import SearchResult from '~/components/searchResult/searchResult';
+import { SearchResultProps } from '~/components/searchResult/searchResult.types';
+import SearchInput from '~/components/searchInput/searchInput.component';
 
 const minilistInitState = {
   id: '',
@@ -50,37 +50,61 @@ const SearchPage = () => {
     }, 500);
   }, []);
 
+  // Bare minimum working site search example
+  // Note: More SearchProps will be used in a complete example
+  const {
+    results,
+    facet: { title },
+    updateSearchTerm,
+    searchTerm,
+  } = useFacets<SearchResultProps>({ mappers });
+
   // Minilist example using an existing minilist config
   const { results: related, title: relatedTitle } =
-    useMinilist<ResultCardProps>(relatedContentMinilist);
+    useMinilist<SearchResultProps>(relatedContentMinilist);
 
   // Minilist example using a config that is created on the fly
   // and also is using a custom (non-Contensis) api to fetch its results
   const { results: movies, title: minlistTitle } =
-    useMinilist<ResultCardProps>(movieMinilist);
-
-  // Bare minimum working search example
-  // More SearchProps will be used in a complete example
-  const { results } = useFacets<ResultCardProps>({ mappers });
+    useMinilist<SearchResultProps>(movieMinilist);
 
   return (
     <div>
-      <h1>Search</h1>
+      <h1>Search page</h1>
+      {/* Site Search */}
+      <SearchComponent
+        title={title}
+        results={results}
+        input={
+          <SearchInput
+            searchTerm={searchTerm}
+            updateSearchTerm={updateSearchTerm}
+          />
+        }
+      />
+      <br />
+      {/* Minilist Search */}
+      <SearchComponent title={relatedTitle} results={related} />
+      <br />
+      {/* Custom Api Search */}
+      <SearchComponent title={minlistTitle} results={movies} />
+    </div>
+  );
+};
+
+type SearchComponentProps = {
+  title: string;
+  results: SearchResultProps[];
+  input?: React.ReactNode;
+};
+const SearchComponent = ({ title, results, input }: SearchComponentProps) => {
+  return (
+    <div>
+      <h2>{title}</h2>
+      {input}
       <div>
         {results.map(content => (
-          <ResultCard key={content.id} {...content} />
-        ))}
-      </div>
-      <h2>{relatedTitle}</h2>
-      <div>
-        {related.map(content => (
-          <ResultCard key={content.id} {...content} />
-        ))}
-      </div>
-      <h2>{minlistTitle}</h2>
-      <div>
-        {movies.map(movie => (
-          <ResultCard key={movie.id} {...movie} />
+          <SearchResult key={content.id} {...content} />
         ))}
       </div>
     </div>

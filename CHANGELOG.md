@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Pending]
 
+## [0.1.5] - 2023-07-08
+
+### Added
+
+- Upgraded Storybook to 7.2.1
+- Updated Webpack to 5.88.2
+
+### Removed
+
+- Removed parallel-webpack due to incompatibility with newer version of Webpack, note: parallel-webpack not updated in 3+ years
+
 ## [0.1.4] - 2023-06-20
 
 - Upgraded Storybook to 6.5.16 stable release

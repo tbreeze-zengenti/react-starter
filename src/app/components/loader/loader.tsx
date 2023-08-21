@@ -5,7 +5,7 @@ import LoaderStyled from './loader.styled';
 
 /** @description For component level loading states, ie. {isLoading ? Loader : Component} */
 const Loader = ({ className }: LoaderProps) => {
-  const fill: string = 'black';
+  const fill = 'black';
 
   return (
     <LoaderStyled className={`loader ${className}`}>

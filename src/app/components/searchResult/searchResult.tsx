@@ -1,10 +1,13 @@
 import React from 'react';
-
-import { ResultCardProps } from './resultCard.types';
-
+import { SearchResultProps } from './searchResult.types';
 import Link from '~/components/link/link';
 
-const ResultCard = ({ description, image, link, title }: ResultCardProps) => {
+const SearchResult = ({
+  description,
+  image,
+  link,
+  title,
+}: SearchResultProps) => {
   return (
     <div
       style={{
@@ -28,4 +31,4 @@ const ResultCard = ({ description, image, link, title }: ResultCardProps) => {
   );
 };
 
-export default ResultCard;
+export default SearchResult;

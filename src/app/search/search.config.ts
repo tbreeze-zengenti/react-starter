@@ -11,7 +11,7 @@ export default {
   tabs: [{ id: 0, label: '' }],
   facets: {
     all: {
-      title: 'All results',
+      title: 'Site Search',
       queryParams: {
         contentTypeIds: [],
         fields: [...BaseFields],
