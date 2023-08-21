@@ -7,7 +7,7 @@ export function queryParams(search = '') {
     typeof window != 'undefined' ? window.location.search : search
   );
 }
-export const routeParams = (staticRoute: MatchedRoute<any, StaticRoute>) =>
+export const routeParams = <Params extends { [K in keyof Params]?: string | undefined; } = any>(staticRoute: MatchedRoute<Params, StaticRoute>) =>
   staticRoute && staticRoute.match ? staticRoute.match.params : {};
 
 export const buildUrl = (route: string, params: { [key: string]: string }) => {

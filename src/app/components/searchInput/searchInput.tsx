@@ -12,8 +12,8 @@ const SearchInput = ({
   const [stateValue, setStateValue] = useState(searchTerm);
   useEffect(() => setStateValue(searchTerm), [searchTerm]);
 
-  const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
-    setStateValue(event.currentTarget.value);
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setStateValue(event.target.value);
   };
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -22,7 +22,11 @@ const SearchInput = ({
     }
   };
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = (
+    event:
+      | React.MouseEvent<HTMLButtonElement>
+      | React.KeyboardEvent<HTMLInputElement>
+  ) => {
     if (event) event.preventDefault();
     submitEvent && submitEvent(stateValue, 0);
   };

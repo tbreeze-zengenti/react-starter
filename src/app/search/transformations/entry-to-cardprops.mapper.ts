@@ -1,4 +1,5 @@
 import { mapEntries } from '@zengenti/contensis-react-base/util';
+import type { Entry } from 'contensis-delivery-api/lib/models';
 
 const baseMapping = {
   title: 'entryTitle',
@@ -16,6 +17,6 @@ export const mappers = {
   default: baseMapping,
 };
 
-const mapEntriesToResults = (entries: any[]) => mapEntries(entries, mappers);
+const mapEntriesToResults = (entries: Entry[]) => mapEntries(entries, mappers);
 
 export default mapEntriesToResults;

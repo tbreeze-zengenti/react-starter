@@ -1,4 +1,4 @@
-var context: Record<string, any> =
+var context: Record<string, unknown> =
   typeof window != 'undefined' ? window : global;
 
 var defineConfig = require('-/webpack/define-config').build;

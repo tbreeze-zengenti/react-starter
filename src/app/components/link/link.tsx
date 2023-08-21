@@ -24,7 +24,7 @@ const Link = ({
   const newWindow = openInNewWindow ? '_blank' : '_self';
   path = encodeURI(path);
 
-  const _handleClick = (e: any) => {
+  const _handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (onClick) {
       onClick(e);
     }
