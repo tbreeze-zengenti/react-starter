@@ -4,46 +4,44 @@ import { SearchInputProps } from './searchInput.types';
 import SearchInputStyled from './searchInput.styled';
 
 const SearchInput = ({
-  searchTerm,
-  placeholderText,
-  submitEvent,
   className,
+  placeholder,
+  submit,
+  value = '',
 }: SearchInputProps) => {
-  const [stateValue, setStateValue] = useState(searchTerm);
-  useEffect(() => setStateValue(searchTerm), [searchTerm]);
+  const [_value, _setValue] = useState(value);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setStateValue(event.target.value);
+  const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    _setValue(e.currentTarget.value);
   };
 
-  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key == 'Enter') {
-      handleSubmit(event);
-    }
+  const handleSubmit = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    submit(_value);
   };
 
-  const handleSubmit = (
-    event:
-      | React.MouseEvent<HTMLButtonElement>
-      | React.KeyboardEvent<HTMLInputElement>
-  ) => {
-    if (event) event.preventDefault();
-    submitEvent && submitEvent(stateValue, 0);
-  };
+  useEffect(() => {
+    _setValue(value);
+  }, [value]);
 
   return (
-    <SearchInputStyled className={`${className ? className : ''}`}>
+    <SearchInputStyled
+      onSubmit={e => handleSubmit(e)}
+      autoCapitalize="off"
+      className={`${className ? className : ''}`}
+    >
       <label htmlFor="searchInput">Keyword search</label>
       <input
-        type="text"
-        placeholder={placeholderText ? placeholderText : 'Search'}
-        autoComplete="off"
-        value={stateValue}
-        onChange={handleChange}
-        onKeyDown={handleKeyPress}
+        type="search"
+        value={_value}
+        onChange={e => handleChange(e)}
+        placeholder={placeholder ? placeholder : 'Search'}
         id="searchInput"
       />
-      <button onClick={handleSubmit}>Go</button>
+      <button type="submit" value="search">
+        Go
+      </button>
     </SearchInputStyled>
   );
 };

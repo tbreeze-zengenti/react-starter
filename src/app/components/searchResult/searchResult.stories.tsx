@@ -2,6 +2,7 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import SearchResult from './searchResult';
+import { MemoryRouter } from 'react-router-dom';
 
 const meta: Meta<typeof SearchResult> = {
   title: 'Components / Search / Search Result',
@@ -21,22 +22,30 @@ export default meta;
 
 type Story = StoryObj<typeof SearchResult>;
 
-export const SearchResultStory: Story = {};
+export const SearchResultStory: Story = {
+  render: args => (
+    <MemoryRouter>
+      <SearchResult {...args} />
+    </MemoryRouter>
+  ),
+};
 
 export const SearchResultItemsStory: Story = {
   render: args => (
-    <div {...args}>
-      <SearchResult {...args} />
-      <SearchResult
-        {...args}
-        title="Register for our new subscription service"
-        description="Leif Club, our new subscription service helps you create a house full of beautiful healthy plants"
-      />
-      <SearchResult
-        {...args}
-        title="Advice on how to care for your plants"
-        description="Advice on choosing the best plants for your lifestyle"
-      />
-    </div>
+    <MemoryRouter>
+      <div {...args}>
+        <SearchResult {...args} />
+        <SearchResult
+          {...args}
+          title="Register for our new subscription service"
+          description="Leif Club, our new subscription service helps you create a house full of beautiful healthy plants"
+        />
+        <SearchResult
+          {...args}
+          title="Advice on how to care for your plants"
+          description="Advice on choosing the best plants for your lifestyle"
+        />
+      </div>
+    </MemoryRouter>
   ),
 };

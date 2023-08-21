@@ -10,7 +10,7 @@ import omdbapiToCardpropsMapper from '~/search/transformations/omdbapi-to-cardpr
 
 import SearchResult from '~/components/searchResult/searchResult';
 import { SearchResultProps } from '~/components/searchResult/searchResult.types';
-import SearchInput from '~/components/searchInput/searchInput.component';
+import SearchInput from '~/components/searchInput/searchInput';
 
 const minilistInitState = {
   id: '',
@@ -75,12 +75,7 @@ const SearchPage = () => {
       <SearchComponent
         title={title}
         results={results}
-        input={
-          <SearchInput
-            searchTerm={searchTerm}
-            updateSearchTerm={updateSearchTerm}
-          />
-        }
+        input={<SearchInput value={searchTerm} submit={updateSearchTerm} />}
       />
       <br />
       {/* Minilist Search */}
