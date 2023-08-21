@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import {
+  useFacets,
   useMinilist,
   UseMinilistProps,
 } from '@zengenti/contensis-react-base/search';
-import uniqueID from '~/core/util/unique';
-import SearchContainer from '~/features/search';
-import mapEntriesToResults from '~/features/search/transformations/entry-to-cardprops.mapper';
-import omdbapiToCardpropsMapper from '~/features/search/transformations/omdbapi-to-cardprops.mapper';
-import ResultCard from '~/features/search/components/ResultCard';
+
+import mappers from '~/search/transformations';
+import omdbapiToCardpropsMapper from '~/search/transformations/omdbapi-to-cardprops.mapper';
+
+import SearchResult from '~/components/searchResult/searchResult';
+import { SearchResultProps } from '~/components/searchResult/searchResult.types';
+import SearchInput from '~/components/searchInput/searchInput';
 
 const minilistInitState = {
   id: '',
@@ -19,15 +22,14 @@ const SearchPage = () => {
     useState(minilistInitState);
 
   const [movieMinilist, setMovieConfig] = useState(minilistInitState);
-  const { results: movies, title: minlistTitle } = useMinilist(movieMinilist);
 
   useEffect(() => {
     // Using a setTimeout to allow the async search bundles to
     // fully register before triggering a minilist in a static route
     setTimeout(() => {
       setRelatedContentConfig({
-        id: 'relatedContent',
-        mapper: mapEntriesToResults,
+        id: 'all',
+        mapper: mappers.results,
       });
 
       setMovieConfig({
@@ -35,31 +37,69 @@ const SearchPage = () => {
         config: {
           title: 'Custom Api',
           customApi: {
-            uri: 'http://www.omdbapi.com/?apikey=b194ff96&s=dawn+of+the+dead',
+            uri: 'http://www.omdbapi.com/?apikey=b194ff96',
           },
         },
-        mapper: omdbapiToCardpropsMapper,
+        mappers: {
+          customApi: () => ({
+            s: 'dawn of the dead',
+          }),
+          results: omdbapiToCardpropsMapper,
+        },
       });
     }, 500);
   }, []);
 
-  const { results: related, title: relatedTitle } = useMinilist(
-    relatedContentMinilist
-  );
+  // Bare minimum working site search example
+  // Note: More SearchProps will be used in a complete example
+  const {
+    results,
+    facet: { title },
+    updateSearchTerm,
+    searchTerm,
+  } = useFacets<SearchResultProps>({ mappers });
+
+  // Minilist example using an existing minilist config
+  const { results: related, title: relatedTitle } =
+    useMinilist<SearchResultProps>(relatedContentMinilist);
+
+  // Minilist example using a config that is created on the fly
+  // and also is using a custom (non-Contensis) api to fetch its results
+  const { results: movies, title: minlistTitle } =
+    useMinilist<SearchResultProps>(movieMinilist);
 
   return (
     <div>
-      <SearchContainer />
-      <h2>{relatedTitle}</h2>
+      <h1>Search page</h1>
+      {/* Site Search */}
+      <SearchComponent
+        title={title}
+        results={results}
+        input={<SearchInput value={searchTerm} submit={updateSearchTerm} />}
+      />
+      <br />
+      {/* Minilist Search */}
+      <SearchComponent title={relatedTitle} results={related} />
+      <br />
+      {/* Custom Api Search */}
+      <SearchComponent title={minlistTitle} results={movies} />
+    </div>
+  );
+};
+
+type SearchComponentProps = {
+  title: string;
+  results: SearchResultProps[];
+  input?: React.ReactNode;
+};
+const SearchComponent = ({ title, results, input }: SearchComponentProps) => {
+  return (
+    <div>
+      <h2>{title}</h2>
+      {input}
       <div>
-        {related.map(content => (
-          <ResultCard key={uniqueID()} {...content} />
-        ))}
-      </div>
-      <h2>{minlistTitle}</h2>
-      <div>
-        {movies.map(movie => (
-          <ResultCard key={uniqueID()} {...movie} />
+        {results.map(content => (
+          <SearchResult key={content.id} {...content} />
         ))}
       </div>
     </div>

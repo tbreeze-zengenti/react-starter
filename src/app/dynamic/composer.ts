@@ -1,9 +1,7 @@
-// import loadable from './loadable';
 import loadable from '@loadable/component';
 
-export const Link = loadable(
-  () =>
-    import(
-      /* webpackChunkName: "example-composer-item" */ '~/features/link/Link'
-    )
+import { MarkupProps } from '~/components/markup/markup.types';
+
+export const Markup = loadable<MarkupProps>(
+  () => import(/* webpackChunkName: "markup" */ '~/components/markup/markup')
 );

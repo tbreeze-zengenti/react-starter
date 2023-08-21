@@ -1,24 +1,37 @@
 <!DOCTYPE html>
 <!-- NOTICE: This is a development html file used by webpack-dev-server. Everything you use in this file will not be included in production build. In order to extend production index.html, use index.ejs file. -->
-<html lang="en">
+<html lang="en" dir="ltr">
+  <head>
+    <!-- General metadata *Common to all pages.-->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: light)"
+      content="#37bfa7"
+    />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: dark)"
+      content="#e75f44"
+    />
 
-<head>
-  <!-- General metadata *Common to all pages.-->
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <!--[if IE 11]>
+    <!--[if IE 11]>
       <meta name="msapplication-config" content="static/browserconfig.xml" />
     <![endif]-->
 
-  <!-- Standard favicon -->
-  <link rel="icon" type="image/x-icon" href="/static/img/icons/favicon.ico" />
-  <link rel="icon" type="image/png" href="/static/img/icons/favicon.png" />
-  <link rel="manifest" href="/static/manifest.webmanifest" />
-</head>
+    <!-- Favicon -->
+    <!-- 32×32 -->
+    <link rel="icon" href="/icon/favicon.ico" sizes="any" />
+    <link rel="icon" href="/icon/icon.svg" type="image/svg+xml" />
+    <!-- 180×180 -->
+    <link rel="apple-touch-icon" href="/icon/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="stylesheet" media="print" type="text/css" href="/print.css" />
+  </head>
 
-<body>
-  <div id="root"></div>
-</body>
-
+  <body>
+    <div id="root"></div>
+  </body>
 </html>

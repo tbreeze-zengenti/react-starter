@@ -1,7 +1,7 @@
 import { Op, OrderBy, Query } from 'contensis-delivery-api';
-import { cachedSearch } from '~/core/util/ContensisDeliveryApi';
-import { dynamicSort } from '~/core/util/helpers';
 import { streamToPromise, SitemapStream } from 'sitemap';
+import { cachedSearch } from '~/routes/util/contensisDeliveryAPI';
+import type { Entry } from 'contensis-delivery-api/lib/models';
 
 /* global PUBLIC_URI */
 const publicUri = PUBLIC_URI;
@@ -71,19 +71,35 @@ const getEntries = async (
       6,
       project || contensisConfig.projectId
     );
-  } catch (error: any) {
-    throw new Error(error);
+  } catch (error: unknown) {
+    throw new Error(error as string);
   }
 };
 
-const mapEntryToSitemapUrl = (entry: any) => {
+const mapEntryToSitemapUrl = (entry: Entry) => {
   const { uri } = entry.sys;
   // v12
   const url = uri;
 
   // Return url and lastmod date
-  return { url: encodeURI(url), lastmod: entry.sys.version.published };
+  return { url: encodeURI(url), lastmod: entry.sys.version?.published };
 };
+
+function dynamicSort(property: string) {
+  let sortOrder = 1;
+  if (property[0] === '-') {
+    sortOrder = -1;
+    property = property.substr(1);
+  }
+  return function (a: any, b: any) {
+    /* next line works with strings and numbers,
+     * and you may want to customize it to your needs
+     */
+    const result =
+      a[property] < b[property] ? -1 : a[property] > b[property] ? 1 : 0;
+    return result * sortOrder;
+  };
+}
 
 const generateSitemap = async (project: string) =>
   // eslint-disable-next-line

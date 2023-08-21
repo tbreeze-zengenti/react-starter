@@ -20,6 +20,7 @@ module.exports = {
     'plugin:jsx-a11y/recommended',
     'plugin:prettier/recommended',
     'prettier',
+    'plugin:storybook/recommended',
   ],
   plugins: ['prettier', 'react', 'react-hooks'],
   env: {
@@ -35,6 +36,9 @@ module.exports = {
       version: '^17.0.0',
     },
     'import/resolver': {
+      node: {
+        moduleDirectory: ['node_modules'],
+      },
       // Will look for webpack.config.js to resolve path
       webpack: {
         config: path.resolve(__dirname, './webpack/webpack.config.base.js'),
@@ -97,6 +101,7 @@ module.exports = {
           typescript: {},
         },
       },
+
       /**
        * Typescript Rules
        * https://github.com/bradzacher/eslint-plugin-typescript
@@ -112,7 +117,6 @@ module.exports = {
         '@typescript-eslint/member-ordering': 'error',
         // Require consistent spacing around type annotations
         '@typescript-eslint/type-annotation-spacing': 'error',
-
         '@typescript-eslint/adjacent-overload-signatures': 'error',
         '@typescript-eslint/array-type': [
           'error',

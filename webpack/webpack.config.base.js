@@ -23,17 +23,8 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(t|j)sx?$/,
-        include: [
-          path.resolve('src'),
-          // These dependencies have es6 syntax which ie11 doesn't like.
-          path.resolve('node_modules/contensis-delivery-api'),
-          path.resolve('node_modules/@zengenti/contensis-react-base'),
-        ],
-        use: {
-          loader: 'babel-loader',
-          options: { envName: 'modern' },
-        },
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.(gif|png|jpe?g|svg|ico)$/i,

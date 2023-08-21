@@ -4,11 +4,11 @@ const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const LoadablePlugin = require('@loadable/webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const WebpackModules = require('webpack-modules');
 const webpackNodeExternals = require('webpack-node-externals');
 const BundleAnalyzerPlugin =
   require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const { ESBuildMinifyPlugin } = require('esbuild-loader');
 
 const BASE_CONFIG = require('./webpack.config.base');
 const { DEFINE_CONFIG, WEBPACK_DEFINE_CONFIG } = require('./bundle-info');
@@ -32,7 +32,7 @@ const CLIENT_MODERN_CONFIG = {
   name: `webpack-client-prod-config [modern]`,
   entry: {
     app: [
-      path.resolve(__dirname, '../src/client/polyfills.modern.js'),
+      path.resolve(__dirname, '../src/client/polyfills.modern.ts'),
       path.resolve(__dirname, '../src/client/client-entrypoint.ts'),
     ],
   },
@@ -40,6 +40,25 @@ const CLIENT_MODERN_CONFIG = {
     path: path.resolve(__dirname, `../dist`),
     filename: `${staticFolderPath}/modern/js/[name].[chunkhash].mjs`,
     chunkFilename: `${staticFolderPath}/modern/js/[name].[chunkhash].mjs`,
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(t|j)sx?$/,
+        loader: 'esbuild-loader',
+        options: {
+          loader: 'tsx',
+          target: 'es2015',
+        },
+      },
+    ],
+  },
+  optimization: {
+    minimizer: [
+      new ESBuildMinifyPlugin({
+        target: 'es2015',
+      }),
+    ],
   },
   plugins: [
     new WebpackModules(),
@@ -69,14 +88,27 @@ const CLIENT_MODERN_CONFIG = {
         filename: path.resolve(__dirname, `../dist/modern`),
       },
     }),
+    // Do these plugins only once per build so we'll do it here instead of base
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          globOptions: {
+            ignore: ['index.html', 'index.ejs'],
+          },
+          from: path.resolve(__dirname, '../public'),
+          to: path.resolve(__dirname, `../dist/static`),
+        },
+      ],
+    }),
   ],
 };
 
 const CLIENT_LEGACY_CONFIG = {
   name: `webpack-client-prod-config [legacy]`,
+  target: ['browserslist:IE >= 11', 'browserslist:> 1%'],
   entry: {
     app: [
-      path.resolve(__dirname, '../src/client/polyfills.legacy.js'),
+      path.resolve(__dirname, '../src/client/polyfills.legacy.ts'),
       path.resolve(__dirname, '../src/client/client-entrypoint.ts'),
     ],
   },
@@ -106,6 +138,13 @@ const CLIENT_LEGACY_CONFIG = {
       },
     ],
   },
+  optimization: {
+    minimizer: [
+      new ESBuildMinifyPlugin({
+        target: 'es5',
+      }),
+    ],
+  },
   plugins: [
     new WebpackModules(),
     new HtmlWebPackPlugin({
@@ -125,7 +164,7 @@ const CLIENT_LEGACY_CONFIG = {
     new HtmlWebPackPlugin({
       template: path.resolve(__dirname, '../public/index_static.ejs'),
       filename: path.resolve(__dirname, `../dist/index_static.html`),
-      inject: true,
+      inject: false,
       minify,
       chunksSortMode: 'none',
     }),
@@ -140,7 +179,12 @@ const CLIENT_LEGACY_CONFIG = {
 const CLIENT_PROD_CONFIG = {
   target: 'web',
   mode: 'production',
-  stats: 'errors-only',
+  stats: {
+    preset: 'errors-only',
+  },
+  resolve: {
+    mainFields: ['browser', 'module', 'main'],
+  },
   optimization: {
     splitChunks: {
       name: false,
@@ -154,37 +198,19 @@ const CLIENT_PROD_CONFIG = {
     },
     runtimeChunk: 'single',
   },
-  plugins: [
-    new webpack.DefinePlugin(WEBPACK_DEFINE_CONFIG.prod),
-    // Do these plugins only once per build so we'll do it here instead of base
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          globOptions: {
-            ignore: ['index.html', 'index.ejs'],
-          },
-          from: path.resolve(__dirname, '../public'),
-          to: path.resolve(__dirname, `../dist/${staticFolderPath}`),
-        },
-      ],
-    }),
-    new ImageminPlugin({
-      test: /\.(jpe?g|png|gif|svg)$/i,
-      optipng: {
-        optimizationLevel: 9,
-      },
-    }),
-  ],
+  plugins: [new webpack.DefinePlugin(WEBPACK_DEFINE_CONFIG.prod)],
 };
 
 const SERVER_PROD_CONFIG = {
   name: 'webpack-server-prod-config',
   target: 'node',
   mode: 'production',
-  stats: 'errors-only',
+  stats: {
+    preset: 'errors-only',
+  },
   entry: {
     server: path.resolve(__dirname, '../src/server/server.ts'),
-    test: path.resolve(__dirname, '../src/server/test.js'),
+    test: path.resolve(__dirname, '../src/server/test.ts'),
   },
   output: {
     filename: '[name].js',
@@ -200,18 +226,29 @@ const SERVER_PROD_CONFIG = {
     rules: [
       {
         test: /\.(t|j)sx?$/,
-        include: [
-          path.resolve('src'),
-          // These dependencies have es6 syntax which ie11 doesn't like.
-          path.resolve('node_modules/contensis-delivery-api'),
-          path.resolve('node_modules/fromentries'),
-          path.resolve('node_modules/@zengenti/contensis-react-base'),
-        ],
-        use: {
-          loader: 'babel-loader',
-          options: { envName: 'legacy' },
+        loader: 'esbuild-loader',
+        options: {
+          loader: 'tsx',
+          target: 'node16',
         },
       },
+      {
+        test: /\.(t|j)sx?$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            plugins: ['@loadable/babel-plugin'],
+          },
+        },
+      },
+    ],
+  },
+  optimization: {
+    minimizer: [
+      new ESBuildMinifyPlugin({
+        target: 'es2015',
+      }),
     ],
   },
   plugins: [
@@ -224,20 +261,21 @@ const SERVER_PROD_CONFIG = {
   ],
 };
 
-const modernClientConfig = merge(
-  BASE_CONFIG,
-  CLIENT_PROD_CONFIG,
-  CLIENT_MODERN_CONFIG
-);
-const legacyClientConfig = merge(
-  BASE_CONFIG,
-  CLIENT_PROD_CONFIG,
-  CLIENT_LEGACY_CONFIG
-);
-const serverConfig = merge(BASE_CONFIG, SERVER_PROD_CONFIG);
+const ANALYZE_CONFIG = {
+  plugins: [new BundleAnalyzerPlugin({ analyzerMode: 'static' })],
+};
 
-if (process.env.ANALYZE)
-  module.exports = merge(modernClientConfig, {
-    plugins: [new BundleAnalyzerPlugin({ analyzerMode: 'static' })],
-  });
-else module.exports = [modernClientConfig, legacyClientConfig, serverConfig];
+if (process.env.ANALYZE) {
+  module.exports = merge(
+    BASE_CONFIG,
+    CLIENT_PROD_CONFIG,
+    CLIENT_MODERN_CONFIG,
+    ANALYZE_CONFIG
+  );
+} else {
+  module.exports = [
+    merge(BASE_CONFIG, CLIENT_PROD_CONFIG, CLIENT_MODERN_CONFIG),
+    merge(BASE_CONFIG, CLIENT_PROD_CONFIG, CLIENT_LEGACY_CONFIG),
+    merge(BASE_CONFIG, SERVER_PROD_CONFIG),
+  ];
+}

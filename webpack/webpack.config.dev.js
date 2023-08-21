@@ -17,7 +17,9 @@ const staticFolderPath = DEFINE_CONFIG.production.STATIC_PATH;
 const CLIENT_DEV_CONFIG = {
   name: 'webpack-dev-config',
   target: 'web',
-  stats: 'errors-only',
+  stats: {
+    preset: 'errors-only',
+  },
   mode: 'development',
   entry: path.resolve(__dirname, '../src/client/client-entrypoint.ts'),
   devtool: 'source-map',
@@ -25,12 +27,20 @@ const CLIENT_DEV_CONFIG = {
     rules: [
       {
         test: /\.(t|j)sx?$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: { envName: 'modern' },
+        loader: 'esbuild-loader',
+        options: {
+          loader: 'tsx',
+          target: 'es2015',
         },
       },
+      // {
+      //   test: /\.(t|j)sx?$/,
+      //   exclude: /node_modules/,
+      //   use: {
+      //     loader: 'babel-loader',
+      //     options: { envName: 'modern' },
+      //   },
+      // },
       {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
@@ -57,8 +67,8 @@ const CLIENT_DEV_CONFIG = {
       template: path.resolve(__dirname, '../public/index.html'),
       filename: './index.html',
       chunksSortMode: 'none',
+      favicon: path.resolve(__dirname, '../public/icon/icon-dev.svg'),
     }),
-    new webpack.HotModuleReplacementPlugin(),
     new BrowserSyncPlugin(
       {
         server: false,

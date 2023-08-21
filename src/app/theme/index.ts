@@ -1,16 +1,12 @@
-import colors from './colors';
-import transitions from './transitions';
-import { mq, grid, spacing, sizes } from './layout';
+import { DefaultTheme } from 'styled-components';
 
-export const defaultTheme = {
+import { colors } from './colors';
+import { breakpoints, mq, spacing, grid } from './layout';
+
+export const defaultTheme: DefaultTheme = {
   colors,
-  transitions,
+  breakpoints,
   mq,
-  grid,
   spacing,
-  sizes,
-};
-
-export const darkTheme = {
-  // Testing,
+  grid,
 };

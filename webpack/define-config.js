@@ -1,7 +1,7 @@
 const packagejson = require('../package.json');
 const { urls } = require('@zengenti/contensis-react-base/util');
 
-require('custom-env').env(process.env.env || process.env.npm_config_env);
+require('custom-env').env(process.env.env || process.env.npm_config_env || '');
 
 const {
   PUBLIC_URL,
@@ -66,8 +66,10 @@ const DELIVERY_API_CONFIG = {
 
 const development = {
   __isBrowser__: true,
+  ALIAS,
   DELIVERY_API_CONFIG,
   DISABLE_SSR_REDUX: false,
+  PROJECT,
   PROJECTS: PROJECTS(process.env),
   ALLOWED_GROUPS,
   PROXY_DELIVERY_API: true,
