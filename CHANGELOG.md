@@ -5,7 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Pending]
+## [0.1.5] - 2023-08-21
+
+- Merged 'storybook-7' to bring support for Storybook 7
+- Added a standalone DeepLinkMeta component
+- Merged 'chore/operation-purge-any' to improve typing across the project
+- Docker builds now clear the npm cache to reduce image size for Blocks
+- Support for Canonical paths via CRB
+- Disabled Storybook builds until a viable Blocks method is supported
+- Removed 'webpack-parallel' as a part of the SB7 merge
 
 ## [0.1.5] - 2023-07-08
 
