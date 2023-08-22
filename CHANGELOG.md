@@ -5,9 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Pending]
+
+- Starter now using develop -> master Gitflow
+- Merged [Uses slug instead of name for successful branch builds](https://gitlab.zengenti.com/starter-projects/react-starter/-/merge_requests/6)
+
 ## [0.1.5] - 2023-08-21
 
-- Merged 'storybook-7' to bring support for Storybook 7
+- Merged ['storybook-7' to bring support for Storybook 7](https://gitlab.zengenti.com/starter-projects/react-starter/-/merge_requests/7)
 - Added a standalone DeepLinkMeta component
 - Merged 'chore/operation-purge-any' to improve typing across the project
 - Docker builds now clear the npm cache to reduce image size for Blocks
