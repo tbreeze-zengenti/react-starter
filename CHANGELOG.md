@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Pending]
 
+- Upgraded to Node 18 + NPM ^9.8.1
 - Starter now using develop -> master Gitflow
 - Merged [Uses slug instead of name for successful branch builds](https://gitlab.zengenti.com/starter-projects/react-starter/-/merge_requests/6)
 
