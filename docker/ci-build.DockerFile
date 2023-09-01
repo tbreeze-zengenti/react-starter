@@ -1,7 +1,6 @@
-
 ARG builder_image
 FROM ${builder_image} as basebuilder
-FROM node:16-alpine
+FROM node:18-alpine
 
 WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
