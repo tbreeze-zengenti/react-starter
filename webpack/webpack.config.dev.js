@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
-const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const BASE_CONFIG = require('./webpack.config.base');
@@ -30,17 +29,8 @@ const CLIENT_DEV_CONFIG = {
         loader: 'esbuild-loader',
         options: {
           loader: 'tsx',
-          target: 'es2015',
         },
       },
-      // {
-      //   test: /\.(t|j)sx?$/,
-      //   exclude: /node_modules/,
-      //   use: {
-      //     loader: 'babel-loader',
-      //     options: { envName: 'modern' },
-      //   },
-      // },
       {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
@@ -69,17 +59,6 @@ const CLIENT_DEV_CONFIG = {
       chunksSortMode: 'none',
       favicon: path.resolve(__dirname, '../public/icon/icon-dev.svg'),
     }),
-    new BrowserSyncPlugin(
-      {
-        server: false,
-        host: 'localhost',
-        port: 3000,
-        proxy: 'http://localhost:3010',
-        open: 'local',
-        ui: false,
-      },
-      { reload: false }
-    ),
     new CopyWebpackPlugin({
       patterns: [
         {
@@ -92,17 +71,9 @@ const CLIENT_DEV_CONFIG = {
   ],
   devServer: {
     host: '0.0.0.0',
-    port: 3010,
+    port: 'auto',
     hot: true,
     historyApiFallback: true,
-    // contentBase: path.join(__dirname, 'src'),
-    // watchContentBase: true,
-    // quiet: false,
-    // watchOptions: {
-    //   ignored: ['node_modules'],
-    //   // aggregateTimeout: 300,
-    //   // poll: 1000,
-    // },
     proxy: DEVSERVER_PROXIES,
   },
 };

@@ -1,32 +1,20 @@
 const defineConfig = require('./webpack/define-config').build;
 
 const presets = {
-  base: [],
-  legacy: [
-    [
-      '@babel/preset-env',
-      {
-        modules: 'commonjs',
-        useBuiltIns: false,
-        targets: ['node 8', 'IE >= 11', '> 1%'],
-      },
-    ],
-    '@babel/preset-react',
-    ['@babel/preset-typescript', { allExtensions: true, isTSX: true }],
-  ],
-  modern: [
+  base: [
     [
       '@babel/preset-env',
       {
         corejs: '3',
         loose: true,
-        targets: ['chrome 78', 'firefox 72'],
         useBuiltIns: 'entry',
       },
     ],
     ['@babel/preset-react', { loose: true }],
     ['@babel/preset-typescript', { allExtensions: true, isTSX: true }],
   ],
+  legacy: [],
+  modern: [],
 };
 
 const plugins = {
@@ -51,25 +39,9 @@ const plugins = {
     ],
     'react-hot-loader/babel',
     '@loadable/babel-plugin',
-    '@babel/plugin-syntax-dynamic-import',
-    '@babel/plugin-proposal-optional-chaining',
   ],
-  legacy: [
-    [
-      '@babel/plugin-transform-regenerator',
-      {
-        asyncGenerators: true,
-        generators: true,
-        async: true,
-      },
-    ],
-    '@babel/plugin-transform-runtime',
-    '@babel/plugin-proposal-class-properties',
-    '@babel/plugin-syntax-export-default-from',
-    '@babel/plugin-proposal-export-default-from',
-    '@babel/plugin-transform-classes',
-  ],
-  modern: [['@babel/plugin-proposal-class-properties', { loose: true }]],
+  legacy: [],
+  modern: [],
 };
 
 module.exports = {
