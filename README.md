@@ -62,7 +62,7 @@ Media Queries are defined in pixels but the Theme object is scoped to allow othe
 
 ## 📚 Storybook
 
-This project uses storybook v6, create stories inside the component folder as `componentName.stories.tsx`
+This project uses storybook v7, create stories inside the component folder as `componentName.stories.tsx`
 
 ## 👌 Entry Picker Addon
 
