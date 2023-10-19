@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
-const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const BASE_CONFIG = require('./webpack.config.base');
@@ -69,17 +68,6 @@ const CLIENT_DEV_CONFIG = {
       chunksSortMode: 'none',
       favicon: path.resolve(__dirname, '../public/icon/icon-dev.svg'),
     }),
-    new BrowserSyncPlugin(
-      {
-        server: false,
-        host: 'localhost',
-        port: 3000,
-        proxy: 'http://localhost:3010',
-        open: 'local',
-        ui: false,
-      },
-      { reload: false }
-    ),
     new CopyWebpackPlugin({
       patterns: [
         {
@@ -92,9 +80,10 @@ const CLIENT_DEV_CONFIG = {
   ],
   devServer: {
     host: '0.0.0.0',
-    port: 3010,
+    port: 3000,
     hot: true,
     historyApiFallback: true,
+    open: true,
     // contentBase: path.join(__dirname, 'src'),
     // watchContentBase: true,
     // quiet: false,
