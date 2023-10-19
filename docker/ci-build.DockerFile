@@ -1,7 +1,7 @@
 
 ARG builder_image
 FROM ${builder_image} as basebuilder
-FROM node:16-alpine
+FROM node:18-alpine
 
 WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
@@ -18,7 +18,7 @@ COPY ./manifest.json /manifest.json
 # If launcher.js cannot find an existing start script, it will generate one to start the server based on the supplied args
 ENTRYPOINT node --max-http-header-size=800000 dist/server/launcher.js --alias=$alias --projectId=$projectId --accessToken=$accessToken
 
-# Standard classic start script, will start the server with the environment started last 
+# Standard classic start script, will start the server with the environment started last
 # (or using configuration from the default .env if never started)
 #ENTRYPOINT node dist/server/start.js
 
