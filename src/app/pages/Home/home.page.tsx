@@ -4,7 +4,7 @@ import MainLayout from '~/layouts/main.layout';
 
 import HomeStyled from './home.styled';
 
-import { HomeProps, MappedHomeEntry } from './home.d';
+import { HomeProps, MappedHomeEntry } from './home.type';
 
 import Link from '~/components/link/link';
 import Meta from '~/components/meta/meta';

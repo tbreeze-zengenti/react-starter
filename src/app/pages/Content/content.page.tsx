@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { PageProps, MappedContentPage } from './content';
+import { PageProps, MappedContentPage } from './content.type';
 import { Composer } from '~/dynamic/components';
 
 const ContentPage = ({ mappedEntry }: PageProps) => {
