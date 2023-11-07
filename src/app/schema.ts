@@ -44,7 +44,7 @@ export const ContentTypes = {
   config: 'siteSettings',
 };
 
-export const SiteConfig = [];
+export const SiteConfigFields = ['entryTitle'];
 
 export const ComposerComponents = {
   markup: 'richText',
