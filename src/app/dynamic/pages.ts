@@ -7,7 +7,7 @@ import loadable from '@loadable/component';
 // export type HomePageProps = RouteComponentProps<MappedEntry>;
 import { RouteComponentProps } from '@zengenti/contensis-react-base';
 
-import { HomeProps } from '~/pages/Home/home';
+import { HomeProps } from '~/pages/Home/home.type';
 
 export const Home = loadable<HomeProps>(
   () => import(/* webpackChunkName: "home.page" */ '~/pages/Home/home.page')
