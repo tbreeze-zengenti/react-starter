@@ -7,9 +7,9 @@ Commonly know as React Starter, this is our starter project for most client buil
 - Define your CMS environment in the `.env` file
 - Set the project name and repository URL inside `package.json`
 - Run `npm i` to install the project
-- Finally run `npm run start` to see your project in the browser
+- Finally, run `npm run start` to see your project in the browser
 
-For full compatibility please ensure you are running Node 16 & an suitably modern version of NPM (7+) before installing.
+For full compatibility please ensure you are running Node 18 & a suitably modern version of NPM (7+) before installing.
 
 If you encounter any installation issues you should remove your `/node_modules` folder & run `npm install --legacy-peer-deps`.
 
@@ -26,7 +26,7 @@ If you encounter any installation issues you should remove your `/node_modules` 
 
 This project requires an `.env` file to be defined in the root. This file contains the core information required to connect to the project's CMS environment. The default `.env` supplied connects the project to our Leif Demo CMS to drive example pages inside the app.
 
-By default the `npm start` & `npm run build` scripts will utilise the `.env` file in the root directory. You may create more env files for different CMS environments by applying a suffix `.{suffix}` to the file name. For example a development env might look like: `.env.development`
+By default, the `npm start` & `npm run build` scripts will utilise the `.env` file in the root directory. You may create more env files for different CMS environments by applying a suffix `.{suffix}` to the file name. For example a development env might look like: `.env.development`
 
 To activate an alternative env upon start/build you need to reference the `.{suffix}` in this script: `npm --env={suffix} run-script start`.
 
@@ -47,7 +47,7 @@ The `theme/colors.ts` file provides a basic example of working with multiple col
 
 The `theme/layout.ts` file has a handful of pre-defined breakpoints that are utilised to generated `min` & `max` media queries. A basic spacing object is provided based upon an 8px grid.
 
-Finally the `theme/globalStyles` includes both `normalize` & a custom reset (you may disable `normalize` by commenting it out), a basic CSS Variables setup should you wish to use them, various helper classes (for example `.sr-only` for accomodating screen readers).
+Finally, the `theme/globalStyles` includes both `normalize` & a custom reset (you may disable `normalize` by commenting it out), a basic CSS Variables setup should you wish to use them, various helper classes (for example `.sr-only` for accomodating screen readers).
 
 ## 📏 Units
 
@@ -64,6 +64,14 @@ Media Queries are defined in pixels but the Theme object is scoped to allow othe
 
 This project uses storybook v7, create stories inside the component folder as `componentName.stories.tsx`
 
+### Storybook + Blocks
+
+1. Goto `.gitlab-ci.yml` and uncomment relevant storybook build steps.
+    1. Be sure to update variables where applicable.
+2. Commit & Push to GitLab repo so that Storybook is built and then pushed to Contensis.
+3. Create a Siteview Node, typically this will be `/storybook`
+4. Assign Renderer to new Siteview Node, aka the block that should just have been built and pushed to Contensis.
+
 ## 👌 Entry Picker Addon
 
 The [Contensis Entry Picker Addon](https://github.com/contensis/contensis-entry-picker-storybook-addon) is installed for Storybook. The `Tag` component is provided as working example.
@@ -72,7 +80,7 @@ The [Contensis Entry Picker Addon](https://github.com/contensis/contensis-entry-
 
 Provided is a basic `skipToMainContent` for accessibility purposes. It's loaded into `App.tsx` & has a customisable `path` prop.
 
-By default this will skip to the `#main` tag defined in `layouts/main.layout.tsx`
+By default, this will skip to the `#main` tag defined in `layouts/main.layout.tsx`
 
 ## ⭐ Favicons
 
