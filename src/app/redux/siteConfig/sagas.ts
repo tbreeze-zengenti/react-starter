@@ -44,7 +44,7 @@ export function* ensureSiteConfigSaga(): any {
       if (!SiteConfigFields || SiteConfigFields.length <= 0) return;
 
       // @ts-ignore
-      const results: any = yield cachedSearch.search(query, 2);
+      const results: any = yield cachedSearch.search(query, 0);
 
       const siteConfig =
         results && results.items && results.items.length > 0
