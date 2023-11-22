@@ -2,10 +2,12 @@ import { path as appRootPath } from 'app-root-path';
 import ZengentiAppServer from '@zengenti/contensis-react-base';
 import ReactApp from '~/App';
 
-import routes from '~/routes';
+import contentTypeRoutes from '~/routes/contentTypeRoutes';
+import staticRoutes from '~/routes/staticRoutes';
+import withEvents from '~/routes/withEvents';
+
 import withReducers from '~/redux/reducers';
 import withSagas from '~/redux/sagas';
-import withEvents from '~/routes/withEvents';
 
 import ServerFeatures from './features/configure';
 import packagejson from '-/package.json';
@@ -14,7 +16,10 @@ ZengentiAppServer.start(
   ReactApp,
   {
     appRootPath,
-    routes,
+    routes: {
+      ContentTypeMappings: contentTypeRoutes,
+      StaticRoutes: staticRoutes,
+    },
     stateType: 'js',
     withReducers,
     withSagas,

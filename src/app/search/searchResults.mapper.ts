@@ -17,6 +17,6 @@ export const mappers = {
   default: baseMapping,
 };
 
-const mapEntriesToResults = (entries: Entry[]) => mapEntries(entries, mappers);
+const searchResultsMapper = (entries: Entry[]) => mapEntries(entries, mappers);
 
-export default mapEntriesToResults;
+export default searchResultsMapper;

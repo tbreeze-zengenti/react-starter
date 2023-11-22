@@ -115,10 +115,8 @@
   "dependencies": {
     "@zengenti/contensis-react-base": "^3.0.2-beta.21",
     "app-root-path": "^3.0.0",
-    "query-string": "^5.1.1",
     "react-router-hash-link": "^2.4.3",
     "sitemap": "^7.1.1",
-    "styled-normalize": "^8.0.7",
-    "uuid": "^8.3.2"
+    "styled-normalize": "^8.0.7"
   }
 }

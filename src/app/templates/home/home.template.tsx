@@ -1,16 +1,16 @@
 import React from 'react';
 
-import MainLayout from '~/layouts/main.layout';
+import MainLayout from '~/templates/main/main.template';
 
 import HomeStyled from './home.styled';
 
-import { HomeProps, MappedHomeEntry } from './home.type';
+import { HomeProps } from './home.type';
 
 import Link from '~/components/link/link';
 import Meta from '~/components/meta/meta';
 
 const Home = ({ mappedEntry }: HomeProps) => {
-  const { title } = mappedEntry || ({} as MappedHomeEntry);
+  const { title } = mappedEntry || {};
   return (
     <MainLayout>
       <HomeStyled className="flow">

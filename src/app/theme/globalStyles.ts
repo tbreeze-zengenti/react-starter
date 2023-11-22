@@ -1,8 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import { normalize } from 'styled-normalize';
 
-import { grid, mq, spacing } from './layout';
-
 const GlobalStyle = createGlobalStyle`
   /* Normalize/reset css */
   ${normalize}
@@ -15,13 +13,6 @@ const GlobalStyle = createGlobalStyle`
 
   /* CSS Variables */
   :root {
-    --flow: ${spacing.xs};
-  }
-
-  @media ${mq.min.mobile} {
-    :root {
-      --flow: ${spacing.s};
-    }
   }
 
   /* Resets the z-index stacking order */
@@ -52,7 +43,6 @@ const GlobalStyle = createGlobalStyle`
   /* this sets 1rem to 10px */
   html, body {
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-    font-size: 62.5%;
   }
 
   /* Set core root defaults */
@@ -115,23 +105,6 @@ const GlobalStyle = createGlobalStyle`
     position: absolute;
     white-space: nowrap;
     width: 1px;
-  }
-
-  /* https://piccalil.li/quick-tip/flow-utility/ */
-  /* If --flow doesn't exist it'll default to 1em */
-  .flow > * + * {
-    margin-top: var(--flow, 1em);
-  }
-
-  /* References our Theme variable  for consistency*/
-  .wrapper {
-    position: relative;
-    padding-left: ${grid.default.margin};
-    padding-right:  ${grid.default.margin};
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-    max-width: ${grid.default.width};
   }
 `;
 

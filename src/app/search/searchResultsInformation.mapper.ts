@@ -30,7 +30,7 @@ const searchSummaryTemplate = {
   },
 };
 
-const mapStateToResultsInformation = (state: AppState) =>
+const searchResultsInformationMapper = (state: AppState) =>
   mapJson(state, searchSummaryTemplate);
 
-export default mapStateToResultsInformation;
+export default searchResultsInformationMapper;

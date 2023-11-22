@@ -8,4 +8,4 @@ const projectUrl: string = PUBLIC_URI.replace(
   ''
 );
 
-export const canonicalDomain: string = `https://www.${projectUrl}`;
+export const canonicalDomain = `https://www.${projectUrl}`;

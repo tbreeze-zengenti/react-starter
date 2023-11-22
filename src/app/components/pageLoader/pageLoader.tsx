@@ -1,6 +1,6 @@
 import React from 'react';
 
-const fill: string = 'black';
+const fill = 'black';
 
 const divStyles = {
   overflow: 'hidden',
@@ -17,15 +17,10 @@ const divStyles = {
 } as React.CSSProperties;
 
 /** @description For loading states between routes only */
-export const Loading = () => {
+export const PageLoader = () => {
   return (
     <div style={divStyles}>
-      <h3
-        className="sr-only"
-        style={{ margin: '0 0 16px 0', fontSize: '16px', color: fill }}
-      >
-        Loading...
-      </h3>
+      <h3 className="sr-only">Loading...</h3>
       <svg
         width="38"
         height="38"

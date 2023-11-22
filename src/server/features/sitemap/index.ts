@@ -3,7 +3,7 @@ import generateSitemap from './sitemap';
 
 const sitemap = (app: Express) => {
   app.get('/sitemap.xml', (req, res) => {
-    const project = PROJECTS[0].id; /* global PROJECTS */
+    const project = PROJECTS[0].id;
     generateSitemap(project)
       .then(sitemap => {
         res.writeHead(200, {

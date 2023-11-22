@@ -1,6 +1,10 @@
 import { call, select } from 'redux-saga/effects';
 import { RouteLoadOptions, WithEvents } from '@zengenti/contensis-react-base';
-import { injectSearchAssets, InjectSearchAssets } from '~/redux/dynamic';
+
+import {
+  InjectSearchAssets,
+  injectSearchAssets,
+} from '~/util/injectSearchAssets';
 
 import { ListingPages } from '~/schema';
 

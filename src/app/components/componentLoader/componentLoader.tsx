@@ -1,20 +1,18 @@
 import React from 'react';
 
-import { LoaderProps } from './loader.types';
-import LoaderStyled from './loader.styled';
-
 /** @description For component level loading states, ie. {isLoading ? Loader : Component} */
-const Loader = ({ className }: LoaderProps) => {
+const ComponentLoader = (className?: string) => {
   const fill = 'black';
 
   return (
-    <LoaderStyled className={`loader ${className}`}>
+    <div className={`component-loader ${className ? className : ''}`}>
       <svg
         width="38"
         height="38"
         style={{ width: '40px', height: '40px' }}
         viewBox="0 0 38 38"
         xmlns="http://www.w3.org/2000/svg"
+        aria-label="Loading"
       >
         <defs>
           <linearGradient x1="8.042%" y1="0%" x2="65.682%" y2="23.865%" id="a">
@@ -53,8 +51,8 @@ const Loader = ({ className }: LoaderProps) => {
           </g>
         </g>
       </svg>
-    </LoaderStyled>
+    </div>
   );
 };
 
-export default Loader;
+export default ComponentLoader;

@@ -3,19 +3,13 @@ import 'styled-components';
 declare module 'styled-components' {
   export interface DefaultTheme {
     colors: {
-      white: string;
       contensis: string;
       zengenti: string;
-      primary: {
-        white: string;
-      };
-      secondary: {
-        white: string;
-      };
     };
     breakpoints: {
       px: {
         mobile: number;
+        largeMobile: number;
         tablet: number;
         laptop: number;
         desktop: number;
@@ -25,6 +19,7 @@ declare module 'styled-components' {
     mq: {
       min: {
         mobile: string;
+        largeMobile: number;
         tablet: string;
         laptop: string;
         desktop: string;
@@ -32,6 +27,7 @@ declare module 'styled-components' {
       };
       max: {
         mobile: string;
+        largeMobile: number;
         tablet: string;
         laptop: string;
         desktop: string;
@@ -47,7 +43,7 @@ declare module 'styled-components' {
       xs: string;
       /** @returns 3.2rem */
       s: string;
-      /** @returns 4em */
+      /** @returns 4rem */
       m: string;
       /** @returns 6.4rem */
       l: string;

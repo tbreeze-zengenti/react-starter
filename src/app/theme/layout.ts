@@ -21,6 +21,7 @@ export const spacing = {
 export const breakpoints = {
   px: {
     mobile: 480,
+    largeMobile: 640,
     tablet: 768,
     laptop: 992,
     desktop: 1024,
@@ -35,6 +36,7 @@ export const breakpoints = {
 export const mq = {
   min: {
     mobile: `only screen and (min-width: ${breakpoints.px.mobile}px)`,
+    largeMobile: `only screen and (min-width: ${breakpoints.px.largeMobile}px)`,
     tablet: `only screen and (min-width: ${breakpoints.px.tablet}px)`,
     laptop: `only screen and (min-width: ${breakpoints.px.laptop}px)`,
     desktop: `only screen and (min-width: ${breakpoints.px.desktop}px)`,
@@ -42,6 +44,7 @@ export const mq = {
   },
   max: {
     mobile: `only screen and (max-width: ${breakpoints.px.mobile}px)`,
+    largeMobile: `only screen and (max-width: ${breakpoints.px.largeMobile}px)`,
     tablet: `only screen and (max-width: ${breakpoints.px.tablet}px)`,
     laptop: `only screen and (max-width: ${breakpoints.px.laptop}px)`,
     desktop: `only screen and (max-width: ${breakpoints.px.desktop}px)`,

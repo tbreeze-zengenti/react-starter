@@ -1,11 +1,11 @@
 import React from 'react';
 
-interface MainLayoutProps {
+interface MainTemplateProps {
   className?: string;
   children: React.ReactElement;
 }
 
-const MainLayout = ({ className, children }: MainLayoutProps) => {
+const MainTemplate = ({ className, children }: MainTemplateProps) => {
   return (
     <>
       <main id="main" className={className}>
@@ -15,4 +15,4 @@ const MainLayout = ({ className, children }: MainLayoutProps) => {
   );
 };
 
-export default MainLayout;
+export default MainTemplate;

@@ -7,7 +7,7 @@ import {
 
 import { BaseFields, ContentTypes, FreeTextWeights } from '~/schema';
 
-export default {
+export const searchConfig = {
   tabs: [{ id: 0, label: '' }],
   facets: {
     all: {
