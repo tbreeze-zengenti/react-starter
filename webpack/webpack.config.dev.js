@@ -75,6 +75,7 @@ const CLIENT_DEV_CONFIG = {
     hot: true,
     historyApiFallback: true,
     proxy: DEVSERVER_PROXIES,
+    open: true,
   },
 };
 
