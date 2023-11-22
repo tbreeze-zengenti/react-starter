@@ -9,7 +9,7 @@ declare const __magic__: Record<string, unknown>;
 (function () {
   if (typeof globalThis === 'object') return;
   Object.defineProperty(Object.prototype, '__magic__', {
-    get: function () {
+    get() {
       return this;
     },
     configurable: true,

@@ -5,10 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Pending]
+## [0.1.6] - 2023-11-22
 
+- Upgraded to Node 18 + NPM ^9.8.1
 - Starter now using develop -> master Gitflow
 - Merged [Uses slug instead of name for successful branch builds](https://gitlab.zengenti.com/starter-projects/react-starter/-/merge_requests/6)
+- Removed legacy build
+- Removed BrowserSync due to incompatibility, see: https://github.com/Va1/browser-sync-webpack-plugin/issues/83
+- Upgraded Storybook build to work with blocks
+- SiteConfig default entry link depth reduced to 0 and query fields MUST be defined by default
+- Converted page type definitions to a .type file as opposed to a declaration file (.d.ts)
 
 ## [0.1.5] - 2023-08-21
 

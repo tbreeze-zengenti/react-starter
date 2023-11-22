@@ -1,6 +1,6 @@
 import { takeEvery, select, put } from 'redux-saga/effects';
 
-import { cachedSearch } from '~/routes/util/contensisDeliveryAPI';
+import { cachedSearch } from '@zengenti/contensis-react-base/util';
 import { Query, Op } from 'contensis-delivery-api';
 
 import {
@@ -13,7 +13,7 @@ import { hasSiteConfig } from './selectors';
 
 import { version } from '@zengenti/contensis-react-base/redux';
 
-import { ContentTypes, SiteConfig } from '~/schema';
+import { ContentTypes, SiteConfigFields } from '~/schema';
 
 export const SiteConfigSagas = [
   takeEvery(GET_SITE_CONFIG, ensureSiteConfigSaga),
@@ -34,8 +34,17 @@ export function* ensureSiteConfigSaga(): any {
         )
       );
 
-      query.fields = [...SiteConfig];
-      const results: any = yield cachedSearch.search(query, 4);
+      /**
+       * Fields must be defined to help improve query performance
+       * If `SiteConfigFields` is NOT populated the query will not execute
+       */
+
+      query.fields = [...SiteConfigFields];
+
+      if (!SiteConfigFields || SiteConfigFields.length <= 0) return;
+
+      // @ts-ignore
+      const results: any = yield cachedSearch.search(query, 0);
 
       const siteConfig =
         results && results.items && results.items.length > 0

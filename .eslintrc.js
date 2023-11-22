@@ -51,12 +51,6 @@ module.exports = {
     'react/prop-types': 0,
     'no-debugger': 0,
     'no-alert': 0,
-    'no-console': [
-      'error',
-      {
-        allow: ['error', 'info'],
-      },
-    ],
     quotes: [
       2,
       'single',
@@ -170,6 +164,7 @@ module.exports = {
         '@typescript-eslint/prefer-for-of': 'error',
         '@typescript-eslint/prefer-function-type': 'error',
         '@typescript-eslint/prefer-namespace-keyword': 'error',
+        '@typescript-eslint/ban-ts-comment': 'off',
         '@typescript-eslint/quotes': [
           'error',
           'single',
@@ -199,7 +194,6 @@ module.exports = {
         'no-bitwise': 'error',
         'no-caller': 'error',
         'no-cond-assign': 'error',
-        'no-console': 'error',
         'no-debugger': 'error',
         'no-empty': 'error',
         'no-eval': 'error',
