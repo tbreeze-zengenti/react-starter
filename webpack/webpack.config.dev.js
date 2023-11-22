@@ -29,17 +29,8 @@ const CLIENT_DEV_CONFIG = {
         loader: 'esbuild-loader',
         options: {
           loader: 'tsx',
-          target: 'es2015',
         },
       },
-      // {
-      //   test: /\.(t|j)sx?$/,
-      //   exclude: /node_modules/,
-      //   use: {
-      //     loader: 'babel-loader',
-      //     options: { envName: 'modern' },
-      //   },
-      // },
       {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
@@ -80,19 +71,11 @@ const CLIENT_DEV_CONFIG = {
   ],
   devServer: {
     host: '0.0.0.0',
-    port: 3000,
+    port: 'auto',
     hot: true,
     historyApiFallback: true,
-    open: true,
-    // contentBase: path.join(__dirname, 'src'),
-    // watchContentBase: true,
-    // quiet: false,
-    // watchOptions: {
-    //   ignored: ['node_modules'],
-    //   // aggregateTimeout: 300,
-    //   // poll: 1000,
-    // },
     proxy: DEVSERVER_PROXIES,
+    open: true,
   },
 };
 

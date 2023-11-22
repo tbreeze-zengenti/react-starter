@@ -5,14 +5,25 @@
     "strictNullChecks": true, // enable strict null checks as a best practice
     "module": "esnext", // specifiy module code generation
     "jsx": "react", // use typescript to transpile jsx to js
-    "target": "es5", // specify ECMAScript target version
+    "target": "es2022", // specify ECMAScript target version
     "strict": true /* Enable all strict type-checking options. */,
     "allowJs": false, // disallow a partial TypeScript and JavaScript codebase
     "allowSyntheticDefaultImports": true,
     "noImplicitAny": true, // disallow implicit any type
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "lib": ["esnext", "es2019", "es2017", "es7", "es6", "dom", "dom.iterable"],
+    "lib": [
+      "esnext",
+      "ES2022",
+      "ES2021",
+      "ES2020",
+      "es2019",
+      "es2017",
+      "es7",
+      "es6",
+      "dom",
+      "dom.iterable"
+    ],
     "baseUrl": ".",
     "paths": {
       "~/*": ["./src/app/*"],
