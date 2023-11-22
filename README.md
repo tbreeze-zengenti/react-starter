@@ -30,15 +30,6 @@ By default, the `npm start` & `npm run build` scripts will utilise the `.env` fi
 
 To activate an alternative env upon start/build you need to reference the `.{suffix}` in this script: `npm --env={suffix} run-script start`.
 
-## 📁Folder Structure
-
-- `/components` should contain the majority of your components.
-- `/layouts` should contain your various page wrappers. By default a MainLayout is provided.
-- `/pages` should contain all of your page components.
-- `/redux` should contain high-level Redux logic.
-- `/routes` contains all of the Routing logic for the app.
-- `/theme` contains your app's Styled Components theming.
-
 ## 🎨 Styled Components
 
 This project has a simple TypeScript implementation of Styled Components. The values within `styled.d.ts` must be maintained as you expand your theme to keep TypeScript happy.
@@ -51,7 +42,7 @@ Finally, the `theme/globalStyles` includes both `normalize` & a custom reset (yo
 
 ## 📏 Units
 
-We use `rem` to define our the majority of our units - do this end the project has a rem-reset so that `1rem = 10px`.
+We use `rem` to define our the majority of our units.
 
 It's recommended to use rems for the majority of your units but do not rely on them in every use case. Pixels & em's have their place. For example:
 
@@ -66,27 +57,23 @@ This project uses storybook v7, create stories inside the component folder as `c
 
 ### Storybook + Blocks
 
-1. Goto `.gitlab-ci.yml` and uncomment relevant storybook build steps.
-    1. Be sure to update variables where applicable.
-2. Commit & Push to GitLab repo so that Storybook is built and then pushed to Contensis.
-3. Create a Siteview Node, typically this will be `/storybook`
-4. Assign Renderer to new Siteview Node, aka the block that should just have been built and pushed to Contensis.
+To deploy Storybook to a Block follow these steps:
 
-## 👌 Entry Picker Addon
-
-The [Contensis Entry Picker Addon](https://github.com/contensis/contensis-entry-picker-storybook-addon) is installed for Storybook. The `Tag` component is provided as working example.
+1. Goto `.gitlab-ci.yml` and uncomment relevant storybook build steps
+   1. Be sure to update variables where applicable
+2. Commit & Push to your GitLab repo so that Storybook is built and then pushed to Contensis
+3. Create a Siteview node, typically this will be `/storybook``
+4. Assign Renderer to new Site View node, aka the block that should just have been built and pushed to Contensis
 
 ## 🦘 SkipToMainContent
 
 Provided is a basic `skipToMainContent` for accessibility purposes. It's loaded into `App.tsx` & has a customisable `path` prop.
 
-By default, this will skip to the `#main` tag defined in `layouts/main.layout.tsx`
+By default, this will skip to the `#main` tag defined in `templates/main.template.tsx`
 
 ## ⭐ Favicons
 
-Favicons are stored in `public/icon` & exported to `dist/static/icon` upon build. For every project you should update the favicons & associated `manifest.json` file. You can make a copy of this [Figma file](https://www.figma.com/file/ZsDUIx4DjTOdoZdOtwxJAL/Favicon-Generator?node-id=0%3A1) to generate the appropriate favicons & simply export them to the `public/icon` directory. The imports in the `mainifest.json` file will still need to be updated manually.
-
-To accompany the favicons we set a [`theme-color`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta/name/theme-color) based upon the user's light/dark mode preference. This must be updated in: `public/index.html`, `public/index.ejs`, `public/index_static.ejs`.
+Favicons are stored in `public/icon` & exported to `dist/static/icon` upon build. For every project you should update the favicons & associated `manifest.json` file. You can make a copy of this [Figma file](https://www.figma.com/community/file/1309311685447830983/zengenti-favicon-generator) to generate the appropriate favicons & simply export them to the `public/icon` directory. The imports in the `mainifest.json` file will still need to be updated manually.
 
 ## 🚀 Git Commits
 
@@ -95,5 +82,7 @@ We follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0
 Example: `feat: header component`
 
 ## 📢 Releasing to live
+
+### BLOCKS
 
 When you are ready to release your code you can follow the steps provided in the [Releasing docs](https://chain-jewel-d93.notion.site/Releasing-161a0d0b10c249c39c48e8ee396991af) on Notion.
