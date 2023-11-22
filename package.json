@@ -1,8 +1,10 @@
 {
   "name": "react-starter",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "repository": "https://gitlab.zengenti.com/starter-projects/react-starter",
+  "author": "http://zengenti.com",
   "license": "None",
+  "keywords": [],
   "description": "",
   "main": "index.js",
   "config": {
@@ -32,8 +34,6 @@
     "storybook-static": "storybook build -c .storybook -o .out",
     "build-storybook": "storybook build"
   },
-  "keywords": [],
-  "author": "http://Zengenti.com",
   "browserslist": [
     "last 2 Chrome versions, last 2 Edge versions, last 2 Firefox versions, last 2 Safari versions, last 2 iOS versions"
   ],
