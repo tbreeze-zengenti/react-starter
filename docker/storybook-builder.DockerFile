@@ -21,7 +21,6 @@ RUN apk add --no-cache \
 COPY package.json package-lock.json ./
 RUN npm install --legacy-peer-deps --loglevel error
 COPY .storybook /usr/src/app/.storybook
-COPY config /usr/src/app/config
 COPY public /usr/src/app/public
 COPY src /usr/src/app/src
 COPY webpack /usr/src/app/webpack
