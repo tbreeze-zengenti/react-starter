@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Merged [Uses slug instead of name for successful branch builds](https://gitlab.zengenti.com/starter-projects/react-starter/-/merge_requests/6)
 - Remove legacy build
 - Removed BrowserSync due to incompatibility, see: https://github.com/Va1/browser-sync-webpack-plugin/issues/83
+- Upgraded Storybook build to work with blocks
 
 ## [0.1.5] - 2023-08-21
 
