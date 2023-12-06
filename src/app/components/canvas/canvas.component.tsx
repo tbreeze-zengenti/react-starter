@@ -4,9 +4,11 @@ import {
   RenderContextProvider,
   Block,
 } from '@contensis/canvas-react';
-// import { Table, Sample, Strong } from '~/dynamic/canvas';
+// import { Table, Sample } from '~/dynamic/canvas';
 
-const Canvas = ({ data }: { data: Block[] }) => {
+const Canvas = ({ data }: { data?: Block[] }) => {
+  if (!data) return null;
+
   return (
     <RenderContextProvider
     // Override default rendering of content blocks
