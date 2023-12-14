@@ -4,20 +4,14 @@ import {
   RenderContextProvider,
   Block,
 } from '@contensis/canvas-react';
-// import { Table, Sample } from '~/dynamic/canvas';
+
+// Recommended reading: https://github.com/contensis/canvas/blob/main/apps/react/README.md
 
 const Canvas = ({ data }: { data?: Block[] }) => {
   if (!data) return null;
 
   return (
-    <RenderContextProvider
-    // Override default rendering of content blocks
-    //  blocks={{ _table: Table }}
-    // Components within the canvas
-    //  components={{ alTest: Sample }}
-    // HTML elements which commonly wrap text
-    //  decorators={{ strong: Strong }}
-    >
+    <RenderContextProvider>
       <Renderer data={data} />
     </RenderContextProvider>
   );
