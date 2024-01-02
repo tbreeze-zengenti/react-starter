@@ -92,7 +92,7 @@ To accompany the favicons we set a [`theme-color`](https://developer.mozilla.org
 
 When writing your own backing code that makes calls to the Delivery API, we strongly recommend using the exports available in `@zengenti/contensis-react-base/util` package.
 
-Check the [documentation](https://gitlab.zengenti.com/starter-projects/react-starter/-/blob/cache-invalidation/docs/DELIVERY_API.md) in the /docs folder to read more about this
+Check the [documentation](https://gitlab.zengenti.com/starter-projects/react-starter/-/blob/master/docs/DELIVERY_API.md) in the /docs folder to read more about this
 
 ## 🚀 Git Commits
 
