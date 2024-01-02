@@ -21,7 +21,8 @@ const LinkBlock = (props: RenderBlockPropsWithChildren<LinkBlockProps>) => {
   if (attributes.href) {
     if (
       props?.block?.properties?.newTab || // if open in new tab
-      !props?.block?.properties?.link?.sys?.contentTypeId // if not an entry link
+      !props?.block?.properties?.link?.sys?.contentTypeId || // if not an entry link
+      !attributes.href.startsWith('/') // if not internal link
     ) {
       return (
         <a {...attributes}>
