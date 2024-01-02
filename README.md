@@ -1,6 +1,6 @@
 ![Zengenti React Start](/readme.png)
 
-Commonly know as React Starter, this is our starter project for most client builds. It is driven by the latest version of Contensis React Base (currently v3.0.0) & utilises other internal packages such as our [Forms Package](https://gitlab.zengenti.com/zengenti-packages/forms).
+Commonly know as React Starter, this is our starter project for most client builds. It is driven by the latest version of Contensis React Base (currently v3.0.0) & utilises other internal packages such as our [Canvas](https://github.com/contensis/canvas) and [Forms](https://gitlab.zengenti.com/zengenti-packages/forms) packages.
 
 ## 🔌 Getting started
 
@@ -87,6 +87,12 @@ By default, this will skip to the `#main` tag defined in `layouts/main.layout.ts
 Favicons are stored in `public/icon` & exported to `dist/static/icon` upon build. For every project you should update the favicons & associated `manifest.json` file. You can make a copy of this [Figma file](https://www.figma.com/community/file/1309311685447830983) to generate the appropriate favicons & simply export them to the `public/icon` directory. The imports in the `mainifest.json` file will still need to be updated manually.
 
 To accompany the favicons we set a [`theme-color`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta/name/theme-color) based upon the user's light/dark mode preference. This must be updated in: `public/index.html`, `public/index.ejs`, `public/index_static.ejs`.
+
+## 🍃 Contensis Delivery API
+
+When writing your own backing code that makes calls to the Delivery API, we strongly recommend using the exports available in `@zengenti/contensis-react-base/util` package.
+
+Check the [documentation](https://gitlab.zengenti.com/starter-projects/react-starter/-/blob/cache-invalidation/docs/DELIVERY_API.md) in the /docs folder to read more about this
 
 ## 🚀 Git Commits
 

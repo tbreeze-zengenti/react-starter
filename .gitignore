@@ -2,7 +2,6 @@
 /coverage
 /build
 /dist
-/docs
 npm-debug.log*
 *.log
 __snapshots__

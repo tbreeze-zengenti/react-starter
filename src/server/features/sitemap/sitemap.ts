@@ -1,6 +1,6 @@
 import { Op, OrderBy, Query } from 'contensis-delivery-api';
 import { streamToPromise, SitemapStream } from 'sitemap';
-import { cachedSearch } from '~/routes/util/contensisDeliveryAPI';
+import { cachedSearch } from '@zengenti/contensis-react-base/util';
 import type { Entry } from 'contensis-delivery-api/lib/models';
 
 /* global PUBLIC_URI */
