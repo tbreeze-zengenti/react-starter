@@ -4,7 +4,8 @@ import {
   RenderContextProvider,
   Block,
 } from '@contensis/canvas-react';
-import LinkBlock from '~/components/canvas/blocks/link/link.block';
+
+import LinkBlock from './blocks/link/link.block';
 
 // Recommended reading: https://github.com/contensis/canvas/blob/main/apps/react/README.md
 

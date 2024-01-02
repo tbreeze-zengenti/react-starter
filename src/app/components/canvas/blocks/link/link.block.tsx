@@ -1,62 +1,24 @@
-import React, { AnchorHTMLAttributes } from 'react';
+import React from 'react';
 import {
   RenderBlockPropsWithChildren,
   LinkBlock as LinkBlockProps,
-  Link,
 } from '@contensis/canvas-react';
-import getAttributes from '~/components/canvas/utilities/getAttributes';
-import { Link as PageLink } from 'react-router-dom';
+
+import Link from '~/components/link/link';
+import { LinkProps } from '~/components/link/link.types';
 
 const LinkBlock = (props: RenderBlockPropsWithChildren<LinkBlockProps>) => {
-  const linkValue = props?.block?.properties?.link;
-  const attributes: AnchorHTMLAttributes<HTMLAnchorElement> = getAttributes(
-    props,
-    {
-      href: linkValue?.sys?.uri,
-      target: props?.block?.properties?.newTab ? '_blank' : null,
-      rel: props?.block?.properties?.newTab ? 'noopener noreferrer' : null,
-    }
-  );
+  const { link, newTab } = props.block.properties || {};
 
-  if (attributes.href) {
-    if (
-      props?.block?.properties?.newTab || // if open in new tab
-      !props?.block?.properties?.link?.sys?.contentTypeId || // if not an entry link
-      !attributes.href.startsWith('/') // if not internal link
-    ) {
-      return (
-        <a {...attributes}>
-          <RenderContents
-            contents={props.children}
-            fallback={<Link.Children block={props.block} />}
-          />
-        </a>
-      );
-    } else {
-      return (
-        <PageLink {...getAttributes(props)} to={attributes.href}>
-          <RenderContents
-            contents={props.children}
-            fallback={<Link.Children block={props.block} />}
-          />
-        </PageLink>
-      );
-    }
-  } else {
-    return (
-      <RenderContents
-        contents={props.children}
-        fallback={<Link.Children block={props.block} />}
-      />
-    );
-  }
-};
+  // Bring together relevant component props supplied by the canvas block
+  const componentProps: LinkProps = {
+    path: link?.sys?.uri,
+    openInNewWindow: newTab,
+  };
 
-const RenderContents = (props: {
-  contents?: React.ReactElement;
-  fallback: React.ReactElement;
-}) => {
-  return props.contents ? props.contents : props.fallback;
+  // Pass the component props we cherry picked from the block override
+  // props into the common "App Link" component
+  return <Link {...componentProps}>{props.block.value}</Link>;
 };
 
 export default LinkBlock;
