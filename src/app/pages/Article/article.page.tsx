@@ -7,9 +7,7 @@ const ArticlePage = ({ mappedEntry }: PageArticleProps) => {
   return (
     <div>
       {title && <h1>{title}</h1>}
-      <div>
-        <Canvas data={canvas} />
-      </div>
+      <div>{canvas && <Canvas data={canvas} />}</div>
     </div>
   );
 };
