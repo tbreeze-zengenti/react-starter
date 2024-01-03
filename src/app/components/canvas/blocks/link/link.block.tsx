@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Link as LinkCanvas,
   RenderBlockPropsWithChildren,
   LinkBlock as LinkBlockProps,
 } from '@contensis/canvas-react';
@@ -18,7 +19,11 @@ const LinkBlock = (props: RenderBlockPropsWithChildren<LinkBlockProps>) => {
 
   // Pass the component props we cherry picked from the block override
   // props into the common "App Link" component
-  return <Link {...componentProps}>{props.block.value}</Link>;
+  return (
+    <Link {...componentProps}>
+      <LinkCanvas.Children block={props.block} />
+    </Link>
+  );
 };
 
 export default LinkBlock;
