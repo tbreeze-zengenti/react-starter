@@ -2,6 +2,8 @@
 
 Commonly know as React Starter, this is our starter project for most client builds. It is driven by the latest version of Contensis React Base (currently v3.0.0) & utilises other internal packages such as our [Canvas](https://github.com/contensis/canvas) and [Forms](https://gitlab.zengenti.com/zengenti-packages/forms) packages.
 
+For documentation about React Starter, please visit our [docs website](https://react-starter.com/).
+
 ## 🔌 Getting started
 
 - Define your CMS environment in the `.env` file
