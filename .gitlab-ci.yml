@@ -7,6 +7,7 @@ include:
 stages:
   - latest-build
   - live-build
+  - storybook-latest-build
   - push-block
   - release-block
 
