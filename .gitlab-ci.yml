@@ -47,8 +47,6 @@ build-storybook:
     #   - tags
     # variables:
     #   - $CI_COMMIT_TAG =~ /^storybook-.*$/
-  except:
-    - branches
   script:
     - docker pull $STORYBOOK_BUILDER_IMAGE:latest || true
     - docker build --compress --force-rm --cache-from $STORYBOOK_BUILDER_IMAGE:latest -t $STORYBOOK_BUILDER_IMAGE:latest -f docker/storybook-builder.DockerFile .
