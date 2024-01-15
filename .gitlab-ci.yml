@@ -7,7 +7,6 @@ include:
 stages:
   - latest-build
   - live-build
-#  - storybook-latest-build // uncomment if using Storybook with Blocks
   - push-block
   - release-block
 
@@ -39,18 +38,23 @@ build-latest-code:
     - docker tag "$APP_IMAGE:latest" "$APP_IMAGE:build-$CI_PIPELINE_IID"
     - docker push "$APP_IMAGE:build-$CI_PIPELINE_IID"
 
-#build-storybook:
-#  stage: storybook-latest-build
-#  except:
-#    - tags
-#  script:
-#    - docker pull $STORYBOOK_BUILDER_IMAGE:latest || true
-#    - docker build --compress --force-rm --cache-from $STORYBOOK_BUILDER_IMAGE:latest -t $STORYBOOK_BUILDER_IMAGE:latest -f docker/storybook-builder.DockerFile .
-#    - docker push $STORYBOOK_BUILDER_IMAGE:latest
-#    - docker build --compress --force-rm -t $STORYBOOK_IMAGE:latest --build-arg builder_image=$STORYBOOK_BUILDER_IMAGE:latest -f  docker/storybook-http.DockerFile .
-#    - docker push $STORYBOOK_IMAGE:latest
-#    - docker tag "$STORYBOOK_IMAGE:latest" "$STORYBOOK_IMAGE:build-$CI_PIPELINE_IID"
-#    - docker push "$STORYBOOK_IMAGE:build-$CI_PIPELINE_IID"
+build-storybook:
+  stage: storybook-latest-build
+  only:
+    refs:
+      - tags
+    variables:
+      - $CI_COMMIT_TAG =~ /^storybook-.*$/
+  except:
+    - branches
+  script:
+    - docker pull $STORYBOOK_BUILDER_IMAGE:latest || true
+    - docker build --compress --force-rm --cache-from $STORYBOOK_BUILDER_IMAGE:latest -t $STORYBOOK_BUILDER_IMAGE:latest -f docker/storybook-builder.DockerFile .
+    - docker push $STORYBOOK_BUILDER_IMAGE:latest
+    - docker build --compress --force-rm -t $STORYBOOK_IMAGE:latest --build-arg builder_image=$STORYBOOK_BUILDER_IMAGE:latest -f  docker/storybook-http.DockerFile .
+    - docker push $STORYBOOK_IMAGE:latest
+    - docker tag "$STORYBOOK_IMAGE:latest" "$STORYBOOK_IMAGE:build-$CI_PIPELINE_IID"
+    - docker push "$STORYBOOK_IMAGE:build-$CI_PIPELINE_IID"
 
 build-live-code-for-production:
   stage: live-build
