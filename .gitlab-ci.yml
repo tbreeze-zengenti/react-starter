@@ -42,10 +42,11 @@ build-latest-code:
 build-storybook:
   stage: storybook-latest-build
   only:
-    refs:
-      - tags
-    variables:
-      - $CI_COMMIT_TAG =~ /^storybook-.*$/
+    - tag-sb
+    # refs:
+    #   - tags
+    # variables:
+    #   - $CI_COMMIT_TAG =~ /^storybook-.*$/
   except:
     - branches
   script:
