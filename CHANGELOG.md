@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.8] - 2024-18-01
+
+- Upgraded @zengenti/contensis-react-base to 3.1.0
+- Upgraded @contensis/react-canvas to 1.0.3
+- Removed `react` alias from Webpack config
+- Added "Quick Install" steps using `npx`
+
+## [0.1.7] - 2024-17-01
+
+- Basic Canvas example, see [@contensis/canvas-react](https://www.npmjs.com/package/@contensis/canvas-react) for more information on rendering Canvas data
+- Updates to `deliveryAPI`, `cachedSearch`, & `getClientConfig` classes from CRB for better cache invalidation, see `docs/DELIVERY_API.md`
+
 ## [0.1.6] - 2023-11-22
 
 - Upgraded to Node 18 + NPM ^9.8.1
