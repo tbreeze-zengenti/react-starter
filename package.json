@@ -113,8 +113,8 @@
     "zengenti-buildstartup-package": "^0.0.17"
   },
   "dependencies": {
-    "@contensis/canvas-react": "^1.0.2",
-    "@zengenti/contensis-react-base": "^3.0.2-beta.36",
+    "@contensis/canvas-react": "^1.0.3",
+    "@zengenti/contensis-react-base": "^3.1.0",
     "app-root-path": "^3.0.0",
     "query-string": "^5.1.1",
     "react-router-hash-link": "^2.4.3",
