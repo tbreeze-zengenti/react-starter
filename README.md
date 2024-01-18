@@ -4,6 +4,14 @@ Commonly know as React Starter, this is our starter project for most client buil
 
 For documentation about React Starter, please visit our [docs website](https://react-starter.com/).
 
+## Quick Install
+
+```
+npx contensis-react-starter my-project
+cd my-project
+npm i
+```
+
 ## 🔌 Getting started
 
 - Define your CMS environment in the `.env` file
