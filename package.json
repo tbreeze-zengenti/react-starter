@@ -1,6 +1,6 @@
 {
   "name": "react-starter",
-  "version": "0.1.6",
+  "version": "0.1.8",
   "repository": "https://gitlab.zengenti.com/starter-projects/react-starter",
   "author": "http://zengenti.com",
   "license": "None",
@@ -68,6 +68,7 @@
     "@typescript-eslint/eslint-plugin": "^5.20.0",
     "@typescript-eslint/parser": "^5.20.0",
     "babel-loader": "^8.2.5",
+    "babel-plugin-dynamic-import-node": "^2.3.3",
     "babel-plugin-module-resolver": "^4.1.0",
     "babel-plugin-styled-components": "^2.0.7",
     "babel-plugin-transform-define": "1.0.1",
@@ -113,7 +114,8 @@
     "zengenti-buildstartup-package": "^0.0.17"
   },
   "dependencies": {
-    "@zengenti/contensis-react-base": "^3.0.2-beta.21",
+    "@contensis/canvas-react": "^1.0.3",
+    "@zengenti/contensis-react-base": "^3.1.1-beta.7",
     "app-root-path": "^3.0.0",
     "react-router-hash-link": "^2.4.3",
     "sitemap": "^7.1.1",

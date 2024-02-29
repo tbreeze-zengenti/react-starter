@@ -1,8 +1,4 @@
-# Very useful article on docker multi stage builds: https://snorre.io/building-docker-images-with-gitlab-ci/
-FROM node:18 as builder
-# The following prevents errors when cwebp is installing.
-RUN apt-get update
-RUN apt-get install libglu1 -y
+FROM node:18-alpine as builder
 WORKDIR /usr/src/app
 
 RUN apk add --no-cache \

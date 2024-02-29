@@ -71,7 +71,7 @@ const CLIENT_DEV_CONFIG = {
   ],
   devServer: {
     host: '0.0.0.0',
-    port: 'auto',
+    port: '3000',
     hot: true,
     historyApiFallback: true,
     proxy: DEVSERVER_PROXIES,
