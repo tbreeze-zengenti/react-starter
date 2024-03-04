@@ -60,6 +60,17 @@ module.exports = {
         ...plugins.base,
         ['transform-define', defineConfig],
         'babel-plugin-dynamic-import-node',
+        [
+          'file-loader',
+          {
+            name: '[name].[ext]',
+            extensions: ['png', 'jpg', 'jpeg', 'gif', 'svg'],
+            publicPath: '/static/babel_temp',
+            outputPath: 'dist/static/babel_temp',
+            context: '/',
+            limit: 0,
+          },
+        ],
         ...plugins.legacy,
       ],
       sourceMaps: 'inline',
