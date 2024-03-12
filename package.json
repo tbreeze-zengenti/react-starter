@@ -68,6 +68,8 @@
     "@typescript-eslint/eslint-plugin": "^5.20.0",
     "@typescript-eslint/parser": "^5.20.0",
     "babel-loader": "^8.2.5",
+    "babel-plugin-dynamic-import-node": "^2.3.3",
+    "babel-plugin-file-loader": "^2.0.0",
     "babel-plugin-module-resolver": "^4.1.0",
     "babel-plugin-styled-components": "^2.0.7",
     "babel-plugin-transform-define": "1.0.1",
@@ -114,7 +116,7 @@
   },
   "dependencies": {
     "@contensis/canvas-react": "^1.0.3",
-    "@zengenti/contensis-react-base": "^3.1.0",
+    "@zengenti/contensis-react-base": "^3.1.1-beta.11",
     "app-root-path": "^3.0.0",
     "query-string": "^5.1.1",
     "react-router-hash-link": "^2.4.3",
