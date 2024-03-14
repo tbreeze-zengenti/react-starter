@@ -11,7 +11,7 @@ describe('Server Loads', () => {
       app.on('app_started', function () {
         return resolve();
       });
-      //app.emit('ready');
+      // app.emit('ready');
     });
   });
   after(function () {

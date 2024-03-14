@@ -1,22 +1,39 @@
-import { mapEntries } from '@zengenti/contensis-react-base/util';
-import type { Entry } from 'contensis-delivery-api/lib/models';
+import { SearchResultsMapper } from '@zengenti/contensis-react-base/models/search';
+import { ContentType } from '~/types/global/contentType.type';
 
-const baseMapping = {
-  title: 'entryTitle',
-  description: 'entryDescription',
-  image: {
-    src: 'entryThumbnail.asset.sys.uri',
-    alt: 'entryThumbnail.altText',
-    caption: 'entryThumbnail.caption',
-  },
-  link: 'sys.uri',
-  id: 'sys.id',
+type ResultProps<Props> = {
+  id: string;
+} & Props;
+
+export type BaseSearchResultProps = {
+  title: string;
+  uri: string;
 };
 
-export const mappers = {
-  default: baseMapping,
+const baseMapping = (
+  entry: ContentType<unknown>
+): ResultProps<BaseSearchResultProps> => {
+  return {
+    id: entry.sys.id ?? '',
+    uri: entry.sys.uri ?? '/',
+    title: entry.entryTitle ?? '',
+  };
 };
 
-const searchResultsMapper = (entries: Entry[]) => mapEntries(entries, mappers);
+export type SearchResultProps = BaseSearchResultProps;
+export type SourceEntryProps = ContentType<unknown>;
+
+const searchResultsMapper: SearchResultsMapper<
+  SearchResultProps,
+  SourceEntryProps
+> = entries => {
+  return entries.map(entry => {
+    const contentTypeId = entry.sys.contentTypeId;
+    switch (contentTypeId) {
+      default:
+        return baseMapping(entry);
+    }
+  });
+};
 
 export default searchResultsMapper;

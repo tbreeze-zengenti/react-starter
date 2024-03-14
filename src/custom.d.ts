@@ -17,7 +17,7 @@ declare module '*.jpg' {
 }
 
 declare module '*.webp' {
-  // Default type is string, change this if you use a custom jpeg loader.
+  // Default type is string, change this if you use a custom webp loader.
   const content: string;
   export default content;
 }

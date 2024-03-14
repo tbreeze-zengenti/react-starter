@@ -1,4 +1,4 @@
-import { ContensisComposerField } from '~/models/contensis/composerField.type';
+import { ContensisComposerField } from '~/types/contensis/composerField.type';
 import getUuidByString from 'uuid-by-string';
 
 export const composerMapper = ({
