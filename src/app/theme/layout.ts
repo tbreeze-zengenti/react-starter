@@ -69,7 +69,6 @@ export const breakpoints: BreakpointsTheme = {
 export const mq: MediaQueryTheme = {
   min: {
     mobile: `only screen and (min-width: ${breakpoints.px.mobile}px)`,
-    /** @returns 480px */
     largeMobile: `only screen and (min-width: ${breakpoints.px.largeMobile}px)`,
     tablet: `only screen and (min-width: ${breakpoints.px.tablet}px)`,
     laptop: `only screen and (min-width: ${breakpoints.px.laptop}px)`,
