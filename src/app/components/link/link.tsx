@@ -4,7 +4,7 @@ import { Link as PageLink } from 'react-router-dom';
 import { LinkProps } from './link.types';
 
 const Link = ({
-  className = '',
+  className,
   children,
   download,
   onClick,
@@ -12,10 +12,9 @@ const Link = ({
   title,
   path,
 }: LinkProps) => {
-  className += ' link';
   if (!path) {
     return (
-      <span className={className} style={{ opacity: '.65' }}>
+      <span className={`link link--no-path ${className ? className : ''}`}>
         {children}
       </span>
     );
@@ -33,7 +32,7 @@ const Link = ({
   if (newWindow !== '_blank' && path && path.startsWith('/')) {
     return (
       <PageLink
-        className={className}
+        className={`link ${className ? className : ''}`}
         download={download}
         onClick={e => _handleClick(e)}
         title={title}
@@ -45,7 +44,7 @@ const Link = ({
   } else {
     return (
       <a
-        className={className}
+        className={`link link--external ${className ? className : ''}`}
         download={download}
         href={path}
         onClick={e => _handleClick(e)}

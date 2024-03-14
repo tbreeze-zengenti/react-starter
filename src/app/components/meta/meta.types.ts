@@ -16,4 +16,6 @@ export type MetaProps = {
   twitterCardType?: 'summary' | 'summary_large_image' | 'app' | 'player';
   twitterHandle?: string;
   insytful?: boolean;
+  noIndex?: boolean;
+  noFollow?: boolean;
 };

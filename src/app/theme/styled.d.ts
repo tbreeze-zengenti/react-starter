@@ -1,39 +1,18 @@
 import 'styled-components';
+import {
+  BreakpointKeys,
+  BreakpointValueContext,
+  BreakpointWidthContext,
+  BreakpointsTheme,
+  MediaQueryTheme,
+} from './layout';
+import { ColorsTheme } from './colors';
 
 declare module 'styled-components' {
   export interface DefaultTheme {
-    colors: {
-      contensis: string;
-      zengenti: string;
-    };
-    breakpoints: {
-      px: {
-        mobile: number;
-        largeMobile: number;
-        tablet: number;
-        laptop: number;
-        desktop: number;
-        largeDesktop: number;
-      };
-    };
-    mq: {
-      min: {
-        mobile: string;
-        largeMobile: number;
-        tablet: string;
-        laptop: string;
-        desktop: string;
-        largeDesktop: string;
-      };
-      max: {
-        mobile: string;
-        largeMobile: number;
-        tablet: string;
-        laptop: string;
-        desktop: string;
-        largeDesktop: string;
-      };
-    };
+    colors: ColorsTheme;
+    breakpoints: BreakpointsTheme;
+    mq: MediaQueryTheme;
     spacing: {
       /** @returns 0.8rem */
       xxxs: string;

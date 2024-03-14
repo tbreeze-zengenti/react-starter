@@ -17,7 +17,6 @@ const LinkBlock = (props: RenderBlockPropsWithChildren<LinkBlockProps>) => {
     openInNewWindow: newTab,
   };
 
-  // Pass the component props we cherry picked from the block override
   // props into the common "App Link" component
   return (
     <Link {...componentProps}>

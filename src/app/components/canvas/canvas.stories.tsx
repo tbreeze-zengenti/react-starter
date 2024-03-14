@@ -9,7 +9,6 @@ const meta: Meta<typeof Canvas> = {
 export default meta;
 type Story = StoryObj<typeof Canvas>;
 
-// No unique components / blocks etc.
 export const Vanilla: Story = {
   args: {
     data: [

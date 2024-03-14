@@ -13,7 +13,9 @@ import { hasSiteConfig } from './selectors';
 
 import { version } from '@zengenti/contensis-react-base/redux';
 
-import { ContentTypes, SiteConfigFields } from '~/schema';
+import { SiteConfigFields } from '~/schema';
+
+import { SiteConfigMapper } from './siteConfig.mapper';
 
 export const SiteConfigSagas = [
   takeEvery(GET_SITE_CONFIG, ensureSiteConfigSaga),
@@ -29,7 +31,7 @@ export function* ensureSiteConfigSaga(): any {
 
       const query = new Query(
         Op.equalTo('sys.versionStatus', deliveryApiVersionStatus),
-        Op.or(Op.equalTo('sys.contentTypeId', ContentTypes.config))
+        Op.or(Op.equalTo('sys.contentTypeId', 'news'))
       );
 
       /**
@@ -40,18 +42,19 @@ export function* ensureSiteConfigSaga(): any {
 
       if (!SiteConfigFields || SiteConfigFields.length <= 0) return;
 
-      const results = yield cachedSearch.search(query, 0);
+      const results = yield cachedSearch.search(query, 1);
 
-      const siteConfig =
-        (results?.items?.length || 0) > 0 ? results.items[0] : null;
+      const config = results?.items?.[0]
+        ? SiteConfigMapper(results.items[0])
+        : null;
 
-      if (siteConfig) {
-        yield put({ type: SET_SITE_CONFIG, siteConfig });
+      if (config) {
+        yield put({ type: SET_SITE_CONFIG, config });
       } else {
         yield put({ type: GET_SITE_CONFIG_ERROR });
       }
     }
-  } catch (ex: any) {
-    yield put({ type: GET_SITE_CONFIG_ERROR, error: ex.toString() });
+  } catch (error: any | unknown) {
+    yield put({ type: GET_SITE_CONFIG_ERROR, error: error.toString() });
   }
 }

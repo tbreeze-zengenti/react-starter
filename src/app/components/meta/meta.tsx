@@ -22,6 +22,8 @@ const Meta = ({
   twitterCardType = 'summary',
   twitterHandle,
   insytful = true,
+  noIndex = false,
+  noFollow = false,
 }: MetaProps) => {
   const projectId = useSelector<AppState, string>(
     routing.selectors.selectCurrentProject
@@ -40,6 +42,8 @@ const Meta = ({
   return (
     <Helmet>
       <title>{title}</title>
+      {noIndex ? <meta name="robots" content="noindex" /> : null}
+      {noFollow ? <meta name="robots" content="nofollow" /> : null}
       <meta name="description" content={description} />
       <meta property="og:site_name" content={siteTitle} />
       {canonicalPath ? <meta property="og:url" content={canonical} /> : null}

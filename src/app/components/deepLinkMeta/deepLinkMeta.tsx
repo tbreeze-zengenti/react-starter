@@ -5,8 +5,7 @@ import { routing } from '@zengenti/contensis-react-base/redux';
 import { AppState } from '@zengenti/contensis-react-base/models/redux/appstate';
 
 /**
- * @summary
- * Enables "Deep Linking" when connecting your project to Insytful
+ * @summary Enables "Deep Linking" when connecting your project to Insytful
  * See: https://www.insytful.com/features/cms-deeplinking
  */
 

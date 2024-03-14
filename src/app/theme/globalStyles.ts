@@ -1,37 +1,45 @@
 import { createGlobalStyle } from 'styled-components';
-import { normalize } from 'styled-normalize';
 
 const GlobalStyle = createGlobalStyle`
-  /* Normalize/reset css */
-  ${normalize}
-
   *,
   *::before,
   *::after {
     box-sizing: border-box;
   }
 
-  /* CSS Variables */
-  :root {
-  }
-
   /* Resets the z-index stacking order */
   #root {
     isolation: isolate;
+    min-height: inherit;
+  }
+
+  #app-root,
+  #main {
+    min-height: inherit;
   }
 
   /* Remove default margin */
-  body,
-  h1,
-  h2,
-  h3,
-  h4,
-  p,
-  figure,
-  blockquote,
-  dl,
-  dd {
+  * {
     margin: 0;
+  }
+
+  /* Prevent font size inflation */
+  html {
+    -moz-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+  }
+
+  /* Sets base font to 16px */
+  body {
+    min-height: 100vh;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    line-height: 1.5;
+  }
+
+  /* A elements that don't have a class get default styles */
+  a:not([class]) {
+    text-decoration-skip-ink: auto;
   }
 
   /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
@@ -40,35 +48,10 @@ const GlobalStyle = createGlobalStyle`
     list-style: none;
   }
 
-  /* this sets 1rem to 10px */
-  html, body {
-    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-  }
-
-  /* Set core root defaults */
-  html:focus-within {
-    scroll-behavior: smooth;
-  }
-
-  /* Sets base font to 16px */
-  body {
-    min-height: 100vh;
-    font-size: 1.6rem;
-    font-weight: normal;
-    line-height: 1.5;
-    text-rendering: optimizeSpeed;
-  }
-
-  /* A elements that don't have a class get default styles */
-  a:not([class]) {
-    text-decoration-skip-ink: auto;
-  }
-
-  /* Make images easier to work with */
-  img,
-  picture {
-    max-width: 100%;
+  /* Improve media defaults */
+  img, picture, video, canvas, svg {
     display: block;
+    max-width: 100%;
   }
 
   /* Inherit fonts for inputs and buttons */

@@ -10,3 +10,10 @@ export const Composer = loadable(
 export const Markup = loadable<MarkupProps>(
   () => import(/* webpackChunkName: "markup" */ '~/components/markup/markup')
 );
+
+export const Canvas = loadable(
+  () =>
+    import(
+      /* webpackChunkName: "canvas" */ '~/components/canvas/canvas.component'
+    )
+);

@@ -2,8 +2,23 @@ import { StaticRoute } from '@zengenti/contensis-react-base';
 import loadable from '@loadable/component';
 
 import { injectSearch } from '~/util/injectSearch';
+import { mapRouteEntryToProps } from '~/util/mapRouteEntryToProps';
+import { WelcomeMapper } from '~/templates/welcome/welcome.mapper';
 
 const staticRoutes: StaticRoute[] = [
+  {
+    path: '/',
+    component: loadable<any>(
+      () =>
+        import(
+          /* webpackChunkName: "welcome.template" */ '~/templates/welcome/welcome.template'
+        )
+    ),
+    fetchNode: {
+      params: [],
+      entryMapper: mapRouteEntryToProps(WelcomeMapper),
+    },
+  },
   // {
   //   path: '/search/:facet?',
   //   component: loadable<any>(
