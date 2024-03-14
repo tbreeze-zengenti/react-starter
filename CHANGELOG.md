@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Pending]
+
+- Cache invalidation fixes for v16 from CRB
+- `fieldLinkDepths` support from CRB
+- Several `dev:server` fixes
+- Site Config State now opt-in to prevent mis-configuration
+
 ## [0.1.8] - 2024-18-01
 
 - Upgraded @zengenti/contensis-react-base to 3.1.0
