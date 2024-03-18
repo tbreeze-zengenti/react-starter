@@ -6,7 +6,7 @@ import { ThemeProvider } from 'styled-components';
 import { RouteLoader, selectors } from '@zengenti/contensis-react-base/routing';
 
 import { Loading } from '~/routes/Loading';
-import NotFound from '~/pages/notFoundLower/notFound.page';
+import NotFound from '~/pages/notFound/notFound.page';
 
 import GlobalStyle from '~/theme/globalStyles';
 import { defaultTheme } from './theme';
