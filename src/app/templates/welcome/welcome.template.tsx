@@ -16,13 +16,13 @@ export type WelcomePageProps = {
 };
 
 const Welcome = ({ mappedEntry }: MappedEntry<WelcomePageProps>) => {
-  const { meta, title } = mappedEntry || {};
+  const { meta } = mappedEntry || {};
   return (
     <MainLayout meta={meta}>
       <>
         <Helmet>
           <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+          <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
             href="https://fonts.googleapis.com/css2?family=Inter&display=swap"
             rel="stylesheet"

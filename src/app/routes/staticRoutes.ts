@@ -3,11 +3,12 @@ import loadable from '@loadable/component';
 
 import { injectSearch } from '~/util/injectSearch';
 import { mapRouteEntryToProps } from '~/util/mapRouteEntryToProps';
-import { WelcomeMapper } from '~/templates/welcome/welcome.mapper';
+import { welcomeMapper } from '~/templates/welcome/welcome.mapper';
 
 const staticRoutes: StaticRoute[] = [
   {
     path: '/',
+    exact: true,
     component: loadable<any>(
       () =>
         import(
@@ -16,7 +17,7 @@ const staticRoutes: StaticRoute[] = [
     ),
     fetchNode: {
       params: [],
-      entryMapper: mapRouteEntryToProps(WelcomeMapper),
+      entryMapper: mapRouteEntryToProps(welcomeMapper),
     },
   },
   // {
@@ -27,7 +28,7 @@ const staticRoutes: StaticRoute[] = [
   //         /* webpackChunkName: "search.template" */ '~/templates/search/search.template'
   //       )
   //   ),
-  // injectRedux: injectSearch,
+  //   injectRedux: injectSearch,
   // },
   // ********************************
   // ˅˅ Do not delete these routes ˅˅

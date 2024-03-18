@@ -1,5 +1,5 @@
 export type MarkupProps = {
-  _type: 'richText';
+  _type?: 'textBlock';
   className?: string;
   text: string;
 };
