@@ -7,24 +7,32 @@ import loadable from '@loadable/component';
 // export type HomePageProps = RouteComponentProps<MappedEntry>;
 import { RouteComponentProps } from '@zengenti/contensis-react-base';
 
-import { HomeProps } from '~/pages/Home/home.type';
+import { HomeProps } from '~/pages/homeLower/home.type';
 
 export const Home = loadable<HomeProps>(
-  () => import(/* webpackChunkName: "home.page" */ '~/pages/Home/home.page')
+  () =>
+    import(/* webpackChunkName: "home.page" */ '~/pages/homeLower/home.page')
 );
 export const Search = loadable<RouteComponentProps>(
   () =>
-    import(/* webpackChunkName: "search.page" */ '~/pages/Search/search.page')
+    import(
+      /* webpackChunkName: "search.page" */ '~/pages/searchLower/search.page'
+    )
 );
 // ********************************
 // ˅˅ Do not delete these pages ˅˅
 export const CorePages = {
   404: loadable<RouteComponentProps>(
-    () => import(/* webpackChunkName: "notfound" */ '~/pages/NotFound')
+    () =>
+      import(
+        /* webpackChunkName: "notfound" */ '~/pages/notFoundLower/notFound.page'
+      )
   ),
   ZenInfo: loadable<RouteComponentProps>(
     () =>
-      import(/* webpackChunkName: "versioninfo.page" */ '~/pages/VersionInfo')
+      import(
+        /* webpackChunkName: "versioninfo.page" */ '~/pages/versionInfoLower/versionInfo.page'
+      )
   ),
 };
 // ˄˄ Do not delete these pages ˄˄
