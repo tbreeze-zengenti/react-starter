@@ -1,5 +1,5 @@
 import { SearchResultsMapper } from '@zengenti/contensis-react-base/models/search';
-import { ContentType } from '~/types/global/contentType.type';
+import { ContentType } from '~/models/global/contentType.type';
 
 type ResultProps<Props> = {
   id: string;

@@ -1,4 +1,4 @@
-import { ContentTypeSiteConfiguration } from '~/types/contentTypes/siteConfiguration.type';
+import { ContentTypeSiteConfiguration } from '~/models/contentTypes/siteConfiguration.type';
 import { SiteConfigState } from './reducers';
 
 export const SiteConfigMapper = (

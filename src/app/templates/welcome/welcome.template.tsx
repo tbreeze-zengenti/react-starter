@@ -5,7 +5,7 @@ import MainLayout from '~/templates/main/main.template';
 
 import WelcomePageStyled from './welcome.styled';
 
-import { MappedEntry } from '~/types/global/mappedEntry.type';
+import { MappedEntry } from '~/models/global/mappedEntry.type';
 import { MetaProps } from '~/components/meta/meta.types';
 
 import Link from '~/components/link/link';
