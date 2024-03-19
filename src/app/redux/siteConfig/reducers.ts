@@ -1,6 +1,11 @@
 import { Draft, produce } from 'immer';
+import { Reducer } from 'redux';
 
 import { SET_SITE_CONFIG, GET_SITE_CONFIG_ERROR } from './types';
+
+type SiteConfigAction =
+  | { type: typeof SET_SITE_CONFIG; config: { title: string } }
+  | { type: typeof GET_SITE_CONFIG_ERROR; error: any | unknown };
 
 export type SiteConfigState = {
   isReady: boolean;
@@ -15,28 +20,27 @@ const initialState: SiteConfigState = {
   error: null,
   title: null,
 };
-
-export default produce(
-  (
-    state: Draft<SiteConfigState>,
-    action: { [key: string]: any; type: string }
-  ) => {
+const siteConfigReducer: Reducer<SiteConfigState, SiteConfigAction> = produce(
+  (draft: Draft<SiteConfigState>, action: SiteConfigAction) => {
     switch (action.type) {
       case SET_SITE_CONFIG: {
-        state.title = action.config.title;
-        state.isReady = true;
-        state.isError = false;
-        state.error = null;
-        return;
+        const { title } = action.config;
+        draft.title = title;
+        draft.isReady = true;
+        draft.isError = false;
+        draft.error = null;
+        break;
       }
       case GET_SITE_CONFIG_ERROR: {
-        state.isError = true;
-        state.error = action.error;
-        return;
+        draft.isError = true;
+        draft.error = action.error;
+        break;
       }
       default:
-        return state;
+        break;
     }
   },
   initialState
 );
+
+export default siteConfigReducer;

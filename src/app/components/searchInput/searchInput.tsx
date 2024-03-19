@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from 'react';
 
-import { SearchInputProps } from './searchInput.types';
-import SearchInputStyled from './searchInput.styled';
+export type SearchInputProps = {
+  className?: string;
+  placeholder?: string;
+  submit: (term: string) => void; // Callback function invoked when the search term is submitted.
+  value?: string;
+};
 
+/**
+ * A component for displaying a search input field.
+ */
 const SearchInput = ({
   className,
   placeholder,
@@ -11,11 +18,17 @@ const SearchInput = ({
 }: SearchInputProps) => {
   const [_value, _setValue] = useState(value);
 
+  /**
+   * Handles changes to the search input value.
+   */
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault();
     _setValue(e.currentTarget.value);
   };
 
+  /**
+   * Handles form submission of the search input.
+   */
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     submit(_value);
@@ -26,7 +39,7 @@ const SearchInput = ({
   }, [value]);
 
   return (
-    <SearchInputStyled
+    <form
       onSubmit={e => handleSubmit(e)}
       autoCapitalize="off"
       className={`${className ? className : ''}`}
@@ -42,7 +55,7 @@ const SearchInput = ({
       <button type="submit" value="search">
         Go
       </button>
-    </SearchInputStyled>
+    </form>
   );
 };
 

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { Markup } from '~/components/components';
-
 import { ComposerItemProps, ComposerProps } from './composer.types';
+
+import { Markup } from '../components';
 
 /**
  * @summary

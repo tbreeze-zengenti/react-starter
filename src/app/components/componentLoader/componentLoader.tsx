@@ -1,9 +1,9 @@
 import React from 'react';
 
-/** @description For component level loading states, ie. {isLoading ? Loader : Component} */
-const ComponentLoader = (className?: string) => {
-  const fill = 'black';
+const fill = 'black';
 
+/** For component level loading states, ie. {isLoading ? <ComponentLoader /> : <MyLoadedComponent />} */
+const ComponentLoader = (className?: string) => {
   return (
     <div className={`component-loader ${className ? className : ''}`}>
       <svg

@@ -7,8 +7,29 @@ import { AppState } from '@zengenti/contensis-react-base/models/redux/appstate';
 
 import { canonicalDomain } from './canonicalDomain';
 
-import { MetaProps } from './meta.types';
+export type MetaProps = {
+  pageTitle: string; // The title of the page.
+  author?: string; // The author of the page.
+  authorTwitterHandle?: string; // The Twitter handle of the author.
+  description?: string; // The description of the page.
+  locale?: string; // The locale of the page, eg. en_GB
+  ogDescription?: string; // The Open Graph description for the page.
+  ogImage?: string; // The URL of the Open Graph image.
+  ogImageAltText?: string; // The alt text for the Open Graph image.
+  ogType?: 'article' | 'profile' | 'website' | 'video'; // The type of the Open Graph content.
+  publishedDateTime?: string;
+  rssFeedPath?: string; // The path to the RSS feed.
+  schema?: string; // The schema of the page.
+  twitterCardType?: 'summary' | 'summary_large_image' | 'app' | 'player'; // The type of the Twitter card.
+  twitterHandle?: string; // The Twitter handle of the site.
+  insytful?: boolean; // Determines whether to include Insytful metadata.
+  noIndex?: boolean; // Determines whether to set the noindex meta tag.
+  noFollow?: boolean; // Determines whether to set the nofollow meta tag.
+};
 
+/**
+ * A component for managing metadata for the page.
+ */
 const Meta = ({
   authorTwitterHandle,
   description,

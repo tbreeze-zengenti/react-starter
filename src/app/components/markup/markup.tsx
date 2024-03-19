@@ -1,12 +1,18 @@
 import React from 'react';
 
-import { MarkupProps } from './markup.types';
-import MarkupStyled from './markup.styled';
+export type MarkupProps = {
+  _type?: 'textBlock';
+  className?: string;
+  text: string;
+};
 
+/**
+ * A component for rendering HTML markup.
+ */
 const Markup = ({ className, text }: MarkupProps) => {
   return (
-    <MarkupStyled
-      className={`markup ${className}`}
+    <div
+      className={`markup ${className ? className : ''}`}
       dangerouslySetInnerHTML={{
         __html: text,
       }}

@@ -4,11 +4,10 @@ import { Helmet } from 'react-helmet';
 import MainLayout from '~/templates/main/main.template';
 
 import ContentPageStyled from './content.styled';
+import { MappedEntry } from '~/util/mappedEntry.type';
 
-import { MappedEntry } from '~/models/global/mappedEntry.type';
 import { MetaProps } from '~/components/meta/meta.types';
 
-import Link from '~/components/link/link';
 import { ComposerProps } from '~/components/composer/composer.types';
 import Composer from '~/components/composer/composer';
 

@@ -5,16 +5,15 @@ import {
   InjectSearchAssets,
   injectSearchAssets,
 } from '~/util/injectSearchAssets';
+import { listingPages } from '~/schema/search.schema';
 
-import { ListingPages } from '~/schema/schema';
-
-// import { hasSiteConfig } from '~/redux/siteConfig/selectors';
-// import { ensureSiteConfigSaga } from '~/redux/siteConfig/sagas';
+import { hasSiteConfig } from '~/redux/siteConfig/selectors';
+import { ensureSiteConfigSaga } from '~/redux/siteConfig/sagas';
 
 export default {
   onRouteLoad: function* onRouteLoad() {
-    // const siteConfigExists = yield select(hasSiteConfig);
-    // if (!siteConfigExists) yield call(ensureSiteConfigSaga);
+    const siteConfigExists = yield select(hasSiteConfig);
+    if (!siteConfigExists) yield call(ensureSiteConfigSaga);
 
     // Set params for routing saga
     const routeLoadOptions: RouteLoadOptions = {
@@ -35,7 +34,7 @@ export default {
   }) {
     const contentTypeId = entry?.sys?.contentTypeId;
     const listingType =
-      staticRoute?.route?.listingType || ListingPages[contentTypeId];
+      staticRoute?.route?.listingType || listingPages[contentTypeId];
 
     if (path.startsWith('/search') || listingType) {
       const { routeParams, setRouteFilters, mappers } =

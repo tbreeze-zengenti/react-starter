@@ -16,7 +16,9 @@ const divStyles = {
   backgroundColor: 'white',
 } as React.CSSProperties;
 
-/** @description For loading states between routes only */
+/**
+ * Renders a loading spinner during route transitions.
+ */
 export const PageLoader = () => {
   return (
     <div style={divStyles}>

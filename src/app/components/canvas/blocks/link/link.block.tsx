@@ -8,6 +8,9 @@ import {
 import Link from '~/components/link/link';
 import { LinkProps } from '~/components/link/link.types';
 
+/**
+ * Renders a link block using the Contensis Canvas React library.
+ */
 const LinkBlock = (props: RenderBlockPropsWithChildren<LinkBlockProps>) => {
   const { link, newTab } = props.block.properties || {};
 

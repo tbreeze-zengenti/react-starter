@@ -1,19 +1,17 @@
 import loadable from '@loadable/component';
 
-import { MarkupProps } from '~/components/markup/markup.types';
-
-export const Composer = loadable(
+export const Composer = loadable<any>(
   () =>
     import(/* webpackChunkName: "composer" */ '~/components/composer/composer')
 );
 
-export const Markup = loadable<MarkupProps>(
-  () => import(/* webpackChunkName: "markup" */ '~/components/markup/markup')
-);
-
-export const Canvas = loadable(
+export const Canvas = loadable<any>(
   () =>
     import(
       /* webpackChunkName: "canvas" */ '~/components/canvas/canvas.component'
     )
+);
+
+export const Markup = loadable<any>(
+  () => import(/* webpackChunkName: "markup" */ '~/components/markup/markup')
 );

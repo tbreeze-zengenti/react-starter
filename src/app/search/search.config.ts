@@ -4,8 +4,9 @@ import {
   Listing,
   WeightedSearchField,
 } from '@zengenti/contensis-react-base/search';
-
-import { BaseFields, ContentTypes, FreeTextWeights } from '~/schema/schema';
+import { contentTypes } from '~/schema/contentTypes.schema';
+import { baseFields } from '~/schema/fields.schema';
+import { freeTextWeights } from '~/schema/search.schema';
 
 export const searchConfig = {
   tabs: [{ id: 0, label: '' }],
@@ -14,12 +15,12 @@ export const searchConfig = {
       title: 'Site Search',
       queryParams: {
         contentTypeIds: [],
-        fields: [...BaseFields],
+        fields: [...baseFields],
         linkDepth: 0,
         pageSize: 9,
         weightedSearchFields: [
-          { fieldId: 'entryTitle', weight: FreeTextWeights.title },
-          { fieldId: 'description', weight: FreeTextWeights.description },
+          { fieldId: 'entryTitle', weight: freeTextWeights.title },
+          { fieldId: 'description', weight: freeTextWeights.description },
         ] as WeightedSearchField[],
       },
     },
@@ -28,8 +29,8 @@ export const searchConfig = {
     all: {
       title: 'Listing',
       queryParams: {
-        contentTypeIds: [ContentTypes.homePage, 'article'],
-        fields: [...BaseFields],
+        contentTypeIds: [contentTypes.homePage, 'article'],
+        fields: [...baseFields],
         pageSize: 9,
       },
     },
@@ -38,8 +39,8 @@ export const searchConfig = {
     all: {
       title: 'Minilist',
       queryParams: {
-        contentTypeIds: [ContentTypes.homePage, 'article'],
-        fields: [...BaseFields],
+        contentTypeIds: [contentTypes.homePage, 'article'],
+        fields: [...baseFields],
         pageSize: 3,
       },
     },
