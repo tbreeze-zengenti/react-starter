@@ -1,5 +1,9 @@
 import { SearchTransformations } from '@zengenti/contensis-react-base/search';
 
+/**
+ * @description Asynchronously load and inject assets related to Search
+ * @see /routes/withEvents.ts
+ */
 export const injectSearchAssets = async () => {
   const { routeParams, setRouteFilters } = (await import(
     /* webpackChunkName: "search-package" */

@@ -28,7 +28,14 @@
  *
  * ~ > ordinal indicator eg 2'nd', 4'th'
  */
-export const formatDate = (isoDate: string, format: string) => {
+
+/**
+ * Formats a given ISO date string based on the provided format string.
+ * @param {string} isoDate - The ISO date string to format.
+ * @param {string} format - The format string specifying the desired output format.
+ * @returns {string|null} Returns the formatted date string or null if the input isoDate is falsy.
+ */
+export const formatDate = (isoDate: string, format: string): string | null => {
   if (!isoDate) return null;
   const dateObj = new Date(isoDate);
   const dayNameInt = dateObj.getDay();
@@ -68,11 +75,18 @@ export const formatDate = (isoDate: string, format: string) => {
     .replace(DAY[0], parseInt(day).toString());
 };
 
+/**
+ * Formats a date range consisting of 'from' and 'to' ISO date strings into a single string representation.
+ * @param {{ from: string, to: string }} dateRange - The date range object containing 'from' and 'to' ISO date strings.
+ * @param {string} dateFormat - The format string specifying the desired output format for each date in the range.
+ * @param {string} [separator=' - '] - The separator string to be used between 'from' and 'to' date strings.
+ * @returns {string|null} Returns the formatted date range string or null if the input dateRange is falsy.
+ */
 export const formatDateRange = (
   dateRange: { from: string; to: string },
   dateFormat: string,
   separator = ' - '
-) => {
+): string | null => {
   if (!dateRange) return null;
   if (!dateFormat) return `${dateRange.to} - ${dateRange.from}`;
 
@@ -92,7 +106,11 @@ export const formatDateRange = (
   return dateTime;
 };
 
-export const monthsShort = [
+/**
+ * An array containing short month names indexed from 1 to 12.
+ * @type {string[]}
+ */
+export const monthsShort: string[] = [
   '',
   'Jan',
   'Feb',
@@ -108,7 +126,11 @@ export const monthsShort = [
   'Dec',
 ];
 
-export const monthsLong = [
+/**
+ * An array containing long month names indexed from 1 to 12.
+ * @type {string[]}
+ */
+export const monthsLong: string[] = [
   '',
   'January',
   'February',
@@ -124,9 +146,17 @@ export const monthsLong = [
   'December',
 ];
 
-const daysShort = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+/**
+ * An array containing short day names indexed from 0 to 6 (Sunday to Saturday).
+ * @type {string[]}
+ */
+const daysShort: string[] = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
-const daysLong = [
+/**
+ * An array containing long day names indexed from 0 to 6 (Sunday to Saturday).
+ * @type {string[]}
+ */
+const daysLong: string[] = [
   'Sunday',
   'Monday',
   'Tuesday',
@@ -136,27 +166,41 @@ const daysLong = [
   'Saturday',
 ];
 
-const parseHour = (hour: number) => {
+/**
+ * Parses the hour value to a 12-hour format.
+ * @param {number} hour - The hour value (0-23).
+ * @returns {number} Returns the hour value in 12-hour format.
+ */
+const parseHour = (hour: number): number => {
   return hour > 12 ? hour - 12 : hour;
 };
 
-const parseTF = (hour: number) => {
+/**
+ * Determines the time period (AM/PM) based on the hour value.
+ * @param {number} hour - The hour value (0-23).
+ * @returns {string} Returns 'AM' if the hour is less than 12, otherwise 'PM'.
+ */
+const parseTF = (hour: number): string => {
   return hour > 11 ? 'PM' : 'AM';
 };
 
-const parseOrdinalIndicator = (day: string) => {
+/**
+ * Determines the ordinal indicator for the given day.
+ * @param {string} day - The day value as a string.
+ * @returns {string} Returns the ordinal indicator ('st', 'nd', 'rd', or 'th') for the given day.
+ */
+const parseOrdinalIndicator = (day: string): string => {
   if ([1, 21, 31].includes(parseInt(day))) return 'st';
   if ([3, 23].includes(parseInt(day))) return 'rd';
   if ([2, 22].includes(parseInt(day))) return 'nd';
   else return 'th';
 };
 
-const forceTwoDigitNumber = (num: number) => {
+/**
+ * Forces a number to be represented with two digits by padding with leading zeros if necessary.
+ * @param {number} num - The number to be forced to two digits.
+ * @returns {string} Returns the two-digit representation of the given number.
+ */
+const forceTwoDigitNumber = (num: number): string => {
   return ('0' + num).slice(-2);
 };
-
-// export const dateToISOStringTimeZone = (date: any) => {
-//   const tzoffset = new Date().getTimezoneOffset() * 60000;
-//   offset in milliseconds;
-//   return new Date(date - tzoffset).toISOString().slice(0, -1);
-// };
