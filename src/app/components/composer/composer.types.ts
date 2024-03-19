@@ -1,4 +1,4 @@
-import { MarkupProps } from '~/components/markup/markup.types';
+import { MarkupProps } from '../markup/markup';
 
 export interface ComposerProps {
   items: ComposerItemProps;

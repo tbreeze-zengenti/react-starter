@@ -1,4 +1,12 @@
 /**
+
+ */
+
+/**
+ * Formats a given ISO date string based on the provided format string.
+ * @param {string} isoDate - The ISO date string to format.
+ * @param {string} format - The format string specifying the desired output format.
+ * @returns {string|null} Returns the formatted date string or null if the input isoDate is falsy.
  * @description
  * Example date string: 2019-01-02T13:05:00 (expects ISO 8601 Datetime format yyyy-mm-ddThh:mm:ss [this is the format returned from Contensis delivery api])
  *
@@ -27,13 +35,6 @@
  * tt > AM / PM, e.g. AM or PM
  *
  * ~ > ordinal indicator eg 2'nd', 4'th'
- */
-
-/**
- * Formats a given ISO date string based on the provided format string.
- * @param {string} isoDate - The ISO date string to format.
- * @param {string} format - The format string specifying the desired output format.
- * @returns {string|null} Returns the formatted date string or null if the input isoDate is falsy.
  */
 export const formatDate = (isoDate: string, format: string): string | null => {
   if (!isoDate) return null;

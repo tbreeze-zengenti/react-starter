@@ -13,7 +13,7 @@ import { hasSiteConfig } from './selectors';
 
 import { version } from '@zengenti/contensis-react-base/redux';
 
-import { SiteConfigMapper } from './siteConfig.mapper';
+import { siteConfigMapper } from './siteConfig.mapper';
 import { siteConfigFields } from '~/schema/fields.schema';
 import { contentTypes } from '~/schema/contentTypes.schema';
 
@@ -53,7 +53,7 @@ export function* ensureSiteConfigSaga(): any {
 
       // Map the retrieved site config
       const config = results?.items?.[0]
-        ? SiteConfigMapper(results.items[0])
+        ? siteConfigMapper(results.items[0])
         : null;
 
       // Dispatch action to set site config in the Redux store

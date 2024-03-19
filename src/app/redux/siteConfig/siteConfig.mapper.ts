@@ -1,7 +1,7 @@
 import { ContentTypeSiteConfiguration } from '~/models/contentTypes/siteConfiguration.type';
 import { SiteConfigState } from './reducers';
 
-export const SiteConfigMapper = (
+export const siteConfigMapper = (
   config: ContentTypeSiteConfiguration
 ): Omit<SiteConfigState, 'isReady' | 'isError' | 'error'> => {
   return {
