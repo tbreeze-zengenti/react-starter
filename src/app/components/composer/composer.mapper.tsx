@@ -1,4 +1,4 @@
-import { ComposerComponents } from '~/schema';
+import { ComposerComponents } from '~/schema/schema';
 
 import { MarkupMapper } from '~/components/markup/markup.mapper';
 

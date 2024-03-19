@@ -13,7 +13,7 @@ import { hasSiteConfig } from './selectors';
 
 import { version } from '@zengenti/contensis-react-base/redux';
 
-import { SiteConfigFields } from '~/schema';
+import { SiteConfigFields } from '~/schema/schema';
 
 import { SiteConfigMapper } from './siteConfig.mapper';
 

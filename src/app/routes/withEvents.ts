@@ -6,7 +6,7 @@ import {
   injectSearchAssets,
 } from '~/util/injectSearchAssets';
 
-import { ListingPages } from '~/schema';
+import { ListingPages } from '~/schema/schema';
 
 // import { hasSiteConfig } from '~/redux/siteConfig/selectors';
 // import { ensureSiteConfigSaga } from '~/redux/siteConfig/sagas';

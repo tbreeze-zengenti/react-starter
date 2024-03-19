@@ -5,7 +5,7 @@ import {
   WeightedSearchField,
 } from '@zengenti/contensis-react-base/search';
 
-import { BaseFields, ContentTypes, FreeTextWeights } from '~/schema';
+import { BaseFields, ContentTypes, FreeTextWeights } from '~/schema/schema';
 
 export const searchConfig = {
   tabs: [{ id: 0, label: '' }],
