@@ -84,10 +84,9 @@ const Welcome = ({ mappedEntry }: MappedEntry<WelcomePageProps>) => {
 
                 <h2 className="bento-box__title">Documentation</h2>
                 <p className="bento-box__description">
-                  // eslint-disable-next-line react/no-unescaped-entities React
-                  Starter is a starter project built upon Zengenti's Contensis
-                  React Base framework. It's intended purpose is to help
-                  kickstart development with Contensis & React.
+                  React Starter is a starter project built upon Zengenti's
+                  Contensis React Base framework. It's intended purpose is to
+                  help kickstart development with Contensis & React.
                 </p>
                 <Link
                   path="https://react-starter.com/"
