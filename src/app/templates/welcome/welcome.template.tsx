@@ -5,17 +5,16 @@ import MainLayout from '~/templates/main/main.template';
 
 import WelcomePageStyled from './welcome.styled';
 
-import { MetaProps } from '~/components/meta/meta.types';
-
 import Link from '~/components/link/link';
 import { MappedEntry } from '~/util/mappedEntry.type';
+import { MetaProps } from '~/components/meta/meta';
 
-export type WelcomePageProps = {
+export type WelcomeTemplateProps = {
   meta: MetaProps;
   title: string;
 };
 
-const Welcome = ({ mappedEntry }: MappedEntry<WelcomePageProps>) => {
+const Welcome = ({ mappedEntry }: MappedEntry<WelcomeTemplateProps>) => {
   const { meta } = mappedEntry || {};
   return (
     <MainLayout meta={meta}>

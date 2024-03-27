@@ -1,5 +1,5 @@
 import { RouteEntry } from '~/util/routeEntry.type';
-import { ContentPageProps } from './content.template';
+import { ContentTemplateProps } from './content.template';
 
 type ContentTypeContent = {
   entryTitle: string;
@@ -8,7 +8,7 @@ type ContentTypeContent = {
 
 export const contentMapper = (
   props: RouteEntry<ContentTypeContent>
-): ContentPageProps => {
+): ContentTemplateProps => {
   return {
     meta: {
       pageTitle: 'Get started',

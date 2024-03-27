@@ -3,21 +3,20 @@ import { Helmet } from 'react-helmet';
 
 import MainLayout from '~/templates/main/main.template';
 
-import ContentPageStyled from './content.styled';
+import ContentTemplateStyled from './content.styled';
 import { MappedEntry } from '~/util/mappedEntry.type';
-
-import { MetaProps } from '~/components/meta/meta.types';
 
 import { ComposerProps } from '~/components/composer/composer.types';
 import Composer from '~/components/composer/composer';
+import { MetaProps } from '~/components/meta/meta';
 
-export type ContentPageProps = {
+export type ContentTemplateProps = {
   meta: MetaProps;
   title: string;
   body: ComposerProps;
 };
 
-const Content = ({ mappedEntry }: MappedEntry<ContentPageProps>) => {
+const Content = ({ mappedEntry }: MappedEntry<ContentTemplateProps>) => {
   const { meta, title, body } = mappedEntry || {};
   console.log(body);
   return (
@@ -40,9 +39,9 @@ const Content = ({ mappedEntry }: MappedEntry<ContentPageProps>) => {
               <Composer {...body} />
             </div>
           </div>
-        </ContentPageStyled>
-      </>
-    </MainLayout>
+        </ContentTemplateStyled>
+      </MainLayout>
+    </>
   );
 };
 

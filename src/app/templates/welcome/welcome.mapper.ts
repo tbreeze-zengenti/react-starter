@@ -1,6 +1,6 @@
-import { WelcomePageProps } from './welcome.template';
+import { WelcomeTemplateProps } from './welcome.template';
 
-export const welcomeMapper = (): WelcomePageProps => {
+export const welcomeMapper = (): WelcomeTemplateProps => {
   return {
     meta: {
       pageTitle: 'Get started',
