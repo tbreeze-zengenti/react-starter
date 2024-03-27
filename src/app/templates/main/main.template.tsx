@@ -1,19 +1,18 @@
 import React from 'react';
 
-import Meta from '~/components/meta/meta';
-import { MetaProps } from '~/components/meta/meta.types';
+import Meta, { MetaProps } from '~/components/meta/meta';
 
 type MainTemplateProps = {
   className?: string;
-  meta: MetaProps;
-  children: React.ReactElement;
+  meta?: MetaProps;
+  children: React.ReactNode;
 };
 
 const MainTemplate = ({ className, children, meta }: MainTemplateProps) => {
   return (
     <>
-      <Meta {...meta} />
-      <main id="main" className={`main ${className ? className : ''}`}>
+      {meta ? <Meta {...meta} /> : null}
+      <main id="main" className={className}>
         {children}
       </main>
     </>
