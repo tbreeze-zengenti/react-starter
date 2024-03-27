@@ -37,4 +37,10 @@ declare const VERSION: string;
 
 declare const WSFED_LOGIN: false;
 
+// env variables
+declare const ALIAS: string;
+declare const ACCESS_TOKEN: string;
+declare const PUBLIC_URL: string;
+declare const PROJECT: string;
+
 declare module 'app-root-path';
