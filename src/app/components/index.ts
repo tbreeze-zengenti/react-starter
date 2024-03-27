@@ -2,7 +2,9 @@ import loadable from '@loadable/component';
 
 export const Composer = loadable<any>(
   () =>
-    import(/* webpackChunkName: "composer" */ '~/components/composer/composer')
+    import(
+      /* webpackChunkName: "composer" */ '~/components/composer/composer.component'
+    )
 );
 
 export const Canvas = loadable<any>(
@@ -13,5 +15,8 @@ export const Canvas = loadable<any>(
 );
 
 export const Markup = loadable<any>(
-  () => import(/* webpackChunkName: "markup" */ '~/components/markup/markup')
+  () =>
+    import(
+      /* webpackChunkName: "markup" */ '~/components/markup/markup.component'
+    )
 );

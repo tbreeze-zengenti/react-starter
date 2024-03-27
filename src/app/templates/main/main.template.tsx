@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Meta, { MetaProps } from '~/components/meta/meta';
+import Meta, { MetaProps } from '~/components/meta/meta.component';
 
 type MainTemplateProps = {
   className?: string;

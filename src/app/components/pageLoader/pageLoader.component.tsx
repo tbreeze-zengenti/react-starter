@@ -19,7 +19,7 @@ const divStyles = {
 /**
  * Renders a loading spinner during route transitions.
  */
-export const PageLoader = () => {
+const PageLoader = () => {
   return (
     <div style={divStyles}>
       <h3 className="sr-only">Loading...</h3>
@@ -70,3 +70,5 @@ export const PageLoader = () => {
     </div>
   );
 };
+
+export default PageLoader;

@@ -1,14 +1,11 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-
 import MainLayout from '~/templates/main/main.template';
-
-import ContentTemplateStyled from './content.styled';
-import { MappedEntry } from '~/util/mappedEntry.type';
-
+import type { MappedEntry } from '~/util/mappedEntry.type';
+import Composer from '~/components/composer/composer.component';
 import { ComposerProps } from '~/components/composer/composer.types';
-import Composer from '~/components/composer/composer';
-import { MetaProps } from '~/components/meta/meta';
+import type { MetaProps } from '~/components/meta/meta.component';
+import ContentTemplateStyled from './content.styled';
 
 export type ContentTemplateProps = {
   meta: MetaProps;

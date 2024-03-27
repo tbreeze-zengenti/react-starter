@@ -1,4 +1,4 @@
-import { WelcomeTemplateProps } from './welcome.template';
+import type { WelcomeTemplateProps } from './welcome.template';
 
 export const welcomeMapper = (): WelcomeTemplateProps => {
   return {

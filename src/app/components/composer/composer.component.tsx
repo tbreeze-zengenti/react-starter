@@ -2,8 +2,6 @@ import React from 'react';
 
 import { ComposerItemProps, ComposerProps } from './composer.types';
 
-import { Markup } from '../components';
-
 /**
  * @summary
  * Contensis does NOT provide unique IDs for Composer fields
@@ -23,7 +21,7 @@ const Composer = ({ items }: ComposerProps) => {
         if (!props._type) return null;
         switch (props._type) {
           case 'textBlock':
-            return <Markup {...props} />;
+            return <Marku {...props} />;
 
           default:
             console.error(
