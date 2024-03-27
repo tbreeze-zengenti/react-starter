@@ -5,7 +5,7 @@ import {
   LinkBlock as LinkBlockProps,
 } from '@contensis/canvas-react';
 
-import Link, { LinkProps } from '~/components/link/link';
+import Link, { LinkProps } from '~/components/link/link.component';
 
 /**
  * Renders a link block using the Contensis Canvas React library.

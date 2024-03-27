@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import Link from './link';
+import Link from '~/components/link/link.component';
 import { MemoryRouter } from 'react-router-dom';
 
 const meta: Meta<typeof Link> = {
