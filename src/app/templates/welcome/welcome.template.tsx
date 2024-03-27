@@ -17,16 +17,16 @@ export type WelcomeTemplateProps = {
 const Welcome = ({ mappedEntry }: MappedEntry<WelcomeTemplateProps>) => {
   const { meta } = mappedEntry || {};
   return (
-    <MainLayout meta={meta}>
-      <>
-        <Helmet>
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Inter&display=swap"
-            rel="stylesheet"
-          ></link>
-        </Helmet>
+    <>
+      <Helmet>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter&display=swap"
+          rel="stylesheet"
+        ></link>
+      </Helmet>
+      <MainLayout meta={meta}>
         <WelcomePageStyled>
           <div className="wrapper">
             <div className="logo">
@@ -83,9 +83,9 @@ const Welcome = ({ mappedEntry }: MappedEntry<WelcomeTemplateProps>) => {
 
                 <h2 className="bento-box__title">Documentation</h2>
                 <p className="bento-box__description">
-                  React Starter is a starter project built upon Zengenti's
-                  Contensis React Base framework. It's intended purpose is to
-                  help kickstart development with Contensis & React.
+                  React Starter is a starter project built upon Zengenti&#39;s
+                  Contensis React Base framework. It&#39;s intended purpose is
+                  to help kickstart development with Contensis & React.
                 </p>
                 <Link
                   path="https://react-starter.com/"
@@ -134,8 +134,8 @@ const Welcome = ({ mappedEntry }: MappedEntry<WelcomeTemplateProps>) => {
             </section>
           </div>
         </WelcomePageStyled>
-      </>
-    </MainLayout>
+      </MainLayout>
+    </>
   );
 };
 
