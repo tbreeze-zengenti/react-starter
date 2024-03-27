@@ -1,8 +1,4 @@
-export type ColorKeys = 'contensis' | 'zengenti';
-
-export type ColorsTheme = { [Key in ColorKeys]: string };
-
-export const colors: ColorsTheme = {
+export const colors = {
   contensis: '#37bfa7',
   zengenti: '#002033',
 };

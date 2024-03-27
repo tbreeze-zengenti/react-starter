@@ -1,18 +1,14 @@
 import 'styled-components';
-import {
-  BreakpointsTheme,
-  GridTheme,
-  MediaQueryTheme,
-  SpacingTheme,
-} from './layout';
-import { ColorsTheme } from './colors';
+
+import { colors } from './colors';
+import { breakpoints, grid, mq, spacing } from '~/theme/layout';
 
 declare module 'styled-components' {
   export interface DefaultTheme {
-    colors: ColorsTheme;
-    breakpoints: BreakpointsTheme;
-    mq: MediaQueryTheme;
-    spacing: SpacingTheme;
-    grid: GridTheme;
+    colors: typeof colors;
+    breakpoints: typeof breakpoints;
+    mq: typeof mq;
+    spacing: typeof spacing;
+    grid: typeof grid;
   }
 }
