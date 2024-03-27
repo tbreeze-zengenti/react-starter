@@ -2,7 +2,7 @@ import { ContentTypeMapping } from '@zengenti/contensis-react-base';
 
 import { mapRouteEntryToProps } from '~/util/mapRouteEntryToProps';
 
-import { Content } from '~/templates/templates';
+import { Content } from '~/templates';
 
 import { contentMapper } from '~/templates/content/content.mapper';
 

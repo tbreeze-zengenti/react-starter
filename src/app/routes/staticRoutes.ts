@@ -1,9 +1,8 @@
 import { StaticRoute } from '@zengenti/contensis-react-base';
 
-import { injectSearch } from '~/util/injectSearch';
 import { mapRouteEntryToProps } from '~/util/mapRouteEntryToProps';
 
-import { NotFound, Welcome, ZenInfo } from '~/templates/templates';
+import { NotFound, Welcome, ZenInfo } from '~/templates';
 
 import { welcomeMapper } from '~/templates/welcome/welcome.mapper';
 
