@@ -4,14 +4,13 @@ import type { MouseEvent, ReactNode } from 'react';
 import { Link as PageLink } from 'react-router-dom';
 
 export type LinkProps = {
+  path?: string;
   className?: string;
   children?: ReactNode;
   download?: string;
-  href?: string;
   onClick?: (e: MouseEvent<HTMLAnchorElement>) => void;
   openInNewWindow?: boolean;
   title?: string;
-  path?: string;
 };
 
 /**
