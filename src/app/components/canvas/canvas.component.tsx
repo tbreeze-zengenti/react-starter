@@ -9,7 +9,8 @@ import LinkBlock from './blocks/link/link.block';
 
 // Recommended reading: https://github.com/contensis/canvas/blob/main/apps/react/README.md
 
-const Canvas = ({ data }: { data: Block[] }) => {
+export type CanvasProps = { data: Block[] };
+const Canvas = ({ data }: CanvasProps) => {
   if (!data) return null;
 
   return (
