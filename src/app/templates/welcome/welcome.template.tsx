@@ -17,7 +17,7 @@ export type WelcomeTemplateProps = {
 const Welcome = ({
   mappedEntry,
 }: RouteComponentProps<WelcomeTemplateProps>) => {
-  const { meta } = mappedEntry || {};
+  const { meta } = mappedEntry || ({} as WelcomeTemplateProps);
   return (
     <>
       <Helmet>

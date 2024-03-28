@@ -16,7 +16,7 @@ export type ContentTemplateProps = {
 const Content = ({
   mappedEntry,
 }: RouteComponentProps<ContentTemplateProps>) => {
-  const { meta, title, body } = mappedEntry || {};
+  const { meta, title, body } = mappedEntry || ({} as ContentTemplateProps);
   console.log(body);
   return (
     <>
