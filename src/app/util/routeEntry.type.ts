@@ -6,7 +6,7 @@ import { ReduxState } from '~/redux/redux.type';
  * @interface
  * @template N - The type of entry associated with the node.
  */
-export interface Node<N> {
+export interface Node<N = ContensisEntry> {
   id: string;
   projectId: string;
   title: string;

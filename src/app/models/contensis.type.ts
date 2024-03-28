@@ -1,5 +1,6 @@
 import { EntrySys } from 'contensis-delivery-api/lib/models';
 import { PagedList } from 'contensis-core-api';
+import { Node } from '~/util/routeEntry.type';
 
 /**
  * Represents Contensis system properties with additional metadata and version information.
