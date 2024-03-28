@@ -1,12 +1,12 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import { RouteComponentProps } from '@zengenti/contensis-react-base';
 
 import MainLayout from '~/templates/main/main.template';
 
 import WelcomePageStyled from './welcome.styled';
 
 import Link from '~/components/link/link.component';
-import { MappedEntry } from '~/util/mappedEntry.type';
 import { MetaProps } from '~/components/meta/meta.component';
 
 export type WelcomeTemplateProps = {
@@ -14,7 +14,9 @@ export type WelcomeTemplateProps = {
   title: string;
 };
 
-const Welcome = ({ mappedEntry }: MappedEntry<WelcomeTemplateProps>) => {
+const Welcome = ({
+  mappedEntry,
+}: RouteComponentProps<WelcomeTemplateProps>) => {
   const { meta } = mappedEntry || {};
   return (
     <>

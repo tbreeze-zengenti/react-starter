@@ -1,7 +1,7 @@
 import React from 'react';
+import { RouteComponentProps } from '@zengenti/contensis-react-base';
 import { Helmet } from 'react-helmet';
 import MainLayout from '~/templates/main/main.template';
-import type { MappedEntry } from '~/util/mappedEntry.type';
 import Composer from '~/components/composer/composer.component';
 import { ComposerProps } from '~/components/composer/composer.types';
 import type { MetaProps } from '~/components/meta/meta.component';
@@ -13,7 +13,9 @@ export type ContentTemplateProps = {
   body: ComposerProps;
 };
 
-const Content = ({ mappedEntry }: MappedEntry<ContentTemplateProps>) => {
+const Content = ({
+  mappedEntry,
+}: RouteComponentProps<ContentTemplateProps>) => {
   const { meta, title, body } = mappedEntry || {};
   console.log(body);
   return (
@@ -32,7 +34,7 @@ const Content = ({ mappedEntry }: MappedEntry<ContentTemplateProps>) => {
             <div className="logo">
               <h1>{title}</h1>
             </div>
-            <Composer {...body} />
+            {body ? <Composer {...body} /> : null}
           </div>
         </ContentTemplateStyled>
       </MainLayout>
