@@ -39,6 +39,8 @@ const ContentPageStyled = styled.div`
 
   padding: var(--fluid-40-64, 4rem) 0;
   min-height: inherit;
+
+  color: var(--text-color);
   background-color: var(--bg-color);
 
   font-family: 'Inter', sans-serif;
