@@ -64,10 +64,9 @@ const Welcome = ({
 
                 <h2 className="bento-box__title">Get started</h2>
                 <p className="bento-box__description">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Mauris sodales felis dolor. Nunc laoreet vel dolor ac pretium.
-                  Duis pharetra, neque a vehicula scelerisque, odio libero
-                  egestas dui, sit amet mollis neque nunc et nibh.
+                  Get started with our React JS project in just a few simple
+                  steps. Clone the repository, install dependencies, and
+                  you&#39;re ready to go.
                 </p>
               </article>
               <article className="bento-box">
