@@ -3,7 +3,8 @@ import { ContentTemplateProps } from './content.template';
 
 type ContentTypeContent = {
   entryTitle: string;
-  bodyContent: any;
+  composer: any;
+  canvas?: any;
 };
 
 export const contentMapper = (
@@ -14,6 +15,7 @@ export const contentMapper = (
       pageTitle: 'Get started',
     },
     title: props.entryTitle,
-    body: props.bodyContent,
+    composer: props.composer,
+    canvas: props.canvas ? { data: props.canvas } : undefined,
   };
 };

@@ -6,18 +6,22 @@ import Composer from '~/components/composer/composer.component';
 import { ComposerProps } from '~/components/composer/composer.types';
 import type { MetaProps } from '~/components/meta/meta.component';
 import ContentTemplateStyled from './content.styled';
+import { Canvas } from '~/components';
+import type { CanvasProps } from '~/components/canvas/canvas.component';
 
 export type ContentTemplateProps = {
   meta: MetaProps;
   title: string;
-  body: ComposerProps;
+  composer: ComposerProps;
+  canvas?: CanvasProps;
 };
 
 const Content = ({
   mappedEntry,
 }: RouteComponentProps<ContentTemplateProps>) => {
-  const { meta, title, body } = mappedEntry || ({} as ContentTemplateProps);
-  console.log(body);
+  const { meta, title, composer, canvas } =
+    mappedEntry || ({} as ContentTemplateProps);
+  console.log(composer);
   return (
     <>
       <Helmet>
@@ -34,7 +38,9 @@ const Content = ({
             <div className="logo">
               <h1>{title}</h1>
             </div>
-            {body ? <Composer {...body} /> : null}
+            {composer ? <Composer {...composer} /> : null}
+
+            {canvas ? <Canvas {...canvas} /> : null}
           </div>
         </ContentTemplateStyled>
       </MainLayout>
