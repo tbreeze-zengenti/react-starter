@@ -4,13 +4,13 @@ import { injectSearchAssets, InjectSearchAssets } from '~/redux/dynamic';
 
 import { ListingPages } from '~/schema';
 
-import { hasSiteConfig } from '~/redux/siteConfig/selectors';
-import { ensureSiteConfigSaga } from '~/redux/siteConfig/sagas';
+// import { hasSiteConfig } from '~/redux/siteConfig/selectors';
+// import { ensureSiteConfigSaga } from '~/redux/siteConfig/sagas';
 
 export default {
   onRouteLoad: function* onRouteLoad() {
-    const siteConfigExists = yield select(hasSiteConfig);
-    if (!siteConfigExists) yield call(ensureSiteConfigSaga);
+    // const siteConfigExists = yield select(hasSiteConfig);
+    // if (!siteConfigExists) yield call(ensureSiteConfigSaga);
 
     // Set params for routing saga
     const routeLoadOptions: RouteLoadOptions = {
