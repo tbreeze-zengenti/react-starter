@@ -8,9 +8,9 @@ import { ListingPages } from '~/schema';
 // import { ensureSiteConfigSaga } from '~/redux/siteConfig/sagas';
 
 export default {
-  onRouteLoad: function* onRouteLoad() {
+  onRouteLoad: function* onRouteLoad({ ssr }) {
     // const siteConfigExists = yield select(hasSiteConfig);
-    // if (!siteConfigExists) yield call(ensureSiteConfigSaga);
+    // if (!siteConfigExists) yield call(ensureSiteConfigSaga, ssr);
 
     // Set params for routing saga
     const routeLoadOptions: RouteLoadOptions = {

@@ -1,6 +1,7 @@
 import { takeEvery, select, put } from 'redux-saga/effects';
 
-import { cachedSearch } from '@zengenti/contensis-react-base/util';
+import { SSRContext } from '@zengenti/contensis-react-base';
+import { version } from '@zengenti/contensis-react-base/redux';
 import { Query, Op } from 'contensis-delivery-api';
 
 import {
@@ -11,15 +12,15 @@ import {
 
 import { hasSiteConfig } from './selectors';
 
-import { version } from '@zengenti/contensis-react-base/redux';
-
 import { ContentTypes, SiteConfigFields } from '~/schema';
 
+type Action<Payload> = { type: string } & Payload;
+
 export const SiteConfigSagas = [
-  takeEvery(GET_SITE_CONFIG, ensureSiteConfigSaga),
+  takeEvery<Action<SSRContext>>(GET_SITE_CONFIG, ensureSiteConfigSaga),
 ];
 
-export function* ensureSiteConfigSaga(): any {
+export function* ensureSiteConfigSaga({ api }: SSRContext): any {
   const state = yield select();
   try {
     if (!hasSiteConfig(state)) {
@@ -40,7 +41,7 @@ export function* ensureSiteConfigSaga(): any {
 
       if (!SiteConfigFields || SiteConfigFields.length <= 0) return;
 
-      const results = yield cachedSearch.search(query, 0);
+      const results = yield api.search(query, 0);
 
       const siteConfig =
         (results?.items?.length || 0) > 0 ? results.items[0] : null;

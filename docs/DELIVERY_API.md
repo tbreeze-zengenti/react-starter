@@ -1,31 +1,84 @@
 ## 🍃 Contensis Delivery API
 
-When writing your own backing code that makes calls to the Delivery API, we strongly recommend using the exports available in `contensis-react-base/util` package. They have been updated to provide full TypeScript intellisense which is invaluable for both TypeScript and JavaScript developers.
+When writing your own backing code that makes calls to the Delivery API, we strongly recommend using the exports available in `contensis-react-base/util` package. They come pre-connected to the current Contensis project and uses a delivery client that is hooked up with handlers that allow cache invalidation to work for pages rendered in SSR. They have been updated to provide full TypeScript intellisense which is invaluable for both TypeScript and JavaScript developers.
 
 ### Strongly recommended approach
 
 The methods available in these imports allow us to make the simple api calls we need to surface regular content that provides a wrapped instance of `contensis-delivery-api` [npm package](https://www.npmjs.com/package/contensis-delivery-api) JavaScript client that works with your app.
 
+For the most reliable SSR experience we have created a new hook that can be called within any React component and ensures everything is sourced from the same component tree (and scoped to the current request in SSR).
+```typescript
+import { useDeliveryApi } from '@zengenti/contensis-react-base/util';
+```
 
-To make calls to the Delivery API import like this
+To use this in redux-saga backing code we need to pass the reference to the delivery api we obtained from the hook call with the action payload when we dispatch the action from within the component.
+
+```tsx
+const SomeReduxComponent = () => {
+  const deliveryApi = useDeliveryApi();
+  const dispatch = useDispatch();
+  const myData = useSelector(state => state.myData);
+
+  useEffect(() => {
+    if (!myData) {
+      dispatch({
+        type: 'FETCH_DATA',
+        deliveryApi
+      });
+    }
+  }, []);
+
+
+  return (<MyComponentToRender data={myData} />);
+}
+```
+And in the redux-saga code we can access the api in the payload we provided from the action argument
+
+```typescript
+export const sagas = [
+  takeEvery('FETCH_DATA', fetchData),
+];
+
+export function* fetchData(action: { deliveryApi: SSRContext['api'] }) {
+  const { deliveryApi } = action;
+  const query = getDataQuery();
+  const payload = yield deliveryApi.search(query, 1);
+  
+  yield put({
+    type: 'FETCHED_DATA',
+    myData: payload?.items || [];
+  });
+}
+
+```
+
+A simpler but less reliable way to import the same api utility we can import it like this anywhere
+
+We are now advising against this in favour of the approach above. The objects returned by the `useDeliveryApi` and `useSSRContext` hooks are context-based and references the component tree we are rendering. We have found in high concurrent load scenarios the cache invalidation headers in SSR are not generated correctly for every concurrent request when using the static imports of the api helpers.
+
 ``` typescript
 import { deliveryApi } from '@zengenti/contensis-react-base/util';
 ```
 
-The next example provides a similar Delivery API implementation except calls made client-side are cached locally until the next page reload preventing needless duplicate api calls
+The next example provides a similar Delivery API implementation except calls made client-side are cached locally until the next page reload preventing needless duplicate api calls.
+
+We are now advising against this approach due to the same SSR caveat as above
 ``` typescript
 import { cachedSearch } from '@zengenti/contensis-react-base/util';
 ```
 
-Alternatively, calling `getClientConfig()` will provide a Delivery API Config that can be used to create a 'connected' instance of the normal [delivery api client](https://github.com/contensis/contensis-delivery-api#examples) so you could access any part of the Delivery API that might not be available in the above imports like this
+Alternatively, calling `getClient()` will return a 'connected' instance of the normal [delivery api client](https://github.com/contensis/contensis-delivery-api#examples) so you could access any part of the Delivery API that might not be available in the existing methods like this
 
-``` typescript
-import { Client } from 'contensis-delivery-api';
-import { getClientConfig } from '@zengenti/contensis-react-base/util';
+```tsx
+import { useDeliveryApi } from '@zengenti/contensis-react-base/util';
 
-const client = Client.create(getClientConfig());
+const SomeComponent = () => {
+  const deliveryApi = useDeliveryApi();
+  const client = deliveryApi.getClient();
+
+  return null;
+}
 ```
-
 You can see an example implementation here: https://gitlab.zengenti.com/starter-projects/react-starter/-/blob/master/src/app/redux/siteConfig/sagas.ts
 
 Use any of these approaches that work best for your implementation.
