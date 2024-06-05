@@ -1,4 +1,4 @@
-import { MarkupProps } from './markup';
+import type { MarkupProps } from './markup.component';
 
 export const MarkupMapper = {
   text: '.',
