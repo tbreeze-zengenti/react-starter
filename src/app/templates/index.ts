@@ -1,7 +1,7 @@
 import loadable from '@loadable/component';
-import { RouteComponentProps } from '@zengenti/contensis-react-base/models/routing/routes';
-import { ContentTemplateProps } from '~/templates/content/content.template';
-import { WelcomeTemplateProps } from '~/templates/welcome/welcome.template';
+import type { RouteComponentProps } from '@zengenti/contensis-react-base';
+import type { ContentTemplateProps } from '~/templates/content/content.template';
+import type { WelcomeTemplateProps } from '~/templates/welcome/welcome.template';
 
 export const NotFound = loadable(
   () =>
@@ -29,5 +29,12 @@ export const Content = loadable<RouteComponentProps<ContentTemplateProps>>(
   () =>
     import(
       /* webpackChunkName: "content.template" */ '~/templates/content/content.template'
+    )
+);
+
+export const Search = loadable<RouteComponentProps<any>>(
+  () =>
+    import(
+      /* webpackChunkName: "search.template" */ '~/templates/search/search.template'
     )
 );

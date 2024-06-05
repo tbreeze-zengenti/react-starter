@@ -2,9 +2,10 @@ import { StaticRoute } from '@zengenti/contensis-react-base';
 
 import { mapRouteEntryToProps } from '~/util/mapRouteEntryToProps';
 
-import { NotFound, Welcome, ZenInfo } from '~/templates';
+import { NotFound, Search, Welcome, ZenInfo } from '~/templates';
 
 import { welcomeMapper } from '~/templates/welcome/welcome.mapper';
+import { injectSearch } from '~/util/injectSearch';
 
 /**
  * An array of static routes used in the application.
@@ -19,16 +20,12 @@ const staticRoutes: StaticRoute[] = [
       entryMapper: mapRouteEntryToProps(welcomeMapper),
     },
   },
-  // {
-  //   path: '/search/:facet?',
-  //   component: loadable<any>(
-  //     () =>
-  //       import(
-  //         /* webpackChunkName: "search.template" */ '~/templates/search/search.template'
-  //       )
-  //   ),
-  //   injectRedux: injectSearch,
-  // },
+  {
+    path: '/search/:facet?',
+    component: Search,
+    injectRedux: injectSearch,
+    fetchNode: false,
+  },
   {
     path: '/404',
     component: NotFound,

@@ -9,3 +9,7 @@ export const selectNavbar = (state: ReduxState) => {
   const nodes = selectNavigationChildren(state);
   return navBarMapper(nodes);
 };
+
+// check whether search state is in redux store
+export const selectSearchExists = (state: ReduxState) =>
+  state?.search?.context != null;

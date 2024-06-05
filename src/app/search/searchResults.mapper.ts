@@ -10,31 +10,29 @@ type ResultProps<Props> = {
 } & Props;
 
 /** Represents the base properties of a search result. */
-export type BaseSearchResultProps = {
+export type BaseSearchResultProps = ResultProps<{
   title: string;
-  uri: string;
-};
+  uri?: string;
+}>;
 
 /**
  * Represents a function that maps a content entry to result properties.
  */
-const baseMapper = (
-  entry: ContentType<unknown>
-): ResultProps<BaseSearchResultProps> => {
+const baseMapper = (entry: ContentType<unknown>): BaseSearchResultProps => {
   return {
-    id: entry.sys.id ?? '',
-    uri: entry.sys.uri ?? '/',
-    title: entry.entryTitle ?? '',
+    id: entry.sys.id,
+    uri: entry.sys.uri ?? undefined,
+    title: entry.entryTitle,
   };
 };
 
 const blogEntryMapper = (
   entry: ContentType<unknown>
-): ResultProps<BaseSearchResultProps> => {
+): BaseSearchResultProps => {
   return {
-    id: entry.sys.id ?? '',
-    uri: entry.sys.uri ?? '/',
-    title: entry.entryTitle ?? '',
+    id: entry.sys.id,
+    uri: entry.sys.uri ?? undefined,
+    title: entry.entryTitle,
   };
 };
 export type SearchResultProps = BaseSearchResultProps;

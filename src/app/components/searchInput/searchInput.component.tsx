@@ -44,8 +44,8 @@ const SearchInput = ({
       autoCapitalize="off"
       className={`${className ? className : ''}`}
     >
-      <label htmlFor="searchInput">Keyword search</label>
       <input
+        title="Search"
         type="search"
         value={_value}
         onChange={e => handleChange(e)}
