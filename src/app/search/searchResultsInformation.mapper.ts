@@ -1,14 +1,15 @@
-import { AppState } from '@zengenti/contensis-react-base/models/search/models/SearchState';
-import { selectors } from '@zengenti/contensis-react-base/search';
+import { SearchState, selectors } from '@zengenti/contensis-react-base/search';
 import { mapJson } from '@zengenti/contensis-react-base/util';
 
 const { getCurrent, getListing, getResults, getTotalCount, getPaging } =
   selectors.selectListing;
 
+type ReduxWithSearch = { search: SearchState };
+
 /**
  * Retrieves the title of the current listing from the application state.
  */
-const listingTitle = (state: AppState): string | undefined => {
+const listingTitle = (state: ReduxWithSearch): string | undefined => {
   const listing = getListing(state);
   return listing?.title;
 };
@@ -16,18 +17,19 @@ const listingTitle = (state: AppState): string | undefined => {
 /**
  * Retrieves the total count of search results from the application state.
  */
-const totalCount = (state: AppState): number => getTotalCount(state);
+const totalCount = (state: ReduxWithSearch): number => getTotalCount(state);
 
 /**
  * Template object for generating search summary information.
  */
 const searchSummaryTemplate = {
-  currentListing: (state: AppState): string => getCurrent(state),
-  currentPageCount: (state: AppState): number => getResults(state).length,
+  currentListing: (state: ReduxWithSearch): string => getCurrent(state),
+  currentPageCount: (state: ReduxWithSearch): number =>
+    getResults(state).length,
   listingTitle,
-  noResultsText: (state: AppState): string =>
+  noResultsText: (state: ReduxWithSearch): string =>
     totalCount(state) === 0 ? `No results were found` : '',
-  resultsText: (state: AppState) => {
+  resultsText: (state: ReduxWithSearch) => {
     const paging = getPaging(state);
     const { pageIndex, pageSize, totalCount, pagesLoaded } = paging;
     if (!pagesLoaded) return null;
@@ -39,7 +41,7 @@ const searchSummaryTemplate = {
   },
 };
 
-const searchResultsInformationMapper = (state: AppState) =>
+const searchResultsInformationMapper = (state: ReduxWithSearch) =>
   mapJson(state, searchSummaryTemplate);
 
 export default searchResultsInformationMapper;
