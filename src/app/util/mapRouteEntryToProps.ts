@@ -1,5 +1,5 @@
 import { RouteNode } from '@zengenti/contensis-react-base';
-import { AppState } from '@zengenti/contensis-react-base/models/redux/appstate';
+import { ReduxState } from '~/redux/redux.type';
 
 /**
  * Maps route entry properties to a custom type using a provided mapper function.
@@ -10,7 +10,7 @@ import { AppState } from '@zengenti/contensis-react-base/models/redux/appstate';
  */
 export const mapRouteEntryToProps =
   <P, T>(mapper: (res: P) => T) =>
-  (node: RouteNode, state?: AppState) => {
+  (node: RouteNode, state?: ReduxState) => {
     const entry = {
       ...{ node },
       ...(node.entry || {}),
