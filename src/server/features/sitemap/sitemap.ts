@@ -1,28 +1,17 @@
 import { Op, OrderBy, Query } from 'contensis-delivery-api';
-import { streamToPromise, SitemapStream } from 'sitemap';
+import { SitemapStream, streamToPromise } from 'sitemap';
 import { cachedSearch } from '@zengenti/contensis-react-base/util';
 import type { Entry } from 'contensis-delivery-api/lib/models';
 
-/* global PUBLIC_URI */
-const publicUri = PUBLIC_URI;
+/* global PUBLIC_URL */
+const publicUrl = PUBLIC_URL;
 
 /* global DELIVERY_API_CONFIG */
 const contensisConfig = {
   rootUrl: DELIVERY_API_CONFIG.rootUrl,
   accessToken: DELIVERY_API_CONFIG.accessToken,
   projectId: DELIVERY_API_CONFIG.projectId,
-  languages: ['en-GB'], // Add other languages here if multi-lingual project
-  contentTypes: [
-    // Only used for v11 by default, as v12 is based on existence of sys.uri
-    'makersListingPage',
-    'landingPage',
-    'exhibitionPage',
-    'contentPage',
-    'eventPage',
-    'collectionsPage',
-    'listingPage',
-    'searchPage',
-  ],
+  languages: ['en-GB'], // Add other languages here if multilingual project
   fields: [
     'authentication',
     'navigationSettings',
@@ -33,13 +22,13 @@ const contensisConfig = {
     'sys.slug',
     'sys.metadata',
   ],
-  previewUrl: publicUri,
+  previewUrl: publicUrl,
 };
 
 const query = (pageIndex: number, pageSize: number) => {
   const { fields, languages } = contensisConfig;
 
-  // Default setup for V12 is we only return dataFormat entry, where sys.uri exists (the entry has a location/node assigned)
+  // Only return dataFormat entry, where sys.uri exists (the entry has a location/node assigned)
   const query = new Query(
     Op.equalTo('sys.versionStatus', 'published'),
     Op.in('sys.language', ...languages),
@@ -77,12 +66,11 @@ const getEntries = async (
 };
 
 const mapEntryToSitemapUrl = (entry: Entry) => {
-  const { uri } = entry.sys;
-  // v12
-  const url = uri;
-
-  // Return url and lastmod date
-  return { url: encodeURI(url), lastmod: entry.sys.version?.published };
+  const { uri, version } = entry.sys;
+  return {
+    url: encodeURI(uri),
+    lastmod: version?.published,
+  };
 };
 
 function dynamicSort(property: string) {
@@ -101,47 +89,37 @@ function dynamicSort(property: string) {
   };
 }
 
-const generateSitemap = async (project: string) =>
-  // eslint-disable-next-line
-  new Promise(async (resolve, reject) => {
-    try {
-      const pageSize = 100;
-      const entryInfo = await getEntries(0, pageSize, project);
+const generateSitemap = async (project: string) => {
+  const pageSize = 100;
+  const entryInfo = await getEntries(0, pageSize, project);
 
-      const getEntryPages = [];
-      for (let pageIndex = 1; pageIndex < entryInfo.pageCount; pageIndex++) {
-        getEntryPages.push(getEntries(pageIndex, pageSize, project));
-      }
+  // Fetch all other pages concurrently
+  const getEntryPages = Array.from(
+    { length: entryInfo.pageCount - 1 }, // missing prop pageCount: https://github.com/contensis/contensis-core-api/issues/9
+    (_, i) => getEntries(i + 1, pageSize, project)
+  );
 
-      const entryPages = await Promise.all(getEntryPages);
-      const entriesList = [
-        ...entryInfo.items,
-        // eslint-disable-next-line prefer-spread
-        ...[].concat.apply(
-          [],
-          entryPages.map(pg => pg.items)
-        ),
-      ];
+  const entryPages = await Promise.all(getEntryPages);
+  const entriesList = [
+    ...entryInfo.items,
+    ...entryPages.flatMap(pg => pg.items),
+  ];
 
-      // Map entries to objects with url and lastmod props
-      const mappedUrls = entriesList
-        .map(e => mapEntryToSitemapUrl(e))
-        .sort(dynamicSort('url'));
+  // Map entries to objects with url and lastmod props
+  const mappedUrls = entriesList
+    .map(e => mapEntryToSitemapUrl(e))
+    .sort(dynamicSort('url'));
 
-      // Create sitemap stream object
-      const smStream = new SitemapStream({
-        hostname: `https://${publicUri}`,
-        lastmodDateOnly: true,
-      });
-
-      mappedUrls.forEach(item => smStream.write(item));
-      // smStream.write({ url: '/page-1/', changefreq: 'daily', priority: 0.3, lastmod: new Date() });
-      smStream.end();
-
-      await streamToPromise(smStream).then(sm => resolve(sm));
-    } catch (error) {
-      reject(error);
-    }
+  // Create sitemap stream object
+  const smStream = new SitemapStream({
+    hostname: `https://${publicUrl}`,
+    lastmodDateOnly: true,
   });
+
+  mappedUrls.forEach(item => smStream.write(item));
+  smStream.end();
+
+  return await streamToPromise(smStream);
+};
 
 export default generateSitemap;
