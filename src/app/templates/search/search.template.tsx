@@ -2,11 +2,11 @@ import React from 'react';
 import MainTemplate from '~/templates/main/main.template';
 import { useFacets } from '@zengenti/contensis-react-base/search';
 import SearchResult from '~/components/searchResult/searchResult.component';
-import { SearchResultProps } from '~/search/searchResults.mapper';
 import SearchInput from '~/components/searchInput/searchInput.component';
 import useRelatedContentMinilist from '~/search/minilists/useRelatedContent.minilist';
 import useMoviesMinilist from '~/search/minilists/useMovies.minilist';
 import SearchPageStyled from '~/templates/search/search.styled';
+import type { SearchResultProps } from '~/search/searchResults.mapper';
 
 const Search = () => {
   // Bare minimum working site search example
