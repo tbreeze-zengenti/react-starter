@@ -8,6 +8,11 @@ import { contentTypes } from '~/schema/contentTypes.schema';
 import { baseFields } from '~/schema/fields.schema';
 import { freeTextWeights } from '~/schema/search.schema';
 
+const whereSysUri = {
+  field: 'sys.uri',
+  exists: true,
+};
+
 export const searchConfig = {
   tabs: [{ id: 0, label: '' }],
   facets: {
@@ -22,6 +27,7 @@ export const searchConfig = {
           { fieldId: 'entryTitle', weight: freeTextWeights.title },
           { fieldId: 'description', weight: freeTextWeights.description },
         ] as WeightedSearchField[],
+        customWhere: [whereSysUri],
       },
     },
   } as { [key: string]: SearchFacet },
@@ -29,7 +35,7 @@ export const searchConfig = {
     all: {
       title: 'Listing',
       queryParams: {
-        contentTypeIds: [contentTypes.homePage, 'article'],
+        contentTypeIds: [contentTypes.homePage, contentTypes.contentPage],
         fields: [...baseFields],
         pageSize: 9,
       },
@@ -39,7 +45,7 @@ export const searchConfig = {
     all: {
       title: 'Minilist',
       queryParams: {
-        contentTypeIds: [contentTypes.homePage, 'article'],
+        contentTypeIds: [contentTypes.homePage, contentTypes.contentPage],
         fields: [...baseFields],
         pageSize: 3,
       },
