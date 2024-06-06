@@ -1,5 +1,4 @@
 import 'styled-components';
-
 import { colors } from './colors';
 import { breakpoints, grid, mq, spacing } from '~/theme/layout';
 
