@@ -7,8 +7,9 @@ import {
 import { contentTypes } from '~/schema/contentTypes.schema';
 import { baseFields } from '~/schema/fields.schema';
 import { freeTextWeights } from '~/schema/search.schema';
+import type { WhereClause } from '@zengenti/contensis-react-base/models/search/models/Search';
 
-const whereSysUri = {
+const whereSysUri: WhereClause = {
   field: 'sys.uri',
   exists: true,
 };
