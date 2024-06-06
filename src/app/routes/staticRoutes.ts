@@ -16,7 +16,6 @@ const staticRoutes: StaticRoute[] = [
     exact: true,
     component: Welcome,
     fetchNode: {
-      params: [],
       entryMapper: mapRouteEntryToProps(welcomeMapper),
     },
   },
