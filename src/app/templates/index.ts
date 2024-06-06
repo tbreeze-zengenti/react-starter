@@ -3,7 +3,7 @@ import type { RouteComponentProps } from '@zengenti/contensis-react-base';
 import type { ContentTemplateProps } from '~/templates/content/content.template';
 import type { WelcomeTemplateProps } from '~/templates/welcome/welcome.template';
 
-export const NotFound = loadable(
+export const NotFound = loadable<RouteComponentProps<any>>(
   () =>
     import(
       /* webpackChunkName: "notFound.template" */ '~/templates/notFound/notFound.template'
