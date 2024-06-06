@@ -1,34 +1,36 @@
 import React from 'react';
-import type { MouseEvent, ReactNode } from 'react';
-
 import { Link as PageLink } from 'react-router-dom';
+import type { MouseEvent, ReactNode } from 'react';
 
 export type LinkProps = {
   path?: string;
-  className?: string;
   children?: ReactNode;
-  download?: string;
   onClick?: (e: MouseEvent<HTMLAnchorElement>) => void;
+  download?: string;
   openInNewWindow?: boolean;
   title?: string;
+  className?: string;
 };
+type LinkElement = HTMLSpanElement & HTMLAnchorElement;
 
 /**
  * A custom link component that handles internal and external links.
  */
-const Link = ({
-  className,
-  children,
-  download,
-  onClick,
-  openInNewWindow,
-  title,
-  path,
-}: LinkProps) => {
+const Link = React.forwardRef<LinkElement, LinkProps>((props, forwardedRef) => {
+  const {
+    path,
+    children,
+    onClick,
+    download,
+    openInNewWindow,
+    title,
+    className = '',
+  } = props;
+
   // If no path is provided, render a span element
   if (!path) {
     return (
-      <span className={`link link--no-path ${className ? className : ''}`}>
+      <span className={`link link--no-path ${className}`} ref={forwardedRef}>
         {children}
       </span>
     );
@@ -47,15 +49,16 @@ const Link = ({
     }
   };
 
-  if (target !== '_blank' && path && path.startsWith('/')) {
+  if (target !== '_blank' && path?.startsWith('/')) {
     // If the link is an internal route, render a PageLink component
     return (
       <PageLink
-        className={`link ${className ? className : ''}`}
-        download={download}
-        onClick={handleClick}
-        title={title}
         to={encodedPath}
+        title={title}
+        onClick={handleClick}
+        download={download}
+        className={`link ${className}`}
+        ref={forwardedRef}
       >
         {children}
       </PageLink>
@@ -64,18 +67,20 @@ const Link = ({
     // If the link is an external URL, render an anchor element
     return (
       <a
-        className={`link link--external ${className ? className : ''}`}
-        download={download}
         href={encodedPath}
+        rel="noopener noreferrer"
+        title={title}
         onClick={handleClick}
         target={target}
-        title={title}
-        rel="noopener noreferrer"
+        download={download}
+        className={`link link--external ${className}`}
+        ref={forwardedRef}
       >
         {children}
       </a>
     );
   }
-};
+});
+Link.displayName = 'Link';
 
 export default Link;
