@@ -11,6 +11,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `fieldLinkDepths` support from CRB
 - Several `dev:server` fixes
 - Site Config State now opt-in to prevent mis-configuration
+- `/pages` folder renamed to `/templates`
+- Welcome page refactored
+- Search page with useFacet & useMinilist examples
+- `contentTypeMappings` file renamed to `contentTypeRoutes`
+- Storybook upgraded to v8
+- Added Navbar example rendering top level SiteView nodes
+- Link component improvements
 
 ## [0.1.8] - 2024-18-01
 
