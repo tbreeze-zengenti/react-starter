@@ -1,63 +1,62 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { useSelector } from 'react-redux';
-
 import { routing } from '@zengenti/contensis-react-base/redux';
-import { AppState } from '@zengenti/contensis-react-base/models/redux/appstate';
-
 import { canonicalDomain } from './canonicalDomain';
+import type { AppState } from '@zengenti/contensis-react-base/models/redux/appstate';
 
 export type MetaProps = {
   pageTitle: string; // The title of the page.
-  author?: string; // The author of the page.
-  authorTwitterHandle?: string; // The Twitter handle of the author.
   description?: string; // The description of the page.
-  locale?: string; // The locale of the page, eg. en_GB
+  locale?: string; // The locale of the page, e.g. en_GB
+
   ogDescription?: string; // The Open Graph description for the page.
   ogImage?: string; // The URL of the Open Graph image.
   ogImageAltText?: string; // The alt text for the Open Graph image.
   ogType?: 'article' | 'profile' | 'website' | 'video'; // The type of the Open Graph content.
-  publishedDateTime?: string;
-  rssFeedPath?: string; // The path to the RSS feed.
-  schema?: string; // The schema of the page.
+
   twitterCardType?: 'summary' | 'summary_large_image' | 'app' | 'player'; // The type of the Twitter card.
   twitterHandle?: string; // The Twitter handle of the site.
+  authorTwitterHandle?: string; // The Twitter handle of the author.
+
   insytful?: boolean; // Determines whether to include Insytful metadata.
   noIndex?: boolean; // Determines whether to set the noindex meta tag.
   noFollow?: boolean; // Determines whether to set the nofollow meta tag.
+
+  rssFeedPath?: string; // The path to the RSS feed.
 };
 
 /**
  * A component for managing metadata for the page.
  */
 const Meta = ({
-  authorTwitterHandle,
+  pageTitle,
   description,
   locale = 'en_GB',
+
   ogDescription,
   ogImage,
   ogImageAltText,
   ogType = 'website',
-  pageTitle,
-  rssFeedPath,
+
   twitterCardType = 'summary',
   twitterHandle,
+  authorTwitterHandle,
+
   insytful = true,
   noIndex = false,
   noFollow = false,
+
+  rssFeedPath,
 }: MetaProps) => {
-  const projectId = useSelector<AppState, string>(
-    routing.selectors.selectCurrentProject
-  );
-  const entryId = useSelector<AppState, string>(
-    routing.selectors.selectRouteEntryEntryId
-  );
-  const canonicalPath = useSelector<AppState, string>(
-    routing.selectors.selectCanonicalPath
-  );
+  const { selectCurrentProject, selectRouteEntryEntryId, selectCanonicalPath } =
+    routing.selectors;
+  const projectId = useSelector<AppState, string>(selectCurrentProject);
+  const entryId = useSelector<AppState, string>(selectRouteEntryEntryId);
+  const canonicalPath = useSelector<AppState, string>(selectCanonicalPath);
 
   const siteTitle = 'React Starter';
-  const title = siteTitle ? `${pageTitle} | ${siteTitle}` : `${pageTitle}`;
+  const title = siteTitle ? `${pageTitle} | ${siteTitle}` : pageTitle;
   const canonical = `${canonicalDomain}${canonicalPath}`;
 
   return (
@@ -66,6 +65,8 @@ const Meta = ({
       {noIndex ? <meta name="robots" content="noindex" /> : null}
       {noFollow ? <meta name="robots" content="nofollow" /> : null}
       <meta name="description" content={description} />
+      {canonicalPath ? <link rel="canonical" href={canonical} /> : null}
+
       <meta property="og:site_name" content={siteTitle} />
       {canonicalPath ? <meta property="og:url" content={canonical} /> : null}
       <meta property="og:title" content={pageTitle} />
@@ -76,6 +77,7 @@ const Meta = ({
       <meta property="og:image:height" content="630" />
       <meta property="og:type" content={ogType} />
       <meta property="og:locale" content={locale} />
+
       <meta name="twitter:card" content={twitterCardType} />
       {twitterHandle ? (
         <meta name="twitter:site" content={twitterHandle} />
@@ -87,7 +89,6 @@ const Meta = ({
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
       <meta name="twitter:image:alt" content={ogImageAltText} />
-      {canonicalPath ? <link rel="canonical" href={canonical} /> : null}
 
       {insytful && projectId ? (
         <meta name="IDL:ProjectId" content={projectId} />
