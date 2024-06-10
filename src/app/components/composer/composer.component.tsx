@@ -1,6 +1,6 @@
 import React from 'react';
-
-import { ComposerItemProps, ComposerProps } from './composer.types';
+import { Markup } from '~/components';
+import type { ComposerItemProps, ComposerProps } from './composer.types';
 
 /**
  * @summary
@@ -21,14 +21,10 @@ const Composer = ({ items }: ComposerProps) => {
         if (!props._type) return null;
         switch (props._type) {
           case 'textBlock':
-            return <Marku {...props} />;
+            return <Markup {...props} />;
 
           default:
-            console.error(
-              'Composer Component ',
-              (props as any)._type,
-              ' not found'
-            );
+            console.error('Composer Component ', props._type, ' not found');
             break;
         }
       })}
