@@ -1,42 +1,34 @@
 import { takeEvery, select, put } from 'redux-saga/effects';
-
 import { cachedSearch } from '@zengenti/contensis-react-base/util';
 import { Query, Op } from 'contensis-delivery-api';
-
 import {
   GET_SITE_CONFIG,
   SET_SITE_CONFIG,
   GET_SITE_CONFIG_ERROR,
 } from './types';
-
-import { hasSiteConfig } from './selectors';
-
+import { selectSiteConfigReady } from './selectors';
 import { version } from '@zengenti/contensis-react-base/redux';
-
 import { siteConfigMapper } from './siteConfig.mapper';
 import { siteConfigFields } from '~/schema/fields.schema';
 import { contentTypes } from '~/schema/contentTypes.schema';
 
-export const SiteConfigSagas = [
-  takeEvery(GET_SITE_CONFIG, ensureSiteConfigSaga),
-];
+export const SiteConfigSagas = [takeEvery(GET_SITE_CONFIG, getSiteConfigSaga)];
 
 /**
- * Saga to ensure site configuration is available in the Redux store.
+ * Saga to fetch then map site config entry into the redux store
  */
-export function* ensureSiteConfigSaga(): any {
-  // Select the current Redux state
-  const state = yield select();
+function* getSiteConfigSaga(): Generator<any, void, any> {
+  // Check if site config does not already exist in the state
+  const isSiteConfigLoaded = yield select(selectSiteConfigReady);
 
   try {
-    // Check if site config does not already exists in the state
-    if (!hasSiteConfig(state)) {
+    if (!isSiteConfigLoaded) {
       // Select the version status from the Redux state
       const deliveryApiVersionStatus = yield select(
         version.selectors.selectVersionStatus
       );
 
-      // Define query to fetch site config
+      // Define query to fetch site config entry
       const query = new Query(
         Op.equalTo('sys.versionStatus', deliveryApiVersionStatus),
         Op.or(Op.equalTo('sys.contentTypeId', contentTypes.config))
@@ -51,20 +43,20 @@ export function* ensureSiteConfigSaga(): any {
       // Execute the search query
       const results = yield cachedSearch.search(query, 1);
 
-      // Map the retrieved site config
-      const config = results?.items?.[0]
+      // Map the retrieved site config entry
+      const mappedEntry = results?.items?.[0]
         ? siteConfigMapper(results.items[0])
         : null;
 
       // Dispatch action to set site config in the Redux store
-      if (config) {
-        yield put({ type: SET_SITE_CONFIG, config });
+      if (mappedEntry) {
+        yield put({ type: SET_SITE_CONFIG, mappedEntry });
       } else {
         yield put({ type: GET_SITE_CONFIG_ERROR });
       }
     }
     // Dispatch action if an error occurs during site config fetching
-  } catch (error: any | unknown) {
+  } catch (error: any) {
     yield put({ type: GET_SITE_CONFIG_ERROR, error: error.toString() });
   }
 }

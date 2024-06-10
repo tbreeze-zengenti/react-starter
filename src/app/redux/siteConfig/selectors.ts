@@ -1,9 +1,13 @@
 import { ReduxState } from '../redux.type';
 
-export const hasSiteConfig = (state: ReduxState) => {
-  return state?.siteConfig?.isReady;
+export const selectSiteConfig = (state: ReduxState) => {
+  return state?.siteConfig;
 };
 
-export const selectTitle = (state: ReduxState) => {
-  return state?.siteConfig?.title;
+export const selectSiteConfigReady = (state: ReduxState) => {
+  return selectSiteConfig(state)?.isReady;
+};
+
+export const selectSiteConfigEntry = (state: ReduxState) => {
+  return selectSiteConfig(state)?.mappedEntry;
 };

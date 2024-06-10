@@ -1,19 +1,18 @@
 import { call } from 'redux-saga/effects';
-import { RouteLoadOptions, WithEvents } from '@zengenti/contensis-react-base';
-
 import {
   InjectSearchAssets,
   injectSearchAssets,
 } from '~/util/injectSearchAssets';
 import { listingPages } from '~/schema/search.schema';
-
-// import { hasSiteConfig } from '~/redux/siteConfig/selectors';
-// import { ensureSiteConfigSaga } from '~/redux/siteConfig/sagas';
+import type {
+  RouteLoadOptions,
+  WithEvents,
+} from '@zengenti/contensis-react-base';
 
 export default {
   onRouteLoad: function* onRouteLoad() {
-    //    const siteConfigExists = yield select(hasSiteConfig);
-    //    if (!siteConfigExists) yield call(ensureSiteConfigSaga);
+    // Fetch site config entry and place within redux store
+    // yield put({ type: GET_SITE_CONFIG });
 
     // Set params for routing saga
     const routeLoadOptions: RouteLoadOptions = {

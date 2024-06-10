@@ -1,9 +1,12 @@
 import { ContentTypeSiteConfiguration } from '~/models/contentTypes/siteConfiguration.type';
-import { SiteConfigState } from './reducers';
+
+export type SiteConfigMappedProps = {
+  title: string;
+};
 
 export const siteConfigMapper = (
   config: ContentTypeSiteConfiguration
-): Omit<SiteConfigState, 'isReady' | 'isError' | 'error'> => {
+): SiteConfigMappedProps => {
   return {
     title: config.entryTitle,
   };
