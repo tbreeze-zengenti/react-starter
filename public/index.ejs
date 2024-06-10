@@ -9,17 +9,15 @@
   {{SEO_CRITICAL_METADATA}}
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#37bfa7">
-  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#002033">
-
-  <!--[if IE 11 ]>
-    <meta name="msapplication-config" content="static/browserconfig.xml" />
-  <![endif]-->
 
   <!-- Favicon -->
   <link rel="icon" href="/static/icon/favicon.ico" sizes="any"><!-- 32×32 -->
   <link rel="icon" href="/static/icon/icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/static/icon/apple-touch-icon.png"><!-- 180×180 -->
+
+  <!-- Other -->
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#37bfa7">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#002033">
   <link rel="manifest" href="/static/manifest.webmanifest">
   <link rel="stylesheet" media="print" type="text/css" href="/static/print.css" />
 
@@ -29,17 +27,16 @@
     Object.entries || document.write(
       '<script crossorigin="anonymous" src="https://polyfill.io/v3/polyfill.min.js?features=default,es2015,es2016,es2017,es2018,es2019"><\/script>'
     );
-  </script>  
-  
+  </script>
 </head>
 
 <body>
   <div id="root">{{APP}}</div>
-  
+
   {{REDUX_DATA}}
-  
+
   {{LOADABLE_CHUNKS}}
-  
+
   <!-- HTMLWebpackPlugin can not output the bundles from both builds so the scripts are injected here
         by WebpackModuleNomodulePlugin instead -->
 
