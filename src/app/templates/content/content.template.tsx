@@ -1,12 +1,11 @@
 import React from 'react';
-import { RouteComponentProps } from '@zengenti/contensis-react-base';
 import { Helmet } from 'react-helmet';
 import MainLayout from '~/templates/main/main.template';
-import Composer from '~/components/composer/composer.component';
-import { ComposerProps } from '~/components/composer/composer.types';
-import type { MetaProps } from '~/components/meta/meta.component';
 import ContentTemplateStyled from './content.styled';
-import { Canvas } from '~/components';
+import { Canvas, Composer } from '~/components';
+import type { RouteComponentProps } from '@zengenti/contensis-react-base';
+import type { MetaProps } from '~/components/meta/meta.component';
+import type { ComposerProps } from '~/components/composer/composer.types';
 import type { CanvasProps } from '~/components/canvas/canvas.component';
 
 export type ContentTemplateProps = {
@@ -21,7 +20,6 @@ const Content = ({
 }: RouteComponentProps<ContentTemplateProps>) => {
   const { meta, title, composer, canvas } =
     mappedEntry || ({} as ContentTemplateProps);
-  console.log(composer);
   return (
     <>
       <Helmet>
@@ -38,9 +36,20 @@ const Content = ({
             <div className="logo">
               <h1>{title}</h1>
             </div>
-            {composer ? <Composer {...composer} /> : null}
 
-            {canvas ? <Canvas {...canvas} /> : null}
+            <div className="bento-boxes">
+              {composer ? (
+                <article className="bento-box">
+                  <Composer {...composer} />
+                </article>
+              ) : null}
+
+              {canvas ? (
+                <article className="bento-box">
+                  <Canvas {...canvas} />
+                </article>
+              ) : null}
+            </div>
           </div>
         </ContentTemplateStyled>
       </MainLayout>

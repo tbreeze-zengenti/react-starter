@@ -75,10 +75,6 @@ const ContentPageStyled = styled.div`
 
     @media ${p => p.theme.mq.min.laptop} {
       grid-template-columns: repeat(2, 1fr);
-
-      & .bento-box:first-child {
-        grid-area: 1 / 1 / 1 / 3;
-      }
     }
   }
 
