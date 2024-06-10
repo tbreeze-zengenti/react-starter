@@ -1,5 +1,8 @@
 import React from 'react';
 
+/**
+ * For local development purposes only.
+ * Read `src/app/App.tsx` for further information on not found pages */
 const NotFound = () => (
   <header>
     <h1>404 Page Not Found</h1>
