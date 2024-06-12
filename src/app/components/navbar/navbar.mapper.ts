@@ -11,8 +11,11 @@ type NavbarItemProps = {
   label: string;
   path: string;
 };
-// Map top level siteview nodes
-// can be extended to include child nodes
+
+/**
+ * Map top level siteview nodes
+ * can be extended to include child nodes
+ */
 const navbarItemMapper = (node: ContensisNode): NavbarItemProps => {
   const { id, displayName, path } = node;
   return {

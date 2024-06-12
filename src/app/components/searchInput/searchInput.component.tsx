@@ -3,7 +3,9 @@ import React, { useState, useEffect } from 'react';
 export type SearchInputProps = {
   className?: string;
   placeholder?: string;
-  submit: (term: string) => void; // Callback function invoked when the search term is submitted.
+  submit: (
+    term: string
+  ) => void /** Callback function invoked when the search term is submitted. */;
   value?: string;
 };
 

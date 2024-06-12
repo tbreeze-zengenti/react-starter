@@ -8,8 +8,8 @@ import type { ComposerItemProps, ComposerProps } from './composer.types';
  * Therefore you MUST generate keys for each component returned from the following .map()
  * It is RECOMMENDED to use the props data to generate these keys
  * It is NOT RECOMMENDED to use random keys
- * See: https://react.dev/learn/rendering-lists#keeping-list-items-in-order-with-key
- * Consider: https://www.npmjs.com/package/uuid-by-string
+ * @see https://react.dev/learn/rendering-lists#keeping-list-items-in-order-with-key
+ * @link https://www.npmjs.com/package/uuid-by-string
  */
 
 const Composer = ({ items }: ComposerProps) => {

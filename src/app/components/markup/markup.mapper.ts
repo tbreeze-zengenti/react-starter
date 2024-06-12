@@ -4,7 +4,7 @@ export const MarkupMapper = {
   text: '.',
 };
 
-export const markupMapper = (props: any): MarkupProps => {
+export const markupMapper = (props: string): MarkupProps => {
   return {
     text: props,
   };
