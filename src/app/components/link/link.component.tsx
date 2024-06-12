@@ -8,9 +8,9 @@ export type LinkProps = {
   onClick?: (e: MouseEvent<HTMLAnchorElement>) => void;
   download?: string;
   openInNewWindow?: boolean;
-  title?: string;
   className?: string;
 };
+
 type LinkElement = HTMLSpanElement & HTMLAnchorElement;
 
 /**
@@ -23,11 +23,12 @@ const Link = React.forwardRef<LinkElement, LinkProps>((props, forwardedRef) => {
     onClick,
     download,
     openInNewWindow,
-    title,
     className = '',
   } = props;
 
-  // If no path is provided, render a span element
+  /**
+   * If no path is provided, render a span element
+   */
   if (!path) {
     return (
       <span className={`link link--no-path ${className}`} ref={forwardedRef}>
@@ -36,13 +37,19 @@ const Link = React.forwardRef<LinkElement, LinkProps>((props, forwardedRef) => {
     );
   }
 
-  // Determine whether to open the link in a new window/tab
+  /**
+   * Determine whether to open the link in a new window/tab
+   */
   const target = openInNewWindow ? '_blank' : '_self';
 
-  // Encode the path URI
+  /**
+   * Encode the path URI
+   */
   const encodedPath = encodeURI(path);
 
-  // Event handler for click event
+  /**
+   * Event handler for click event
+   */
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (onClick) {
       onClick(e);
@@ -50,11 +57,12 @@ const Link = React.forwardRef<LinkElement, LinkProps>((props, forwardedRef) => {
   };
 
   if (target !== '_blank' && path?.startsWith('/')) {
-    // If the link is an internal route, render a PageLink component
+    /**
+     * If the link is an internal route, render a PageLink component <Link>
+     */
     return (
       <PageLink
         to={encodedPath}
-        title={title}
         onClick={handleClick}
         download={download}
         className={`link ${className}`}
@@ -64,12 +72,12 @@ const Link = React.forwardRef<LinkElement, LinkProps>((props, forwardedRef) => {
       </PageLink>
     );
   } else {
-    // If the link is an external URL, render an anchor element
+    /**
+     * If the link is an external URL, render an anchor element <a>
+     */
     return (
       <a
         href={encodedPath}
-        rel="noopener noreferrer"
-        title={title}
         onClick={handleClick}
         target={target}
         download={download}
@@ -77,6 +85,9 @@ const Link = React.forwardRef<LinkElement, LinkProps>((props, forwardedRef) => {
         ref={forwardedRef}
       >
         {children}
+        {target === '_blank' && (
+          <span className="sr-only">(Opens in a new window)</span>
+        )}
       </a>
     );
   }
