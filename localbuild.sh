@@ -1,13 +1,33 @@
 #!/bin/bash
-docker build --force-rm -t zen-local-app -f docker/nodebuilder.DockerFile .
-docker build -t zen-local-app-server --build-arg builder_image=zen-local-app -f docker/ci-build.DockerFile .
 
-# -------- Uncomment below to build and run HA Proxy locally -------- #
+# Load in env vars if they exist.
+if [ ! -f .env* ]; then
+  echo "No .env file found. Please create one."
+  exit 1
+fi
 
-##Build & Run HA Proxy
+# Function to list all dot env files in the current directory.
+listEnvFiles() {
+  ls -a | grep .env | tr '\n' ',' | sed 's/,/, /g' | sed 's/,\s$//'
+}
 
-## docker build -t zen-app-test-haproxy -f docker/haproxy.DockerFile .
+# Function to prompt the user for an env file.
+getEnvFileInput() {
+  if [ -z $envFile ] || [ ! -f $envFile ]; then
+    read -p "Choose an env file [$(listEnvFiles)]: " envFile
+  fi
+}
 
-## Run Haproxy
+# Prompt the user for an env file, until a valid response is given.
+while [ -z $envFile ] || [ ! -f $envFile ]; do
+  if [ ! -z $envFile ]; then
+    echo "Env file not found, please try again."
+  fi
+  getEnvFileInput
+done
 
-##docker run -it -p 3002:3002 zen-app-test-haproxy
+# Load in the env file.
+export $(cat $envFile | xargs)
+
+docker build --force-rm -t $ALIAS-$PROJECT -f docker/nodebuilder.DockerFile .
+docker build -t $ALIAS-$PROJECT-server --build-arg builder_image=$ALIAS-$PROJECT -f docker/ci-build.DockerFile .

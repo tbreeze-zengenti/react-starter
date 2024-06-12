@@ -13,8 +13,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack serve --config webpack/webpack.config.dev.js",
     "build": "rimraf ./dist && cross-env NODE_ENV=production webpack --config webpack/webpack.config.prod.js && npm run build:startup",
-    "build:assets": "cross-env NODE_ENV=production webpack --config webpack/webpack.config.assets.js",
-    "build:ci": "npm run build && npm run build:assets",
+    "build:ci": "npm run build",
     "build:startup": "buildstartup",
     "server": "node --max-http-header-size=800000 dist/start.js",
     "dev:server": "cross-env NODE_ENV=test NODE_OPTIONS=--max-http-header-size=80000 babel-node -x .ts,.tsx,.js,.jsx --inspect=9229 src/server/debug.ts",
