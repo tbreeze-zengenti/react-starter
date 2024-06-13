@@ -1,23 +1,31 @@
 import { takeEvery, select, put } from 'redux-saga/effects';
-import { cachedSearch } from '@zengenti/contensis-react-base/util';
 import { Query, Op } from 'contensis-delivery-api';
-import {
-  GET_SITE_CONFIG,
-  SET_SITE_CONFIG,
-  GET_SITE_CONFIG_ERROR,
-} from './types';
-import { selectSiteConfigReady } from './selectors';
+import { SSRContext } from '@zengenti/contensis-react-base';
 import { version } from '@zengenti/contensis-react-base/redux';
+
 import { siteConfigMapper } from './siteConfig.mapper';
+
 import { siteConfigFields } from '~/schema/fields.schema';
 import { contentTypes } from '~/schema/contentTypes.schema';
+import {
+  getSiteConfig,
+  getSiteConfigError,
+  selectSiteConfigReady,
+  setSiteConfig,
+} from './siteConfig.slice';
 
-export const SiteConfigSagas = [takeEvery(GET_SITE_CONFIG, getSiteConfigSaga)];
+type Action<Payload> = { type: string } & Payload;
+
+export const SiteConfigSagas = [
+  takeEvery<Action<SSRContext>>(getSiteConfig.type, getSiteConfigSaga),
+];
 
 /**
  * Saga to fetch then map site config entry into the redux store
  */
-function* getSiteConfigSaga(): Generator<any, void, any> {
+export function* getSiteConfigSaga({
+  api,
+}: SSRContext): Generator<any, void, any> {
   // Check if site config does not already exist in the state
   const isSiteConfigLoaded = yield select(selectSiteConfigReady);
 
@@ -41,7 +49,7 @@ function* getSiteConfigSaga(): Generator<any, void, any> {
       if (!siteConfigFields || siteConfigFields.length <= 0) return;
 
       // Execute the search query
-      const results = yield cachedSearch.search(query, 1);
+      const results = yield api.search(query, 1);
 
       // Map the retrieved site config entry
       const mappedEntry = results?.items?.[0]
@@ -50,13 +58,13 @@ function* getSiteConfigSaga(): Generator<any, void, any> {
 
       // Dispatch action to set site config in the Redux store
       if (mappedEntry) {
-        yield put({ type: SET_SITE_CONFIG, mappedEntry });
+        yield put({ type: setSiteConfig.type, payload: mappedEntry });
       } else {
-        yield put({ type: GET_SITE_CONFIG_ERROR });
+        yield put({ type: getSiteConfigError.type });
       }
     }
     // Dispatch action if an error occurs during site config fetching
   } catch (error: any) {
-    yield put({ type: GET_SITE_CONFIG_ERROR, error: error.toString() });
+    yield put({ type: getSiteConfigError.type, error: error.toString() });
   }
 }

@@ -8,11 +8,11 @@ import type {
   RouteLoadOptions,
   WithEvents,
 } from '@zengenti/contensis-react-base';
+import { getSiteConfigSaga } from '~/redux/siteConfig/sagas';
 
 export default {
-  onRouteLoad: function* onRouteLoad() {
-    /** Fetch site config entry and place within redux store */
-    // yield put({ type: GET_SITE_CONFIG });
+  onRouteLoad: function* onRouteLoad({ ssr }) {
+    yield call(getSiteConfigSaga, ssr);
 
     const routeLoadOptions: RouteLoadOptions = {
       customNavigation: {

@@ -4,5 +4,5 @@ import type { SearchState } from '@zengenti/contensis-react-base/search';
 
 export interface ReduxState extends AppState {
   search?: SearchState;
-  // siteConfig: SiteConfigState;
+  siteConfig: SiteConfigState;
 }
