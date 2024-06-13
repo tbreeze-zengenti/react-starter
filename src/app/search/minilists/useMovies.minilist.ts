@@ -11,6 +11,7 @@ type MovieProps = {
   image: string;
   link: string;
 };
+
 const omdbapiResultMapper = (body: any): MovieProps[] => {
   return body?.Search?.map((r: any): MovieProps => {
     return {
@@ -27,8 +28,10 @@ const minilistInitState = {
   id: '',
 } as UseMinilistProps;
 
-// Minilist example using a config that is created on the fly
-// and also is using a custom (non-Contensis) api to fetch its results
+/**
+ * Minilist example using a config that is created on the fly
+ * and also is using a custom (non-Contensis) api to fetch its results
+ */
 export default () => {
   const isSearchSetup = useSelector(selectSearchExists);
   const [minilistOptions, setMinilistOptions] = useState(minilistInitState);

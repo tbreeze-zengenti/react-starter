@@ -8,17 +8,20 @@ import type { UseMinilistProps } from '@zengenti/contensis-react-base/search';
 import { SearchResultProps } from '~/search/searchResults.mapper';
 
 const minilistInitState = {
-  id: '', // identifier for search.config minilist
+  id: '' /** identifier for search.config minilist  */,
   mapper: searchTransformations.results,
 } as UseMinilistProps;
 
-// Minilist example using an existing minilist config
+/**
+ * Minilist example using an existing minilist config
+ */
 export default () => {
   const isSearchSetup = useSelector(selectSearchExists);
   const [minilistOptions, setMinilistOptions] = useState(minilistInitState);
 
   useEffect(() => {
-    if (!isSearchSetup) return; // Since we are dynamically injecting search redux, we need to wait until it loads
+    /** Since we are dynamically injecting search redux, we need to wait until it loads */
+    if (!isSearchSetup) return;
 
     setMinilistOptions({
       id: minilists.all,

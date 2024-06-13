@@ -1,6 +1,8 @@
-// To use spacers follow this pattern
-// Replace # with a value
-// ${theme.spacing.#}
+/**
+ * To use spacers follow this pattern
+ * Replace # with a value
+ * @example - ${theme.spacing.#}
+ */
 export const spacing = {
   xxxs: '0.25rem',
   xxs: '0.5rem',
@@ -14,23 +16,23 @@ export const spacing = {
   superxl: '15rem',
 };
 
-// bp are used as a reference for media queries
-// They can be utilised for between-breakpoints
-// @media (min-width: ${theme.breakpoints.mobile}) and (max-width: ${theme.breakpoints.tablet}) {
-//    Styles Here
-// }
+/**
+ * Breakpoints are used as a reference for media queries
+ * They can be utilised for between-breakpoints
+ * @example - @media (min-width: ${theme.breakpoints.mobile}) and (max-width: ${theme.breakpoints.tablet})
+ */
 export const breakpoints = {
   mobile: 30,
   tablet: 48,
   laptop: 62,
-  desktop: 68.75, // 1100px
-  largeDesktop: 90, // 1440px
+  desktop: 68.75 /** @returns 1100px */,
+  largeDesktop: 90 /** @returns 1440px */,
 };
 
-// To use media queries follow this pattern
-// @media ${theme.mq.min/max[#] {
-//    Styles Here
-// }
+/**
+ * To use media queries follow this pattern
+ * @example -  @media ${theme.mq.min/max[#]}
+ */
 export const mq = {
   min: {
     mobile: `only screen and (min-width: ${breakpoints.mobile}rem)`,
@@ -48,11 +50,13 @@ export const mq = {
   },
 };
 
-// To help create global wrappers/containers
-// Define grid gutters and edge margins
+/**
+ * To help create global wrappers/containers
+ * Define grid gutters and edge margins
+ */
 export const grid = {
   default: {
-    maxWidth: '90rem', // 1440px based on 16px base
+    maxWidth: '90rem',
     gutter: spacing.xs,
     margin: spacing.xs,
   },

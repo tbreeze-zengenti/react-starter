@@ -11,10 +11,9 @@ import type {
 
 export default {
   onRouteLoad: function* onRouteLoad() {
-    // Fetch site config entry and place within redux store
+    /** Fetch site config entry and place within redux store */
     // yield put({ type: GET_SITE_CONFIG });
 
-    // Set params for routing saga
     const routeLoadOptions: RouteLoadOptions = {
       customNavigation: {
         ancestors: false,

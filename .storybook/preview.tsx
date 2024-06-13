@@ -8,23 +8,21 @@ import { defaultTheme } from '~/theme';
 import GlobalStyle from '~/theme/globalStyles';
 
 const preview: Preview = {
-    decorators: [
-        // react-router-dom support
-        Story => (
-            <MemoryRouter initialEntries={['/']}>
-                <div id="app-root">
-                    <Story />
-                </div>
-            </MemoryRouter>
-        ),
-        // theming
-        Story => (
-            <ThemeProvider theme={defaultTheme}>
-                <GlobalStyle />
-                <Story />
-            </ThemeProvider>
-        ),
-    ],
+  decorators: [
+    Story => (
+      <MemoryRouter initialEntries={['/']}>
+        <div id="app-root">
+          <Story />
+        </div>
+      </MemoryRouter>
+    ),
+    Story => (
+      <ThemeProvider theme={defaultTheme}>
+        <GlobalStyle />
+        <Story />
+      </ThemeProvider>
+    ),
+  ],
 };
 
 export default preview;

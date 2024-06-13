@@ -1,27 +1,34 @@
 import React from 'react';
-import MainTemplate from '~/templates/main/main.template';
 import { useFacets } from '@zengenti/contensis-react-base/search';
-import SearchResult from '~/components/searchResult/searchResult.component';
-import SearchInput from '~/components/searchInput/searchInput.component';
+
+import SearchPageStyled from '~/templates/search/search.styled';
+import MainTemplate from '~/templates/main/main.template';
+
 import useRelatedContentMinilist from '~/search/minilists/useRelatedContent.minilist';
 import useMoviesMinilist from '~/search/minilists/useMovies.minilist';
-import SearchPageStyled from '~/templates/search/search.styled';
 import type { SearchResultProps } from '~/search/searchResults.mapper';
 
+import SearchResult from '~/components/searchResult/searchResult.component';
+import SearchInput from '~/components/searchInput/searchInput.component';
+
 const Search = () => {
-  // Bare minimum working site search example
-  // Note: More SearchProps will be used in a complete example
+  /**
+   * Bare minimum working site search example
+   * Note: More SearchProps will be used in a complete example
+   */
   const {
     results,
     updateSearchTerm,
     paging: { totalCount },
   } = useFacets<SearchResultProps>();
 
-  // Minilist example using an existing minilist config
+  /** Minilist example using an existing minilist config */
   const { results: minilistResults } = useRelatedContentMinilist();
 
-  // Minilist example using a config that is created on the fly
-  // and also is using a custom (non-Contensis) api to fetch its results
+  /**
+   * Minilist example using a config that is created on the fly
+   * and also is using a custom (non-Contensis) api to fetch its results
+   */
   const { results: movieResults } = useMoviesMinilist();
 
   return (

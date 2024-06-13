@@ -1,29 +1,51 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { useSelector } from 'react-redux';
+
 import { routing } from '@zengenti/contensis-react-base/redux';
-import { canonicalDomain } from './canonicalDomain';
 import type { AppState } from '@zengenti/contensis-react-base/models/redux/appstate';
 
+import { canonicalDomain } from './canonicalDomain';
+
+/**
+ * @property {pageTitle} - The title of the page.
+ * @property {description} - The description of the page.
+ * @property {locale} - The locale of the page, e.g. en_GB
+ *
+ * @property {ogDescription} - The Open Graph description for the page.
+ * @property {ogImage} - The URL of the Open Graph image.
+ * @property {ogImageAltText} - The alt text for the Open Graph image.
+ * @property {ogType} - The type of the Open Graph content.
+ *
+ * @property {twitterCardType} - The type of the Twitter card.
+ * @property {twitterHandle} - The Twitter handle of the site.
+ * @property {authorTwitterHandle} - The Twitter handle of the author.
+ *
+ * @property {insytful} - Determines whether to include Insytful metadata.
+ * @property {noIndex} - Determines whether to set the noindex meta tag.
+ * @property {noFollow} -  Determines whether to set the nofollow meta tag.
+ *
+ * @property {rssFeedPath} - The path to the RSS feed.
+ */
 export type MetaProps = {
-  pageTitle: string; // The title of the page.
-  description?: string; // The description of the page.
-  locale?: string; // The locale of the page, e.g. en_GB
+  pageTitle: string;
+  description?: string;
+  locale?: string;
 
-  ogDescription?: string; // The Open Graph description for the page.
-  ogImage?: string; // The URL of the Open Graph image.
-  ogImageAltText?: string; // The alt text for the Open Graph image.
-  ogType?: 'article' | 'profile' | 'website' | 'video'; // The type of the Open Graph content.
+  ogDescription?: string;
+  ogImage?: string;
+  ogImageAltText?: string;
+  ogType?: 'article' | 'profile' | 'website' | 'video';
 
-  twitterCardType?: 'summary' | 'summary_large_image' | 'app' | 'player'; // The type of the Twitter card.
-  twitterHandle?: string; // The Twitter handle of the site.
-  authorTwitterHandle?: string; // The Twitter handle of the author.
+  twitterCardType?: 'summary' | 'summary_large_image' | 'app' | 'player';
+  twitterHandle?: string;
+  authorTwitterHandle?: string;
 
-  insytful?: boolean; // Determines whether to include Insytful metadata.
-  noIndex?: boolean; // Determines whether to set the noindex meta tag.
-  noFollow?: boolean; // Determines whether to set the nofollow meta tag.
+  insytful?: boolean;
+  noIndex?: boolean;
+  noFollow?: boolean;
 
-  rssFeedPath?: string; // The path to the RSS feed.
+  rssFeedPath?: string;
 };
 
 /**

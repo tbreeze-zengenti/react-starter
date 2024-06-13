@@ -11,9 +11,9 @@ import { contentTypes } from '~/schema/contentTypes.schema';
  */
 const contentTypeRoutes: ContentTypeMapping[] = [
   {
-    contentTypeID: contentTypes.contentPage, // The content type ID.
-    component: Content, //  The component to be rendered for this content type.
-    entryMapper: mapRouteEntryToProps(contentMapper), // The utility function used to map the route entry props.
+    contentTypeID: contentTypes.contentPage,
+    component: Content,
+    entryMapper: mapRouteEntryToProps(contentMapper),
   },
 ];
 
