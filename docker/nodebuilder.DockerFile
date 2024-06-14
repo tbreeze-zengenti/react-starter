@@ -1,5 +1,4 @@
 FROM node:20 as builder
-# The following prevents errors when cwebp is installing.
 WORKDIR /usr/src/app
 COPY package.json .
 COPY package-lock.json .
