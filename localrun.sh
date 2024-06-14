@@ -50,4 +50,4 @@ done
 export $(cat $envFile | xargs)
 
 # Build & Run the app server using the env vars.
-docker run -it --rm -p $localPort:3001 -e "alias=$ALIAS" -e "projectId=$PROJECT" $ALIAS-$PROJECT-server
+docker run -it --rm -p $localPort:3001 -e "alias=$ALIAS" -e "projectId=$PROJECT" $ALIAS-${PROJECT,,}-server

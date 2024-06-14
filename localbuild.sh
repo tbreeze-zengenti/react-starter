@@ -29,5 +29,5 @@ done
 # Load in the env file.
 export $(cat $envFile | xargs)
 
-docker build --force-rm -t $ALIAS-$PROJECT -f docker/nodebuilder.DockerFile .
-docker build -t $ALIAS-$PROJECT-server --build-arg builder_image=$ALIAS-$PROJECT -f docker/ci-build.DockerFile .
+docker build --force-rm -t $ALIAS-${PROJECT,,} -f docker/nodebuilder.DockerFile .
+docker build -t $ALIAS-${PROJECT,,}-server --build-arg builder_image=$ALIAS-${PROJECT,,} -f docker/ci-build.DockerFile .
