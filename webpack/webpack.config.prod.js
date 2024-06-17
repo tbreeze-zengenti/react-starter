@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 const path = require('path');
+
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const LoadablePlugin = require('@loadable/webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -12,6 +13,7 @@ const { ESBuildMinifyPlugin } = require('esbuild-loader');
 
 const BASE_CONFIG = require('./webpack.config.base');
 const { DEFINE_CONFIG, WEBPACK_DEFINE_CONFIG } = require('./bundle-info');
+
 const staticFolderPath = DEFINE_CONFIG.production.STATIC_PATH;
 
 const minify = {
@@ -29,7 +31,7 @@ const minify = {
 };
 
 const CLIENT_MODERN_CONFIG = {
-  name: `webpack-client-prod-config [modern]`,
+  name: 'webpack-client-prod-config [modern]',
   entry: {
     app: [
       path.resolve(__dirname, '../src/client/polyfills.modern.ts'),
@@ -88,7 +90,10 @@ const CLIENT_MODERN_CONFIG = {
         filename: path.resolve(__dirname, `../dist/modern`),
       },
     }),
-    // Do these plugins only once per build so we'll do it here instead of base
+    /**
+     * Do these plugins only once per build
+     * so we'll do it here instead of base
+     * */
     new CopyWebpackPlugin({
       patterns: [
         {

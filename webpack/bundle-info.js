@@ -11,7 +11,6 @@ const { SERVERS, REVERSE_PROXY_PATHS, PROXY_DELIVERY_API } =
 const apiProxies = PROXY_DELIVERY_API
   ? {
       '/api/*': {
-        // target: 'http://localhost:3001',
         target: SERVERS.cms,
         changeOrigin: true,
       },
@@ -22,7 +21,7 @@ const reverseProxies = {};
 
 REVERSE_PROXY_PATHS.forEach(path => {
   reverseProxies[path] = {
-    // Change your devServer proxy target here
+    /** Change your devServer proxy target here */
     target: SERVERS.iis || SERVERS.web,
     changeOrigin: true,
   };

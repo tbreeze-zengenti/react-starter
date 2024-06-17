@@ -1,10 +1,11 @@
-const path = require('path');
 const webpack = require('webpack');
+const path = require('path');
+
 const ESLintPlugin = require('eslint-webpack-plugin');
 
-const ASSET_PATH = '/';
-
 const { DEFINE_CONFIG, WEBPACK_DEFINE_CONFIG } = require('./bundle-info');
+
+const ASSET_PATH = '/';
 const staticFolderPath = DEFINE_CONFIG.production.STATIC_PATH;
 
 module.exports = {
@@ -32,8 +33,7 @@ module.exports = {
           {
             loader: 'image-webpack-loader',
             options: {
-              bypassOnDebug: true, // webpack@1.x
-              disable: true, // webpack@2.x and newer
+              disable: true,
               name: `${staticFolderPath}/[hash].[ext]`,
             },
           },

@@ -1,10 +1,12 @@
 const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 const path = require('path');
+
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const BASE_CONFIG = require('./webpack.config.base');
+
 const {
   DEFINE_CONFIG,
   DEVSERVER_PROXIES,
@@ -42,8 +44,7 @@ const CLIENT_DEV_CONFIG = {
           {
             loader: 'image-webpack-loader',
             options: {
-              bypassOnDebug: true, // webpack@1.x
-              disable: true, // webpack@2.x and newer
+              disable: true,
               name: `${staticFolderPath}/[hash].[ext]`,
             },
           },
