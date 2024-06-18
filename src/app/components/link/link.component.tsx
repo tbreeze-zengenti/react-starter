@@ -86,7 +86,7 @@ const Link = React.forwardRef<LinkElement, LinkProps>((props, forwardedRef) => {
       >
         {children}
         {target === '_blank' && (
-          <span className="sr-only">(Opens in a new window)</span>
+          <span className="sr-only">(opens in new tab)</span>
         )}
       </a>
     );
