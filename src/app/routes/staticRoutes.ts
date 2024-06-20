@@ -7,10 +7,14 @@ import { NotFound, Search, Welcome, ZenInfo } from '~/templates';
 import { welcomeMapper } from '~/templates/welcome/welcome.mapper';
 import { injectSearch } from '~/util/injectSearch';
 
+interface RStaticRoute extends StaticRoute {
+  listingType?: string;
+}
+
 /**
  * An array of static routes used in the application.
  */
-const staticRoutes: StaticRoute[] = [
+const staticRoutes: RStaticRoute[] = [
   {
     path: '/',
     exact: true,
