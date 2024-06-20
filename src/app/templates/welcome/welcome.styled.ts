@@ -34,7 +34,7 @@ const WelcomePageStyled = styled.div`
     --bento-border-color: #fae0db;
     --bento-icon-bg: rgba(var(--logo-fill), 0.05);
     --text-color: #000;
-    --link-color: #e8644b;
+    --link-color: #a22d15;
   }
 
   padding: var(--fluid-40-64, 4rem) 0;

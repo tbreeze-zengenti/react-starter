@@ -3,10 +3,8 @@ import { SitemapStream, streamToPromise } from 'sitemap';
 import { cachedSearch } from '@zengenti/contensis-react-base/util';
 import type { Entry } from 'contensis-delivery-api/lib/models';
 
-/* global PUBLIC_URL */
 const publicUrl = PUBLIC_URL;
 
-/* global DELIVERY_API_CONFIG */
 const contensisConfig = {
   rootUrl: DELIVERY_API_CONFIG.rootUrl,
   accessToken: DELIVERY_API_CONFIG.accessToken,
@@ -28,7 +26,9 @@ const contensisConfig = {
 const query = (pageIndex: number, pageSize: number) => {
   const { fields, languages } = contensisConfig;
 
-  // Only return dataFormat entry, where sys.uri exists (the entry has a location/node assigned)
+  /**
+   * Only return dataFormat entry, where sys.uri exists (the entry has a location/node assigned)
+   */
   const query = new Query(
     Op.equalTo('sys.versionStatus', 'published'),
     Op.in('sys.language', ...languages),
@@ -43,8 +43,10 @@ const query = (pageIndex: number, pageSize: number) => {
   query.pageSize = pageSize;
   query.pageIndex = pageIndex;
 
-  /* We need an orderBy, otherwise result ordering is volatile and
-   changes from page to page, leading to duplicate (or missing) results */
+  /*
+   * We need an orderBy, otherwise result ordering is volatile and
+   * changes from page to page, leading to duplicate (or missing) results
+   */
   query.orderBy = OrderBy.asc('sys.contentTypeId');
   return query;
 };
@@ -80,7 +82,8 @@ function dynamicSort(property: string) {
     property = property.substr(1);
   }
   return function (a: any, b: any) {
-    /* next line works with strings and numbers,
+    /*
+     * Next line works with strings and numbers,
      * and you may want to customize it to your needs
      */
     const result =
@@ -93,9 +96,11 @@ const generateSitemap = async (project: string) => {
   const pageSize = 100;
   const entryInfo = await getEntries(0, pageSize, project);
 
-  // Fetch all other pages concurrently
+  /** Fetch all other pages concurrently */
   const getEntryPages = Array.from(
-    { length: entryInfo.pageCount - 1 }, // missing prop pageCount: https://github.com/contensis/contensis-core-api/issues/9
+    // Missing prop pageCount: https://github.com/contensis/contensis-core-api/issues/9
+    // @ts-expect-error
+    { length: entryInfo.pageCount - 1 },
     (_, i) => getEntries(i + 1, pageSize, project)
   );
 
@@ -105,12 +110,12 @@ const generateSitemap = async (project: string) => {
     ...entryPages.flatMap(pg => pg.items),
   ];
 
-  // Map entries to objects with url and lastmod props
+  /** Map entries to objects with url and lastmod props */
   const mappedUrls = entriesList
     .map(e => mapEntryToSitemapUrl(e))
     .sort(dynamicSort('url'));
 
-  // Create sitemap stream object
+  /** Create sitemap stream object */
   const smStream = new SitemapStream({
     hostname: `https://${publicUrl}`,
     lastmodDateOnly: true,

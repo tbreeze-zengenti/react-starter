@@ -34,7 +34,7 @@ const SearchPageStyled = styled.div`
     --bento-border-color: #fae0db;
     --bento-icon-bg: rgba(var(--logo-fill), 0.05);
     --text-color: #000;
-    --link-color: #e8644b;
+    --link-color: #8b3c2d;
   }
 
   padding: var(--fluid-40-64, 4rem) 0;
@@ -58,6 +58,17 @@ const SearchPageStyled = styled.div`
     margin-inline-end: auto;
   }
 
+  .logo {
+    display: flex;
+    justify-content: center;
+
+    .logo__icon {
+      height: 100%;
+      width: 64px;
+      fill: rgb(var(--logo-fill));
+    }
+  }
+
   .bento-boxes {
     margin-block-start: var(--fluid-40-64, 2.5rem);
     display: grid;
@@ -78,6 +89,7 @@ const SearchPageStyled = styled.div`
       var(--fluid-24-32, ${p => p.theme.spacing.xs});
     border: 1px solid var(--bento-border-color);
     border-radius: 4px;
+    min-height: 400px;
 
     color: var(--text-color);
     background: var(--bento-bg-color);

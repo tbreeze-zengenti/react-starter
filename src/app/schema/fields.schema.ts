@@ -1,9 +1,9 @@
 export const sys = {
   availableLanguages: 'sys.availableLanguages',
   contentTypeId: 'sys.contentTypeId',
-  dataFormat: 'sys.dataFormat',
   id: 'sys.id',
   language: 'sys.language',
+  isPublished: 'sys.isPublished',
   published: 'sys.version.published',
   slug: 'sys.slug',
   uri: 'sys.uri',

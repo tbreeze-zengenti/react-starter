@@ -1,5 +1,9 @@
 import { contentTypes } from './contentTypes.schema';
 
+export const facets = {
+  all: 'all',
+};
+
 export const listings = {
   all: 'all',
 };
@@ -10,10 +14,6 @@ export const minilists = {
 
 export const listingPages = {
   [contentTypes.listingPage]: listings.all,
-};
-
-export const searchFacets = {
-  all: 'all',
 };
 
 export const searchFilters = {};

@@ -1,13 +1,19 @@
-import {
+import type {
   SearchConfig,
   SearchFacet,
   Listing,
   WeightedSearchField,
 } from '@zengenti/contensis-react-base/search';
+import type { WhereClause } from '@zengenti/contensis-react-base/models/search/models/Search';
+
 import { contentTypes } from '~/schema/contentTypes.schema';
 import { baseFields } from '~/schema/fields.schema';
-import { freeTextWeights } from '~/schema/search.schema';
-import type { WhereClause } from '@zengenti/contensis-react-base/models/search/models/Search';
+import {
+  facets,
+  listings,
+  minilists,
+  freeTextWeights,
+} from '~/schema/search.schema';
 
 const whereSysUri: WhereClause = {
   field: 'sys.uri',
@@ -17,7 +23,7 @@ const whereSysUri: WhereClause = {
 export const searchConfig = {
   tabs: [{ id: 0, label: '' }],
   facets: {
-    all: {
+    [facets.all]: {
       title: 'Site Search',
       queryParams: {
         contentTypeIds: [],
@@ -33,7 +39,7 @@ export const searchConfig = {
     },
   } as { [key: string]: SearchFacet },
   listings: {
-    all: {
+    [listings.all]: {
       title: 'Listing',
       queryParams: {
         contentTypeIds: [contentTypes.homePage, contentTypes.contentPage],
@@ -43,7 +49,7 @@ export const searchConfig = {
     },
   } as { [key: string]: Listing },
   minilist: {
-    all: {
+    [minilists.all]: {
       title: 'Minilist',
       queryParams: {
         contentTypeIds: [contentTypes.homePage, contentTypes.contentPage],

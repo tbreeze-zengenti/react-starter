@@ -9,7 +9,6 @@ import GlobalStyle from '~/theme/globalStyles';
 import { defaultTheme } from '~/theme';
 
 import NotFound from '~/templates/notFound/notFound.template';
-import SkipToMainContent from '~/components/skipToMainContent/skipToMainContent.component';
 import PageLoader from '~/components/pageLoader/pageLoader.component';
 
 const AppRoot = (props: AppRootProps) => {
@@ -29,8 +28,6 @@ const AppRoot = (props: AppRootProps) => {
     <div id="app-root">
       <ThemeProvider theme={defaultTheme}>
         <GlobalStyle />
-        <SkipToMainContent />
-
         <RouteLoader
           {...props}
           notFoundComponent={NotFound}
