@@ -1,5 +1,5 @@
 /**
- * Asynchronously loads and injects search-related assets including reducer and sagas.
+ * Asynchronously loads and injects search-related assets including reducer and sagas into a route
  * @returns {Promise<{ key: string, reducer: Function, saga: Function }>} Returns a promise that resolves to an object containing the injected search assets.
  */
 export const injectSearch = async () => {

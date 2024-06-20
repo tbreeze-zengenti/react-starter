@@ -1,14 +1,12 @@
 import { call } from 'redux-saga/effects';
-import {
-  InjectSearchAssets,
-  injectSearchAssets,
-} from '~/util/injectSearchAssets';
-import { listingPages } from '~/schema/search.schema';
+import { getSiteConfigSaga } from '~/redux/siteConfig/sagas';
+
 import type {
   RouteLoadOptions,
   WithEvents,
 } from '@zengenti/contensis-react-base';
-import { getSiteConfigSaga } from '~/redux/siteConfig/sagas';
+
+import { loadSearchConfig } from '~/util/loadSearchConfig';
 
 export default {
   onRouteLoad: function* onRouteLoad({ ssr }) {
@@ -30,21 +28,6 @@ export default {
     location,
     staticRoute,
   }) {
-    const contentTypeId = entry?.sys?.contentTypeId;
-    const listingType =
-      staticRoute?.route?.listingType || listingPages[contentTypeId];
-
-    if (path.startsWith('/search') || listingType) {
-      const { routeParams, setRouteFilters, mappers } =
-        (yield injectSearchAssets()) as InjectSearchAssets;
-
-      const params = routeParams(staticRoute, location);
-
-      yield call(setRouteFilters, {
-        listingType,
-        mappers,
-        params,
-      });
-    }
+    yield loadSearchConfig(path, entry, location, staticRoute);
   },
 } as WithEvents;
