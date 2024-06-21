@@ -1,4 +1,4 @@
-import { StaticRoute } from '@zengenti/contensis-react-base';
+import { StaticRoute as Route } from '@zengenti/contensis-react-base';
 
 import { mapRouteEntryToProps } from '~/util/mapRouteEntryToProps';
 
@@ -7,14 +7,14 @@ import { NotFound, Search, Welcome, ZenInfo } from '~/templates';
 import { welcomeMapper } from '~/templates/welcome/welcome.mapper';
 import { injectSearch } from '~/util/injectSearch';
 
-interface RStaticRoute extends StaticRoute {
+interface StaticRoute extends Route {
   listingType?: string;
 }
 
 /**
  * An array of static routes used in the application.
  */
-const staticRoutes: RStaticRoute[] = [
+const staticRoutes: StaticRoute[] = [
   {
     path: '/',
     exact: true,
