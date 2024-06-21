@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-const WelcomePageStyled = styled.div`
+export const exampleVariables = css`
   /* @link https://utopia.fyi/type/calculator?c=320,16,1.25,1400,16,1.333,3,0,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
 
   --step-0: clamp(1rem, 1rem + 0vi, 1rem);
@@ -36,7 +36,9 @@ const WelcomePageStyled = styled.div`
     --text-color: #000;
     --link-color: #a22d15;
   }
+`;
 
+export const exampleLayout = css`
   padding: var(--fluid-40-64, 4rem) 0;
   min-height: inherit;
   background-color: var(--bg-color);
@@ -47,24 +49,19 @@ const WelcomePageStyled = styled.div`
   font-style: normal;
   font-variation-settings: 'slnt' 0;
 
+  a {
+    color: var(--link-color);
+  }
+
   .wrapper {
     max-width: var(--grid-max-width);
     padding-inline: var(--grid-gutter);
     margin-inline-start: auto;
     margin-inline-end: auto;
   }
+`;
 
-  .logo {
-    display: flex;
-    justify-content: center;
-
-    .logo__icon {
-      height: 100%;
-      width: 64px;
-      fill: rgb(var(--logo-fill));
-    }
-  }
-
+export const exampleBentoBoxes = css`
   .bento-boxes {
     margin-block-start: var(--fluid-40-64, 2.5rem);
     display: grid;
@@ -125,7 +122,22 @@ const WelcomePageStyled = styled.div`
       color: var(--link-color);
     }
   }
+`;
 
+export const exampleLogo = css`
+  .logo {
+    display: flex;
+    justify-content: center;
+
+    .logo__icon {
+      height: 100%;
+      width: 64px;
+      fill: rgb(var(--logo-fill));
+    }
+  }
+`;
+
+export const exampleEnv = css`
   .env {
     display: flex;
     align-items: center;
@@ -149,6 +161,14 @@ const WelcomePageStyled = styled.div`
       color: var(--link-color);
     }
   }
+`;
+
+const WelcomePageStyled = styled.div`
+  ${exampleVariables};
+  ${exampleLayout};
+  ${exampleLogo};
+  ${exampleBentoBoxes};
+  ${exampleEnv};
 `;
 
 export default WelcomePageStyled;

@@ -12,7 +12,7 @@ export const contentMapper = (
 ): ContentTemplateProps => {
   return {
     meta: {
-      pageTitle: 'Get started',
+      pageTitle: props.entryTitle,
     },
     title: props.entryTitle,
     composer: props.composer,
