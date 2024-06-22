@@ -1,26 +1,76 @@
-import { Op, OrderBy, Query } from 'contensis-delivery-api';
 import { SitemapStream, streamToPromise } from 'sitemap';
-import { cachedSearch } from '@zengenti/contensis-react-base/util';
-import type { Entry } from 'contensis-delivery-api/lib/models';
 
-const publicUrl = PUBLIC_URL;
+import { Op, OrderBy, Query } from 'contensis-delivery-api';
+import type { Entry } from 'contensis-delivery-api/lib/models';
+import { cachedSearch } from '@zengenti/contensis-react-base/util';
+
+import { canonicalDomain } from '~/util/canonicalDomain';
+import { ComponentMetaType } from '~/models/components/meta.type';
+import staticRoutes, { StaticRoute } from '~/routes/staticRoutes';
+
+import { sitemapConfig } from './sitemap.config';
+
+export type SitemapConfig = {
+  languages: string[];
+  noIndexField?: string;
+  priorityMap?: {
+    path: string;
+    priority: SitemapItem['priority'];
+    changefreq?: SitemapItem['changefreq'];
+  }[];
+  exclusions?: string[];
+};
+
+/** @todo priority map to mappings
+ * should this exist in routes?
+ */
+
+type SitemapEntry = Entry & ComponentMetaType;
+
+export type SitemapItem = {
+  url: string;
+  lastmod?: string;
+  priority?: 0 | 0.1 | 0.2 | 0.3 | 0.4 | 0.5 | 0.6 | 0.7 | 0.8 | 0.9 | 1;
+  changefreq?:
+    | 'always'
+    | 'hourly'
+    | 'daily'
+    | 'weekly'
+    | 'monthly'
+    | 'yearly'
+    | 'never';
+};
 
 const contensisConfig = {
   rootUrl: DELIVERY_API_CONFIG.rootUrl,
   accessToken: DELIVERY_API_CONFIG.accessToken,
   projectId: DELIVERY_API_CONFIG.projectId,
-  languages: ['en-GB'], // Add other languages here if multilingual project
+  languages: sitemapConfig.languages,
   fields: [
-    'authentication',
-    'navigationSettings',
     'sys.contentTypeId',
     'sys.language',
     'sys.uri',
     'sys.version',
-    'sys.slug',
-    'sys.metadata',
+    sitemapConfig.noIndexField ? sitemapConfig.noIndexField : '',
   ],
-  previewUrl: publicUrl,
+  previewUrl: canonicalDomain,
+};
+
+const dynamicSort = (property: string) => {
+  let sortOrder = 1;
+  if (property[0] === '-') {
+    sortOrder = -1;
+    property = property.substr(1);
+  }
+  return function (a: any, b: any) {
+    /*
+     * Next line works with strings and numbers,
+     * and you may want to customize it to your needs
+     */
+    const result =
+      a[property] < b[property] ? -1 : a[property] > b[property] ? 1 : 0;
+    return result * sortOrder;
+  };
 };
 
 const query = (pageIndex: number, pageSize: number) => {
@@ -31,8 +81,8 @@ const query = (pageIndex: number, pageSize: number) => {
    */
   const query = new Query(
     Op.equalTo('sys.versionStatus', 'published'),
-    Op.in('sys.language', ...languages),
     Op.equalTo('sys.dataFormat', 'entry'),
+    Op.in('sys.language', ...languages),
     Op.exists('sys.uri', true)
   );
 
@@ -67,32 +117,64 @@ const getEntries = async (
   }
 };
 
-const mapEntryToSitemapUrl = (entry: Entry) => {
+const mapEntryToSitemapUrl = (entry: SitemapEntry): SitemapItem => {
   const { uri, version } = entry.sys;
-  return {
-    url: encodeURI(uri),
-    lastmod: version?.published,
-  };
+  const existsInConfig = sitemapConfig.priorityMap?.find(
+    config => config.path === entry.sys.contentTypeId
+  );
+
+  if (existsInConfig) {
+    const { priority, changefreq } = existsInConfig;
+    return {
+      url: encodeURI(uri),
+      lastmod: version?.published,
+      priority,
+      changefreq,
+    };
+  } else {
+    return {
+      url: encodeURI(uri),
+      lastmod: version?.published,
+    };
+  }
 };
 
-function dynamicSort(property: string) {
-  let sortOrder = 1;
-  if (property[0] === '-') {
-    sortOrder = -1;
-    property = property.substr(1);
-  }
-  return function (a: any, b: any) {
-    /*
-     * Next line works with strings and numbers,
-     * and you may want to customize it to your needs
-     */
-    const result =
-      a[property] < b[property] ? -1 : a[property] > b[property] ? 1 : 0;
-    return result * sortOrder;
-  };
-}
+const sitemapPathsFromStaticRoutes = (routes: StaticRoute[]): SitemapItem[] => {
+  const lastmod = new Date().toISOString().split('T')[0];
 
-const generateSitemap = async (project: string) => {
+  const handleParams = (string: string): string => {
+    const splitColonSlash = string.split(/\/:/);
+    const splitDelimiters = splitColonSlash.flatMap(part =>
+      part.split(/[:?#]/)
+    );
+
+    return splitDelimiters[0];
+  };
+
+  return routes.map(route => {
+    const { path } = route;
+    const pathExistsInConfig = sitemapConfig.priorityMap?.find(
+      config => config.path === path
+    );
+
+    if (pathExistsInConfig) {
+      const { priority, changefreq } = pathExistsInConfig;
+      return {
+        url: encodeURI(handleParams(path)),
+        lastmod,
+        priority,
+        changefreq,
+      };
+    } else {
+      return {
+        url: encodeURI(handleParams(path)),
+        lastmod,
+      };
+    }
+  });
+};
+
+export const generateSitemap = async (project: string) => {
   const pageSize = 100;
   const entryInfo = await getEntries(0, pageSize, project);
 
@@ -105,19 +187,41 @@ const generateSitemap = async (project: string) => {
   );
 
   const entryPages = await Promise.all(getEntryPages);
+
   const entriesList = [
     ...entryInfo.items,
     ...entryPages.flatMap(pg => pg.items),
-  ];
+  ] as SitemapEntry[];
 
-  /** Map entries to objects with url and lastmod props */
-  const mappedUrls = entriesList
-    .map(e => mapEntryToSitemapUrl(e))
+  /**
+   * Map entries to objects with url and lastmod props
+   * Strip entries where `noIndex` is true
+   */
+  const mappedEntriesToUrls = entriesList
+    .flatMap(e =>
+      typeof e.noIndex === 'undefined' || e.noIndex === true ? e : []
+    )
+    .map(e => mapEntryToSitemapUrl(e));
+
+  /**
+   * Mix mapped entries with static user-defined paths
+   */
+  const mappedUrls = [
+    ...mappedEntriesToUrls,
+    ...sitemapPathsFromStaticRoutes(staticRoutes),
+  ]
+    .filter(path =>
+      sitemapConfig.exclusions?.length
+        ? !sitemapConfig?.exclusions.includes(path.url)
+        : path
+    )
     .sort(dynamicSort('url'));
 
-  /** Create sitemap stream object */
+  /**
+   * Create sitemap stream object
+   */
   const smStream = new SitemapStream({
-    hostname: `https://${publicUrl}`,
+    hostname: canonicalDomain,
     lastmodDateOnly: true,
   });
 

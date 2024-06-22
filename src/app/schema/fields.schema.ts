@@ -21,6 +21,13 @@ export const entryFields = {
   entryThumbnail: 'entryThumbnail',
 };
 
+/**
+ * Required for Sitemap generation
+ * Expects a {boolean} field in Contensis
+ * @see /src/app/server/features/sitemap/readme.md
+ */
+export const noIndexField = 'meta.noIndex';
+
 export const baseFields = [
   entryFields.entryTitle,
   entryFields.entryDescription,

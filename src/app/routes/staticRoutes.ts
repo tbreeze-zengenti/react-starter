@@ -7,7 +7,7 @@ import { NotFound, Search, Welcome, ZenInfo } from '~/templates';
 import { welcomeMapper } from '~/templates/welcome/welcome.mapper';
 import { injectSearch } from '~/util/injectSearch';
 
-interface StaticRoute extends Route {
+export interface StaticRoute extends Route {
   listingType?: string;
 }
 

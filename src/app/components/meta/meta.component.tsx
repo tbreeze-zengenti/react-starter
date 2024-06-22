@@ -3,9 +3,9 @@ import { Helmet } from 'react-helmet';
 import { useSelector } from 'react-redux';
 
 import { routing } from '@zengenti/contensis-react-base/redux';
-import type { AppState } from '@zengenti/contensis-react-base/models/redux/appstate';
+import type { AppState } from '@zengenti/contensis-react-base/models';
 
-import { canonicalDomain } from './canonicalDomain';
+import { canonicalDomain } from '~/util/canonicalDomain';
 
 /**
  * @property {pageTitle} - The title of the page.
