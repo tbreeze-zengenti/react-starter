@@ -14,20 +14,17 @@ export type SitemapConfig = {
   languages: string[];
   noIndexField?: string;
   priorityMap?: {
-    path: string;
+    url: string;
     priority: SitemapItem['priority'];
     changefreq?: SitemapItem['changefreq'];
   }[];
+  additions: SitemapItem[] | [];
   exclusions?: string[];
 };
 
-/** @todo priority map to mappings
- * should this exist in routes?
- */
-
 type SitemapEntry = Entry & ComponentMetaType;
 
-export type SitemapItem = {
+type SitemapItem = {
   url: string;
   lastmod?: string;
   priority?: 0 | 0.1 | 0.2 | 0.3 | 0.4 | 0.5 | 0.6 | 0.7 | 0.8 | 0.9 | 1;
@@ -120,7 +117,7 @@ const getEntries = async (
 const mapEntryToSitemapUrl = (entry: SitemapEntry): SitemapItem => {
   const { uri, version } = entry.sys;
   const existsInConfig = sitemapConfig.priorityMap?.find(
-    config => config.path === entry.sys.contentTypeId
+    config => config.url === entry.sys.contentTypeId
   );
 
   if (existsInConfig) {
@@ -154,7 +151,7 @@ const sitemapPathsFromStaticRoutes = (routes: StaticRoute[]): SitemapItem[] => {
   return routes.map(route => {
     const { path } = route;
     const pathExistsInConfig = sitemapConfig.priorityMap?.find(
-      config => config.path === path
+      config => config.url === path
     );
 
     if (pathExistsInConfig) {
@@ -209,11 +206,12 @@ export const generateSitemap = async (project: string) => {
   const mappedUrls = [
     ...mappedEntriesToUrls,
     ...sitemapPathsFromStaticRoutes(staticRoutes),
+    ...sitemapConfig.additions,
   ]
-    .filter(path =>
+    .filter(item =>
       sitemapConfig.exclusions?.length
-        ? !sitemapConfig?.exclusions.includes(path.url)
-        : path
+        ? !sitemapConfig?.exclusions.includes(item.url)
+        : item
     )
     .sort(dynamicSort('url'));
 
