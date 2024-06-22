@@ -27,4 +27,5 @@ Available options in the config:
 - `languages`: specify the languages your project supports
 - `noIndexField`: specify the field where your noindex boolean exists
 - `priorityMap`: define priorities or changefreq paramters for paths or content type IDs
+- `additions`: an array of sitemap items for adding urls to the sitemap outside of this app
 - `exclusions`: static paths to be excluded from the sitemap
