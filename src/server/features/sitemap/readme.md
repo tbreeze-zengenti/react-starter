@@ -1,32 +1,16 @@
 # Sitemap
 
-A Sitemap for your application is automatically generated and will exist at `/sitemap.xml` in a production environment.
+A Sitemap for your application is automatically generated and will exist at `/sitemap.xml` in a production environment. The source for generation is any entry with a valid `sys.uri` along with every `path` within StaticRoutes.
 
 **Options for the Sitemap can be controlled from the config file: `sitemap.config.ts`.**
-
-## Source
-
-The source for generation is any entry with a valid `sys.uri` along with every `path` within StaticRoutes.
-
-## Excluding URLs
-
-To exclude URLs there is an active method and a static method:
-
-### Active
-
-Utilise the `noIndexField` variable (`~/src/app/schemas/fields.schema.ts`) to define a boolean field on your Entries that is used for declaring whether an entry should render a `noindex` tag. This behaviour can be handled by the Meta component included in this project by default. The sitemap will respect the `noindex` value to determine whether a URL should be excluded from the sitemap.
-
-### Static
-
-The `skipPaths` variable inside `sitemap.ts` can be used to ensure paths are ommitted from the final sitemap. Every URL added to the skip paths array _must_ have a leading `/`.
 
 ## Options
 
 Available options in the config:
 
 - `languages`: specify the languages your project supports
-- `noIndexField`: specify the field where your noindex boolean exists
-- `priorityMap`: define priorities or changefreq paramters for paths or content type IDs
-- `additions`: an array of sitemap items for adding urls to the sitemap outside of this app
-- `excludeContentTypes`: content type IDs to exclude from the sitemap
-- `excludePaths`: static routes / paths to exclude
+- `noIndexField`: by supplying the field ID your app uses for declaring entries as `noindex` the Sitemap will omit those from the final output.
+- `priorityMap`: this mapping allows you to define Sitemap specific values to paths or Content Type IDs.
+- `additions`: an array of additional URLs that should exist in your Sitemap, useful for microsites on the same domain
+- `excludeContentTypes`: a list of Content Type ID's that should be excluded from the Sitemap
+- `excludePaths`: a list of Static Routes or paths that should be excluded from the Sitemap
