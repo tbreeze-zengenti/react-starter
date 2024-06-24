@@ -3,7 +3,7 @@ import { contentTypes } from '~/schema/contentTypes.schema';
 import { noIndexField } from '~/schema/fields.schema';
 
 export const sitemapConfig: SitemapConfig = {
-  languages: ['en-GB', 'fr-FR'],
+  languages: ['en-GB'],
   noIndexField,
   priorityMap: [
     {
@@ -17,5 +17,6 @@ export const sitemapConfig: SitemapConfig = {
     },
   ],
   additions: [],
-  exclusions: ['/404', '/zenInfo'],
+  excludeContentTypes: ['fieldLinkDepthTest'],
+  excludePaths: ['/404', '/zenInfo'],
 };

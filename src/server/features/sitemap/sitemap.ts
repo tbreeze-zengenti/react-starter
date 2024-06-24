@@ -19,7 +19,8 @@ export type SitemapConfig = {
     changefreq?: SitemapItem['changefreq'];
   }[];
   additions: SitemapItem[] | [];
-  exclusions?: string[];
+  excludeContentTypes?: string[];
+  excludePaths?: string[];
 };
 
 type SitemapEntry = Entry & ComponentMetaType;
@@ -76,12 +77,27 @@ const query = (pageIndex: number, pageSize: number) => {
   /**
    * Only return dataFormat entry, where sys.uri exists (the entry has a location/node assigned)
    */
-  const query = new Query(
-    Op.equalTo('sys.versionStatus', 'published'),
-    Op.equalTo('sys.dataFormat', 'entry'),
-    Op.in('sys.language', ...languages),
-    Op.exists('sys.uri', true)
-  );
+  let query;
+
+  if (
+    sitemapConfig?.excludeContentTypes &&
+    sitemapConfig.excludeContentTypes?.length > 0
+  ) {
+    query = new Query(
+      Op.equalTo('sys.versionStatus', 'published'),
+      Op.equalTo('sys.dataFormat', 'entry'),
+      Op.in('sys.language', ...languages),
+      Op.exists('sys.uri', true),
+      Op.not(Op.in('sys.contentTypeId', ...sitemapConfig.excludeContentTypes))
+    );
+  } else {
+    query = new Query(
+      Op.equalTo('sys.versionStatus', 'published'),
+      Op.equalTo('sys.dataFormat', 'entry'),
+      Op.in('sys.language', ...languages),
+      Op.exists('sys.uri', true)
+    );
+  }
 
   if (fields && fields.length > 0) {
     query.fields = [...fields];
@@ -209,8 +225,8 @@ export const generateSitemap = async (project: string) => {
     ...sitemapConfig.additions,
   ]
     .filter(item =>
-      sitemapConfig.exclusions?.length
-        ? !sitemapConfig?.exclusions.includes(item.url)
+      sitemapConfig.excludePaths?.length
+        ? !sitemapConfig?.excludePaths.includes(item.url)
         : item
     )
     .sort(dynamicSort('url'));
