@@ -10,7 +10,7 @@ const { SERVERS, REVERSE_PROXY_PATHS, PROXY_DELIVERY_API } =
 
 const apiProxies = PROXY_DELIVERY_API
   ? {
-      '/api/*': {
+      '/api/**': {
         target: SERVERS.cms,
         changeOrigin: true,
       },
@@ -27,7 +27,22 @@ REVERSE_PROXY_PATHS.forEach(path => {
   };
 });
 
-const DEVSERVER_PROXIES = { ...apiProxies, ...reverseProxies };
+const convertProxiesForDev = proxies => {
+  if (!proxies) {
+    return [];
+  }
+
+  return Object.entries(proxies).map(([key, { target, changeOrigin }]) => ({
+    context: [key],
+    target,
+    changeOrigin,
+  }));
+};
+
+const DEVSERVER_PROXIES = convertProxiesForDev({
+  ...apiProxies,
+  ...reverseProxies,
+});
 
 module.exports = {
   DEFINE_CONFIG,

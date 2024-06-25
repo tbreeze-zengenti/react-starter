@@ -9,7 +9,7 @@ const WebpackModules = require('webpack-modules');
 const webpackNodeExternals = require('webpack-node-externals');
 const BundleAnalyzerPlugin =
   require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const { ESBuildMinifyPlugin } = require('esbuild-loader');
+const { EsbuildPlugin } = require('esbuild-loader');
 
 const BASE_CONFIG = require('./webpack.config.base');
 const { DEFINE_CONFIG, WEBPACK_DEFINE_CONFIG } = require('./bundle-info');
@@ -49,7 +49,6 @@ const CLIENT_MODERN_CONFIG = {
         test: /\.(t|j)sx?$/,
         loader: 'esbuild-loader',
         options: {
-          loader: 'tsx',
           target: 'es2022',
         },
       },
@@ -57,7 +56,7 @@ const CLIENT_MODERN_CONFIG = {
   },
   optimization: {
     minimizer: [
-      new ESBuildMinifyPlugin({
+      new EsbuildPlugin({
         target: 'es2022',
       }),
     ],
@@ -160,7 +159,6 @@ const SERVER_PROD_CONFIG = {
         test: /\.(t|j)sx?$/,
         loader: 'esbuild-loader',
         options: {
-          loader: 'tsx',
           target: 'node18',
         },
       },
@@ -178,7 +176,7 @@ const SERVER_PROD_CONFIG = {
   },
   optimization: {
     minimizer: [
-      new ESBuildMinifyPlugin({
+      new EsbuildPlugin({
         target: 'es2022',
       }),
     ],
