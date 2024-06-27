@@ -26,7 +26,7 @@ const injectSearchAssets = async () => {
 
 type InjectSearchAssets = {
   routeParams: any;
-  setRouteFilters: typeof import('@zengenti/contensis-react-base/search')['setRouteFilters'];
+  setRouteFilters: (typeof import('@zengenti/contensis-react-base/search'))['setRouteFilters'];
   mappers: SearchTransformations;
 };
 

@@ -1,5 +1,5 @@
-import { MarkupMapper } from '~/components/markup/markup.mapper';
+import { markupMapper } from '../markup/markup.mapper';
 
 export const composerPropsMapping = {
-  textBlock: MarkupMapper,
+  textBlock: markupMapper,
 };

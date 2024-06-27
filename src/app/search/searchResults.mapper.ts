@@ -35,6 +35,7 @@ const blogEntryMapper = (
     title: entry.entryTitle,
   };
 };
+
 export type SearchResultProps = BaseSearchResultProps;
 export type SourceEntryProps = ContentType<unknown>;
 

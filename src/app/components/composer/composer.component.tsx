@@ -5,9 +5,9 @@ import type { ComposerItemProps, ComposerProps } from './composer.types';
 /**
  * @summary
  * Contensis does NOT provide unique IDs for Composer fields
- * Therefore you MUST generate keys for each component returned from the following .map()
- * It is RECOMMENDED to use the props data to generate these keys
- * It is NOT RECOMMENDED to use random keys
+ * Therefore you must generate keys for each component returned from the following .map()
+ * It is recommended to use the props data to generate these keys
+ * It is not recommended to use random keys
  * @see https://react.dev/learn/rendering-lists#keeping-list-items-in-order-with-key
  * @link https://www.npmjs.com/package/uuid-by-string
  */
