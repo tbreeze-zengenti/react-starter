@@ -11,6 +11,12 @@ const staticRoutes: StaticRoute[] = [
     component: Home,
   },
   {
+    path: '/test',
+    exact: true,
+    fetchNode: true,
+    component: Home,
+  },
+  {
     path: '/search/:facet?',
     component: Search,
     injectRedux: injectSearch,
