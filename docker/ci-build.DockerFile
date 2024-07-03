@@ -4,12 +4,12 @@ FROM node:20-alpine
 
 WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
+COPY contensis-forms-0.0.1.tgz .
 RUN npm install --production --loglevel error && \
   # Clears the npm cache to reduce image size
   npm cache clean --force
 
 COPY --from=basebuilder /usr/src/app/dist /usr/src/app/dist
-COPY contensis-forms-0.0.1.tgz .
 COPY .env* ./
 COPY webpack/define-config.js ./webpack/
 COPY ./manifest.json /manifest.json
