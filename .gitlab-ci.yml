@@ -71,7 +71,7 @@ push-to-contensis:
   stage: push-block
   variables:
     alias: develop
-    project_id: chalky1056Pickers
+    project_id: blocksTesting
     block_id: react-starter
     image_uri: $APP_IMAGE:build-$CI_PIPELINE_IID
     release: 'true' # Whether to release the block upon successful push
