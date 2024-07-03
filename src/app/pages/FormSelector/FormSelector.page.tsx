@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Client } from 'contensis-management-api';
+import { UniversalClient } from 'contensis-management-api';
 import { ContentType } from 'contensis-core-api';
 
 import MainLayout from '~/layouts/main.layout';
@@ -12,7 +12,7 @@ import Meta from '~/components/meta/meta';
 import { selectors } from '@zengenti/contensis-react-base/routing';
 
 // Management API is here for testing, not for production use
-const client = new Client({
+const client = new UniversalClient({
   rootUrl: SERVERS.cms,
   projectId: PROJECT,
   clientType: 'client_credentials',
@@ -20,6 +20,10 @@ const client = new Client({
     clientId: CLIENT_ID,
     clientSecret: SHARED_SECRET,
   },
+  fetchFn:
+    typeof window === 'undefined'
+      ? undefined
+      : (...args) => window.fetch(...args),
 });
 
 const FormSelector = () => {
