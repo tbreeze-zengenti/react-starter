@@ -75,11 +75,7 @@ push-to-contensis:
     project_id: website
     block_id: react-starter
     image_uri: $APP_IMAGE:build-$CI_PIPELINE_IID
-    release: 'false' # Whether to release the block upon successful push
-    tag_repo: 'true' # Whether to push a tag to the git repo upon successful block push (git_token is required if this is 'true'). Defaults to false.
-    # First create a Project Access Token e.g Tag block version (access: api, read_repository) and copy it
-    # Then create a CI/CD Variable called GITLAB_ACCESS_TOKEN and paste the token
-    git_token: $GITLAB_ACCESS_TOKEN
+    release: 'true' # Whether to release the block upon successful push
 
 #push-storybook-block:
 #  extends: push-to-contensis
@@ -88,11 +84,3 @@ push-to-contensis:
 #    block_id: react-starter-storybook
 #    image_uri: $STORYBOOK_IMAGE:build-$CI_PIPELINE_IID
 #    release: 'false' # Whether to release the block upon successful push
-
-# Releasing the block (with a `release-*` tag)
-release-contensis-block:
-  stage: release-block
-  variables:
-    alias: leif
-    project_id: website
-    block_id: react-starter

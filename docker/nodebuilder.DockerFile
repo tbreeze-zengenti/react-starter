@@ -1,4 +1,4 @@
-FROM node:18 as builder
+FROM node:20 as builder
 # The following prevents errors when cwebp is installing.
 RUN apt-get update
 RUN apt-get install libglu1 -y
@@ -21,6 +21,7 @@ COPY .nvmrc .
 COPY .prettierignore .
 COPY .prettierrc .
 COPY tsconfig.json .
+COPY contensis-forms-0.0.1.tgz .
 RUN npm run build:ci
 RUN mocha --timeout=5000 dist/server/start.js -tests
 COPY version.json /usr/src/app/dist/static/version.json

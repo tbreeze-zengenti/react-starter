@@ -1,6 +1,8 @@
 // eslint-disable-next-line no-underscore-dangle
 declare const __isBrowser__: boolean;
 
+declare const ALIAS: string;
+
 declare const DELIVERY_API_CONFIG: {
   rootUrl: string;
   accessToken: string;
@@ -9,6 +11,8 @@ declare const DELIVERY_API_CONFIG: {
 };
 
 declare const DISABLE_SSR_REDUX: boolean;
+
+declare const PROJECT: string;
 
 declare const PROJECTS: {
   id: string;

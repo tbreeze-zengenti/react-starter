@@ -1,6 +1,6 @@
 ARG builder_image
 FROM ${builder_image} as basebuilder
-FROM node:18-alpine
+FROM node:20-alpine
 
 WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
@@ -9,6 +9,7 @@ RUN npm install --production --loglevel error && \
   npm cache clean --force
 
 COPY --from=basebuilder /usr/src/app/dist /usr/src/app/dist
+COPY contensis-forms-0.0.1.tgz .
 COPY .env* ./
 COPY webpack/define-config.js ./webpack/
 COPY ./manifest.json /manifest.json
