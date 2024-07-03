@@ -10,6 +10,9 @@ const {
   ACCESS_TOKEN,
   PROJECT,
   STATIC_PATH = 'static',
+  // Management API Credentials are here for testing, not for production use
+  CLIENT_ID,
+  SHARED_SECRET,
 } = process.env;
 
 const PROJECTS = env => [
@@ -79,6 +82,8 @@ const development = {
   STATIC_PATH,
   VERSION: packagejson.version,
   WSFED_LOGIN: false,
+  CLIENT_ID,
+  SHARED_SECRET,
 };
 
 const production = {
@@ -90,6 +95,8 @@ const production = {
   STATIC_PATH,
   VERSION: packagejson.version,
   WSFED_LOGIN: false,
+  CLIENT_ID,
+  SHARED_SECRET,
 };
 
 module.exports = {

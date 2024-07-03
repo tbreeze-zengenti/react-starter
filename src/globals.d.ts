@@ -41,4 +41,8 @@ declare const VERSION: string;
 
 declare const WSFED_LOGIN: false;
 
+// Management API Credentials are here for testing, not for production use
+declare const CLIENT_ID: string;
+declare const SHARED_SECRET: string;
+
 declare module 'app-root-path';
