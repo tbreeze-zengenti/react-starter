@@ -6,6 +6,7 @@ WORKDIR /usr/src/app
 COPY package.json .
 COPY package-lock.json .
 RUN npm install -g npm@^9.8.1
+COPY contensis-forms-0.0.1.tgz .
 RUN npm install -g mocha
 RUN npm install --legacy-peer-deps --loglevel error
 COPY config /usr/src/app/config
@@ -21,7 +22,6 @@ COPY .nvmrc .
 COPY .prettierignore .
 COPY .prettierrc .
 COPY tsconfig.json .
-COPY contensis-forms-0.0.1.tgz .
 RUN npm run build:ci
 RUN mocha --timeout=5000 dist/server/start.js -tests
 COPY version.json /usr/src/app/dist/static/version.json
