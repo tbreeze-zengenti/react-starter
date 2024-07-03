@@ -1,6 +1,6 @@
 import { StaticRoute } from '@zengenti/contensis-react-base';
 
-import { CorePages, Home, Search } from '~/dynamic/pages';
+import { CorePages, FormSelector, Home, Search } from '~/dynamic/pages';
 import { injectSearch } from '~/redux/dynamic';
 
 const staticRoutes: StaticRoute[] = [
@@ -15,6 +15,10 @@ const staticRoutes: StaticRoute[] = [
     exact: true,
     fetchNode: true,
     component: Home,
+  },
+  {
+    path: '/form/:formId?',
+    component: FormSelector,
   },
   {
     path: '/search/:facet?',
