@@ -12,6 +12,12 @@ import { HomeProps } from '~/pages/Home/home.type';
 export const Home = loadable<HomeProps>(
   () => import(/* webpackChunkName: "home.page" */ '~/pages/Home/home.page')
 );
+export const FormConfirmation = loadable<RouteComponentProps>(
+  () =>
+    import(
+      /* webpackChunkName: "formconfirmation.page" */ '~/pages/FormConfirmation/FormConfirmation.page'
+    )
+);
 export const FormSelector = loadable<RouteComponentProps>(
   () =>
     import(

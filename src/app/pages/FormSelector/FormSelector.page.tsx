@@ -20,6 +20,7 @@ const client = new UniversalClient({
     clientId: CLIENT_ID,
     clientSecret: SHARED_SECRET,
   },
+  // Fix: `ContensisApplicationError: Failed to execute 'fetch' on 'Window': Illegal invocation`
   fetchFn:
     typeof window === 'undefined'
       ? undefined
