@@ -95,8 +95,6 @@ const production = {
   STATIC_PATH,
   VERSION: packagejson.version,
   WSFED_LOGIN: false,
-  CLIENT_ID,
-  SHARED_SECRET,
 };
 
 module.exports = {
