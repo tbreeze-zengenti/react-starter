@@ -1,6 +1,7 @@
 import { StaticRoute } from '@zengenti/contensis-react-base';
 
 import { CorePages, FormSelector, Home, Search } from '~/dynamic/pages';
+import LoginPage from '~/pages/Login/Login.page';
 import { injectSearch } from '~/redux/dynamic';
 
 const staticRoutes: StaticRoute[] = [
@@ -11,10 +12,9 @@ const staticRoutes: StaticRoute[] = [
     component: Home,
   },
   {
-    path: '/test',
+    path: '/account/login',
     exact: true,
-    fetchNode: true,
-    component: Home,
+    component: LoginPage,
   },
   {
     path: '/form/:formId?',

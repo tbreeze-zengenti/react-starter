@@ -6,7 +6,6 @@ import HomeStyled from './home.styled';
 
 import { HomeProps, MappedHomeEntry } from './home.type';
 
-import Form from '~/components/forms/Form';
 import Link from '~/components/link/link';
 import Meta from '~/components/meta/meta';
 
@@ -18,8 +17,12 @@ const Home = ({ mappedEntry }: HomeProps) => {
         <Meta pageTitle="Home" />
         <h1>Welcome</h1>
         {title && <p>The homepage entry title is {title}!</p>}
-        <Link path="/search">Navigate to search</Link>
-        <Form formId="contactForm" />
+        <p>
+          <Link path="/form">Navigate to form test page</Link>
+        </p>
+        <p>
+          <Link path="/account/login">Navigate to login</Link>
+        </p>
       </HomeStyled>
     </MainLayout>
   );
