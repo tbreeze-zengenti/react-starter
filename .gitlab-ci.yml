@@ -70,13 +70,25 @@ build-live-code-for-production:
 push-to-contensis:
   stage: push-block
   variables:
+    alias: 16-1
+    project_id: website
+    block_id: react-starter
+    image_uri: $APP_IMAGE:build-$CI_PIPELINE_IID
+    release: 'true' # Whether to release the block upon successful push
+    client_id: $CMS_16_1_CLIENT_ID
+    shared_secret: $CMS_16_1_SHARED_SECRET
+
+push-to-develop:
+  extends: push-to-contensis
+  stage: push-block
+  variables:
     alias: develop
     project_id: blocksTesting
     block_id: react-starter
     image_uri: $APP_IMAGE:build-$CI_PIPELINE_IID
     release: 'true' # Whether to release the block upon successful push
-    client_id: 72e26b36-05a3-47ec-9974-04ce61c9ed5d
-    shared_secret: 9377f848a4aa43318776b5d754e1aa2e-51ab50c5e11940f181ce2537a0c54350-668dc2785e794253bbda1ae4b778deca
+    client_id: $CMS_DEVELOP_CLIENT_ID
+    shared_secret: $CMS_DEVELOP_SHARED_SECRET
 
 #push-storybook-block:
 #  extends: push-to-contensis
