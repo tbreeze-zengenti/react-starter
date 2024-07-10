@@ -1,9 +1,20 @@
 import React from 'react';
-import { ContensisForm } from '@contensis/forms';
+import { ContensisForm, FormProps } from '@contensis/forms';
 
-const Form = ({ formId }: { formId: string }) => {
-  const projectId = PROJECT; /* global PROJECT */
-  return <ContensisForm projectId={projectId} formId={formId} />;
+interface IFormComponentProps extends Partial<FormProps> {
+  formId: string;
+}
+
+const Form = ({ formId, projectId, ...rest }: IFormComponentProps) => {
+  if (!formId) return null;
+
+  return (
+    <ContensisForm
+      projectId={projectId || PROJECT /* global PROJECT */}
+      formId={formId}
+      {...rest}
+    />
+  );
 };
 
 export default Form;
