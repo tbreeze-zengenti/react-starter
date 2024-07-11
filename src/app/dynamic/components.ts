@@ -21,3 +21,7 @@ export const Canvas = loadable(
       /* webpackChunkName: "canvas" */ '~/components/canvas/canvas.component'
     )
 );
+
+export const Form = loadable(
+  () => import(/* webpackChunkName: "form" */ '~/components/forms/form')
+);
