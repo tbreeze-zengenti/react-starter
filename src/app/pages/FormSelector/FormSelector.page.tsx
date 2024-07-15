@@ -113,7 +113,11 @@ const FormSelector = () => {
         <hr />
         <Form
           formId={selectedFormId}
-          language={selectedLanguage}
+          language={
+            selectedLanguage === 'default'
+              ? selectedForm?.defaultLanguage || selectedLanguage
+              : selectedLanguage
+          }
           versionStatus={selectedVersion}
           onPopulate={defaultValue => {
             if ('emailAddress' in defaultValue) {
