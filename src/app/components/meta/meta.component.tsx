@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { routing } from '@zengenti/contensis-react-base/redux';
 import type { AppState } from '@zengenti/contensis-react-base/models';
 
-import { canonicalDomain } from './canonicalDomain';
+import { canonicalDomain } from '~/util/canonicalDomain';
 
 /**
  * @property {pageTitle} - The title of the page.

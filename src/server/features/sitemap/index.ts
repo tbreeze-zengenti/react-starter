@@ -1,5 +1,5 @@
 import { Express } from 'express';
-import generateSitemap from './sitemap';
+import { generateSitemap } from './sitemap';
 
 const sitemap = (app: Express) => {
   app.get('/sitemap.xml', (req, res) => {
