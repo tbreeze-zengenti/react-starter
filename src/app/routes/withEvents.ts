@@ -27,7 +27,8 @@ export default {
     entry,
     location,
     staticRoute,
+    routes,
   }) {
-    yield loadSearchConfig(path, entry, location, staticRoute);
+    yield loadSearchConfig(path, entry, location, staticRoute, routes);
   },
 } as WithEvents;

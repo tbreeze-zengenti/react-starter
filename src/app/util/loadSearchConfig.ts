@@ -3,7 +3,24 @@ import { call } from 'redux-saga/effects';
 import type { GetRouteActionArgs } from '@zengenti/contensis-react-base';
 import { SearchTransformations } from '@zengenti/contensis-react-base/search';
 
-import { listingPages } from '~/schema/search.schema';
+import {
+  StaticRoute as Route,
+  ContentTypeMapping,
+} from '@zengenti/contensis-react-base';
+
+export interface StaticRoute extends Route {
+  /**
+   * @description Triggers the loading of the relevant search config listing object to state
+   */
+  listingType?: string;
+}
+
+export interface ContentTypeRoute extends ContentTypeMapping {
+  /**
+   * @description Triggers the loading of the relevant search config listing object to state
+   */
+  listingType?: string;
+}
 
 /**
  * @description Asynchronously load and inject assets related to Search
@@ -31,20 +48,31 @@ type InjectSearchAssets = {
 };
 
 /**
- * Dynamically sets the Search config based on the following:
- * - Static Routes: `listingType` param
- * - ContentType Routes: `listingPages` schema
+ * Automatically loads the Search config if:
+ * - `path` matches `/search`
+ * - a `listingType` is present
+ *
+ * @requires `injectRedux: injectSearch` to be applied on a given route
  * @see /routes/withEvents.ts
  */
 export function* loadSearchConfig(
   path: GetRouteActionArgs['path'],
   entry: Entry,
   location: GetRouteActionArgs['location'],
-  staticRoute: GetRouteActionArgs['staticRoute']
+  staticRoute: GetRouteActionArgs['staticRoute'],
+  routes: GetRouteActionArgs['routes']
 ) {
   const contentTypeId = entry?.sys?.contentTypeId;
+  const contentTypeRoutes: ContentTypeRoute[] = routes?.ContentTypeMappings;
+
+  const contentTypeListings: Record<string, string> = contentTypeRoutes.reduce(
+    (obj, item) =>
+      Object.assign(obj, { [item.contentTypeID]: item.listingType }),
+    {}
+  );
+
   const listingType =
-    staticRoute?.route?.listingType || listingPages[contentTypeId];
+    staticRoute?.route?.listingType || contentTypeListings[contentTypeId];
 
   if (path.startsWith('/search') || listingType) {
     const { routeParams, setRouteFilters, mappers } =
