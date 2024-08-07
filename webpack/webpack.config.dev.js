@@ -39,13 +39,15 @@ const CLIENT_DEV_CONFIG = {
       },
       {
         test: /\.(gif|png|jpe?g|svg)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: `${staticFolderPath}/img/[hash][ext]`,
+        },
         use: [
-          'file-loader',
           {
             loader: 'image-webpack-loader',
             options: {
               disable: true,
-              name: `${staticFolderPath}/[hash].[ext]`,
             },
           },
         ],
@@ -79,9 +81,5 @@ const CLIENT_DEV_CONFIG = {
     open: true,
   },
 };
-
-// This is a hack because I can't get the file-loader to work in production, so I have included in the base and then delete and override here for dev.
-// Locally I want images as 34234234234324.png, in prod i want /static/img/[name].[ext]?[hash]
-delete BASE_CONFIG.module;
 
 module.exports = merge(BASE_CONFIG, CLIENT_DEV_CONFIG);

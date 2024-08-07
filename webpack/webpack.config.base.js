@@ -28,13 +28,15 @@ module.exports = {
       },
       {
         test: /\.(gif|png|jpe?g|svg|ico)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: `${staticFolderPath}/img/[hash][ext]`,
+        },
         use: [
-          `file-loader?name=${staticFolderPath}/img/[name].[ext]?[hash]`,
           {
             loader: 'image-webpack-loader',
             options: {
               disable: true,
-              name: `${staticFolderPath}/[hash].[ext]`,
             },
           },
         ],
