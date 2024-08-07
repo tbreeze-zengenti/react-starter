@@ -159,7 +159,7 @@ const SERVER_PROD_CONFIG = {
         test: /\.(t|j)sx?$/,
         loader: 'esbuild-loader',
         options: {
-          target: 'node18',
+          target: 'node20',
         },
       },
       {
