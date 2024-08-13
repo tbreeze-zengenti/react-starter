@@ -22,13 +22,7 @@ export default {
     };
     return yield routeLoadOptions;
   },
-  onRouteLoaded: function* onRouteLoaded({
-    path,
-    entry,
-    location,
-    staticRoute,
-    routes,
-  }) {
-    yield loadSearchConfig(path, entry, location, staticRoute, routes);
+  onRouteLoaded: function* onRouteLoaded(onRouteLoadedArgs) {
+    yield loadSearchConfig(onRouteLoadedArgs);
   },
 } as WithEvents;
