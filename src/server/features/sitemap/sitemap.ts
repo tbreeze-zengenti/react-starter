@@ -1,4 +1,5 @@
 import { SitemapStream, streamToPromise } from 'sitemap';
+import { StaticRoute } from '@zengenti/contensis-react-base';
 
 import { Op, OrderBy, Query } from 'contensis-delivery-api';
 import type { Entry } from 'contensis-delivery-api/lib/models';
@@ -6,7 +7,7 @@ import { cachedSearch } from '@zengenti/contensis-react-base/util';
 
 import { canonicalDomain } from '~/util/canonicalDomain';
 import { ComponentMetaType } from '~/models/components/meta.type';
-import staticRoutes, { StaticRoute } from '~/routes/staticRoutes';
+import staticRoutes from '~/routes/staticRoutes';
 
 import { sitemapConfig } from './sitemap.config';
 

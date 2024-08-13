@@ -1,6 +1,5 @@
-import { Entry } from 'contensis-delivery-api';
 import { call } from 'redux-saga/effects';
-import type { GetRouteActionArgs } from '@zengenti/contensis-react-base';
+import type { OnRouteLoadedArgs } from '@zengenti/contensis-react-base';
 import { SearchTransformations } from '@zengenti/contensis-react-base/search';
 
 import {
@@ -55,13 +54,13 @@ type InjectSearchAssets = {
  * @requires `injectRedux: injectSearch` to be applied on a given route
  * @see /routes/withEvents.ts
  */
-export function* loadSearchConfig(
-  path: GetRouteActionArgs['path'],
-  entry: Entry,
-  location: GetRouteActionArgs['location'],
-  staticRoute: GetRouteActionArgs['staticRoute'],
-  routes: GetRouteActionArgs['routes']
-) {
+export function* loadSearchConfig({
+  location,
+  path,
+  routes,
+  staticRoute,
+  entry,
+}: OnRouteLoadedArgs) {
   const contentTypeId = entry?.sys?.contentTypeId;
   const contentTypeRoutes: ContentTypeRoute[] = routes?.ContentTypeMappings;
 
