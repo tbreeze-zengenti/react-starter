@@ -1,10 +1,10 @@
 import { mapRouteEntryToProps } from '~/util/mapRouteEntryToProps';
-import type { StaticRoute } from '~/util/loadSearchConfig';
+import type { StaticRoute } from '~/search/util/loadSearchConfig';
 
 import { NotFound, Search, Welcome, ZenInfo } from '~/templates';
 
 import { welcomeMapper } from '~/templates/welcome/welcome.mapper';
-import { injectSearch } from '~/util/injectSearch';
+import { injectSearch } from '~/search/util/injectSearch';
 
 /**
  * An array of static routes used in the application.

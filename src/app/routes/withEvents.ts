@@ -6,7 +6,7 @@ import type {
   WithEvents,
 } from '@zengenti/contensis-react-base';
 
-import { loadSearchConfig } from '~/util/loadSearchConfig';
+import { loadSearchConfig } from '~/search/util/loadSearchConfig';
 
 export default {
   onRouteLoad: function* onRouteLoad({ ssr }) {

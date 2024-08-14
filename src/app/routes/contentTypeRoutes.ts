@@ -1,5 +1,5 @@
 import { mapRouteEntryToProps } from '~/util/mapRouteEntryToProps';
-import type { ContentTypeRoute } from '~/util/loadSearchConfig';
+import type { ContentTypeRoute } from '~/search/util/loadSearchConfig';
 
 import { Content } from '~/templates';
 import { contentMapper } from '~/templates/content/content.mapper';
