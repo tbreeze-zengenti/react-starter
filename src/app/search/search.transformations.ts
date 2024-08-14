@@ -1,4 +1,4 @@
-import { SearchTransformations } from '@zengenti/contensis-react-base/models/search';
+import type { SearchTransformations } from '@zengenti/contensis-react-base/models/search';
 
 import searchResultsMapper from './searchResults.mapper';
 import searchResultsInformationMapper from './searchResultsInformation.mapper';

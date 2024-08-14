@@ -1,6 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { useFacets } from '@zengenti/contensis-react-base/search';
+import SearchTransformations from '~/search/search.transformations';
 
 import SearchPageStyled from '~/templates/search/search.styled';
 import MainTemplate from '~/templates/main/main.template';
@@ -21,8 +22,9 @@ const Search = () => {
   const {
     results,
     updateSearchTerm,
-    paging: { totalCount },
-  } = useFacets<SearchResultProps>();
+    isLoading,
+    resultsInfo: { resultsText, noResultsText },
+  } = useFacets<SearchResultProps>({ mappers: SearchTransformations });
 
   /** Minilist example using an existing minilist config */
   const { results: minilistResults } = useRelatedContentMinilist();
@@ -69,18 +71,27 @@ const Search = () => {
               <section className="bento-box bento-box--wide">
                 <h2 className="bento-box__title">Site search</h2>
                 <SearchInput submit={updateSearchTerm} />
-                <ul className="bento-box__results">
-                  {results.map(resultItem => {
-                    return (
-                      <li key={resultItem.id}>
-                        <SearchResult {...resultItem} />
-                      </li>
-                    );
-                  })}
-                </ul>
-                <p className="bento-box__paging">
-                  Number of results {totalCount}
-                </p>
+                {isLoading ? (
+                  <p className="bento-box__paging">Loading...</p>
+                ) : null}
+
+                {noResultsText ? (
+                  <p className="bento-box__paging">{noResultsText}</p>
+                ) : null}
+
+                {!noResultsText ? (
+                  <ul className="bento-box__results">
+                    {results.map(resultItem => {
+                      return (
+                        <li key={resultItem.id}>
+                          <SearchResult {...resultItem} />
+                        </li>
+                      );
+                    })}
+                  </ul>
+                ) : null}
+
+                <p className="bento-box__paging">{resultsText}</p>
               </section>
 
               <section className="bento-box">

@@ -1,47 +1,41 @@
-import { SearchState, selectors } from '@zengenti/contensis-react-base/search';
-import { mapJson } from '@zengenti/contensis-react-base/util';
+import {
+  selectors,
+  type SearchState,
+} from '@zengenti/contensis-react-base/search';
 
-const { getCurrent, getListing, getResults, getTotalCount, getPaging } =
-  selectors.selectListing;
+const { getPaging, getTotalCount, getIsLoaded } = selectors.selectFacets;
 
 type ReduxWithSearch = { search: SearchState };
 
 /**
- * Retrieves the title of the current listing from the application state.
+ * generate search summary information.
  */
-const listingTitle = (state: ReduxWithSearch): string | undefined => {
-  const listing = getListing(state);
-  return listing?.title;
+const searchResultsInformationMapper = (state: ReduxWithSearch) => {
+  return {
+    noResultsText: noResultsTextMapper(state),
+    resultsText: resultsTextMapper(state),
+  };
 };
 
-/**
- * Retrieves the total count of search results from the application state.
- */
-const totalCount = (state: ReduxWithSearch): number => getTotalCount(state);
+const noResultsTextMapper = (state: ReduxWithSearch): string | undefined => {
+  const context = selectors.getSearchContext(state);
+  const isLoaded = getIsLoaded(state, context);
+  const totalCount = getTotalCount(state, undefined, context);
 
-/**
- * Template object for generating search summary information.
- */
-const searchSummaryTemplate = {
-  currentListing: (state: ReduxWithSearch): string => getCurrent(state),
-  currentPageCount: (state: ReduxWithSearch): number =>
-    getResults(state).length,
-  listingTitle,
-  noResultsText: (state: ReduxWithSearch): string =>
-    totalCount(state) === 0 ? `No results were found` : '',
-  resultsText: (state: ReduxWithSearch) => {
-    const paging = getPaging(state);
-    const { pageIndex, pageSize, totalCount, pagesLoaded } = paging;
-    if (!pagesLoaded) return null;
-    const start = (pagesLoaded[0] || pageIndex) * pageSize + 1;
-    let end = start + (pagesLoaded.length * pageSize || pageSize) - 1;
-    if (end > totalCount) end = totalCount;
-
-    return `${start} - ${end} of ${totalCount} results`;
-  },
+  return isLoaded && totalCount === 0 ? `No results were found` : undefined;
 };
 
-const searchResultsInformationMapper = (state: ReduxWithSearch) =>
-  mapJson(state, searchSummaryTemplate);
+const resultsTextMapper = (state: ReduxWithSearch): string | undefined => {
+  const context = selectors.getSearchContext(state);
+  const paging = getPaging(state, undefined, context);
+
+  const { pageIndex, pageSize, totalCount, pagesLoaded } = paging;
+  if (!pagesLoaded) return undefined;
+  const start = (pagesLoaded[0] || pageIndex) * pageSize + 1;
+  let end = start + (pagesLoaded.length * pageSize || pageSize) - 1;
+  if (end > totalCount) end = totalCount;
+
+  return `${start} - ${end} of ${totalCount} results`;
+};
 
 export default searchResultsInformationMapper;
