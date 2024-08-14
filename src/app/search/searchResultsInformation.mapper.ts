@@ -7,16 +7,6 @@ const { getPaging, getTotalCount, getIsLoaded } = selectors.selectFacets;
 
 type ReduxWithSearch = { search: SearchState };
 
-/**
- * generate search summary information.
- */
-const searchResultsInformationMapper = (state: ReduxWithSearch) => {
-  return {
-    noResultsText: noResultsTextMapper(state),
-    resultsText: resultsTextMapper(state),
-  };
-};
-
 const noResultsTextMapper = (state: ReduxWithSearch): string | undefined => {
   const context = selectors.getSearchContext(state);
   const isLoaded = getIsLoaded(state, context);
@@ -36,6 +26,17 @@ const resultsTextMapper = (state: ReduxWithSearch): string | undefined => {
   if (end > totalCount) end = totalCount;
 
   return `${start} - ${end} of ${totalCount} results`;
+};
+
+/**
+ * generate search summary information.
+ * @description you can add additional information for example: pagination details
+ */
+const searchResultsInformationMapper = (state: ReduxWithSearch) => {
+  return {
+    noResultsText: noResultsTextMapper(state),
+    resultsText: resultsTextMapper(state),
+  };
 };
 
 export default searchResultsInformationMapper;
