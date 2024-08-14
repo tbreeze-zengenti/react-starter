@@ -6,12 +6,10 @@ import { RouteLoader } from '@zengenti/contensis-react-base/routing';
 import type { AppRootProps } from '@zengenti/contensis-react-base';
 
 import GlobalStyle from '~/theme/globalStyles';
-import { darkTheme, defaultTheme } from '~/theme';
+import { defaultTheme } from '~/theme';
 
 import NotFound from '~/templates/notFound/notFound.template';
 import PageLoader from '~/components/pageLoader/pageLoader.component';
-
-import { usePrefersColorScheme } from '~/util/usePrefersColorScheme';
 
 const AppRoot = (props: AppRootProps) => {
   /** notFoundComponent={NotFound}*
@@ -26,13 +24,9 @@ const AppRoot = (props: AppRootProps) => {
     6. Submit your request.
   */
 
-  const prefersColorScheme = usePrefersColorScheme();
-
   return (
     <div id="app-root">
-      <ThemeProvider
-        theme={prefersColorScheme === 'dark' ? darkTheme : defaultTheme}
-      >
+      <ThemeProvider theme={defaultTheme}>
         <GlobalStyle />
         <RouteLoader
           {...props}
