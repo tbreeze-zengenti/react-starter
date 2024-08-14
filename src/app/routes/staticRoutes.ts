@@ -1,5 +1,5 @@
 import { mapRouteEntryToProps } from '~/util/mapRouteEntryToProps';
-import { StaticRoute } from '~/util/loadSearchConfig';
+import type { StaticRoute } from '~/util/loadSearchConfig';
 
 import { NotFound, Search, Welcome, ZenInfo } from '~/templates';
 

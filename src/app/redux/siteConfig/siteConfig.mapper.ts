@@ -1,4 +1,4 @@
-import { ContentTypeSiteConfiguration } from '~/models/contentTypes/siteConfiguration.type';
+import type { ContentTypeSiteConfiguration } from '~/models/contentTypes/siteConfiguration.type';
 
 export type SiteConfigMappedProps = {
   title: string;

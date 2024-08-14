@@ -1,11 +1,10 @@
 import { call } from 'redux-saga/effects';
-import type { OnRouteLoadedArgs } from '@zengenti/contensis-react-base';
-import { SearchTransformations } from '@zengenti/contensis-react-base/search';
-
-import {
+import type {
+  OnRouteLoadedArgs,
   StaticRoute as Route,
   ContentTypeMapping,
 } from '@zengenti/contensis-react-base';
+import type { SearchTransformations } from '@zengenti/contensis-react-base/search';
 
 export interface StaticRoute extends Route {
   /**

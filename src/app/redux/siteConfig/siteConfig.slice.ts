@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import type { ReduxState } from '../redux.type';
-import { SiteConfigMappedProps } from './siteConfig.mapper';
+import type { SiteConfigMappedProps } from './siteConfig.mapper';
 
 export type SiteConfigState = {
   mappedEntry: SiteConfigMappedProps | null;
