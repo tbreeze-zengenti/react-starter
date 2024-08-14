@@ -19,23 +19,13 @@ export const exampleVariables = css`
   --grid-max-width: 90rem;
   --grid-gutter: var(--fluid-20-28);
 
-  --bg-color: #001723;
-  --logo-fill: 153, 248, 232;
-  --bento-bg-color: #001d2c;
-  --bento-border-color: #1a3441;
-  --bento-icon-bg: rgba(var(--logo-fill), 0.25);
-  --text-color: #fff;
-  --link-color: #99f8e8;
-
-  @media (prefers-color-scheme: light) {
-    --bg-color: #fdf0ed;
-    --logo-fill: 232, 100, 75;
-    --bento-bg-color: #ffffff;
-    --bento-border-color: #fae0db;
-    --bento-icon-bg: rgba(var(--logo-fill), 0.05);
-    --text-color: #000;
-    --link-color: #a22d15;
-  }
+  --bg-color: ${p => p.theme.colors.primary};
+  --logo-fill: ${p => p.theme.colors.hover};
+  --bento-bg-color: ${p => p.theme.colors.secondary};
+  --bento-border-color: ${p => p.theme.colors.neutal};
+  --bento-icon-bg: ${p => p.theme.colors.neutal};
+  --text-color: ${p => p.theme.colors.text};
+  --link-color: ${p => p.theme.colors.link};
 `;
 
 export const exampleLayout = css`
@@ -95,7 +85,7 @@ export const exampleBentoBoxes = css`
       & > svg {
         width: 40px;
         height: auto;
-        fill: rgb(var(--logo-fill));
+        fill: var(--logo-fill);
       }
     }
 
@@ -132,7 +122,7 @@ export const exampleLogo = css`
     .logo__icon {
       height: 100%;
       width: 64px;
-      fill: rgb(var(--logo-fill));
+      fill: var(--logo-fill);
     }
   }
 `;

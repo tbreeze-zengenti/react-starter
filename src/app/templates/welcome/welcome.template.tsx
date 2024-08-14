@@ -66,9 +66,14 @@ const Welcome = ({
 
                 <h2 className="bento-box__title">Get started</h2>
                 <p className="bento-box__description">
-                  Get started with our React JS project in just a few simple
-                  steps. Clone the repository, install dependencies, and
-                  you&#39;re ready to go.
+                  Your new React Starter project is installed and running! For
+                  next steps, checkout the project read me. If you need help use
+                  the <Link path="https://react-starter.com/">docs</Link> or
+                  reach out on the{' '}
+                  <Link path="https://contensis.slack.com/">
+                    Contensis Slack
+                  </Link>
+                  .
                 </p>
               </article>
               <article className="bento-box">
@@ -86,9 +91,10 @@ const Welcome = ({
 
                 <h2 className="bento-box__title">Documentation</h2>
                 <p className="bento-box__description">
-                  React Starter is a starter project built upon Zengenti&#39;s
-                  Contensis React Base framework. It&#39;s intended purpose is
-                  to help kickstart development with Contensis & React.
+                  Explore our documentation for React Starter and Contensis
+                  React Base. Whether you&#39;re new or experienced, our
+                  documentation is designed to help you at every stage, from
+                  setup to deployment.
                 </p>
                 <Link
                   path="https://react-starter.com/"
