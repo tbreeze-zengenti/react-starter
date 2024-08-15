@@ -10,7 +10,7 @@ const { SERVERS, REVERSE_PROXY_PATHS, PROXY_DELIVERY_API } =
 
 const apiProxies = PROXY_DELIVERY_API
   ? {
-      '/api/**': {
+      '/api': {
         target: SERVERS.cms,
         changeOrigin: true,
       },
