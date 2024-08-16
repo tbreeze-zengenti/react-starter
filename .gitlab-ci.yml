@@ -41,8 +41,7 @@ build-latest-code:
 
 build-storybook:
   stage: storybook-latest-build
-  rules:
-    - when: never
+  when: manual
   except:
     - tags
   script:
@@ -86,8 +85,7 @@ push-to-contensis:
 push-storybook-block:
   extends: push-to-contensis
   stage: push-block
-  rules:
-    - when: never
+  when: manual
   variables:
     block_id: react-starter-storybook
     image_uri: $STORYBOOK_IMAGE:build-$CI_PIPELINE_IID
