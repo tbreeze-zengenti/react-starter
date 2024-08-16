@@ -6,6 +6,7 @@ import { RouteLoader } from '@zengenti/contensis-react-base/routing';
 import type { AppRootProps } from '@zengenti/contensis-react-base';
 
 import GlobalStyle from '~/theme/globalStyles';
+import PrintStyles from '~/theme/printStyles';
 import { defaultTheme } from '~/theme';
 
 import NotFound from '~/templates/notFound/notFound.template';
@@ -28,6 +29,7 @@ const AppRoot = (props: AppRootProps) => {
     <div id="app-root">
       <ThemeProvider theme={defaultTheme}>
         <GlobalStyle />
+        <PrintStyles />
         <RouteLoader
           {...props}
           notFoundComponent={NotFound}
