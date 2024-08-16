@@ -87,7 +87,7 @@ push-storybook-block:
   stage: push-block
   when: manual
   variables:
-    block_id: react-starter-storybook
+    block_id: storybook
     image_uri: $STORYBOOK_IMAGE:build-$CI_PIPELINE_IID
     release: 'false' # Whether to release the block upon successful push
 
