@@ -39,7 +39,8 @@ const CLIENT_MODERN_CONFIG = {
   output: {
     path: path.resolve(__dirname, `../dist`),
     filename: `${staticFolderPath}/modern/js/[name].[chunkhash].mjs`,
-    chunkFilename: `${staticFolderPath}/modern/js/[name].[chunkhash].mjs`,
+    // chunkFilename is potentially redundant in webpack 5 with loadable plugins
+    // chunkFilename: `${staticFolderPath}/modern/js/[name].[chunkhash].mjs`,
   },
   module: {
     rules: [
@@ -49,6 +50,16 @@ const CLIENT_MODERN_CONFIG = {
         options: {
           loader: 'tsx',
           target: 'es2022',
+        },
+      },
+      {
+        test: /\.(t|j)sx?$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            plugins: ['@loadable/babel-plugin'],
+          },
         },
       },
     ],
@@ -103,6 +114,10 @@ const CLIENT_MODERN_CONFIG = {
   ],
 };
 
+/**
+ * TODO: this used to be common client config between legacy and modern
+ * Now we produce just modern client bundles this could be merged with the above config
+ */
 const CLIENT_PROD_CONFIG = {
   target: 'web',
   mode: 'production',
