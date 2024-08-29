@@ -7,17 +7,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.0.0] - 2024-29-08
 
-- Cache invalidation fixes for v16 from CRB
-- `fieldLinkDepths` support from CRB
-- Several `dev:server` fixes
-- Site Config State now opt-in to prevent mis-configuration
-- `/pages` folder renamed to `/templates`
-- Welcome page refactored
-- Search page with useFacet & useMinilist examples
-- `contentTypeMappings` file renamed to `contentTypeRoutes`
+- Cache invalidation fixes for v16 from CRB - refer to DELIVERY_API.md for more details
+- Converted most aspects to fully utilise TypeScript
+- Updated project and CI to use Node.js version 20
+- Removed polyfill.io scripts due to security concerns
+- ALL packages updated to latest suitable version
+- Removed support for legacy browsers/builds
 - Storybook upgraded to v8
+
+- Added a new Welcome page for onboarding
+- Added new Search and Content page examples
 - Added Navbar example rendering top level SiteView nodes
-- Link component improvements
+- Added a configurable Sitemap
+- Added support in-app for robots.txt
+
+- Refactored SiteConfig pattern to support cache invalidation changes in CRB - refer to DELIVERY_API.md for more details
+- Refactored and documented almost every component
+- Renamed several components and folders, notably ContentTypeMapping.ts is now ContentTypeRoutes.ts
+- Refactored Search structure and auto-loading of listings based on listingType keys
+- Refactored Print styles to be a part of Styled Components
+- Refactored withEvents to simplify the default behaviour
+- Proxies reconfigured to work with webpack-dev-server
+
+- Fixed several issues with `dev:server`
+- Fixed an issue with loadable chunk names not being set
+-
 
 ## [0.1.8] - 2024-18-01
 
