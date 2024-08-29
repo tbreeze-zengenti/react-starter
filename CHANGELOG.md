@@ -14,13 +14,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ALL packages updated to latest suitable version
 - Removed support for legacy browsers/builds
 - Storybook upgraded to v8
-
 - Added a new Welcome page for onboarding
 - Added new Search and Content page examples
 - Added Navbar example rendering top level SiteView nodes
 - Added a configurable Sitemap
 - Added support in-app for robots.txt
-
 - Refactored SiteConfig pattern to support cache invalidation changes in CRB - refer to DELIVERY_API.md for more details
 - Refactored and documented almost every component
 - Renamed several components and folders, notably ContentTypeMapping.ts is now ContentTypeRoutes.ts
@@ -28,10 +26,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Refactored Print styles to be a part of Styled Components
 - Refactored withEvents to simplify the default behaviour
 - Proxies reconfigured to work with webpack-dev-server
-
 - Fixed several issues with `dev:server`
 - Fixed an issue with loadable chunk names not being set
--
 
 ## [0.1.8] - 2024-18-01
 
