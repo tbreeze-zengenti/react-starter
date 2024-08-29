@@ -20,7 +20,7 @@ const Composer = ({ items }: ComposerProps) => {
       {items.map((props: ComposerItemProps) => {
         if (!props._type) return null;
         switch (props._type) {
-          case 'textBlock':
+          case 'richText':
             return <Markup {...props} />;
 
           default:

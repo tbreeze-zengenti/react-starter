@@ -1,7 +1,7 @@
 import React from 'react';
 
 export type MarkupProps = {
-  _type?: 'textBlock';
+  _type?: 'richText';
   className?: string;
   text: string;
 };
