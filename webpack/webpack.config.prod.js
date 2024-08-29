@@ -30,8 +30,16 @@ const minify = {
   xhtml: true,
 };
 
-const CLIENT_MODERN_CONFIG = {
-  name: 'webpack-client-prod-config [modern]',
+const CLIENT_PROD_CONFIG = {
+  name: 'webpack-client-prod-config',
+  target: 'web',
+  mode: 'production',
+  stats: {
+    preset: 'errors-only',
+  },
+  resolve: {
+    mainFields: ['browser', 'module', 'main'],
+  },
   entry: {
     app: [
       path.resolve(__dirname, '../src/client/polyfills.modern.ts'),
@@ -41,8 +49,6 @@ const CLIENT_MODERN_CONFIG = {
   output: {
     path: path.resolve(__dirname, `../dist`),
     filename: `${staticFolderPath}/modern/js/[name].[chunkhash].mjs`,
-    // chunkFilename is potentially redundant in webpack 5 with loadable plugins
-    // chunkFilename: `${staticFolderPath}/modern/js/[name].[chunkhash].mjs`,
   },
   module: {
     rules: [
@@ -71,8 +77,20 @@ const CLIENT_MODERN_CONFIG = {
         target: 'es2022',
       }),
     ],
+    splitChunks: {
+      name: false,
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendor',
+          chunks: 'initial',
+        },
+      },
+    },
+    runtimeChunk: 'single',
   },
   plugins: [
+    new webpack.DefinePlugin(WEBPACK_DEFINE_CONFIG.prod),
     new WebpackModules(),
     new HtmlWebPackPlugin({
       template: path.resolve(__dirname, '../public/index.ejs'),
@@ -116,35 +134,6 @@ const CLIENT_MODERN_CONFIG = {
       ],
     }),
   ],
-};
-
-/**
- * TODO: this used to be common client config between legacy and modern
- * Now we produce just modern client bundles this could be merged with the above config
- */
-const CLIENT_PROD_CONFIG = {
-  target: 'web',
-  mode: 'production',
-  stats: {
-    preset: 'errors-only',
-  },
-  resolve: {
-    mainFields: ['browser', 'module', 'main'],
-  },
-  optimization: {
-    splitChunks: {
-      name: false,
-      cacheGroups: {
-        commons: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendor',
-          chunks: 'initial',
-        },
-      },
-    },
-    runtimeChunk: 'single',
-  },
-  plugins: [new webpack.DefinePlugin(WEBPACK_DEFINE_CONFIG.prod)],
 };
 
 const SERVER_PROD_CONFIG = {
@@ -211,15 +200,10 @@ const ANALYZE_CONFIG = {
 };
 
 if (process.env.ANALYZE) {
-  module.exports = merge(
-    BASE_CONFIG,
-    CLIENT_PROD_CONFIG,
-    CLIENT_MODERN_CONFIG,
-    ANALYZE_CONFIG
-  );
+  module.exports = merge(BASE_CONFIG, CLIENT_PROD_CONFIG, ANALYZE_CONFIG);
 } else {
   module.exports = [
-    merge(BASE_CONFIG, CLIENT_PROD_CONFIG, CLIENT_MODERN_CONFIG),
+    merge(BASE_CONFIG, CLIENT_PROD_CONFIG),
     merge(BASE_CONFIG, SERVER_PROD_CONFIG),
   ];
 }
