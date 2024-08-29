@@ -34,6 +34,10 @@ When writing your own backing code that makes calls to the Delivery API, we stro
 
 Refer to [DELIVERY_API.md](https://gitlab.zengenti.com/starter-projects/react-starter/-/blob/master/DELIVERY_API.md) for more detailed documentation on this topic.
 
+## 🐋 Local Docker Testing
+
+To test your application locally using Docker, we provide two utility scripts to streamline the process. The `localbuild.sh` and `localrun.sh` scripts will build and run your application within a Docker container, offering an accurate representation of how it will function when deployed.
+
 ## 📚 Storybook
 
 This project includes Storybook for isolated component development. To create stories, add a `componentName.stories.tsx` file in the component's folder and run `npm run storybook` to preview them.
