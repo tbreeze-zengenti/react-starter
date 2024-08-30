@@ -10,6 +10,7 @@ const webpackNodeExternals = require('webpack-node-externals');
 const BundleAnalyzerPlugin =
   require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const { EsbuildPlugin } = require('esbuild-loader');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const BASE_CONFIG = require('./webpack.config.base');
 const { DEFINE_CONFIG, WEBPACK_DEFINE_CONFIG } = require('./bundle-info');
@@ -69,6 +70,18 @@ const CLIENT_PROD_CONFIG = {
           },
         },
       },
+      {
+        test: /\.css$/i,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: '/dist/',
+            },
+          },
+          'css-loader',
+        ],
+      },
     ],
   },
   optimization: {
@@ -95,33 +108,29 @@ const CLIENT_PROD_CONFIG = {
     new HtmlWebPackPlugin({
       template: path.resolve(__dirname, '../public/index.ejs'),
       filename: path.resolve(__dirname, `../dist/index.html`),
-      inject: false,
       minify,
       chunksSortMode: 'none',
     }),
     new HtmlWebPackPlugin({
       template: path.resolve(__dirname, '../public/index_fragment.ejs'),
       filename: path.resolve(__dirname, `../dist/index_fragment.html`),
-      inject: false,
       minify,
       chunksSortMode: 'none',
     }),
     new HtmlWebPackPlugin({
       template: path.resolve(__dirname, '../public/index_static.ejs'),
       filename: path.resolve(__dirname, `../dist/index_static.html`),
-      inject: false,
       minify,
       chunksSortMode: 'none',
+    }),
+    new MiniCssExtractPlugin({
+      filename: `${staticFolderPath}/css/[name].css`,
     }),
     new LoadablePlugin({
       writeToDisk: {
         filename: path.resolve(__dirname, `../dist/modern`),
       },
     }),
-    /**
-     * Do these plugins only once per build
-     * so we'll do it here instead of base
-     * */
     new CopyWebpackPlugin({
       patterns: [
         {
@@ -175,6 +184,10 @@ const SERVER_PROD_CONFIG = {
             plugins: ['@loadable/babel-plugin'],
           },
         },
+      },
+      {
+        test: /\.css$/i,
+        use: ['css-loader'],
       },
     ],
   },

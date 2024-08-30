@@ -23,10 +23,6 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
-      },
-      {
         test: /\.(gif|png|jpe?g|svg|ico)$/i,
         type: 'asset/resource',
         generator: {
