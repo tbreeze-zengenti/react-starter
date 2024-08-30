@@ -11,9 +11,7 @@ const config: StorybookConfig = {
     '@storybook/addon-actions',
     '@storybook/addon-webpack5-compiler-babel',
   ],
-  docs: {
-    autodocs: 'tag',
-  },
+  docs: {},
   webpackFinal: async config => {
     config.module?.rules?.push({
       resolve: {
