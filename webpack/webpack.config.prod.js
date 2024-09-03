@@ -108,18 +108,21 @@ const CLIENT_PROD_CONFIG = {
     new HtmlWebPackPlugin({
       template: path.resolve(__dirname, '../public/index.ejs'),
       filename: path.resolve(__dirname, `../dist/index.html`),
+      inject: false,
       minify,
       chunksSortMode: 'none',
     }),
     new HtmlWebPackPlugin({
       template: path.resolve(__dirname, '../public/index_fragment.ejs'),
       filename: path.resolve(__dirname, `../dist/index_fragment.html`),
+      inject: false,
       minify,
       chunksSortMode: 'none',
     }),
     new HtmlWebPackPlugin({
       template: path.resolve(__dirname, '../public/index_static.ejs'),
       filename: path.resolve(__dirname, `../dist/index_static.html`),
+      inject: false,
       minify,
       chunksSortMode: 'none',
     }),
