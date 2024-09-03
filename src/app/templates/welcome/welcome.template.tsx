@@ -67,13 +67,10 @@ const Welcome = ({
                 <h2 className="bento-box__title">Get started</h2>
                 <p className="bento-box__description">
                   Your new React Starter project is installed and running! For
-                  next steps, checkout the project read me. If you need help use
-                  the <Link path="https://react-starter.com/">docs</Link> or
-                  reach out on the{' '}
-                  <Link path="https://contensis.slack.com/">
-                    Contensis Slack
-                  </Link>
-                  .
+                  next steps, checkout the project read me. For more examples of
+                  Contensis features in action, explore the{' '}
+                  <Link path="/search">Search</Link> or{' '}
+                  <Link path="/about">About</Link> pages.
                 </p>
               </article>
               <article className="bento-box">

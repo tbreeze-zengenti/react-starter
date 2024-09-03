@@ -58,11 +58,13 @@ const Content = ({
             </div>
             <div className="bento-boxes">
               <article className="bento-box">
-                <h1>{title}</h1>
+                <div className="article-content">
+                  <h1>{title}</h1>
 
-                {composer ? <Composer {...composer} /> : null}
+                  {composer ? <Composer {...composer} /> : null}
 
-                {canvas ? <Canvas {...canvas} /> : null}
+                  {canvas ? <Canvas {...canvas} /> : null}
+                </div>
               </article>
             </div>
           </div>
