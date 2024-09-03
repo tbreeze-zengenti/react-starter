@@ -108,28 +108,26 @@ const CLIENT_PROD_CONFIG = {
     new HtmlWebPackPlugin({
       template: path.resolve(__dirname, '../public/index.ejs'),
       filename: path.resolve(__dirname, `../dist/index.html`),
+      inject: true,
       minify,
       chunksSortMode: 'none',
     }),
     new HtmlWebPackPlugin({
       template: path.resolve(__dirname, '../public/index_fragment.ejs'),
       filename: path.resolve(__dirname, `../dist/index_fragment.html`),
+      inject: true,
       minify,
       chunksSortMode: 'none',
     }),
     new HtmlWebPackPlugin({
       template: path.resolve(__dirname, '../public/index_static.ejs'),
       filename: path.resolve(__dirname, `../dist/index_static.html`),
+      inject: true,
       minify,
       chunksSortMode: 'none',
     }),
     new MiniCssExtractPlugin({
       filename: `${staticFolderPath}/css/[name].css`,
-    }),
-    new LoadablePlugin({
-      writeToDisk: {
-        filename: path.resolve(__dirname, `../dist/modern`),
-      },
     }),
     new CopyWebpackPlugin({
       patterns: [
@@ -141,6 +139,11 @@ const CLIENT_PROD_CONFIG = {
           to: path.resolve(__dirname, `../dist/static`),
         },
       ],
+    }),
+    new LoadablePlugin({
+      writeToDisk: {
+        filename: path.resolve(__dirname, `../dist/modern`),
+      },
     }),
   ],
 };
