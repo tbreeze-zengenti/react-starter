@@ -2,10 +2,12 @@ const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
 
-// Essentially a dummy webpack config, we just want
-// the asset plugins to run independent of any other type
-// of bundling we're doing to reduce overall build time
-// on multi-core systems when run with parallel-webpack
+/**
+ * An optional Webpack config for optimising static image assets (jpg, png, etc.)
+ * Optimisation is NOT included in ANY build stage by default
+ * @tutorial To enable optimisation, simply amend the `build:ci` script in package.json to:
+ * "build:ci", "npm run build && npm run build:assets"
+ */
 const PROCESS_PUBLIC_ASSETS_CONFIG = {
   name: 'public-assets-config',
   mode: 'production',
@@ -17,7 +19,6 @@ const PROCESS_PUBLIC_ASSETS_CONFIG = {
     path: path.resolve(__dirname, '../dist'),
   },
   plugins: [
-    // Do these plugins only once per build so we'll do it here instead of base
     new CopyWebpackPlugin({
       patterns: [
         {

@@ -10,3 +10,4 @@ __snapshots__
 .DS_Store
 .out
 storybook-static/
+/.fleet

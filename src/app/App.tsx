@@ -1,28 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import React from 'react';
 import { hot } from 'react-hot-loader';
 
 import { ThemeProvider } from 'styled-components';
-import { RouteLoader, selectors } from '@zengenti/contensis-react-base/routing';
-
-import { Loading } from '~/routes/Loading';
-import NotFound from '~/pages/NotFound';
+import { RouteLoader } from '@zengenti/contensis-react-base/routing';
+import type { AppRootProps } from '@zengenti/contensis-react-base';
 
 import GlobalStyle from '~/theme/globalStyles';
-import { defaultTheme } from './theme';
-import { AppRootProps } from '@zengenti/contensis-react-base';
-import SkipToMainContent from './components/skipToMainContent/skipToMainContent';
+import PrintStyles from '~/theme/printStyles';
+import { defaultTheme } from '~/theme';
+
+import NotFound from '~/templates/notFound/notFound.template';
+import PageLoader from '~/components/pageLoader/pageLoader.component';
 
 const AppRoot = (props: AppRootProps) => {
-  const stateLoading = useSelector(selectors.selectRouteLoading);
-  const [isLoading, setIsLoading] = useState(stateLoading);
-
-  useEffect(() => {
-    setIsLoading(stateLoading);
-  }, [stateLoading]);
-
-  /*
-    *notFoundComponent={NotFound}*
+  /** notFoundComponent={NotFound}*
     This 404 Page / notFoundComponent is for local development purposes only.
     To see this working on your live site, you will need to add this to the load balancer, to do this, please follow the steps below.
 
@@ -35,16 +26,17 @@ const AppRoot = (props: AppRootProps) => {
   */
 
   return (
-    <>
-      <div id="app-root">
-        <ThemeProvider theme={defaultTheme}>
-          <GlobalStyle />
-          <SkipToMainContent />
-          {isLoading && <Loading />}
-          <RouteLoader {...props} notFoundComponent={NotFound} />
-        </ThemeProvider>
-      </div>
-    </>
+    <div id="app-root">
+      <ThemeProvider theme={defaultTheme}>
+        <GlobalStyle />
+        <PrintStyles />
+        <RouteLoader
+          {...props}
+          notFoundComponent={NotFound}
+          loadingComponent={PageLoader}
+        />
+      </ThemeProvider>
+    </div>
   );
 };
 

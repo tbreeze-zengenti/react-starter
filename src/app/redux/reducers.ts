@@ -1,9 +1,7 @@
-// import { reducer as FormsReducer } from 'zengenti-forms-package';
-// import SiteConfigReducer from './siteConfig/reducers';
+import siteConfigSlice from './siteConfig/siteConfig.slice';
 
 const featureReducers = {
-  // form: FormsReducer,
-  // siteConfig: SiteConfigReducer,
+  siteConfig: siteConfigSlice,
 };
 
 export default { ...featureReducers };

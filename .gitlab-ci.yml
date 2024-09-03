@@ -7,7 +7,7 @@ include:
 stages:
   - latest-build
   - live-build
-#  - storybook-latest-build // uncomment if using Storybook with Blocks
+  - storybook-latest-build
   - push-block
   - release-block
 
@@ -39,18 +39,19 @@ build-latest-code:
     - docker tag "$APP_IMAGE:latest" "$APP_IMAGE:build-$CI_PIPELINE_IID"
     - docker push "$APP_IMAGE:build-$CI_PIPELINE_IID"
 
-#build-storybook:
-#  stage: storybook-latest-build
-#  except:
-#    - tags
-#  script:
-#    - docker pull $STORYBOOK_BUILDER_IMAGE:latest || true
-#    - docker build --compress --force-rm --cache-from $STORYBOOK_BUILDER_IMAGE:latest -t $STORYBOOK_BUILDER_IMAGE:latest -f docker/storybook-builder.DockerFile .
-#    - docker push $STORYBOOK_BUILDER_IMAGE:latest
-#    - docker build --compress --force-rm -t $STORYBOOK_IMAGE:latest --build-arg builder_image=$STORYBOOK_BUILDER_IMAGE:latest -f  docker/storybook-http.DockerFile .
-#    - docker push $STORYBOOK_IMAGE:latest
-#    - docker tag "$STORYBOOK_IMAGE:latest" "$STORYBOOK_IMAGE:build-$CI_PIPELINE_IID"
-#    - docker push "$STORYBOOK_IMAGE:build-$CI_PIPELINE_IID"
+build-storybook:
+  stage: storybook-latest-build
+  when: manual
+  except:
+    - tags
+  script:
+    - docker pull $STORYBOOK_BUILDER_IMAGE:latest || true
+    - docker build --compress --force-rm --cache-from $STORYBOOK_BUILDER_IMAGE:latest -t $STORYBOOK_BUILDER_IMAGE:latest -f docker/storybook-builder.DockerFile .
+    - docker push $STORYBOOK_BUILDER_IMAGE:latest
+    - docker build --compress --force-rm -t $STORYBOOK_IMAGE:latest --build-arg builder_image=$STORYBOOK_BUILDER_IMAGE:latest -f  docker/storybook-http.DockerFile .
+    - docker push $STORYBOOK_IMAGE:latest
+    - docker tag "$STORYBOOK_IMAGE:latest" "$STORYBOOK_IMAGE:build-$CI_PIPELINE_IID"
+    - docker push "$STORYBOOK_IMAGE:build-$CI_PIPELINE_IID"
 
 build-live-code-for-production:
   stage: live-build
@@ -81,13 +82,14 @@ push-to-contensis:
     # Then create a CI/CD Variable called GITLAB_ACCESS_TOKEN and paste the token
     git_token: $GITLAB_ACCESS_TOKEN
 
-#push-storybook-block:
-#  extends: push-to-contensis
-#  stage: push-block
-#  variables:
-#    block_id: react-starter-storybook
-#    image_uri: $STORYBOOK_IMAGE:build-$CI_PIPELINE_IID
-#    release: 'false' # Whether to release the block upon successful push
+push-storybook-block:
+  extends: push-to-contensis
+  stage: push-block
+  when: manual
+  variables:
+    block_id: storybook
+    image_uri: $STORYBOOK_IMAGE:build-$CI_PIPELINE_IID
+    release: 'false' # Whether to release the block upon successful push
 
 # Releasing the block (with a `release-*` tag)
 release-contensis-block:

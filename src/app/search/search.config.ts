@@ -1,45 +1,59 @@
-import {
+import type {
   SearchConfig,
   SearchFacet,
   Listing,
   WeightedSearchField,
 } from '@zengenti/contensis-react-base/search';
+import type { WhereClause } from '@zengenti/contensis-react-base/models/search/models/Search';
 
-import { BaseFields, ContentTypes, FreeTextWeights } from '~/schema';
+import { contentTypes } from '~/schema/contentTypes.schema';
+import { baseFields } from '~/schema/fields.schema';
+import {
+  facets,
+  listings,
+  minilists,
+  freeTextWeights,
+} from '~/schema/search.schema';
 
-export default {
+const whereSysUri: WhereClause = {
+  field: 'sys.uri',
+  exists: true,
+};
+
+export const searchConfig = {
   tabs: [{ id: 0, label: '' }],
   facets: {
-    all: {
+    [facets.all]: {
       title: 'Site Search',
       queryParams: {
         contentTypeIds: [],
-        fields: [...BaseFields],
+        fields: [...baseFields],
         linkDepth: 0,
         pageSize: 9,
         weightedSearchFields: [
-          { fieldId: 'entryTitle', weight: FreeTextWeights.title },
-          { fieldId: 'description', weight: FreeTextWeights.description },
+          { fieldId: 'entryTitle', weight: freeTextWeights.title },
+          { fieldId: 'description', weight: freeTextWeights.description },
         ] as WeightedSearchField[],
+        customWhere: [whereSysUri],
       },
     },
   } as { [key: string]: SearchFacet },
   listings: {
-    all: {
+    [listings.all]: {
       title: 'Listing',
       queryParams: {
-        contentTypeIds: [ContentTypes.homePage, 'article'],
-        fields: [...BaseFields],
+        contentTypeIds: [contentTypes.homePage, contentTypes.contentPage],
+        fields: [...baseFields],
         pageSize: 9,
       },
     },
   } as { [key: string]: Listing },
   minilist: {
-    all: {
+    [minilists.all]: {
       title: 'Minilist',
       queryParams: {
-        contentTypeIds: [ContentTypes.homePage, 'article'],
-        fields: [...BaseFields],
+        contentTypeIds: [contentTypes.homePage, contentTypes.contentPage],
+        fields: [...baseFields],
         pageSize: 3,
       },
     },

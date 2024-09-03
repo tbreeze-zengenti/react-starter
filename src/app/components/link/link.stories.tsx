@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import Link from './link';
+import Link from '~/components/link/link.component';
 import { MemoryRouter } from 'react-router-dom';
 
 const meta: Meta<typeof Link> = {
@@ -11,7 +11,7 @@ const meta: Meta<typeof Link> = {
     className: 'storylink',
     download: '',
     openInNewWindow: false,
-    title: 'Link title',
+    children: 'Link title',
     path: '/hello',
   },
   argTypes: { onClick: { action: 'clicked' } },
@@ -23,7 +23,7 @@ type Story = StoryObj<typeof Link>;
 export const LinkStory: Story = {
   render: args => (
     <MemoryRouter>
-      <Link {...args}>{args.title}</Link>
+      <Link {...args}>{args.children}</Link>
     </MemoryRouter>
   ),
 };
@@ -34,7 +34,7 @@ export const LinkExternalStory: Story = {
   },
   render: args => (
     <MemoryRouter>
-      <Link {...args}>{args.title}</Link>
+      <Link {...args}>{args.children}</Link>
     </MemoryRouter>
   ),
 };

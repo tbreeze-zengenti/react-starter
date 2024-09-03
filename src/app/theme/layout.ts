@@ -1,59 +1,62 @@
-// To use spacers follow this pattern
-// Replace # with a value
-// ${theme.spacing.#}
+/**
+ * To use spacers follow this pattern
+ * Replace # with a value
+ * @example - ${theme.spacing.#}
+ */
 export const spacing = {
-  xxxs: '0.8rem',
-  xxs: '1.6rem',
-  xs: '2.4rem',
-  s: '3.2rem',
-  m: '4rem',
-  l: '6.4rem',
-  xl: '8rem',
-  xxl: '12rem',
-  xxxl: '14.4rem',
+  xxxs: '0.25rem',
+  xxs: '0.5rem',
+  xs: '1rem',
+  s: '1.5rem',
+  m: '2rem',
+  l: '2.5rem',
+  xl: '4rem',
+  xxl: '5rem',
+  xxxl: '7.5rem',
+  superxl: '15rem',
 };
 
-// bp are used as a reference for media queries
-// They can be utilised for between-breakpointss
-// @media (min-width: ${theme.breakpoints.px.mobile}) and (max-width: ${theme.breakpoints.px.tablet}) {
-//    Styles Here
-// }
+/**
+ * Breakpoints are used as a reference for media queries
+ * They can be utilised for between-breakpoints
+ * @example - @media (min-width: ${theme.breakpoints.mobile}) and (max-width: ${theme.breakpoints.tablet})
+ */
 export const breakpoints = {
-  px: {
-    mobile: 480,
-    tablet: 768,
-    laptop: 992,
-    desktop: 1024,
-    largeDesktop: 1440,
-  },
+  mobile: 30,
+  tablet: 48,
+  laptop: 62,
+  desktop: 68.75,
+  largeDesktop: 90,
 };
 
-// To use media queries follow this pattern
-// @media ${theme.mq.min/max[#] {
-//    Styles Here
-// }
+/**
+ * To use media queries follow this pattern
+ * @example -  @media ${theme.mq.min/max[#]}
+ */
 export const mq = {
   min: {
-    mobile: `only screen and (min-width: ${breakpoints.px.mobile}px)`,
-    tablet: `only screen and (min-width: ${breakpoints.px.tablet}px)`,
-    laptop: `only screen and (min-width: ${breakpoints.px.laptop}px)`,
-    desktop: `only screen and (min-width: ${breakpoints.px.desktop}px)`,
-    largeDesktop: `only screen and (min-width: ${breakpoints.px.largeDesktop}px)`,
+    mobile: `only screen and (min-width: ${breakpoints.mobile}rem)`,
+    tablet: `only screen and (min-width: ${breakpoints.tablet}rem)`,
+    laptop: `only screen and (min-width: ${breakpoints.laptop}rem)`,
+    desktop: `only screen and (min-width: ${breakpoints.desktop}rem)`,
+    largeDesktop: `only screen and (min-width: ${breakpoints.largeDesktop}rem)`,
   },
   max: {
-    mobile: `only screen and (max-width: ${breakpoints.px.mobile}px)`,
-    tablet: `only screen and (max-width: ${breakpoints.px.tablet}px)`,
-    laptop: `only screen and (max-width: ${breakpoints.px.laptop}px)`,
-    desktop: `only screen and (max-width: ${breakpoints.px.desktop}px)`,
-    largeDesktop: `only screen and (max-width: ${breakpoints.px.largeDesktop}px)`,
+    mobile: `only screen and (max-width: ${breakpoints.mobile}rem)`,
+    tablet: `only screen and (max-width: ${breakpoints.tablet}rem)`,
+    laptop: `only screen and (max-width: ${breakpoints.laptop}rem)`,
+    desktop: `only screen and (max-width: ${breakpoints.desktop}rem)`,
+    largeDesktop: `only screen and (max-width: ${breakpoints.largeDesktop}rem)`,
   },
 };
 
-// To help create global wrappers/containers
-// Define grid gutters and edge margins
+/**
+ * To help create global wrappers/containers
+ * Define grid gutters and edge margins
+ */
 export const grid = {
   default: {
-    width: '140rem',
+    maxWidth: '90rem',
     gutter: spacing.xs,
     margin: spacing.xs,
   },

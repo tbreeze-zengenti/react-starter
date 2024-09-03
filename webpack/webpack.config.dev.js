@@ -1,10 +1,12 @@
 const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 const path = require('path');
+
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const BASE_CONFIG = require('./webpack.config.base');
+
 const {
   DEFINE_CONFIG,
   DEVSERVER_PROXIES,
@@ -37,14 +39,15 @@ const CLIENT_DEV_CONFIG = {
       },
       {
         test: /\.(gif|png|jpe?g|svg)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: `${staticFolderPath}/img/[hash][ext]`,
+        },
         use: [
-          'file-loader',
           {
             loader: 'image-webpack-loader',
             options: {
-              bypassOnDebug: true, // webpack@1.x
-              disable: true, // webpack@2.x and newer
-              name: `${staticFolderPath}/[hash].[ext]`,
+              disable: true,
             },
           },
         ],
@@ -78,9 +81,5 @@ const CLIENT_DEV_CONFIG = {
     open: true,
   },
 };
-
-// This is a hack because I can't get the file-loader to work in production, so I have included in the base and then delete and override here for dev.
-// Locally I want images as 34234234234324.png, in prod i want /static/img/[name].[ext]?[hash]
-delete BASE_CONFIG.module;
 
 module.exports = merge(BASE_CONFIG, CLIENT_DEV_CONFIG);

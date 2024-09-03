@@ -1,58 +1,61 @@
 import { takeEvery, select, put } from 'redux-saga/effects';
-
+import { Query, Op } from 'contensis-delivery-api';
 import { SSRContext } from '@zengenti/contensis-react-base';
 import { version } from '@zengenti/contensis-react-base/redux';
-import { Query, Op } from 'contensis-delivery-api';
 
+import { siteConfigMapper } from './siteConfig.mapper';
+
+import { siteConfigFields } from '~/schema/fields.schema';
+import { contentTypes } from '~/schema/contentTypes.schema';
 import {
-  GET_SITE_CONFIG,
-  SET_SITE_CONFIG,
-  GET_SITE_CONFIG_ERROR,
-} from './types';
-
-import { hasSiteConfig } from './selectors';
-
-import { ContentTypes, SiteConfigFields } from '~/schema';
+  getSiteConfig,
+  getSiteConfigError,
+  selectSiteConfigReady,
+  setSiteConfig,
+} from './siteConfig.slice';
 
 type Action<Payload> = { type: string } & Payload;
 
 export const SiteConfigSagas = [
-  takeEvery<Action<SSRContext>>(GET_SITE_CONFIG, ensureSiteConfigSaga),
+  takeEvery<Action<SSRContext>>(getSiteConfig.type, getSiteConfigSaga),
 ];
 
-export function* ensureSiteConfigSaga({ api }: SSRContext): any {
-  const state = yield select();
+/**
+ * Saga to fetch then map site config entry into the redux store
+ */
+export function* getSiteConfigSaga({
+  api,
+}: SSRContext): Generator<any, void, any> {
+  const isSiteConfigLoaded = yield select(selectSiteConfigReady);
+
   try {
-    if (!hasSiteConfig(state)) {
+    if (!isSiteConfigLoaded) {
       const deliveryApiVersionStatus = yield select(
         version.selectors.selectVersionStatus
       );
 
       const query = new Query(
         Op.equalTo('sys.versionStatus', deliveryApiVersionStatus),
-        Op.or(Op.equalTo('sys.contentTypeId', ContentTypes.config))
+        Op.or(Op.equalTo('sys.contentTypeId', contentTypes.config))
       );
 
-      /**
-       * Fields must be defined to help improve query performance
-       * If `SiteConfigFields` is NOT populated the query will not execute
-       */
-      query.fields = [...SiteConfigFields];
+      query.fields = [...siteConfigFields];
 
-      if (!SiteConfigFields || SiteConfigFields.length <= 0) return;
+      if (!siteConfigFields || siteConfigFields.length <= 0) return;
 
       const results = yield api.search(query, 0);
 
-      const siteConfig =
-        (results?.items?.length || 0) > 0 ? results.items[0] : null;
+      const mappedEntry = results?.items?.[0]
+        ? siteConfigMapper(results.items[0])
+        : null;
 
-      if (siteConfig) {
-        yield put({ type: SET_SITE_CONFIG, siteConfig });
+      if (mappedEntry) {
+        yield put({ type: setSiteConfig.type, payload: mappedEntry });
       } else {
-        yield put({ type: GET_SITE_CONFIG_ERROR });
+        yield put({ type: getSiteConfigError.type });
       }
     }
-  } catch (ex: any) {
-    yield put({ type: GET_SITE_CONFIG_ERROR, error: ex.toString() });
+  } catch (error: any) {
+    yield put({ type: getSiteConfigError.type, error: error.toString() });
   }
 }

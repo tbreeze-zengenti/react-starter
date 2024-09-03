@@ -17,9 +17,10 @@ const PROJECTS = env => [
     id: env.PROJECT,
     publicUri: env.PUBLIC_URL,
   },
-  // You only need to include extra projects in this array
-  // if you wish to switch between projects at runtime,
-  // or fetch data from another project
+  /** You only need to include extra projects in this array
+   * if you wish to switch between projects at runtime,
+   * or fetch data from another project
+   */
   // {
   //   id: 'mock',
   //   publicUri: 'mock.ludlow.ac.uk',
@@ -28,22 +29,27 @@ const PROJECTS = env => [
   // ˄˄˄˄˄˄˄˄
 ];
 
-// any paths to proxy back to the classic IIS servers?
+/**
+ * Define paths to proxy back to the classic IIS servers?
+ */
 const REVERSE_PROXY_PATHS = Object([
-  '/image-library/*',
-  '/video-library/*',
-  '/asset-library/*',
+  '/image-library',
+  '/video-library',
+  '/asset-library',
 ]);
 
+/**
+ * 1 is Everyone
+ * -1 is false (no security)
+ */
 const ALLOWED_GROUPS = {
-  // 1 is Everyone, -1 is false (no security)
   website: [-1],
   mock: [-1],
 };
 
-// --------------------
-// End of configuration
-// --------------------
+/**
+ * End of configuration
+ */
 
 const url = urls(ALIAS, PROJECT);
 

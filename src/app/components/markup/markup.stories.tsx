@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import Markup from './markup';
+import Markup from '~/components/markup/markup.component';
 
 const meta: Meta<typeof Markup> = {
   title: 'Components / Global / Markup',
