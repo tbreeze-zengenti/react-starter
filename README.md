@@ -6,10 +6,10 @@ For detailed documentation on our React packages, please visit our [documentatio
 
 ## 🔌 Getting started
 
-1. **Configure CMS Environment**: Define your CMS environment in the .env file
-2. **Update Project Details**: Set the project name and repository URL in package.json
-3. **Install Dependencies**: Run npm install to install the required packages\*
-4. **Start the Project**: Run npm start to launch the project in your browser
+1. **Configure CMS Environment**: Define your CMS environment in the `.env` file
+2. **Update Project Details**: Set the project name and repository URL in `package.json`
+3. **Install Dependencies**: Run `npm install` to install the required packages\*
+4. **Start the Project**: Run `npm start` to launch the project in your browser
 
 Ensure you're running Node.js version 20 before installation. We recommend using [nvm](https://github.com/nvm-sh/nvm) to manage multiple versions of Node.js.
 
