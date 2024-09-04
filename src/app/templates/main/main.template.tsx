@@ -13,7 +13,7 @@ const MainTemplate = ({ children, meta, className }: MainTemplateProps) => {
     <>
       <SkipToMainContent />
       {meta ? <Meta {...meta} /> : null}
-      <main id="main" className={className}>
+      <main id="main" className={className ? className : ''}>
         {children}
       </main>
     </>

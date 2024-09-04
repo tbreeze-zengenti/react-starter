@@ -31,7 +31,10 @@ const Link = React.forwardRef<LinkElement, LinkProps>((props, forwardedRef) => {
    */
   if (!path) {
     return (
-      <span className={`link link--no-path ${className}`} ref={forwardedRef}>
+      <span
+        className={`link link--no-path ${className ? className : ''}`}
+        ref={forwardedRef}
+      >
         {children}
       </span>
     );
@@ -65,7 +68,7 @@ const Link = React.forwardRef<LinkElement, LinkProps>((props, forwardedRef) => {
         to={encodedPath}
         onClick={handleClick}
         download={download}
-        className={`link ${className}`}
+        className={`link ${className ? className : ''}`}
         ref={forwardedRef}
       >
         {children}
@@ -81,7 +84,7 @@ const Link = React.forwardRef<LinkElement, LinkProps>((props, forwardedRef) => {
         onClick={handleClick}
         target={target}
         download={download}
-        className={`link link--external ${className}`}
+        className={`link link--external ${className ? className : ''}`}
         ref={forwardedRef}
       >
         {children}
