@@ -219,6 +219,8 @@ export const generateSitemap = async (project: string) => {
 
   /**
    * Mix mapped entries with static user-defined paths
+   * Filter for exclusions from sitemap config
+   * Filter for duplicate URLs
    */
   const mappedUrls = [
     ...mappedEntriesToUrls,
@@ -229,6 +231,9 @@ export const generateSitemap = async (project: string) => {
       sitemapConfig.excludePaths?.length
         ? !sitemapConfig?.excludePaths.includes(item.url)
         : item
+    )
+    .filter(
+      (item, index, self) => index === self.findIndex(t => t.url === item.url)
     )
     .sort(dynamicSort('url'));
 
