@@ -1,0 +1,13 @@
+- Accordion
+- Blockquote
+- Button
+- Code
+- Figure (image with caption)
+- Image
+- Icon
+- Panel (callout)
+- Video (YouTube only?)
+- Pagination
+- Heading
+- Lead? (canvas)
+- Alert
