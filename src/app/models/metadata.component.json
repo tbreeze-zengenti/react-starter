@@ -1,0 +1,162 @@
+{
+  "isChild": false,
+  "hasChildren": false,
+  "canAddChildComponents": true,
+  "canBeAddedAsChildComponent": true,
+  "version": {
+    "createdBy": "t.breeze",
+    "created": "2024-09-06T16:49:24.6888772Z",
+    "modifiedBy": "t.breeze",
+    "modified": "2024-09-06T17:11:33.41757Z",
+    "publishedBy": "t.breeze",
+    "published": "2024-09-06T17:12:22.4608195Z",
+    "deletedBy": null,
+    "deleted": null,
+    "archivedBy": null,
+    "archived": null,
+    "versionNo": "1.0"
+  },
+  "uuid": "a73a7ba2-aee2-496e-be84-c68d7df755b6",
+  "id": "metadata",
+  "projectId": "website",
+  "name": {
+    "en-GB": "Metadata"
+  },
+  "description": {
+    "en-GB": "For managing SEO elements like titles, descriptions, Open Graph tags, and more."
+  },
+  "fields": [
+    {
+      "id": "title",
+      "name": {
+        "en-GB": "Title"
+      },
+      "dataType": "string",
+      "dataFormat": null,
+      "description": {},
+      "default": null,
+      "validations": {
+        "maxLength": {
+          "value": 60,
+          "message": null
+        }
+      },
+      "editor": {
+        "id": null,
+        "instructions": {
+          "en-GB": "Enter a concise and relevant page title, up to 60 characters."
+        },
+        "properties": null
+      }
+    },
+    {
+      "id": "description",
+      "name": {
+        "en-GB": "Description"
+      },
+      "dataType": "string",
+      "dataFormat": null,
+      "description": {},
+      "default": null,
+      "validations": {
+        "maxLength": {
+          "value": 160,
+          "message": null
+        }
+      },
+      "editor": {
+        "id": "multiline",
+        "instructions": {
+          "en-GB": "Provide a brief, informative meta description, up to 160 characters."
+        },
+        "properties": null
+      }
+    },
+    {
+      "id": "keywords",
+      "name": {
+        "en-GB": "Keywords"
+      },
+      "dataType": "string",
+      "dataFormat": null,
+      "description": {},
+      "default": null,
+      "validations": {},
+      "editor": {
+        "id": null,
+        "instructions": {
+          "en-GB": " Input relevant keywords separated by commas."
+        },
+        "properties": null
+      }
+    },
+    {
+      "id": "image",
+      "name": {
+        "en-GB": "Image"
+      },
+      "dataType": "object",
+      "dataFormat": "image",
+      "description": {},
+      "default": null,
+      "validations": {
+        "imageDimensions": {
+          "message": null,
+          "minWidth": 1200,
+          "maxWidth": 1200,
+          "minHeight": 630,
+          "maxHeight": 630
+        },
+        "altTextRequired": {
+          "message": null
+        }
+      },
+      "editor": {
+        "id": null,
+        "instructions": {
+          "en-GB": "Upload an image with dimensions of 1200x630 pixels. Ensure the image includes an alt description for accessibility and SEO purposes."
+        },
+        "properties": {
+          "displayAltText": true
+        }
+      }
+    },
+    {
+      "id": "noIndex",
+      "name": {
+        "en-GB": "No Index"
+      },
+      "dataType": "boolean",
+      "dataFormat": null,
+      "description": {},
+      "default": null,
+      "validations": {},
+      "editor": {
+        "id": null,
+        "instructions": {
+          "en-GB": "Enable this option to prevent search engines from indexing this page, keeping it out of search results."
+        },
+        "properties": null
+      }
+    },
+    {
+      "id": "noFollow",
+      "name": {
+        "en-GB": "No Follow"
+      },
+      "dataType": "boolean",
+      "dataFormat": null,
+      "description": {},
+      "default": null,
+      "validations": {},
+      "editor": {
+        "id": null,
+        "instructions": {
+          "en-GB": "Activate this option to prevent search engines from following links on this page, signaling that the linked content should not pass on ranking value."
+        },
+        "properties": null
+      }
+    }
+  ],
+  "dataFormat": "component"
+}

@@ -1,4 +1,4 @@
-import { ContensisEntry } from '~/models/contensis.type';
+import { ContensisEntry } from '~/types/contensis.type';
 import { ReduxState } from '~/redux/redux.type';
 
 /**

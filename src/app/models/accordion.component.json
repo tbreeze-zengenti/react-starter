@@ -1,0 +1,115 @@
+{
+  "isChild": false,
+  "hasChildren": true,
+  "canAddChildComponents": true,
+  "canBeAddedAsChildComponent": false,
+  "version": {
+    "createdBy": "t.breeze",
+    "created": "2024-09-06T17:20:47.1197916Z",
+    "modifiedBy": "t.breeze",
+    "modified": "2024-09-06T17:22:57.3789974Z",
+    "publishedBy": "t.breeze",
+    "published": "2024-09-06T17:23:02.8790742Z",
+    "deletedBy": null,
+    "deleted": null,
+    "archivedBy": null,
+    "archived": null,
+    "versionNo": "1.0"
+  },
+  "uuid": "14284001-8cd8-4102-939f-a8a5e7484121",
+  "id": "accordion",
+  "projectId": "website",
+  "name": {
+    "en-GB": "Accordion"
+  },
+  "description": {
+    "en-GB": "A repeatable Accordion field for displaying multiple Accordion Items, with an optional title for the entire section."
+  },
+  "fields": [
+    {
+      "id": "title",
+      "name": {
+        "en-GB": "Title"
+      },
+      "dataType": "string",
+      "dataFormat": null,
+      "description": {},
+      "default": null,
+      "validations": {},
+      "editor": {
+        "id": null,
+        "instructions": {
+          "en-GB": "Optional field to provide a title for the accordion section. This title will appear above the accordion items."
+        },
+        "properties": null
+      }
+    },
+    {
+      "id": "items",
+      "name": {
+        "en-GB": "Items"
+      },
+      "dataType": "objectArray",
+      "dataFormat": "component.accordionitem",
+      "description": {},
+      "default": null,
+      "validations": {
+        "minCount": {
+          "message": null,
+          "value": 1
+        }
+      },
+      "editor": {
+        "id": null,
+        "instructions": {
+          "en-GB": "A repeatable field for adding individual accordion items. At least one accordion item is required for the section to function properly."
+        },
+        "properties": {
+          "componentButtonLabel": "Add item"
+        }
+      },
+      "fields": [
+        {
+          "id": "title",
+          "name": {
+            "en-GB": "Title"
+          },
+          "dataType": "string",
+          "dataFormat": null,
+          "description": {},
+          "default": null,
+          "validations": {
+            "required": {
+              "message": null
+            }
+          },
+          "editor": null
+        },
+        {
+          "id": "content",
+          "name": {
+            "en-GB": "Content"
+          },
+          "dataType": "string",
+          "dataFormat": "html",
+          "description": {},
+          "default": null,
+          "validations": {
+            "required": {
+              "message": null
+            }
+          },
+          "editor": {
+            "id": null,
+            "instructions": {},
+            "properties": {
+              "size": "auto",
+              "headingLevel": "3"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "dataFormat": "component"
+}

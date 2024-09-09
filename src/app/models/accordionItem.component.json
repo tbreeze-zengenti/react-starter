@@ -1,0 +1,70 @@
+{
+  "isChild": true,
+  "hasChildren": false,
+  "canAddChildComponents": false,
+  "canBeAddedAsChildComponent": true,
+  "version": {
+    "createdBy": "t.breeze",
+    "created": "2024-09-06T17:17:08.7198831Z",
+    "modifiedBy": "t.breeze",
+    "modified": "2024-09-06T17:18:52.2730308Z",
+    "publishedBy": "t.breeze",
+    "published": "2024-09-06T17:18:54.8964437Z",
+    "deletedBy": null,
+    "deleted": null,
+    "archivedBy": null,
+    "archived": null,
+    "versionNo": "1.0"
+  },
+  "uuid": "eb77e47c-d399-4c08-b5a5-80450d430deb",
+  "id": "accordionItem",
+  "projectId": "website",
+  "name": {
+    "en-GB": "Accordion Item"
+  },
+  "description": {
+    "en-GB": "Includes a title and a rich text description. Nested inside Accordion component."
+  },
+  "fields": [
+    {
+      "id": "title",
+      "name": {
+        "en-GB": "Title"
+      },
+      "dataType": "string",
+      "dataFormat": null,
+      "description": {},
+      "default": null,
+      "validations": {
+        "required": {
+          "message": null
+        }
+      },
+      "editor": null
+    },
+    {
+      "id": "content",
+      "name": {
+        "en-GB": "Content"
+      },
+      "dataType": "string",
+      "dataFormat": "html",
+      "description": {},
+      "default": null,
+      "validations": {
+        "required": {
+          "message": null
+        }
+      },
+      "editor": {
+        "id": null,
+        "instructions": {},
+        "properties": {
+          "size": "auto",
+          "headingLevel": "3"
+        }
+      }
+    }
+  ],
+  "dataFormat": "component"
+}

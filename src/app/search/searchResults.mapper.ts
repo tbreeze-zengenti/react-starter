@@ -1,6 +1,6 @@
 import { contentTypes } from '~/schema/contentTypes.schema';
 import type { SearchResultsMapper } from '@zengenti/contensis-react-base/models/search';
-import type { ContentType } from '~/models/contentTypes/contentType.type';
+import type { ContentType } from '~/types/contentTypes/contentType.type';
 
 /**
  * Represents additional properties that can be added to search result items.
