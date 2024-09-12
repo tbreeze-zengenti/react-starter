@@ -17,8 +17,6 @@ const Accordion = ({ items, title }: AccordionProps) => {
     ids: items.map(i => i.id),
   });
 
-  console.log(items.map(item => item.id).join(' '));
-
   return (
     <AccordionStyled className="accordion">
       {(title || items.length > 1) && (
