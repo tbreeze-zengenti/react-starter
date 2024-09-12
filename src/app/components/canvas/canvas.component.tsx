@@ -5,7 +5,7 @@ import {
   Block,
 } from '@contensis/canvas-react';
 
-import LinkBlock from './blocks/link/link.block';
+import LinkBlock from './blocks/link.block';
 
 export type CanvasProps = { data: Block[] };
 

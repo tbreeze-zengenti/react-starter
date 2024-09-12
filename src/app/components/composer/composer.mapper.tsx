@@ -1,5 +1,5 @@
-import { markupMapper } from '../markup/markup.mapper';
+import { richTextMapper } from '../richText/richText.mapper';
 
 export const composerPropsMapping = {
-  richText: markupMapper,
+  richText: richTextMapper,
 };

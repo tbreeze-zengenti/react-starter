@@ -1,6 +1,6 @@
 import React from 'react';
 
-export type MarkupProps = {
+export type RichTextProps = {
   _type?: 'richText';
   className?: string;
   text: string;
@@ -9,10 +9,10 @@ export type MarkupProps = {
 /**
  * A component for rendering HTML markup.
  */
-const Markup = ({ className, text }: MarkupProps) => {
+const RichText = ({ className, text }: RichTextProps) => {
   return (
     <div
-      className={`markup ${className ? className : ''}`}
+      className={`rich-text ${className ? className : ''}`}
       dangerouslySetInnerHTML={{
         __html: text,
       }}
@@ -20,4 +20,4 @@ const Markup = ({ className, text }: MarkupProps) => {
   );
 };
 
-export default Markup;
+export default RichText;

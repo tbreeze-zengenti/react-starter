@@ -1,22 +1,22 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import Markup from '~/components/markup/markup.component';
+import RichText from './richText.component';
 
-const meta: Meta<typeof Markup> = {
-  title: 'Components / Global / Markup',
-  component: Markup,
+const meta: Meta<typeof RichText> = {
+  title: 'Components / Global / RichText',
+  component: RichText,
   args: {
-    className: 'markup',
+    className: 'RichText',
     text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi non quis exercitationem culpa nesciunt nihil aut nostrum explicabo reprehenderit optio amet ab temporibus asperiores quasi cupiditate. Voluptatum ducimus voluptates voluptas?',
   },
 };
 
 export default meta;
-type Story = StoryObj<typeof Markup>;
+type Story = StoryObj<typeof RichText>;
 
-export const MarkupStory: Story = {};
+export const RichTextStory: Story = {};
 
-export const MarkupHeadingsStory: Story = {
+export const RichTextHeadingsStory: Story = {
   args: {
     text: `<div>
       <h1>Heading Level 1</h1>
@@ -35,7 +35,7 @@ export const MarkupHeadingsStory: Story = {
   },
 };
 
-export const MarkupLinkStory: Story = {
+export const RichTextLinkStory: Story = {
   args: {
     text: `<div>
         <div><p><a href="#">Basic Anchor</a> - This is an example of <a href="#">basic anchor</a> text.</p></div>
@@ -49,7 +49,7 @@ export const MarkupLinkStory: Story = {
   },
 };
 
-export const MarkupFormattingStory: Story = {
+export const RichTextFormattingStory: Story = {
   args: {
     text: `<div>
       <div>
@@ -71,7 +71,7 @@ export const MarkupFormattingStory: Story = {
   },
 };
 
-export const MarkupStylizedStory: Story = {
+export const RichTextStylizedStory: Story = {
   args: {
     text: `<div>
       <div>
