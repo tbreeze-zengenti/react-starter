@@ -18,7 +18,7 @@ const Accordion = ({ items, title }: AccordionProps) => {
   });
 
   return (
-    <AccordionStyled className="accordion">
+    <AccordionStyled className="accordion" role="group">
       {(title || items.length > 1) && (
         <header className="accordion__header">
           {title && <h2>{title}</h2>}
@@ -50,6 +50,6 @@ const Accordion = ({ items, title }: AccordionProps) => {
   );
 };
 
-const AccordionStyled = styled.div``;
+const AccordionStyled = styled.section``;
 
 export default Accordion;
