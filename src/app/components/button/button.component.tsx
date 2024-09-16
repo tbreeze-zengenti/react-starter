@@ -8,8 +8,6 @@ type ButtonProps = {
   link?: string | null;
   children: React.ReactChild | null;
   buttonTheme: 'primary' | 'secondary';
-  buttonType: 'default' | 'pill';
-  ariaLabel?: string;
   onClick: () => void;
 };
 
@@ -18,17 +16,14 @@ const Button = ({
   link,
   children,
   buttonTheme = 'primary',
-  buttonType = 'default',
-  ariaLabel,
   onClick,
 }: ButtonProps) => {
-  const buttonClass = `button theme--${buttonTheme} type--${buttonType} ${className}`;
+  const buttonClass = `button theme--${buttonTheme} ${className}`;
 
   return link ? (
     <ButtonLinkStyled
       className={buttonClass}
       buttonTheme={buttonTheme}
-      buttonType={buttonType}
       onClick={onClick}
       path={link}
     >
@@ -38,8 +33,6 @@ const Button = ({
     <ButtonStyled
       className={buttonClass}
       buttonTheme={buttonTheme}
-      buttonType={buttonType}
-      aria-label={ariaLabel}
       onClick={onClick}
     >
       {children}
@@ -49,19 +42,21 @@ const Button = ({
 
 export default Button;
 
-const baseButtonStyles = ({ buttonTheme, buttonType }: ButtonProps) => {
+const baseButtonStyles = ({ buttonTheme }: ButtonProps) => {
   return css`
     display: inline-block;
+    text-decoration: none;
     background-color: ${buttons[buttonTheme].default.background};
+    border: 2px solid ${buttons[buttonTheme].default.border};
     color: ${buttons[buttonTheme].default.textColor};
-    padding: ${p => p.theme.spacing.s} ${p => p.theme.spacing.m};
-    border-radius: ${buttonType === 'pill' ? '5px' : '0'};
+    padding: ${p => p.theme.spacing.xs};
     font-size: 1rem;
     text-align: center;
     cursor: pointer;
     transition: all 0.2s;
 
     &:hover {
+      border: 2px solid ${buttons[buttonTheme].hover.border};
       background-color: ${buttons[buttonTheme].hover.background};
       color: ${buttons[buttonTheme].hover.textColor};
     }
