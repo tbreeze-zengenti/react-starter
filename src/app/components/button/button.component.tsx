@@ -3,46 +3,37 @@ import styled, { css } from 'styled-components';
 import Link from '../link/link.component';
 import { buttons } from '~/theme/buttons';
 
-type ButtonProps = {
+type ButtonElement = HTMLButtonElement & HTMLLinkElement;
+
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+  buttonTheme?: 'primary' | 'secondary';
+  children: React.ReactChild;
   className?: string;
-  link?: string | null;
-  children: React.ReactChild | null;
-  buttonTheme: 'primary' | 'secondary';
-  onClick: () => void;
+  path?: string;
 };
 
-const Button = ({
-  className,
-  link,
-  children,
-  buttonTheme = 'primary',
-  onClick,
-}: ButtonProps) => {
-  const buttonClass = `button theme--${buttonTheme} ${className}`;
+const Button = React.forwardRef<ButtonElement, ButtonProps>(
+  (props, forwardedRef) => {
+    const { children, buttonTheme = 'primary', className, path } = props;
+    const buttonClass = `button theme--${buttonTheme} ${className ? className : ''}`;
 
-  return link ? (
-    <ButtonLinkStyled
-      className={buttonClass}
-      buttonTheme={buttonTheme}
-      onClick={onClick}
-      path={link}
-    >
-      {children}
-    </ButtonLinkStyled>
-  ) : (
-    <ButtonStyled
-      className={buttonClass}
-      buttonTheme={buttonTheme}
-      onClick={onClick}
-    >
-      {children}
-    </ButtonStyled>
-  );
-};
+    return path ? (
+      <ButtonLinkStyled {...props} className={buttonClass}>
+        {children}
+      </ButtonLinkStyled>
+    ) : (
+      <ButtonStyled {...props} ref={forwardedRef} className={buttonClass}>
+        {children}
+      </ButtonStyled>
+    );
+  }
+);
+
+Button.displayName = 'Button';
 
 export default Button;
 
-const baseButtonStyles = ({ buttonTheme }: ButtonProps) => {
+const baseButtonStyles = ({ buttonTheme = 'primary' }: ButtonProps) => {
   return css`
     display: inline-block;
     text-decoration: none;
