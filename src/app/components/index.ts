@@ -17,6 +17,6 @@ export const Canvas = loadable(
 export const Markup = loadable(
   () =>
     import(
-      /* webpackChunkName: "markup" */ '~/components/richText/markup.component'
+      /* webpackChunkName: "markup" */ '~/components/richText/richText.component'
     )
 );
