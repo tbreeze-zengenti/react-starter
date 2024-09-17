@@ -6,6 +6,8 @@ import {
 } from '@contensis/canvas-react';
 
 import LinkBlock from './blocks/link.block';
+import PanelCanvas from './blocks/panel.block';
+import BlockquoteCanvas from './blocks/quote.block';
 
 export type CanvasProps = { data: Block[] };
 
@@ -18,7 +20,13 @@ const Canvas = ({ data }: CanvasProps) => {
   if (!data) return null;
 
   return (
-    <RenderContextProvider blocks={{ _link: LinkBlock }}>
+    <RenderContextProvider
+      blocks={{
+        _link: LinkBlock,
+        _panel: PanelCanvas,
+        _quote: BlockquoteCanvas,
+      }}
+    >
       <Renderer data={data} />
     </RenderContextProvider>
   );
