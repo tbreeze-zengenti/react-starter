@@ -1,26 +1,28 @@
+import { colors } from './colors';
+
 export const buttons = {
   primary: {
     default: {
-      background: 'black',
+      background: colors.contensis,
       textColor: 'white',
-      border: 'black',
+      border: colors.contensis,
     },
     hover: {
       background: 'white',
-      textColor: 'black',
-      border: 'black',
+      textColor: colors.contensis,
+      border: colors.contensis,
     },
   },
   secondary: {
     default: {
-      background: 'blue',
+      background: colors.zengenti,
       textColor: 'white',
-      border: 'blue',
+      border: colors.zengenti,
     },
     hover: {
       background: 'white',
-      textColor: 'black',
-      border: 'blue',
+      textColor: colors.zengenti,
+      border: colors.zengenti,
     },
   },
 };
