@@ -4,19 +4,19 @@ export const buttons = {
   primary: {
     default: {
       background: colors.contensis,
-      textColor: 'white',
+      textColor: colors.zengenti,
       border: colors.contensis,
     },
     hover: {
       background: 'white',
-      textColor: colors.contensis,
+      textColor: colors.zengenti,
       border: colors.contensis,
     },
   },
   secondary: {
     default: {
       background: colors.zengenti,
-      textColor: 'white',
+      textColor: colors.contensis,
       border: colors.zengenti,
     },
     hover: {
