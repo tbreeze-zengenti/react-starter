@@ -282,6 +282,14 @@ export const Vanilla: Story = {
           url: 'https://www.bbc.co.uk/news/uk-67707647',
         },
       },
+      {
+        id: 'c1d1b1f8',
+        type: '_panel',
+        value: 'Warning panel',
+        properties: {
+          panelType: 'warning',
+        },
+      },
     ],
   },
 };
