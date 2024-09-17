@@ -1,30 +1,22 @@
 import React from 'react';
+import type { ReactNode } from 'react';
 import { Link as PageLink } from 'react-router-dom';
-import type { MouseEvent, ReactNode } from 'react';
+import { HashLink } from 'react-router-hash-link';
+
+type LinkElement = HTMLSpanElement & HTMLAnchorElement;
 
 export type LinkProps = {
   path?: string;
   children?: ReactNode;
-  onClick?: (e: MouseEvent<HTMLAnchorElement>) => void;
-  download?: string;
   openInNewWindow?: boolean;
   className?: string;
 };
-
-type LinkElement = HTMLSpanElement & HTMLAnchorElement;
 
 /**
  * A custom link component that handles internal and external links.
  */
 const Link = React.forwardRef<LinkElement, LinkProps>((props, forwardedRef) => {
-  const {
-    path,
-    children,
-    onClick,
-    download,
-    openInNewWindow,
-    className = '',
-  } = props;
+  const { path, children, openInNewWindow = false, className = '' } = props;
 
   /**
    * If no path is provided, render a span element
@@ -41,35 +33,26 @@ const Link = React.forwardRef<LinkElement, LinkProps>((props, forwardedRef) => {
   }
 
   /**
-   * Determine whether to open the link in a new window/tab
-   */
-  const target = openInNewWindow ? '_blank' : '_self';
-
-  /**
    * Encode the path URI
    */
   const encodedPath = encodeURI(path);
 
-  /**
-   * Event handler for click event
-   */
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (onClick) {
-      onClick(e);
+  if (!openInNewWindow && (!path.startsWith('/') || path.startsWith('#'))) {
+    /**
+     * If the link is a hash link use the HashLink component
+     */
+    if (path.indexOf('#') > -1) {
+      return <HashLink {...props} smooth={true} to={path} />;
     }
-  };
-
-  if (target !== '_blank' && path?.startsWith('/')) {
     /**
      * If the link is an internal route, render a PageLink component <Link>
      */
     return (
       <PageLink
-        to={encodedPath}
-        onClick={handleClick}
-        download={download}
         className={`link ${className ? className : ''}`}
         ref={forwardedRef}
+        to={encodedPath}
+        {...props}
       >
         {children}
       </PageLink>
@@ -80,21 +63,20 @@ const Link = React.forwardRef<LinkElement, LinkProps>((props, forwardedRef) => {
      */
     return (
       <a
-        href={encodedPath}
-        onClick={handleClick}
-        target={target}
-        download={download}
         className={`link link--external ${className ? className : ''}`}
+        href={encodedPath}
         ref={forwardedRef}
+        rel="noreferrer"
+        target={openInNewWindow ? '_blank' : '_self'}
+        {...props}
       >
         {children}
-        {target === '_blank' && (
-          <span className="sr-only">(opens in new tab)</span>
-        )}
+        {openInNewWindow && <span className="sr-only">(opens in new tab)</span>}
       </a>
     );
   }
 });
+
 Link.displayName = 'Link';
 
 export default Link;
