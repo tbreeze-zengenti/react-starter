@@ -1,19 +1,17 @@
-import { colors } from './colors';
-
 export const panels = {
-  information: {
-    border: colors.contensis,
+  info: {
+    border: '#006c84',
   },
   note: {
-    border: 'yellow',
+    border: '#6841d7',
   },
   warning: {
-    border: 'darkred',
+    border: '#fe7d14',
   },
   success: {
-    border: 'blue',
+    border: '#018947',
   },
   error: {
-    border: 'red',
+    border: '#c92020',
   },
 };

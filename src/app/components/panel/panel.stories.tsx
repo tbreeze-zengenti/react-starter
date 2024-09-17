@@ -6,7 +6,7 @@ const meta: Meta<typeof Panel> = {
   component: Panel,
   args: {
     className: '',
-    panelType: 'information',
+    panelType: 'info',
     text: 'Panel content',
   },
 };

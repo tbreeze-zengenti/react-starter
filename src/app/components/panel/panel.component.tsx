@@ -2,13 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import { panels } from '~/theme/panel';
 
-type PanelProps = {
-  text: string;
-  panelType: 'information' | 'note' | 'warning' | 'success' | 'error';
+export type PanelProps = {
+  text: any;
+  panelType?: 'info' | 'note' | 'warning' | 'success' | 'error';
   className?: string;
 };
 
-const Panel = ({ text, panelType = 'information', className }: PanelProps) => {
+const Panel = ({ text, panelType = 'info', className }: PanelProps) => {
   return (
     <PanelStyled
       panelType={panelType}
@@ -22,7 +22,7 @@ const Panel = ({ text, panelType = 'information', className }: PanelProps) => {
 export default Panel;
 
 const PanelStyled = styled.div<{ panelType: PanelProps['panelType'] }>`
-  border-left: 4px solid ${p => panels[p.panelType].border};
+  border-left: 8px solid ${p => panels[p.panelType ?? 'info'].border};
   padding: ${p => p.theme.spacing.xs};
   margin: ${p => p.theme.spacing.xs};
   background-color: #d7d7d7;
