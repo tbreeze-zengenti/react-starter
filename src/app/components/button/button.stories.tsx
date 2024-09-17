@@ -8,7 +8,7 @@ const meta: Meta<typeof Button> = {
     buttonTheme: 'primary',
     children: 'Click me',
     className: '',
-    link: '/',
+    path: '/',
   },
 };
 
