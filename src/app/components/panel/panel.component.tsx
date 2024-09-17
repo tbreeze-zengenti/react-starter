@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { panels } from '~/theme/panel';
 
 export type PanelProps = {
-  text: React.ReactNode | string;
+  text: React.ReactNode;
   panelType?: 'info' | 'note' | 'warning' | 'success' | 'error';
   className?: string;
 };
