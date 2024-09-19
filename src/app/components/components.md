@@ -1,12 +1,12 @@
-- Accordion
-- Blockquote
-- Button
+- Accordion X
+- Blockquote X
+- Button X
 - Code
 - Figure (image with caption)
 - Image
-- Icon
+- Icon X
 - Panel (callout)
-- Video (YouTube only?)
+- Video (YouTube only?) X
 - Pagination
 - Heading
 - Lead? (canvas)
