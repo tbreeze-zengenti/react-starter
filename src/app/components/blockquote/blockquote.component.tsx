@@ -36,6 +36,8 @@ const Blockquote = ({ citation, quote, source, url }: BlockquoteProps) => {
   );
 };
 
-export const BlockquoteStyled = styled.blockquote``;
+export const BlockquoteStyled = styled.blockquote`
+  border-left: 4px solid red;
+`;
 
 export default Blockquote;

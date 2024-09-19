@@ -1,15 +1,15 @@
 import React from 'react';
 
-import { PanelBlock } from '@contensis/canvas-react';
+import {
+  PanelBlock,
+  RenderBlockProps,
+  RenderChildren,
+} from '@contensis/canvas-react';
 import Panel from '~/components/panel/panel.component';
-import RenderInlineChildren from '../renderInlineChildren.component';
 
-const PanelCanvas = ({ block }: { block: PanelBlock }) => {
+const PanelCanvas = (props: RenderBlockProps<PanelBlock>) => {
   return (
-    <Panel
-      text={<RenderInlineChildren value={block.value} />}
-      {...block.properties}
-    />
+    <Panel text={<RenderChildren {...props} />} {...props?.block.properties} />
   );
 };
 

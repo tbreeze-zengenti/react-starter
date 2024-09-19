@@ -8,6 +8,7 @@ import {
 import LinkBlock from './blocks/link.block';
 import PanelCanvas from './blocks/panel.block';
 import BlockquoteCanvas from './blocks/quote.block';
+import AccordionCanvas from './blocks/accordion.block';
 
 export type CanvasProps = { data: Block[] };
 
@@ -26,6 +27,7 @@ const Canvas = ({ data }: CanvasProps) => {
         _panel: PanelCanvas,
         _quote: BlockquoteCanvas,
       }}
+      components={{ accordion: AccordionCanvas }}
     >
       <Renderer data={data} />
     </RenderContextProvider>

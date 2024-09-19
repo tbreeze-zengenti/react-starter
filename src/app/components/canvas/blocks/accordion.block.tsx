@@ -10,7 +10,7 @@ const AccordionCanvas = ({
 }: {
   block: ComponentBlock<ComponentAccordion>;
 }) => {
-  return !block.value ? null : <Accordion {...accordionMapper(block.value)} />;
+  return !block?.value ? null : <Accordion {...accordionMapper(block.value)} />;
 };
 
 export default AccordionCanvas;
