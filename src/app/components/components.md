@@ -5,7 +5,7 @@
 - Figure (image with caption)
 - Image
 - Icon X
-- Panel (callout)
+- Panel (callout) X
 - Video (YouTube only?) X
 - Pagination
 - Heading
