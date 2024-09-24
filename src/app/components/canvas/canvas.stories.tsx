@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import Canvas from './canvas.component';
 
 const meta: Meta<typeof Canvas> = {
-  title: 'Components / Canvas / Renderer',
+  title: 'Components / Renderer',
   component: Canvas,
 };
 export default meta;

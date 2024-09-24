@@ -18,7 +18,7 @@ const mockData = {
 };
 
 const meta: Meta<typeof Accordion> = {
-  title: 'Components / Global / Accordion',
+  title: 'Components / Accordion',
   component: Accordion,
   args: accordionMapper(mockData),
 };
