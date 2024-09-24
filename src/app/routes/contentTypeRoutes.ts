@@ -10,7 +10,7 @@ import { contentTypes } from '~/schema/contentTypes.schema';
  */
 const contentTypeRoutes: ContentTypeRoute[] = [
   {
-    contentTypeID: contentTypes.contentPage,
+    contentTypeID: 'uatTest',
     component: Content,
     entryMapper: mapRouteEntryToProps(contentMapper),
   },
