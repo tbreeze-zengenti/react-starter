@@ -11,18 +11,21 @@ import type { CanvasProps } from '~/components/canvas/canvas.component';
 
 import { Canvas, Composer } from '~/components';
 import Link from '~/components/link/link.component';
+import { ImageProps } from '~/components/image/image.type';
+import Image from '~/components/image/image.component';
 
 export type ContentTemplateProps = {
   meta: MetaProps;
   title: string;
   composer: ComposerProps;
   canvas?: CanvasProps;
+  sampleImage: ImageProps;
 };
 
 const Content = ({
   mappedEntry,
 }: RouteComponentProps<ContentTemplateProps>) => {
-  const { meta, title, composer, canvas } =
+  const { meta, title, composer, canvas, sampleImage } =
     mappedEntry || ({} as ContentTemplateProps);
   return (
     <>
@@ -55,6 +58,9 @@ const Content = ({
                   />
                 </svg>
               </Link>
+            </div>
+            <div>
+              <Image {...sampleImage} />
             </div>
             <div className="bento-boxes">
               <article className="bento-box">
