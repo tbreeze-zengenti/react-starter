@@ -5,7 +5,7 @@ import { MemoryRouter } from 'react-router-dom';
 import SkipToMainContent from '~/components/skipToMainContent/skipToMainContent.component';
 
 const meta: Meta<typeof SkipToMainContent> = {
-  title: 'Components / Global /  SkipToMainContent',
+  title: 'Components /  Skip to Main',
   component: SkipToMainContent,
   args: {
     skipPath: '#main',

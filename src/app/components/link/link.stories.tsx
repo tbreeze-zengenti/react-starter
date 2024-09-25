@@ -5,16 +5,14 @@ import Link from '~/components/link/link.component';
 import { MemoryRouter } from 'react-router-dom';
 
 const meta: Meta<typeof Link> = {
-  title: 'Components / Global / Link',
+  title: 'Components  / Link',
   component: Link,
   args: {
     className: 'storylink',
-    download: '',
     openInNewWindow: false,
     children: 'Link title',
     path: '/hello',
   },
-  argTypes: { onClick: { action: 'clicked' } },
 };
 export default meta;
 

@@ -52,6 +52,7 @@ const GlobalStyle = createGlobalStyle`
   img, picture, video, canvas, svg {
     display: block;
     max-width: 100%;
+    height: auto;
   }
 
   /* Inherit fonts for inputs and buttons */

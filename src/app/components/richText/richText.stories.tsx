@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import RichText from './richText.component';
 
 const meta: Meta<typeof RichText> = {
-  title: 'Components / Global / RichText',
+  title: 'Components / RichText',
   component: RichText,
   args: {
     className: 'RichText',

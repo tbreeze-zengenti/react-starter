@@ -10,8 +10,7 @@ import { contentTypes } from '~/schema/contentTypes.schema';
  */
 const contentTypeRoutes: ContentTypeRoute[] = [
   {
-    /** If connected to Leif (default), visit `/about` */
-    contentTypeID: contentTypes.contentPage,
+    contentTypeID: 'uatTest',
     component: Content,
     entryMapper: mapRouteEntryToProps(contentMapper),
   },
