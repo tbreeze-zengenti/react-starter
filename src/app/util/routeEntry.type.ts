@@ -1,33 +1,13 @@
-import { ContensisEntry } from '~/types/contensis.type';
 import { ReduxState } from '~/redux/redux.type';
-
-/**
- * Represents a node in the website's navigation hierarchy.
- * @interface
- * @template N - The type of entry associated with the node.
- */
-export interface Node<N = ContensisEntry> {
-  id: string;
-  projectId: string;
-  title: string;
-  displayName: string;
-  slug: string;
-  path: string;
-  parentId?: string;
-  language: string;
-  entryId?: string;
-  entry?: N;
-  childCount: number;
-  includeInMenu: boolean;
-}
+import { Node, StrictEntry, Entry } from 'contensis-delivery-api';
 
 /**
  * Represents a node in the website's routing hierarchy, including ancestors and children.
  * @template N - The type of entry associated with the node.
  */
-export type RouteNode<N> = Node<N> & {
-  ancestors: Node<N>[];
-  children: Node<N>[];
+export type RouteNode<E extends StrictEntry = Entry> = Node<E> & {
+  ancestors: Node[];
+  children: Node[];
 };
 
 /**
@@ -35,7 +15,7 @@ export type RouteNode<N> = Node<N> & {
  * @template T - The type of additional data associated with the route entry.
  * @template N - The type of entry associated with the route node.
  */
-export type RouteEntry<T, N = ContensisEntry> = T & {
+export type RouteEntry<T, N extends StrictEntry = Entry> = T & {
   node: RouteNode<N>;
   state: ReduxState;
 };
