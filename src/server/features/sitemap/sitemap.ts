@@ -6,7 +6,7 @@ import type { Entry } from 'contensis-delivery-api/lib/models';
 import { cachedSearch } from '@zengenti/contensis-react-base/util';
 
 import { canonicalDomain } from '~/util/canonicalDomain';
-import { ComponentMetaType } from '~/models/components/meta.type';
+import { ComponentMetaType } from '~/types/components/meta.type';
 import staticRoutes from '~/routes/staticRoutes';
 
 import { sitemapConfig } from './sitemap.config';

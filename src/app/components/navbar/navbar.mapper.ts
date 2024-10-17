@@ -1,4 +1,4 @@
-import { ContensisNode } from '~/models/contensis.type';
+import { ContensisNode } from '~/types/contensis.type';
 
 export const navBarMapper = (nodes: ContensisNode[]): NavbarItemProps[] => {
   return nodes
