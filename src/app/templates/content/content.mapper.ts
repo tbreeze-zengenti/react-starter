@@ -1,14 +1,14 @@
 import { RouteEntry } from '~/util/routeEntry.type';
 import { ContentTemplateProps } from './content.template';
+import { StrictEntry } from 'contensis-delivery-api';
 
-type ContentTypeContent = {
-  entryTitle: string;
+type ContentTypeContent = StrictEntry & {
   composer: any;
   canvas?: any;
 };
 
 export const contentMapper = (
-  props: RouteEntry<ContentTypeContent>
+  props: RouteEntry<ContentTypeContent, ContentTypeContent>
 ): ContentTemplateProps => {
   return {
     meta: {

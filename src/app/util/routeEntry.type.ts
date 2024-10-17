@@ -5,7 +5,7 @@ import { Node, StrictEntry, Entry } from 'contensis-delivery-api';
  * Represents a node in the website's routing hierarchy, including ancestors and children.
  * @template N - The type of entry associated with the node.
  */
-export type RouteNode<E extends StrictEntry = Entry> = Node<E> & {
+export type RouteNode<REntry extends StrictEntry = Entry> = Node<REntry> & {
   ancestors: Node[];
   children: Node[];
 };
@@ -15,7 +15,7 @@ export type RouteNode<E extends StrictEntry = Entry> = Node<E> & {
  * @template T - The type of additional data associated with the route entry.
  * @template N - The type of entry associated with the route node.
  */
-export type RouteEntry<T, N extends StrictEntry = Entry> = T & {
-  node: RouteNode<N>;
+export type RouteEntry<REntry, NEntry extends StrictEntry = Entry> = REntry & {
+  node: RouteNode<NEntry>;
   state: ReduxState;
 };
