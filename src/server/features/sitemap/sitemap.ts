@@ -131,13 +131,13 @@ const getEntries = async (
   }
 };
 
-const mapEntryToSitemapUrl = (entry: SitemapEntry): SitemapItem => {
+const mapEntryToSitemapUrl = (entry: SitemapEntry): SitemapItem | null => {
   const { uri, version } = entry.sys;
   const existsInConfig = sitemapConfig.priorityMap?.find(
     config => config.url === entry.sys.contentTypeId
   );
 
-  if (existsInConfig) {
+  if (existsInConfig && uri) {
     const { priority, changefreq } = existsInConfig;
     return {
       url: encodeURI(uri),
@@ -145,12 +145,14 @@ const mapEntryToSitemapUrl = (entry: SitemapEntry): SitemapItem => {
       priority,
       changefreq,
     };
-  } else {
+  }
+  if (!existsInConfig && uri) {
     return {
       url: encodeURI(uri),
       lastmod: version?.published,
     };
   }
+  return null;
 };
 
 const sitemapPathsFromStaticRoutes = (routes: StaticRoute[]): SitemapItem[] => {
@@ -194,8 +196,6 @@ export const generateSitemap = async (project: string) => {
 
   /** Fetch all other pages concurrently */
   const getEntryPages = Array.from(
-    // Missing prop pageCount: https://github.com/contensis/contensis-core-api/issues/9
-    // @ts-expect-error
     { length: entryInfo.pageCount - 1 },
     (_, i) => getEntries(i + 1, pageSize, project)
   );
@@ -227,6 +227,7 @@ export const generateSitemap = async (project: string) => {
     ...sitemapPathsFromStaticRoutes(staticRoutes),
     ...sitemapConfig.additions,
   ]
+    .filter(item => item !== null)
     .filter(item =>
       sitemapConfig.excludePaths?.length
         ? !sitemapConfig?.excludePaths.includes(item.url)
