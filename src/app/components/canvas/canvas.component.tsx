@@ -18,7 +18,11 @@ const Canvas = ({ data }: CanvasProps) => {
   if (!data) return null;
 
   return (
-    <RenderContextProvider blocks={{ _link: LinkBlock }}>
+    <RenderContextProvider
+      blocks={{
+        _link: LinkBlock,
+      }}
+    >
       <Renderer data={data} />
     </RenderContextProvider>
   );

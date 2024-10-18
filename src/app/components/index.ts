@@ -20,3 +20,8 @@ export const Markup = loadable(
       /* webpackChunkName: "markup" */ '~/components/markup/markup.component'
     )
 );
+
+export const Form = loadable(
+  () =>
+    import(/* webpackChunkName: "form" */ '~/components/forms/form.component')
+);
