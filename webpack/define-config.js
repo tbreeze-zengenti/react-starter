@@ -33,9 +33,9 @@ const PROJECTS = env => [
  * Define paths to proxy back to the classic IIS servers?
  */
 const REVERSE_PROXY_PATHS = Object([
-  '/image-library',
-  '/video-library',
-  '/asset-library',
+  '/image-library/*',
+  '/video-library/*',
+  '/asset-library/*',
 ]);
 
 /**
