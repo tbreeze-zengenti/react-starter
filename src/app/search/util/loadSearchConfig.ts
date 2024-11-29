@@ -24,10 +24,7 @@ export interface ContentTypeRoute extends ContentTypeMapping {
  * @description Asynchronously load and inject assets related to Search
  */
 const injectSearchAssets = async () => {
-  const { routeParams, setRouteFilters } = (await import(
-    /* webpackChunkName: "search-package" */
-    '@zengenti/contensis-react-base/search'
-  )) as typeof import('@zengenti/contensis-react-base/search');
+  const { routeParams, setRouteFilters } = (await import('@zengenti/contensis-react-base/search')) as typeof import('@zengenti/contensis-react-base/search');
 
   const mappers = (
     (await import(
@@ -39,7 +36,7 @@ const injectSearchAssets = async () => {
   return { routeParams, setRouteFilters, mappers };
 };
 
-type InjectSearchAssets = {
+interface InjectSearchAssets {
   routeParams: any;
   setRouteFilters: (typeof import('@zengenti/contensis-react-base/search'))['setRouteFilters'];
   mappers: SearchTransformations;

@@ -1,42 +1,33 @@
 {
   "compilerOptions": {
-    "outDir": "./build/", // path to output directory
-    "sourceMap": true, // allow sourcemap support
-    "strictNullChecks": true, // enable strict null checks as a best practice
-    "module": "esnext", // specifiy module code generation
-    "jsx": "react", // use typescript to transpile jsx to js
-    "target": "es2022", // specify ECMAScript target version
-    "strict": true /* Enable all strict type-checking options. */,
-    "allowJs": false, // disallow a partial TypeScript and JavaScript codebase
-    "allowSyntheticDefaultImports": true,
-    "noImplicitAny": true, // disallow implicit any type
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "lib": [
-      "esnext",
-      "ES2022",
-      "ES2021",
-      "ES2020",
-      "es2019",
-      "es2017",
-      "es7",
-      "es6",
-      "dom",
-      "dom.iterable"
-    ],
+    /* Base Options: */
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "target": "es2022",
+    "allowJs": true,
+    "moduleDetection": "force",
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+
+    /* Strictness */
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+
+    /* Bundled projects */
+    "lib": ["es2022", "dom", "dom.iterable"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "outDir": "dist",
+    "sourceMap": true,
+    "jsx": "preserve",
+
+    /* Path Aliases */
     "baseUrl": ".",
     "paths": {
       "~/*": ["./src/app/*"],
       "-/*": ["./*"]
     }
   },
-  "include": ["./src"],
-  "exclude": [
-    ".storybook",
-    "config",
-    "public",
-    "webpack",
-    "storybook-static",
-    "./node_modules/**/*"
-  ]
+  "exclude": ["node_modules", "webpack"]
 }

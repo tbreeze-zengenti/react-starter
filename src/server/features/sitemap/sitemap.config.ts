@@ -1,4 +1,4 @@
-import { SitemapConfig } from './sitemap';
+import { type SitemapConfig } from './sitemap';
 import { noIndexField } from '~/schema/fields.schema';
 
 export const sitemapConfig: SitemapConfig = {

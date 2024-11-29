@@ -1,11 +1,10 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
+import { app } from './server';
 chai.should();
 chai.use(chaiHttp);
 
 describe('Server Loads', () => {
-  require('./server.ts');
-  const app = require('./server.ts').app;
   before(function () {
     return new Promise<void>(resolve => {
       app.on('app_started', function () {

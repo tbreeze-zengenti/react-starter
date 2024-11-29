@@ -1,7 +1,8 @@
-import { takeEvery, select, put } from 'redux-saga/effects';
+import { takeEvery, select, put, call } from 'redux-saga/effects';
 import { Query, Op } from 'contensis-delivery-api';
-import { SSRContext } from '@zengenti/contensis-react-base';
+import { type SSRContext } from '@zengenti/contensis-react-base';
 import { version } from '@zengenti/contensis-react-base/redux';
+import { type SagaIterator } from 'redux-saga';
 
 import { siteConfigMapper } from './siteConfig.mapper';
 
@@ -23,9 +24,10 @@ export const SiteConfigSagas = [
 /**
  * Saga to fetch then map site config entry into the redux store
  */
+
 export function* getSiteConfigSaga({
   api,
-}: SSRContext): Generator<any, void, any> {
+}: SSRContext): SagaIterator {
   const isSiteConfigLoaded = yield select(selectSiteConfigReady);
 
   try {
@@ -43,7 +45,7 @@ export function* getSiteConfigSaga({
 
       if (!siteConfigFields || siteConfigFields.length <= 0) return;
 
-      const results = yield api.search(query, 0);
+      const results = yield call([api, api.search], query, 0);
 
       const mappedEntry = results?.items?.[0]
         ? siteConfigMapper(results.items[0])
@@ -55,7 +57,7 @@ export function* getSiteConfigSaga({
         yield put({ type: getSiteConfigError.type });
       }
     }
-  } catch (error: any) {
-    yield put({ type: getSiteConfigError.type, error: error.toString() });
+  } catch (error: unknown) {
+    yield put({ type: getSiteConfigError.type, error: error?.toString() });
   }
 }
